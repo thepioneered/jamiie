@@ -1,0 +1,13 @@
+## Commands :--
+
+# Creating a new Branch
+    git branch <branchName>
+Eg. git branch dev
+
+# Changing branch
+    git checkout <branchName>
+
+# merge code in master branch
+  # First change branch to master
+  git checkout master
+  git merge <branchName>
