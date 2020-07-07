@@ -1,6 +1,7 @@
 background color - F5F7FB
-primary blue - 3A74EA
+primary blue - 06A0FF
+primary orange - FF9600
 primary red - EA3A3A
-gray color on Sign Up Tab - 8E8E8E
-gray color on Mobile Password - 8D8D8D
-
+gray color on SignUp/Login Tab - 8E8E8E
+gray color on Mobile/Password Input headings - 8D8D8D
+grey placeholder text in inputs - C0C0C0
