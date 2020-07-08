@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/routes/routes.dart';
+import 'package:jamiee_flutter/screens/homePage.dart';
 import 'package:jamiee_flutter/screens/loginPage.dart';
 
 class App extends StatelessWidget {
@@ -22,7 +23,7 @@ class PlatformApp extends StatelessWidget {
     } else {
       return MaterialApp(
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: LoginPagePlatform(),
+        home: HomePagePlatform(),
       );
     }
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/styles/base.dart';
+import 'package:jamiee_flutter/styles/colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String title;
@@ -11,30 +13,25 @@ class TextFieldWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 20.0,
+              ),
+              Text(title),
+            ],
+          ),
           SizedBox(
             height: 10.0,
           ),
           Container(
-            height: 50.0,
-            color: Colors.grey[100],
-            padding: EdgeInsets.all(5.0),
-            child: TextField(
-              decoration: InputDecoration(
-                suffixIcon: isPassword != null
-                    ? GestureDetector(
-                        onTap: () {
-                          print("Password Tapped");
-                        },
-                        child: Icon(
-                          Icons.remove_red_eye,
-                          color: Colors.black,
-                        ),
-                      )
-                    : null,
+              decoration: BoxDecoration(
+                color: Colors.black, //TODO
+                borderRadius: BaseStyles.radius,
               ),
-            ),
-          )
+              height: BaseStyles.loginWidgetHeight,
+              padding: EdgeInsets.all(5.0),
+              child: null)
         ],
       ),
     );
