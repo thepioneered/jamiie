@@ -18,4 +18,9 @@ class AppTextStyle {
       ),
     );
   }
+
+  static TextStyle get subheadingText => GoogleFonts.spaceMono(
+      fontSize: 20.0, textStyle: TextStyle(color: AppColors.grayInputHeading));
+  static TextStyle get placeholderText => GoogleFonts.spaceMono(
+      fontSize: 20.0, textStyle: TextStyle(color: AppColors.placeHolderInput));
 }

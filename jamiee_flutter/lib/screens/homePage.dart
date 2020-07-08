@@ -45,87 +45,80 @@ class _HomePageState extends State<HomePage> {
     switch (_pageType) {
       case PageType.LoginPage:
         _loginColor = AppColors.primaryBlue;
-        _signupColor = AppColors.grayLoginTabColor;
+        _signupColor = AppColors.placeHolderInput;
         break;
       case PageType.SignupPage:
         _signupColor = AppColors.primaryBlue;
-        _loginColor = AppColors.grayLoginTabColor;
+        _loginColor = AppColors.placeHolderInput;
         break;
       default:
         _loginColor = AppColors.primaryBlue;
-        _signupColor = AppColors.grayLoginTabColor;
+        _signupColor = AppColors.placeHolderInput;
     }
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 35.0, horizontal: 30.0),
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 100.0,
-          ),
-          Row(
-            children: <Widget>[
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _child = LoginPage();
-                    _pageType = PageType.LoginPage;
-                  });
-                },
-                child: Container(
-                    height: 50.0,
-                    width: (MediaQuery.of(context).size.width - 60.0) / 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          "Login",
-                          style: AppTextStyle.tabText(_loginColor),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Container(
-                          color: _loginColor,
-                          height: 5.0,
-                        )
-                      ],
-                    )),
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _child = SignupPage();
-                    _pageType = PageType.SignupPage;
-                  });
-                },
-                child: Container(
-                    height: 50.0,
-                    width: (MediaQuery.of(context).size.width - 60.0) / 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          "Sign Up",
-                          style: AppTextStyle.tabText(_signupColor),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Container(
-                          color: _signupColor,
-                          height: 5.0,
-                        )
-                      ],
-                    )),
-              ),
-            ],
-          ),
-          Expanded(
-            child: _child,
-          )
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        padding:
+            EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0, bottom: 10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              height: 200.0,
+              width: 200.0,
+              decoration: BoxDecoration(
+                  image:
+                      DecorationImage(image: AssetImage("assets/logo2.jpg"))),
+            ),
+            SizedBox(
+              height: 40.0,
+            ),
+            Row(
+              children: <Widget>[
+                InkWell(
+                    onTap: () {
+                      setState(() {
+                        _child = LoginPage();
+                        _pageType = PageType.LoginPage;
+                      });
+                    },
+                    child: tabBody(_loginColor, "Login")),
+                InkWell(
+                    onTap: () {
+                      setState(() {
+                        _child = SignupPage();
+                        _pageType = PageType.SignupPage;
+                      });
+                    },
+                    child: tabBody(_signupColor, "Sign Up")),
+              ],
+            ),
+            Container(padding: EdgeInsets.only(top: 30.0), child: _child),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget tabBody(Color _color, String text) {
+    return Container(
+        height: 50.0,
+        width: (MediaQuery.of(context).size.width - 60.0) / 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Text(
+              text,
+              style: AppTextStyle.tabText(_color),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            Container(
+              color: _color,
+              height: 5.0,
+            )
+          ],
+        ));
   }
 }
 

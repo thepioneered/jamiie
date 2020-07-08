@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/styles/base.dart';
 import 'package:jamiee_flutter/styles/colors.dart';
+import 'package:jamiee_flutter/styles/text.dart';
+// import 'package:jamiee_flutter/styles/colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String title;
   final bool isPassword;
 
-  const TextFieldWidget({@required this.title, this.isPassword});
+  const TextFieldWidget({
+    @required this.title,
+    this.isPassword,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,20 +23,31 @@ class TextFieldWidget extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-              Text(title),
+              Text(
+                title,
+                style: AppTextStyle.subheadingText,
+              ),
             ],
           ),
           SizedBox(
             height: 10.0,
           ),
           Container(
+              padding: EdgeInsets.only(left: 20.0, right: 10.0),
               decoration: BoxDecoration(
-                color: Colors.black, //TODO
+                boxShadow: BaseStyles.boxShadow,
+                color: AppColors.white,
                 borderRadius: BaseStyles.radius,
               ),
               height: BaseStyles.loginWidgetHeight,
-              padding: EdgeInsets.all(5.0),
-              child: null)
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+              )),
+          SizedBox(
+            height: 30.0,
+          ),
         ],
       ),
     );

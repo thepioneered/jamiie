@@ -1,30 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/screens/loginPage.dart';
+import 'package:jamiee_flutter/screens/HomePage.dart';
 
 class AppRoutes {
   static MaterialPageRoute materialPageRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case "/loginPage":
+      case "/HomePage":
         return MaterialPageRoute(
-          builder: (context) => LoginPagePlatform(),
+          builder: (context) => HomePagePlatform(),
         );
       default:
         return MaterialPageRoute(
-          builder: (context) => LoginPagePlatform(),
+          builder: (context) => HomePagePlatform(),
         );
     }
   }
 
   static CupertinoPageRoute cupertinoPageRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case "/loginPage":
+      case "/HomePage":
         return CupertinoPageRoute(
-          builder: (context) => LoginPagePlatform(),
+          builder: (context) => HomePagePlatform(),
         );
       default:
         return CupertinoPageRoute(
-          builder: (context) => LoginPagePlatform(),
+          builder: (context) => HomePagePlatform(),
         );
     }
   }
