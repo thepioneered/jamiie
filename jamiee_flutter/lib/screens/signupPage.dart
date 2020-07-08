@@ -11,23 +11,49 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   int _containerNumber = 0;
   Widget _child;
+  AppLoginButton _appLoginButton;
   @override
   Widget build(BuildContext context) {
+    print("+++++++++Signup Build+++++++++");
     switch (_containerNumber) {
       case 0:
         _child = Column(
           children: <Widget>[
-            TextFieldWidget(title: "Name"),
-            TextFieldWidget(title: "Email"),
-            TextFieldWidget(title: "Mobile No."),
+            TextFieldWidget(
+              title: "Name",
+              keyboardType: TextInputType.text,
+            ),
+            TextFieldWidget(
+              title: "Email",
+              keyboardType: TextInputType.emailAddress,
+            ),
+            TextFieldWidget(
+              title: "Mobile No.",
+              keyboardType: TextInputType.number,
+            ),
           ],
+        );
+        _appLoginButton = AppLoginButton(
+          color: AppColors.primaryBlue,
+          title: "Next",
+          onTap: () {
+            setState(() {
+              _containerNumber++;
+            });
+          },
         );
         break;
       case 1:
         _child = Column(
           children: <Widget>[
-            TextFieldWidget(title: "Password"),
-            TextFieldWidget(title: "Confirm Password"),
+            TextFieldWidget(
+              title: "Password",
+              keyboardType: TextInputType.text,
+            ),
+            TextFieldWidget(
+              title: "Confirm Password",
+              keyboardType: TextInputType.text,
+            ),
             AppLoginButton(
               color: AppColors.primaryOrange,
               title: "Back",
@@ -36,15 +62,30 @@ class _SignupPageState extends State<SignupPage> {
                   _containerNumber--;
                 });
               },
-            )
+            ),
           ],
+        );
+        _appLoginButton = AppLoginButton(
+          color: AppColors.primaryBlue,
+          title: "Next",
+          onTap: () {
+            setState(() {
+              _containerNumber++;
+            });
+          },
         );
         break;
       case 2:
         _child = Column(
           children: <Widget>[
-            TextFieldWidget(title: "Select City"),
-            TextFieldWidget(title: "Select State"),
+            TextFieldWidget(
+              title: "Select City",
+              keyboardType: TextInputType.text,
+            ),
+            TextFieldWidget(
+              title: "Select State",
+              keyboardType: TextInputType.text,
+            ),
             AppLoginButton(
               color: AppColors.primaryOrange,
               title: "Back",
@@ -53,17 +94,42 @@ class _SignupPageState extends State<SignupPage> {
                   _containerNumber--;
                 });
               },
-            )
+            ),
           ],
+        );
+
+        _appLoginButton = AppLoginButton(
+          color: AppColors.primaryBlue,
+          title: "Proceed",
+          onTap: () {
+            print("Submit Pressed");
+          },
         );
         break;
       default:
+        _containerNumber = 0;
         _child = Column(
           children: <Widget>[
-            TextFieldWidget(title: "Name"),
-            TextFieldWidget(title: "Email"),
-            TextFieldWidget(title: "Mobile No."),
+            TextFieldWidget(
+              title: "Name",
+              keyboardType: TextInputType.text,
+            ),
+            TextFieldWidget(
+              title: "Email",
+              keyboardType: TextInputType.emailAddress,
+            ),
+            TextFieldWidget(
+                title: "Mobile No.", keyboardType: TextInputType.number),
           ],
+        );
+        AppLoginButton(
+          color: AppColors.primaryOrange,
+          title: "Back",
+          onTap: () {
+            setState(() {
+              _containerNumber--;
+            });
+          },
         );
     }
     return Column(
@@ -75,23 +141,7 @@ class _SignupPageState extends State<SignupPage> {
         SizedBox(
           height: 20.0,
         ),
-        _containerNumber == 2
-            ? AppLoginButton(
-                color: AppColors.primaryBlue,
-                title: "Proceed",
-                onTap: () {
-                  print("Submit Pressed");
-                },
-              )
-            : AppLoginButton(
-                color: AppColors.primaryBlue,
-                title: "Next",
-                onTap: () {
-                  setState(() {
-                    _containerNumber++;
-                  });
-                },
-              )
+        _appLoginButton
       ],
     );
   }

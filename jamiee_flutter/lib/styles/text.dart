@@ -8,6 +8,8 @@ class AppTextStyle {
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
       textStyle: TextStyle(color: AppColors.white));
+  static TextStyle get errorText => GoogleFonts.spaceMono(
+      fontSize: 13.0, textStyle: TextStyle(color: AppColors.red));
 
   static TextStyle tabText(Color _color) {
     return GoogleFonts.spaceMono(

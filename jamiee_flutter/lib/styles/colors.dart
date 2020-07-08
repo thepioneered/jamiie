@@ -9,4 +9,5 @@ abstract class AppColors {
   static Color get grayInputHeading => const Color(0xFF8D8D8D);
   static Color get placeHolderInput => const Color(0xFFC0C0C0);
   static Color get white => Colors.white;
+  static Color get red => Colors.red;
 }

@@ -7,16 +7,14 @@ class AppLoginButton extends StatelessWidget {
   final Color color;
   final Function onTap;
 
-  const AppLoginButton({@required this.title, @required this.color, @required this.onTap});
+  const AppLoginButton(
+      {@required this.title, @required this.color, @required this.onTap});
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      
-    
       minWidth: MediaQuery.of(context).size.width,
       height: BaseStyles.loginWidgetHeight,
       child: RaisedButton(
-      
         color: color,
         onPressed: onTap,
         shape: RoundedRectangleBorder(borderRadius: BaseStyles.radius),

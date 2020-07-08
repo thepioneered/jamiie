@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/BloC/authBloC.dart';
 import 'package:jamiee_flutter/screens/loginPage.dart';
 import 'package:jamiee_flutter/screens/signupPage.dart';
 import 'package:jamiee_flutter/styles/colors.dart';
 import 'package:jamiee_flutter/styles/text.dart';
+import 'package:provider/provider.dart';
 
 class HomePagePlatform extends StatelessWidget {
   @override
@@ -55,45 +57,48 @@ class _HomePageState extends State<HomePage> {
         _loginColor = AppColors.primaryBlue;
         _signupColor = AppColors.placeHolderInput;
     }
-    return SingleChildScrollView(
-      child: Container(
-        padding:
-            EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0, bottom: 10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              height: 200.0,
-              width: 200.0,
-              decoration: BoxDecoration(
-                  image:
-                      DecorationImage(image: AssetImage("assets/logo2.jpg"))),
-            ),
-            SizedBox(
-              height: 40.0,
-            ),
-            Row(
-              children: <Widget>[
-                InkWell(
-                    onTap: () {
-                      setState(() {
-                        _child = LoginPage();
-                        _pageType = PageType.LoginPage;
-                      });
-                    },
-                    child: tabBody(_loginColor, "Login")),
-                InkWell(
-                    onTap: () {
-                      setState(() {
-                        _child = SignupPage();
-                        _pageType = PageType.SignupPage;
-                      });
-                    },
-                    child: tabBody(_signupColor, "Sign Up")),
-              ],
-            ),
-            Container(padding: EdgeInsets.only(top: 30.0), child: _child),
-          ],
+    return Provider(
+      create: (BuildContext context)=>AuthBloc(),
+          child: SingleChildScrollView(
+        child: Container(
+          padding:
+              EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0, bottom: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                height: 200.0,
+                width: 200.0,
+                decoration: BoxDecoration(
+                    image:
+                        DecorationImage(image: AssetImage("assets/logo2.jpg"))),
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              Row(
+                children: <Widget>[
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _child = LoginPage();
+                          _pageType = PageType.LoginPage;
+                        });
+                      },
+                      child: tabBody(_loginColor, "Login")),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _child = SignupPage();
+                          _pageType = PageType.SignupPage;
+                        });
+                      },
+                      child: tabBody(_signupColor, "Sign Up")),
+                ],
+              ),
+              Container(padding: EdgeInsets.only(top: 30.0), child: _child),
+            ],
+          ),
         ),
       ),
     );
