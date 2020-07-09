@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/styles/base.dart';
 import '../BloC/authBloC.dart';
+import '../BloC/authBloCLogin.dart';
 import '../providers/passwordVisible.dart';
 import './loginPage.dart';
 import './signupPage.dart';
@@ -63,15 +65,16 @@ class _HomePageState extends State<HomePage> {
         Provider(
           create: (context) => AuthBloc(),
         ),
+        Provider(
+          create: (context) => AuthBloCLogin(),
+        ),
         ChangeNotifierProvider(
           create: (context) => PasswordStatus(),
         )
       ],
-      // create: (BuildContext context)=>AuthBloc(),
       child: SingleChildScrollView(
         child: Container(
-          padding:
-              EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0, bottom: 10.0),
+          padding: BaseStyles.pagePadingLogin,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

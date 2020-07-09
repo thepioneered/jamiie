@@ -33,9 +33,9 @@ class TextFieldWidget extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              SizedBox(
-                width: 20.0,
-              ),
+              // SizedBox(
+              //   width: 20.0,
+              // ),
               Text(
                 title,
                 style: AppTextStyle.subheadingText,
@@ -51,7 +51,7 @@ class TextFieldWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: BaseStyles.boxShadow,
                 color: AppColors.white,
-                borderRadius: BaseStyles.radius,
+                // borderRadius: BaseStyles.radius,
               ),
               height: BaseStyles.loginWidgetHeight,
               child: isPassword == null
@@ -70,7 +70,7 @@ class TextFieldWidget extends StatelessWidget {
                     )),
           errorText != null
               ? Container(
-                  padding: EdgeInsets.only(left: 20.0, top: 5.0),
+                  padding: EdgeInsets.only(top: 10.0),
                   child: Text(
                     errorText,
                     style: AppTextStyle.errorText,

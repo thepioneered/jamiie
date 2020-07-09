@@ -17,7 +17,7 @@ class AppLoginButton extends StatelessWidget {
       child: RaisedButton(
         color: color,
         onPressed: onTap,
-        shape: RoundedRectangleBorder(borderRadius: BaseStyles.radius),
+        // shape: RoundedRectangleBorder(borderRadius: BaseStyles.radius),
         child: Text(
           title,
           textAlign: TextAlign.center,

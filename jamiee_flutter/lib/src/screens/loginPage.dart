@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../BloC/authBloC.dart';
+import '../BloC/authBloCLogin.dart';
 import '../styles/colors.dart';
 import '../widgets/button.dart';
 import '../widgets/textField.dart';
-import 'package:provider/provider.dart';
+import '../models/login.dart';
+// import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,30 +15,57 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Login _login = Login();
+  bool onceClicked = false;
+  AuthBloCLogin check = AuthBloCLogin();
+
+  @override
+  void dispose() {
+    super.dispose();
+    check.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var check = Provider.of<AuthBloc>(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         StreamBuilder<String>(
-            stream: check.emailStream,
+            stream: check.emailLoginStream,
             builder: (context, snapshot) {
               return TextFieldWidget(
                 title: "Email",
                 keyboardType: TextInputType.emailAddress,
-                onChanged: check.emailSink,
+                onChanged: (String e) {
+                  print(onceClicked);
+                  if (!onceClicked) {
+                    // this._email = e;
+                    this._login.email = e;
+                  } else {
+                    check.emailLoginSink(e);
+                    this._login.email = e;
+                  }
+                },
                 errorText: snapshot.error,
               );
             }),
         StreamBuilder<String>(
-            stream: check.passwordStream,
+            stream: check.passwordLoginStream,
             builder: (context, snapshot) {
               return TextFieldWidget(
                 title: "Password",
                 isPassword: true,
                 keyboardType: TextInputType.text,
-                onChanged: check.passwordSink,
+                onChanged: (String e) {
+                  print(onceClicked);
+                  if (!onceClicked) {
+                    // this._email = e;
+                    this._login.password = e;
+                  } else {
+                    check.passwordLoginSink(e);
+                    this._login.password = e;
+                  }
+                },
                 errorText: snapshot.error,
                 passwordFieldType: PasswordFieldType.LoginField,
               );
@@ -44,19 +74,26 @@ class _LoginPageState extends State<LoginPage> {
           height: 20.0,
         ),
         StreamBuilder<bool>(
-            stream: check.isValidLogin,
+            // stream: check.isValidLogin,
             builder: (context, snapshot) {
-              print('+++++++${snapshot.error}++++++');
-              return AppLoginButton(
-                title: "Login",
-                color: AppColors.primaryBlue,
-                onTap: snapshot.hasError
-                    ? null
-                    : () {
-                        print("Login Page");
-                      },
-              );
-            })
+          return AppLoginButton(
+            title: "Login",
+            color: AppColors.primaryBlue,
+            onTap: () {
+              if (!onceClicked) {
+                this._login.email != null
+                    ? check.emailLoginSink(this._login.email)
+                    : check.emailLoginSink("null");
+                this._login.password != null
+                    ? check.passwordLoginSink(this._login.password)
+                    : check.passwordLoginSink("null");
+              }
+
+              onceClicked = true;
+              print("{${_login.email},${_login.password}}");
+            },
+          );
+        })
       ],
     );
   }

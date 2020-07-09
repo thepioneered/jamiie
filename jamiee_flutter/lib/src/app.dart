@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/dashboard.dart';
 import './routes/routes.dart';
 import './screens/homePage.dart';
 // import 'package:jamiee_flutter/screens/loginPage.dart';
@@ -23,7 +24,8 @@ class PlatformApp extends StatelessWidget {
     } else {
       return MaterialApp(
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: HomePagePlatform(),
+        home: HomePagePlatform(), //TODO:EDIT HOME PAGE HERE LATER
+        debugShowCheckedModeBanner: true,
       );
     }
   }
