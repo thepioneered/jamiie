@@ -2,11 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/BloC/authBloC.dart';
-import 'package:jamiee_flutter/screens/loginPage.dart';
-import 'package:jamiee_flutter/screens/signupPage.dart';
-import 'package:jamiee_flutter/styles/colors.dart';
-import 'package:jamiee_flutter/styles/text.dart';
+import '../BloC/authBloC.dart';
+import '../providers/passwordVisible.dart';
+import './loginPage.dart';
+import './signupPage.dart';
+import '../styles/colors.dart';
+import '../styles/text.dart';
 import 'package:provider/provider.dart';
 
 class HomePagePlatform extends StatelessWidget {
@@ -57,9 +58,17 @@ class _HomePageState extends State<HomePage> {
         _loginColor = AppColors.primaryBlue;
         _signupColor = AppColors.placeHolderInput;
     }
-    return Provider(
-      create: (BuildContext context)=>AuthBloc(),
-          child: SingleChildScrollView(
+    return MultiProvider(
+      providers: [
+        Provider(
+          create: (context) => AuthBloc(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PasswordStatus(),
+        )
+      ],
+      // create: (BuildContext context)=>AuthBloc(),
+      child: SingleChildScrollView(
         child: Container(
           padding:
               EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0, bottom: 10.0),

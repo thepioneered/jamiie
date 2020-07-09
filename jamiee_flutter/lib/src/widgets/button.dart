@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/styles/base.dart';
-import 'package:jamiee_flutter/styles/text.dart';
+import '../styles/base.dart';
+import '../styles/text.dart';
 
 class AppLoginButton extends StatelessWidget {
   final String title;

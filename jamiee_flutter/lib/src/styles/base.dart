@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/styles/colors.dart';
+import './colors.dart';
 
 class BaseStyles {
   static BorderRadiusGeometry get radius => BorderRadius.circular(30.0);

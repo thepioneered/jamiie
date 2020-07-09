@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/routes/routes.dart';
-import 'package:jamiee_flutter/screens/homePage.dart';
+import './routes/routes.dart';
+import './screens/homePage.dart';
 // import 'package:jamiee_flutter/screens/loginPage.dart';
 
 class App extends StatelessWidget {

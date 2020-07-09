@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/BloC/authBloC.dart';
-import 'package:jamiee_flutter/styles/colors.dart';
-import 'package:jamiee_flutter/widgets/button.dart';
-import 'package:jamiee_flutter/widgets/textField.dart';
+import '../BloC/authBloC.dart';
+import '../styles/colors.dart';
+import '../widgets/button.dart';
+import '../widgets/textField.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,13 +37,14 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.text,
                 onChanged: check.passwordSink,
                 errorText: snapshot.error,
+                passwordFieldType: PasswordFieldType.LoginField,
               );
             }),
         SizedBox(
           height: 20.0,
         ),
         StreamBuilder<bool>(
-            stream: check.isValid,
+            stream: check.isValidLogin,
             builder: (context, snapshot) {
               print('+++++++${snapshot.error}++++++');
               return AppLoginButton(

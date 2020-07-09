@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/screens/HomePage.dart';
+import '../screens/HomePage.dart';
 
 class AppRoutes {
   static MaterialPageRoute materialPageRoute(RouteSettings routeSettings) {
