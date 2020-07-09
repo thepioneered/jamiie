@@ -10,6 +10,10 @@ class AuthBloCLogin {
       _emailLogin.stream.transform(emailValidation);
   Stream<String> get passwordLoginStream =>
       _passwordLogin.stream.transform(passwordValidation);
+  Stream<bool> get isValidLogin => CombineLatestStream.combine2(
+      emailLoginStream,
+      passwordLoginStream,
+      (emailSttream, passwordStream) => true);
 
   //Setters
 

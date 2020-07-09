@@ -1,3 +1,0 @@
-1. Some validations are pending
-2. Android splash screen added(Some more work need's to be done)
-3. Login WOrking without provider. Need to check later

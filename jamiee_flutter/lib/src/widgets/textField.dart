@@ -33,9 +33,6 @@ class TextFieldWidget extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              // SizedBox(
-              //   width: 20.0,
-              // ),
               Text(
                 title,
                 style: AppTextStyle.subheadingText,

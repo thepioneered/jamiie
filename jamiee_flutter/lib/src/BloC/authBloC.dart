@@ -12,8 +12,8 @@ class AuthBloc {
   Stream<String> get passwordStream =>
       _password.stream.transform(validatePassword);
   Stream<String> get mobileStream => _mobile.stream.transform(validateMobile);
-  Stream<bool> get isValidLogin => CombineLatestStream.combine2(
-      emailStream, passwordStream, (emailSttream, passwordStream) => true);
+  // Stream<bool> get isValidLogin => CombineLatestStream.combine2(
+  //     emailStream, passwordStream, (emailSttream, passwordStream) => true);
 
   Stream<bool> get isSignupValid1 => CombineLatestStream.combine2(
       emailStream, mobileStream, (emailStream, mobileStream) => true);

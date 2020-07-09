@@ -37,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
                 title: "Email",
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (String e) {
-                  print(onceClicked);
                   if (!onceClicked) {
                     // this._email = e;
                     this._login.email = e;
@@ -57,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                 isPassword: true,
                 keyboardType: TextInputType.text,
                 onChanged: (String e) {
-                  print(onceClicked);
                   if (!onceClicked) {
                     // this._email = e;
                     this._login.password = e;
@@ -74,26 +72,31 @@ class _LoginPageState extends State<LoginPage> {
           height: 20.0,
         ),
         StreamBuilder<bool>(
-            // stream: check.isValidLogin,
+            stream: check.isValidLogin,
             builder: (context, snapshot) {
-          return AppLoginButton(
-            title: "Login",
-            color: AppColors.primaryBlue,
-            onTap: () {
-              if (!onceClicked) {
-                this._login.email != null
-                    ? check.emailLoginSink(this._login.email)
-                    : check.emailLoginSink("null");
-                this._login.password != null
-                    ? check.passwordLoginSink(this._login.password)
-                    : check.passwordLoginSink("null");
-              }
+              return AppLoginButton(
+                title: "Login",
+                color: AppColors.primaryBlue,
+                onTap: () {
+                  if (!onceClicked){
+                    this._login.email != null
+                        ? check.emailLoginSink(this._login.email)
+                        : check.emailLoginSink("null");
+                    this._login.password != null
+                        ? check.passwordLoginSink(this._login.password)
+                        : check.passwordLoginSink("null");
+                  }
 
-              onceClicked = true;
-              print("{${_login.email},${_login.password}}");
-            },
-          );
-        })
+                  onceClicked = true;
+                  print(snapshot.hasError);
+                  //TODO: Login Request will be made under this
+                  if (!snapshot.hasError) {
+                    FocusScope.of(context).unfocus(); //To close keyboar if open
+                    print("{${_login.email},${_login.password}}");
+                  }
+                },
+              );
+            })
       ],
     );
   }
