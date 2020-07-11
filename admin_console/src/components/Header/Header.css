@@ -1,0 +1,76 @@
+.Header {
+  background-color: #fdfdfe;
+  grid-area: Header;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 32px minmax(150px, 1fr) minmax(90px, auto) 45px;
+      grid-template-columns: 32px minmax(150px, 1fr) minmax(90px, auto) 45px;
+  -webkit-column-gap: 1em;
+          column-gap: 1em;
+  padding: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hamburger-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.searchbar {
+  background-color: #f0f0f1;
+  height: 45px;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-icon {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.placeholder-text {
+  margin-left: 10px;
+  color: #9c9c9c;
+  padding-bottom: 2px;
+}
+
+.account-info {
+  text-align: right;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.avatar {
+  height: 45px;
+  width: 45px;
+  min-width: 45px;
+  background-color: #ff9600;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 25px;
+}
+/*# sourceMappingURL=Header.css.map */

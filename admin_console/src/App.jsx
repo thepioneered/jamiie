@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Header, Sidebar } from "./components";
+import { Header, Sidebar, Main } from "./components";
 
 export default class App extends Component {
   render() {
@@ -7,6 +7,7 @@ export default class App extends Component {
       <div className="App">
         <Sidebar />
         <Header />
+        <Main />
       </div>
     );
   }
