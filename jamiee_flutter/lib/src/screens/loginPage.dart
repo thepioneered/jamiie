@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/utils/check.dart';
 import '../BloC/authBloCLogin.dart';
 import '../styles/colors.dart';
 import '../widgets/button.dart';
@@ -31,23 +30,24 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         StreamBuilder<String>(
-            stream: check.emailLoginStream,
-            builder: (context, snapshot) {
-              return TextFieldWidget(
-                title: "Email",
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (String e) {
-                  if (!onceClicked) {
-                    // this._email = e;
-                    this._login.email = e;
-                  } else {
-                    check.emailLoginSink(e);
-                    this._login.email = e;
-                  }
-                },
-                errorText: snapshot.error,
-              );
-            }),
+          stream: check.emailLoginStream,
+          builder: (context, snapshot) {
+            return TextFieldWidget(
+              title: "Email",
+              keyboardType: TextInputType.emailAddress,
+              onChanged: (String e) {
+                if (!onceClicked) {
+                  // this._email = e;
+                  this._login.email = e;
+                } else {
+                  check.emailLoginSink(e);
+                  this._login.email = e;
+                }
+              },
+              errorText: snapshot.error,
+            );
+          },
+        ),
         StreamBuilder<String>(
             stream: check.passwordLoginStream,
             builder: (context, snapshot) {
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 title: "Login",
                 color: AppColors.primaryBlue,
                 onTap: () {
-                  if (!onceClicked){
+                  if (!onceClicked) {
                     this._login.email != null
                         ? check.emailLoginSink(this._login.email)
                         : check.emailLoginSink("null");
@@ -90,9 +90,14 @@ class _LoginPageState extends State<LoginPage> {
                   onceClicked = true;
                   print(snapshot.hasError);
                   //TODO: Login Request will be made under this
-                  if (!snapshot.hasError) {
+                  //TODO: Logic need's to be shift
+                  if (!snapshot.hasError &&
+                      _login.email != null &&
+                      _login.password != null) {
                     FocusScope.of(context).unfocus(); //To close keyboar if open
-                    print("{${_login.email},${_login.password}}");
+                    
+                    AppCheck.check(context,
+                        "{${_login.email.replaceAll(" ", "")},${_login.password}}");
                   }
                 },
               );

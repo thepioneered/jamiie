@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/base.dart';
+import '../styles/base.dart';
 import '../BloC/authBloC.dart';
 import '../BloC/authBloCLogin.dart';
 import '../providers/passwordVisible.dart';
@@ -64,9 +64,6 @@ class _HomePageState extends State<HomePage> {
       providers: [
         Provider(
           create: (context) => AuthBloc(),
-        ),
-        Provider(
-          create: (context) => AuthBloCLogin(),
         ),
         ChangeNotifierProvider(
           create: (context) => PasswordStatus(),

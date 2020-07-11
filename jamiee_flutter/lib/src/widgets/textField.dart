@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../providers/passwordVisible.dart';
-import '../styles/base.dart';
-import '../styles/colors.dart';
-import '../styles/text.dart';
 import 'package:provider/provider.dart';
+import '../providers/passwordVisible.dart';
+import '../styles/text.dart';
+import '../styles/colors.dart';
+import '../styles/base.dart';
 
-// import 'package:jamiee_flutter/styles/colors.dart';
-// bool _status = false;
 
 class TextFieldWidget extends StatelessWidget {
   final String title;

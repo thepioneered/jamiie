@@ -1,3 +1,4 @@
+import '../utils/validationRegex.dart';
 import 'package:rxdart/rxdart.dart';
 import 'dart:async';
 
@@ -5,54 +6,33 @@ class AuthBloCLogin {
   final _emailLogin = BehaviorSubject<String>();
   final _passwordLogin = BehaviorSubject<String>();
 
-  //Getter
+  //Getter:
+
+  //1. Email Handler
   Stream<String> get emailLoginStream =>
-      _emailLogin.stream.transform(emailValidation);
+      _emailLogin.stream.transform(AppValidations.emailValidation);
+
+  //2. Password Handler
   Stream<String> get passwordLoginStream =>
-      _passwordLogin.stream.transform(passwordValidation);
+      _passwordLogin.stream.transform(AppValidations.passwordValidation);
+
+  //3. Combining Stream
   Stream<bool> get isValidLogin => CombineLatestStream.combine2(
       emailLoginStream,
       passwordLoginStream,
       (emailSttream, passwordStream) => true);
 
-  //Setters
+  //Setters:
 
-  void emailLoginSink(String _email) {
-    _emailLogin.sink.add(_email);
-  }
+  //1. Email sink
+  Function(String) get emailLoginSink => _emailLogin.sink.add;
 
+  //2: Password Sink
   Function(String) get passwordLoginSink => _passwordLogin.sink.add;
-
-  final emailValidation = StreamTransformer<String, String>.fromHandlers(
-      handleData: (_emailStream, sink) {
-    if (_emailStream == "null") {
-      sink.addError("Please Enter Email");
-    } else if (_emailStream.length < 10) {
-      sink.addError("RegExp not full-filled email");
-    } else {
-      sink.add(_emailStream);
-    }
-  });
-
-  final passwordValidation = StreamTransformer<String, String>.fromHandlers(
-      handleData: (_passwordStream, sink) {
-    if (_passwordStream == "null") {
-      sink.addError("Please Enter Password");
-    } else if (_passwordStream.length < 10) {
-      sink.addError("RegExp not full-filled passwor");
-    } else {
-      sink.add(_passwordStream);
-    }
-  });
 
   void dispose() {
     _emailLogin.close();
     _passwordLogin.close();
     print("Disposed");
   }
-}
-
-void check() {
-  AuthBloCLogin _authBloCLogin = AuthBloCLogin();
-  _authBloCLogin.emailLoginStream.listen((event) {});
 }

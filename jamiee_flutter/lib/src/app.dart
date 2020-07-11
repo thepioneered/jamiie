@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/screens/dashboard.dart';
 import './routes/routes.dart';
+import 'dart:io';
 import './screens/homePage.dart';
-// import 'package:jamiee_flutter/screens/loginPage.dart';
+
 
 class App extends StatelessWidget {
   @override

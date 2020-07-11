@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/utils/icons.dart';
+import '../styles/colors.dart';
+import '../styles/text.dart';
+import '../utils/icons.dart';
 
 class AppDrawer extends StatelessWidget {
   @override

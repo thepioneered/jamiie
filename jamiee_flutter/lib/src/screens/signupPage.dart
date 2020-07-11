@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../BloC/authBloC.dart';
 import '../styles/colors.dart';
 import '../widgets/button.dart';
 import '../widgets/textField.dart';
-import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
   @override
