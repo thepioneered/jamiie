@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       _login.email != null &&
                       _login.password != null) {
                     FocusScope.of(context).unfocus(); //To close keyboar if open
-                    
+
                     AppCheck.check(context,
                         "{${_login.email.replaceAll(" ", "")},${_login.password}}");
                   }
