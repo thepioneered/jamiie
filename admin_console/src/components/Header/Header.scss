@@ -1,3 +1,5 @@
+@import "../Variables.scss";
+
 // ------------
 // Header
 // ------------
@@ -50,7 +52,7 @@
 .placeholder-text {
   margin-left: 10px;
 
-  color: #9c9c9c;
+  color: $secondary-gray;
   padding-bottom: 2px;
 }
 
@@ -74,7 +76,7 @@
   height: 49px;
   width: 49px;
   min-width: 49px;
-  background-color: #ff9600;
+  background-color: $primary-orange;
   color: white;
   font-size: 25px;
 
