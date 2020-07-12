@@ -1,4 +1,79 @@
+@import "../Variables.scss";
+
+// ------------
+// Sidebar
+// ------------
 .Sidebar {
-  background-color: greenyellow;
+  background-color: #ffffff;
   grid-area: Sidebar;
+  padding-top: 1.5em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// ------------
+// logo-wrapper
+// ------------
+
+.logo {
+  $size: 150px;
+  height: $size;
+  width: $size;
+}
+
+// ------------
+// index
+// ------------
+
+.index {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+  color: $primary-gray;
+  width: 100%;
+  padding: 0 10px;
+
+  li {
+    display: flex;
+    // align-items: center;
+    // justify-content: center;
+
+    cursor: pointer;
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 15px;
+    box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
+    transition: all 250ms ease;
+  }
+
+  li:hover {
+    background-color: rgba(126, 126, 126, 0.1);
+    color: $primary-gray;
+  }
+}
+
+.index-icon {
+  align-self: flex-end;
+  margin-left: 12px;
+}
+
+.index-icon span {
+  font-size: 18px;
+}
+
+.index-text {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 20px;
+  padding-bottom: 2px;
+
+  align-self: flex-start;
+}
+
+.active {
+  background-color: $primary-blue;
+  color: white;
 }

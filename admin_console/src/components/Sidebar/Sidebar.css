@@ -1,5 +1,73 @@
 .Sidebar {
-  background-color: greenyellow;
+  background-color: #ffffff;
   grid-area: Sidebar;
+  padding-top: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logo {
+  height: 150px;
+  width: 150px;
+}
+
+.index {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+  color: #5a5a5a;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.index li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 15px;
+  -webkit-box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+
+.index li:hover {
+  background-color: rgba(126, 126, 126, 0.1);
+  color: #5a5a5a;
+}
+
+.index-icon {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-left: 12px;
+}
+
+.index-icon span {
+  font-size: 18px;
+}
+
+.index-text {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 20px;
+  padding-bottom: 2px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.active {
+  background-color: #06a0ff;
+  color: white;
 }
 /*# sourceMappingURL=Sidebar.css.map */

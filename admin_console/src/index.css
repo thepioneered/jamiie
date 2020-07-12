@@ -15,8 +15,8 @@ body {
 .App {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: minmax(130px, 250px) minmax(400px, auto);
-      grid-template-columns: minmax(130px, 250px) minmax(400px, auto);
+  -ms-grid-columns: 270px minmax(400px, auto);
+      grid-template-columns: 270px minmax(400px, auto);
   -ms-grid-rows: 85px auto;
       grid-template-rows: 85px auto;
       grid-template-areas: "Sidebar Header" "Sidebar Main";
