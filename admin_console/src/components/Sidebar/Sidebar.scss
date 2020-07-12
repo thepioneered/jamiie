@@ -43,9 +43,9 @@
   }
 
   li:hover {
-    background-color: rgba(126, 126, 126, 0.1);
+    background-color: $hover-background;
     color: $primary-gray;
-    padding: 22px 14px;
+    // padding: 22px 14px;
   }
 }
 

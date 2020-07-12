@@ -1,5 +1,7 @@
+@import "../Variables.scss";
+
 .Main {
-  background-color: #aaaaff;
+  background-color: $background-main;
   grid-area: Main;
   height: 60vh;
 }

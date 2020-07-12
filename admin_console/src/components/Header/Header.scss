@@ -1,5 +1,7 @@
 @import "../Variables.scss";
 
+$avatar-size: 42px;
+$menu-size: 42px;
 // ------------
 // Header
 // ------------
@@ -9,9 +11,9 @@
   grid-area: Header;
 
   display: grid;
-  grid-template-columns: 32px minmax(150px, 1fr) minmax(90px, auto) 49px;
+  position: relative;
+  grid-template-columns: $menu-size minmax(150px, 1fr) minmax(90px, auto) $avatar-size;
   column-gap: 1em;
-
   padding: 1em;
   align-items: center;
 }
@@ -25,9 +27,27 @@
   align-items: center;
   justify-content: center;
 
-  // span {
-  //   font-size: 28px;
-  // }
+  width: $menu-size;
+  height: $menu-size;
+  position: relative;
+  cursor: pointer;
+}
+
+.hamburger-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(236, 236, 236, 0.44);
+  border-radius: 25px;
+  transform: scaleX(0) scaleY(0);
+  transition: transform 150ms ease-in;
+}
+
+.hamburger-menu:hover::before {
+  transform: scaleX(1) scaleY(1);
 }
 
 // ------------
@@ -35,25 +55,37 @@
 // ------------
 
 .searchbar {
-  background-color: #f0f0f1;
-  height: 45px;
-  border-radius: 25px;
-
+  position: relative;
   display: flex;
-  align-items: center;
 }
 
 .search-icon {
-  margin-left: 20px;
-
+  position: absolute;
+  align-self: center;
+  margin-left: 1.25em;
   font-size: 16px;
 }
 
-.placeholder-text {
-  margin-left: 10px;
+.searchbar-input {
+  background-color: $background-gray;
+  height: 45px;
+  border-radius: 25px;
+  border: none;
+  width: 100%;
+  padding-left: 3em;
+  padding-bottom: 1px;
+}
 
-  color: $secondary-gray;
-  padding-bottom: 2px;
+.searchbar-input:hover {
+  box-shadow: 1px 2px 4px -1px rgb(206, 204, 204);
+}
+
+.searchbar-input:focus {
+  box-shadow: 1px 2px 4px -1px rgb(206, 204, 204);
+
+  & + span {
+    color: $primary-gray;
+  }
 }
 
 // ------------
@@ -73,15 +105,55 @@
 // ------------
 
 .avatar {
-  height: 49px;
-  width: 49px;
-  min-width: 49px;
+  height: $avatar-size;
+  width: $avatar-size;
+  min-width: $avatar-size;
   background-color: $primary-orange;
   color: white;
-  font-size: 25px;
+  font-size: 22px;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 25px;
+}
+
+.avatar:hover {
+  opacity: 0.9;
+}
+
+// ------------
+// avatar-menu
+// ------------
+
+.avatar-menu {
+  display: none;
+  position: absolute;
+  right: 2em;
+  bottom: -3.2em;
+  background-color: $background-gray;
+  box-shadow: 1px 2px 4px rgb(156, 156, 156);
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  // li:nth-child(1) {
+  //   border-bottom: 1px solid black;
+  // }
+
+  li {
+    padding: 0.4em 0.7em;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: $hover-background;
+  }
+}
+
+.avatar-menu-active {
+  display: block;
 }
