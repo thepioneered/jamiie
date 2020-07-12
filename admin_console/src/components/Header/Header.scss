@@ -7,7 +7,7 @@
   grid-area: Header;
 
   display: grid;
-  grid-template-columns: 32px minmax(150px, 1fr) minmax(90px, auto) 45px;
+  grid-template-columns: 32px minmax(150px, 1fr) minmax(90px, auto) 49px;
   column-gap: 1em;
 
   padding: 1em;
@@ -71,11 +71,12 @@
 // ------------
 
 .avatar {
-  height: 45px;
-  width: 45px;
-  min-width: 45px;
+  height: 49px;
+  width: 49px;
+  min-width: 49px;
   background-color: #ff9600;
   color: white;
+  font-size: 25px;
 
   display: flex;
   align-items: center;
