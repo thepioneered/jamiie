@@ -1,7 +1,8 @@
 @import "../Variables.scss";
 
-$avatar-size: 42px;
-$menu-size: 42px;
+$avatar-size: 2.6rem;
+$menu-size: 2.6em;
+
 // ------------
 // Header
 // ------------
@@ -63,7 +64,7 @@ $menu-size: 42px;
   position: absolute;
   align-self: center;
   margin-left: 1.25em;
-  font-size: 16px;
+  font-size: 1em;
 
   transition: color 250ms ease;
 }
@@ -115,7 +116,7 @@ $menu-size: 42px;
   min-width: $avatar-size;
   background-color: $primary-orange;
   color: white;
-  font-size: 22px;
+  font-size: 1.3em;
   cursor: pointer;
 
   display: flex;
@@ -154,5 +155,30 @@ $menu-size: 42px;
     height: 100%;
     padding: 0.4em 0.7em;
     cursor: pointer;
+  }
+}
+
+// ------------
+// media queries
+// ------------
+
+@media (max-width: 900px) {
+  .Header {
+    column-gap: 0.5em;
+    padding: 0.5em;
+    padding-left: 0px;
+
+    font-size: 0.9em;
+  }
+  .hamburger-menu {
+    width: $menu-size;
+    height: $menu-size;
+  }
+  .avatar {
+    $avatar-size2: 2.2em;
+
+    height: $avatar-size2;
+    width: $avatar-size2;
+    min-width: $avatar-size2;
   }
 }
