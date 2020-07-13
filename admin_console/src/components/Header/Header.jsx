@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AvatarMenu from "./AvatarMenu";
 import "./Header.css";
 
 export default class Header extends Component {
@@ -14,10 +15,6 @@ export default class Header extends Component {
     this.setState({
       avatar_menu_open: !this.state.avatar_menu_open,
     });
-  };
-
-  check_outstide_click = (event) => {
-    console.log(event.target);
   };
 
   render() {
@@ -37,20 +34,9 @@ export default class Header extends Component {
         <div className="avatar" onClick={this.toggle_avatar_menu}>
           P
         </div>
-
-        <div
-          className={
-            this.state.avatar_menu_open
-              ? "avatar-menu avatar-menu-active"
-              : "avatar-menu"
-          }
-          onBlur={(event) => this.check_outstide_click(event)}
-        >
-          <ul>
-            <li>Account Info</li>
-            <li>Logout</li>
-          </ul>
-        </div>
+        {this.state.avatar_menu_open ? (
+          <AvatarMenu toggle_avatar_menu={this.toggle_avatar_menu} />
+        ) : null}
       </div>
     );
   }
