@@ -10,7 +10,7 @@ class AvatarMenu extends Component {
   };
 
   handleClickOutside = (event) => {
-    this.props.toggle_avatar_menu();
+    if (event.target.className !== "avatar") this.props.toggle_avatar_menu();
   };
   render() {
     return (
