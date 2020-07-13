@@ -2,6 +2,7 @@
   background-color: #ffffff;
   grid-area: Sidebar;
   padding-top: 1.5em;
+  width: 250px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,9 +15,18 @@
           align-items: center;
 }
 
+.Sidebar-close {
+  width: 80px;
+}
+
 .logo {
   height: 165px;
   width: 165px;
+}
+
+.logo-close {
+  height: 65px;
+  width: 65px;
 }
 
 .index {
@@ -32,7 +42,7 @@
   display: -ms-flexbox;
   display: flex;
   cursor: pointer;
-  padding: 16px 14px;
+  padding: 1em 14px;
   -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
 }
@@ -42,10 +52,20 @@
   color: #5a5a5a;
 }
 
+.li-close {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .index-icon {
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin-left: 12px;
+}
+
+.index-icon-close {
+  margin-left: 0;
 }
 
 .index-icon span {

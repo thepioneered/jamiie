@@ -7,10 +7,15 @@
   background-color: #ffffff;
   grid-area: Sidebar;
   padding-top: 1.5em;
+  width: 250px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.Sidebar-close {
+  width: 80px;
 }
 
 // ------------
@@ -19,6 +24,12 @@
 
 .logo {
   $size: 165px;
+  height: $size;
+  width: $size;
+}
+
+.logo-close {
+  $size: 65px;
   height: $size;
   width: $size;
 }
@@ -38,7 +49,7 @@
     display: flex;
 
     cursor: pointer;
-    padding: 16px 14px;
+    padding: 1em 14px;
     transition: background-color 250ms ease;
   }
 
@@ -49,9 +60,17 @@
   }
 }
 
+.li-close {
+  justify-content: center;
+}
+
 .index-icon {
   align-self: flex-end;
   margin-left: 12px;
+}
+
+.index-icon-close {
+  margin-left: 0;
 }
 
 .index-icon span {

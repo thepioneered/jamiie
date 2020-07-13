@@ -20,7 +20,7 @@ export default class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <div className="hamburger-menu">
+        <div className="hamburger-menu" onClick={this.props.toggleSidebar}>
           <span className="material-icons">menu</span>
         </div>
         <div className="searchbar">
