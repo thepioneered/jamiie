@@ -1,0 +1,53 @@
+.card-container {
+  max-width: calc(100%-250px);
+  padding: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+}
+
+.card {
+  padding: 1.5rem;
+  margin: 0 0.5em;
+  padding-left: 1.2rem;
+  border-radius: 10px;
+  background-color: white;
+  min-width: 300px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.card-heading {
+  color: #5a5a5a;
+  font-size: 1.15em;
+}
+
+.card-number {
+  font-size: 2em;
+}
+
+.card-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0.5em;
+}
+
+.card-icon {
+  color: #39dc00;
+  font-size: 18px;
+  margin-top: 1px;
+}
+
+.card-percentage {
+  color: #39dc00;
+}
+
+.card-status {
+  color: #9c9c9c;
+}
+/*# sourceMappingURL=Dashboard.css.map */

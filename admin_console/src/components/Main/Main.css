@@ -1,6 +1,7 @@
 .Main {
   background-color: #f5f7fb;
   grid-area: Main;
-  height: 60vh;
+  height: 100vh;
+  padding: 0.4rem;
 }
 /*# sourceMappingURL=Main.css.map */

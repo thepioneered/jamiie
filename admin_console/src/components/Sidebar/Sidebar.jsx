@@ -3,21 +3,8 @@ import "./Sidebar.css";
 import logo from "../../Only Logo.svg";
 
 export default class Sidebar extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      index: [
-        { name: "Dashboard", icon: "dashboard", active: true },
-        { name: "Transactions", icon: "timeline", active: false },
-        { name: "Groups", icon: "group", active: false },
-        { name: "Users", icon: "person_outline", active: false },
-      ],
-    };
-  }
-
   sendList = () => {
-    return this.state.index.map((item) => {
+    return this.props.index.map((item) => {
       let li_class = "";
 
       if (item.active) li_class += "active ";

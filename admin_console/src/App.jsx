@@ -7,6 +7,12 @@ export default class App extends Component {
 
     this.state = {
       sidebar_open: true,
+      index: [
+        { name: "Dashboard", icon: "dashboard", active: true },
+        { name: "Transactions", icon: "timeline", active: false },
+        { name: "Groups", icon: "group", active: false },
+        { name: "Users", icon: "person_outline", active: false },
+      ],
     };
   }
 
@@ -17,11 +23,16 @@ export default class App extends Component {
   };
 
   render() {
+    const activeIndex = this.state.index.filter((item) => item.active);
+
     return (
       <div className="App">
-        <Sidebar sidebar_open={this.state.sidebar_open} />
+        <Sidebar
+          sidebar_open={this.state.sidebar_open}
+          index={this.state.index}
+        />
         <Header toggleSidebar={this.toggleSidebar} />
-        <Main />
+        <Main activeIndex={activeIndex[0]} />
       </div>
     );
   }

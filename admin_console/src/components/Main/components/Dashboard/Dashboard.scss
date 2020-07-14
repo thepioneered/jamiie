@@ -1,0 +1,62 @@
+@import "../../../Variables.scss";
+
+// ------------
+// card-container and card
+// ------------
+
+// .card-flex-wrapper {
+//   max-width: 90vw;
+//   overflow: hidden;
+// }
+
+.card-container {
+  max-width: calc(100%-250px);
+  padding: 0.5rem 0;
+  display: flex;
+  // gap: 1em;
+  overflow: auto;
+}
+
+.card {
+  padding: 1.5rem;
+  margin: 0 0.5em;
+  padding-left: 1.2rem;
+  border-radius: 10px;
+  background-color: white;
+  min-width: 300px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+// ------------
+// card items
+// ------------
+
+.card-heading {
+  color: $primary-gray;
+  font-size: 1.15em;
+}
+
+.card-number {
+  font-size: 2em;
+}
+
+.card-description {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.card-icon {
+  color: $primary-green;
+  font-size: 18px;
+  margin-top: 1px;
+}
+
+.card-percentage {
+  color: $primary-green;
+  // margin-left: 5px;
+}
+
+.card-status {
+  color: $secondary-gray;
+}
