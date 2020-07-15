@@ -23,7 +23,7 @@
   padding-left: 1.2rem;
   border-radius: 10px;
   background-color: white;
-  min-width: 300px;
+  min-width: 320px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
 }
 
@@ -42,19 +42,14 @@
 
 .card-description {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 0.5em;
 }
 
 .card-icon {
-  color: $primary-green;
   font-size: 18px;
   margin-top: 1px;
-}
-
-.card-percentage {
-  color: $primary-green;
-  // margin-left: 5px;
+  align-self: center;
 }
 
 .card-status {
