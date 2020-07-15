@@ -3,6 +3,7 @@
 // ------------
 // Sidebar
 // ------------
+
 .Sidebar {
   background-color: #ffffff;
   grid-area: Sidebar;
@@ -52,11 +53,11 @@
     padding: 1em 0.8em;
     transition: background-color 250ms ease;
   }
+}
 
-  li:hover {
-    background-color: $hover-background;
-    color: $primary-gray;
-  }
+.not-active:hover {
+  background-color: $hover-background;
+  color: $primary-gray;
 }
 
 .li-close {
@@ -88,4 +89,8 @@
 .active {
   background-color: $primary-blue;
   color: white;
+}
+
+.active:hover {
+  background-color: #0082d3;
 }

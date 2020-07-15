@@ -22,6 +22,17 @@ export default class App extends Component {
     });
   };
 
+  changePage = (pageName) => {
+    this.setState((prevState) => {
+      const updateIndex = prevState.index.map((item) => {
+        if (item.active) item.active = !item.active;
+        if (item.name === pageName) item.active = !item.active;
+        return item;
+      });
+      return updateIndex;
+    });
+  };
+
   render() {
     const activeIndex = this.state.index.filter((item) => item.active);
 
@@ -30,6 +41,7 @@ export default class App extends Component {
         <Sidebar
           sidebar_open={this.state.sidebar_open}
           index={this.state.index}
+          changePage={this.changePage}
         />
         <Header toggleSidebar={this.toggleSidebar} />
         <Main activeIndex={activeIndex[0]} />

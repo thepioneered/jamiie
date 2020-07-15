@@ -47,7 +47,7 @@
   transition: background-color 250ms ease;
 }
 
-.index li:hover {
+.not-active:hover {
   background-color: rgba(126, 126, 126, 0.1);
   color: #5a5a5a;
 }
@@ -84,5 +84,9 @@
 .active {
   background-color: #06a0ff;
   color: white;
+}
+
+.active:hover {
+  background-color: #0082d3;
 }
 /*# sourceMappingURL=Sidebar.css.map */

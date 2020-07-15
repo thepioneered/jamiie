@@ -5,13 +5,17 @@ import logo from "../../Only Logo.svg";
 export default class Sidebar extends Component {
   sendList = () => {
     return this.props.index.map((item) => {
-      let li_class = "";
+      let li_class = "not-active ";
 
-      if (item.active) li_class += "active ";
+      if (item.active) li_class = "active ";
       if (!this.props.sidebar_open) li_class += "li-close";
 
       return (
-        <li key={item.name} className={li_class}>
+        <li
+          key={item.name}
+          className={li_class}
+          onClick={() => this.props.changePage(item.name)}
+        >
           <div
             className={
               this.props.sidebar_open
