@@ -8,7 +8,7 @@ export default class Sidebar extends Component {
       let li_class = "not-active ";
 
       if (item.active) li_class = "active ";
-      if (!this.props.sidebar_open) li_class += "li-close";
+      if (!this.props.isSidebarOpen) li_class += "li-close";
 
       return (
         <li
@@ -18,14 +18,14 @@ export default class Sidebar extends Component {
         >
           <div
             className={
-              this.props.sidebar_open
+              this.props.isSidebarOpen
                 ? "index-icon"
                 : "index-icon index-icon-close"
             }
           >
             <span className="material-icons">{item.icon}</span>
           </div>
-          {this.props.sidebar_open ? (
+          {this.props.isSidebarOpen ? (
             <div className="index-text">{item.name}</div>
           ) : null}
         </li>
@@ -37,13 +37,13 @@ export default class Sidebar extends Component {
     return (
       <div
         className={
-          this.props.sidebar_open ? "Sidebar" : "Sidebar Sidebar-close"
+          this.props.isSidebarOpen ? "Sidebar" : "Sidebar Sidebar-close"
         }
       >
         <div className="logo-wrapper">
           <img
             src={logo}
-            className={this.props.sidebar_open ? "logo" : "logo-close"}
+            className={this.props.isSidebarOpen ? "logo" : "logo-close"}
             alt="logo"
           />
         </div>

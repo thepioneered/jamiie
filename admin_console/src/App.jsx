@@ -6,7 +6,7 @@ export default class App extends Component {
     super();
 
     this.state = {
-      sidebar_open: true,
+      isSidebarOpen: true,
       index: [
         { name: "Dashboard", icon: "dashboard", active: true },
         { name: "Transactions", icon: "timeline", active: false },
@@ -18,7 +18,7 @@ export default class App extends Component {
 
   toggleSidebar = () => {
     this.setState({
-      sidebar_open: !this.state.sidebar_open,
+      isSidebarOpen: !this.state.isSidebarOpen,
     });
   };
 
@@ -39,12 +39,15 @@ export default class App extends Component {
     return (
       <div className="App">
         <Sidebar
-          sidebar_open={this.state.sidebar_open}
+          isSidebarOpen={this.state.isSidebarOpen}
           index={this.state.index}
           changePage={this.changePage}
         />
         <Header toggleSidebar={this.toggleSidebar} />
-        <Main activeIndex={activeIndex[0]} />
+        <Main
+          activeIndex={activeIndex[0]}
+          isSidebarOpen={this.state.isSidebarOpen}
+        />
       </div>
     );
   }

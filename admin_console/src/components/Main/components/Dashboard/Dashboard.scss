@@ -4,10 +4,10 @@
 // card-container and card
 // ------------
 
-// .card-flex-wrapper {
-//   max-width: 90vw;
-//   overflow: hidden;
-// }
+.card-flex-wrapper {
+  // max-width: calc(100vw - 280px);
+  overflow: hidden;
+}
 
 .card-container {
   max-width: calc(100%-250px);

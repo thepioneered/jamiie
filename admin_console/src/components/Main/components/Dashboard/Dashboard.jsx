@@ -38,9 +38,15 @@ export default class Dashboard extends Component {
     );
   };
   render() {
+    const maxWidth = this.props.isSidebarOpen ? "280px" : "110px";
+    console.log(this.props.isSidebarOpen, maxWidth);
+
     return (
       <div className="dashboard">
-        <div className="card-flex-wrapper">
+        <div
+          className="card-flex-wrapper"
+          style={{ maxWidth: `calc(100vw - ${maxWidth})` }}
+        >
           <div className="card-container">
             {this.getCards("Total Transactions", 46289, 2.4)}
             {this.getCards("Total Users", 22544, 0.4)}
