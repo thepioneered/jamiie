@@ -69,6 +69,10 @@ $menu-size: 2.6em;
   transition: color 250ms ease;
 }
 
+// ------------
+// searchbar-input
+// ------------
+
 .searchbar-input {
   background-color: $background-gray;
   height: 45px;
@@ -92,6 +96,30 @@ $menu-size: 2.6em;
   & + span {
     color: $secondary-gray;
   }
+}
+
+// ------------
+// search-content
+// ------------
+
+.search-content {
+  position: absolute;
+  margin-left: 2em;
+  top: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $background-gray;
+}
+
+.search-content a {
+  padding: 0.5em;
+  text-decoration: none;
+  color: $primary-gray;
+}
+
+.search-content a:hover {
+  background-color: $hover-background;
 }
 
 // ------------
