@@ -116,6 +116,7 @@ $menu-size: 2.6em;
   padding: 0.5em;
   text-decoration: none;
   color: $primary-gray;
+  z-index: 11;
 }
 
 .search-content a:hover {

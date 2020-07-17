@@ -39,7 +39,6 @@ export default class Dashboard extends Component {
   };
   render() {
     const maxWidth = this.props.isSidebarOpen ? "280px" : "110px";
-    console.log(this.props.isSidebarOpen, maxWidth);
 
     return (
       <div className="dashboard">
@@ -53,6 +52,174 @@ export default class Dashboard extends Component {
             {this.getCards("Total Groups", 11289, -1.4)}
             {this.getCards("Completed Pools", 33289, 0)}
           </div>
+        </div>
+
+        <a href="#about">Go to About</a>
+
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
+        </div>
+        <div id="about">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+          dignissimos pariatur veniam modi vero reprehenderit voluptatum
+          laudantium aperiam, illo voluptas eius perferendis expedita doloribus
+          suscipit architecto obcaecati accusantium cum dolor libero facere
+          placeat dolorem. Voluptates sapiente aliquid voluptatibus ipsa
+          temporibus a beatae consectetur cupiditate, corporis quis, deleniti
+          perferendis, minima laudantium veniam ut rem tempore ullam blanditiis?
+          Dicta fuga sunt ab ratione voluptas possimus recusandae dolorum
+          impedit quaerat nulla esse minima quam exercitationem voluptatum,
+          sapiente quibusdam aut quod! Fuga deleniti quia, esse odit, maiores
+          nobis blanditiis provident eaque necessitatibus laboriosam quibusdam
+          praesentium dolorum ab tempore? Aperiam saepe ut quo nostrum
+          molestias?
         </div>
       </div>
     );

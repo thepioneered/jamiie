@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
-import logo from "../../Only Logo.svg";
+import logo from "../../NewLogo.svg";
 
 export default class Sidebar extends Component {
   sendList = () => {

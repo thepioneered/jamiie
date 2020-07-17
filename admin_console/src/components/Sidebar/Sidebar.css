@@ -20,8 +20,9 @@
 }
 
 .logo {
-  height: 10em;
-  width: 10em;
+  height: 13em;
+  width: 13em;
+  margin-right: 6px;
 }
 
 .logo-close {
