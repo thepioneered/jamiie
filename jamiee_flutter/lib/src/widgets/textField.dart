@@ -5,7 +5,6 @@ import '../styles/text.dart';
 import '../styles/colors.dart';
 import '../styles/base.dart';
 
-
 class TextFieldWidget extends StatelessWidget {
   final String title;
   final bool isPassword;
@@ -13,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final Function onChanged;
   final String errorText;
   final PasswordFieldType passwordFieldType;
+  final FocusNode focus;
 
   const TextFieldWidget({
     @required this.title,
@@ -21,6 +21,7 @@ class TextFieldWidget extends StatelessWidget {
     this.onChanged,
     this.errorText,
     this.passwordFieldType,
+    this.focus,
   });
   @override
   Widget build(BuildContext context) {
@@ -50,10 +51,12 @@ class TextFieldWidget extends StatelessWidget {
               height: BaseStyles.loginWidgetHeight,
               child: isPassword == null
                   ? TextField(
+                      focusNode: focus,
                       keyboardType: keyboardType,
                       onChanged: onChanged,
                       onEditingComplete: () => print("Completed"),
                       decoration: InputDecoration(
+                        suffixText: null,
                         border: InputBorder.none,
                       ),
                     )

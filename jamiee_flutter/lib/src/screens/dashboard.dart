@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/styles/text.dart';
 import '../styles/colors.dart';
 import '../utils/icons.dart';
 import '../widgets/drawer.dart';
@@ -11,53 +12,91 @@ class DashboardPagePlatform extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
       return CupertinoPageScaffold(
-        child: DashboardPage(
-          previousContext: context,
-        ),
+        child: DashboardPage(),
       );
     } else {
       return Scaffold(
-        drawer: Drawer(
-          child: AppDrawer(),
-        ),
-        backgroundColor: AppColors.backgroundColor,
-        body: DashboardPage(
-          previousContext: context,
-        ),
+        body: DashboardPage(),
       );
     }
   }
 }
 
 class DashboardPage extends StatelessWidget {
-  final BuildContext previousContext;
-
-  const DashboardPage({@required this.previousContext});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: BaseStyles.pagePadingDashboard,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
-            child: Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 25.0,
-                  backgroundColor: Colors.white,
-                  child: IconButton(
-                    icon: AppIcons.barsIcon,
-                    color: Colors.black,
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                  ),
-                )
-              ],
+          Padding(
+            padding: BaseStyles.headingPadding,
+            child: Text(
+              "Dashboard",
+              style: AppTextStyle.topHeading,
             ),
           ),
-          
+          SizedBox(
+            height: 20.0,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        DashboardContainer(
+                          ctx: context,
+                          height: MediaQuery.of(context).size.height / 3,
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        DashboardContainer(
+                          ctx: context,
+                          height: MediaQuery.of(context).size.height / 3,
+                        ),
+                        DashboardContainer(
+                          ctx: context,
+                          height: MediaQuery.of(context).size.height / 3,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class DashboardContainer extends StatelessWidget {
+  final BuildContext ctx;
+  final double height;
+
+  const DashboardContainer({this.ctx, this.height});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(5.0),
+      decoration: BoxDecoration(
+        color: Colors.purpleAccent,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      width: (MediaQuery.of(ctx).size.width / 2) - 10.0,
+      height: height,
+      child: Column(
+        children: <Widget>[
+          Text("HEading"),
         ],
       ),
     );

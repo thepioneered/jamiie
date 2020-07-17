@@ -31,7 +31,13 @@ dependencies:
   google_fonts: ^1.1.0
   provider:
   rxdart:
+  http:
   font_awesome_flutter: ^8.8.1
+  # firebase_messaging: ^6.0.16
+  # lottie: ^0.4.1
+  # titled_navigation_bar: ^4.1.0
+
+
 
 dev_dependencies:
   flutter_test:

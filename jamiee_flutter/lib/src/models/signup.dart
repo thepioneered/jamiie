@@ -3,6 +3,7 @@ class Signup {
   String email;
   String mobile;
   String password;
+  String confirmPassword;
   String city;
   String state;
 
@@ -10,6 +11,7 @@ class Signup {
       {this.name,
       this.email,
       this.mobile,
+      this.confirmPassword,
       this.password,
       this.city,
       this.state});

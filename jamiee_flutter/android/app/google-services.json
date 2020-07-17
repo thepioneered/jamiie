@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "76910558753",
+    "firebase_url": "https://jamiee-ad326.firebaseio.com",
+    "project_id": "jamiee-ad326",
+    "storage_bucket": "jamiee-ad326.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76910558753:android:7cde14897fba74a364ad60",
+        "android_client_info": {
+          "package_name": "com.example.jamiee_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76910558753-0m7o6f1724jvhgtep6bv38sogac7m50s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd7duuxHT1Gkup8JMiw_tXiOpwQS8Cpqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76910558753-0m7o6f1724jvhgtep6bv38sogac7m50s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/utils/check.dart';
+import 'package:jamiee_flutter/src/utils/loadingDialog.dart';
 import '../BloC/authBloCLogin.dart';
 import '../styles/colors.dart';
 import '../widgets/button.dart';
@@ -88,16 +89,16 @@ class _LoginPageState extends State<LoginPage> {
                   }
 
                   onceClicked = true;
-                  print(snapshot.hasError);
+
                   //TODO: Login Request will be made under this
                   //TODO: Logic need's to be shift
                   if (!snapshot.hasError &&
                       _login.email != null &&
                       _login.password != null) {
                     FocusScope.of(context).unfocus(); //To close keyboar if open
-
-                    AppCheck.check(context,
-                        "{${_login.email.replaceAll(" ", "")},${_login.password}}");
+                    AppDialog.showDialogApp(context);
+                    // AppCheck.check(context,
+                    //     "{${_login.email.replaceAll(" ", "")},${_login.password}}");
                   }
                 },
               );

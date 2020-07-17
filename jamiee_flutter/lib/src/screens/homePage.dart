@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/dashboard.dart';
+import 'package:jamiee_flutter/src/screens/myPoolUser.dart';
+import 'package:jamiee_flutter/src/screens/navbar.dart';
 import '../styles/base.dart';
 import '../BloC/authBloC.dart';
 import '../BloC/authBloCLogin.dart';
@@ -22,7 +25,9 @@ class HomePagePlatform extends StatelessWidget {
     } else {
       return Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: HomePage(),
+        // body: AppNavigationBar(),
+        // body: DashboardPagePlatform(),
+        body: MyPool(),
       );
     }
   }
@@ -67,7 +72,7 @@ class _HomePageState extends State<HomePage> {
         ),
         ChangeNotifierProvider(
           create: (context) => PasswordStatus(),
-        )
+        ),
       ],
       child: SingleChildScrollView(
         child: Container(
