@@ -1,0 +1,197 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.Login {
+  background: linear-gradient(132.41deg, #f5f7fb 13.43%, #c0d5ff 100%);
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-logo {
+  margin-top: 1.5em;
+}
+
+.login-title {
+  margin-top: 0.2em;
+  text-align: center;
+}
+
+.login-title-heading {
+  font-weight: 700;
+  font-size: 1.8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-title-heading::before,
+.login-title-heading::after {
+  content: "";
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 5px;
+  background-color: #f0f0f1;
+}
+
+.login-title-heading::before {
+  margin-right: 1em;
+}
+
+.login-title-heading::after {
+  margin-left: 1em;
+}
+
+.login-title-description {
+  margin-top: 0.5em;
+  margin-bottom: 3em;
+  font-size: 0.8em;
+}
+
+.login-card {
+  background-color: white;
+  width: 90%;
+  max-width: 25em;
+  margin: 2em 0;
+  padding: 1em;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+  color: #8e8e8e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.login-input-container {
+  margin: 0.5em 0;
+  position: relative;
+  height: 50px;
+}
+
+.login-input {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #8e8e8e;
+}
+
+.login-label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+}
+
+.login-label::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #06a0ff;
+  width: 0%;
+  -webkit-transition: width 250ms ease;
+  transition: width 250ms ease;
+}
+
+.login-input-name {
+  font-size: 1em;
+  position: absolute;
+  bottom: 5px;
+  left: 1px;
+  -webkit-transition: bottom 250ms ease, color 250ms ease;
+  transition: bottom 250ms ease, color 250ms ease;
+}
+
+.login-input:focus + .login-label::after,
+.login-input:valid + .login-label::after,
+.login-input:-webkit-autofill + .login-label::after {
+  width: 100%;
+}
+
+.login-input:focus + .login-label .login-input-name,
+.login-input:valid + .login-label .login-input-name,
+.login-input:-webkit-autofill + .login-label .login-input-name {
+  bottom: 30px;
+  color: #06a0ff;
+}
+
+.forgot-password {
+  margin: 1em 0;
+  padding: 0;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  color: #06a0ff;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.forgot-password:active {
+  color: black;
+}
+
+.login-button {
+  border: 2px solid #06a0ff;
+  padding: 0.5em 0;
+  outline: none;
+  color: white;
+  background-color: #06a0ff;
+  width: 50%;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.3em;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
+  transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
+}
+
+.login-button:hover,
+.login-button:focus {
+  background-color: white;
+  color: #06a0ff;
+  border: 2px solid #06a0ff;
+}
+
+.login-button:active {
+  background-color: #06a0ff;
+  color: white;
+}
+/*# sourceMappingURL=Login.css.map */

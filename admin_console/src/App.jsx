@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Header, Sidebar, Main } from "./components";
+import { Header, Sidebar, Main, Login } from "./components";
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
+      isLoggedIn: false,
       isSidebarOpen: true,
       index: [
         { name: "Dashboard", icon: "dashboard", active: true },
@@ -36,19 +37,27 @@ export default class App extends Component {
   render() {
     const activeIndex = this.state.index.filter((item) => item.active);
 
-    return (
-      <div className="App">
-        <Sidebar
-          isSidebarOpen={this.state.isSidebarOpen}
-          index={this.state.index}
-          changePage={this.changePage}
-        />
-        <Header toggleSidebar={this.toggleSidebar} />
-        <Main
-          activeIndex={activeIndex[0]}
-          isSidebarOpen={this.state.isSidebarOpen}
-        />
-      </div>
-    );
+    if (this.state.isLoggedIn) {
+      return (
+        <div className="App">
+          <Sidebar
+            isSidebarOpen={this.state.isSidebarOpen}
+            index={this.state.index}
+            changePage={this.changePage}
+          />
+          <Header toggleSidebar={this.toggleSidebar} />
+          <Main
+            activeIndex={activeIndex[0]}
+            isSidebarOpen={this.state.isSidebarOpen}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="app-login">
+          <Login />
+        </div>
+      );
+    }
   }
 }
