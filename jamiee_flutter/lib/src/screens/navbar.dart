@@ -26,7 +26,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
     return Scaffold(
       body: _pages.elementAt(index),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 7.0,
+        elevation: 15.0,
         currentIndex: index,
         fixedColor: AppColors.primaryBlue,
         backgroundColor: AppColors.white,
