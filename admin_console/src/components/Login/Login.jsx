@@ -6,9 +6,13 @@ class Login extends Component {
   constructor() {
     super();
 
+    this.usernameInput = React.createRef();
+
     this.state = {
       username: "",
       password: "",
+      wrongLogin: 0,
+      wrongDivClassName: "wrong-login",
     };
   }
 
@@ -24,6 +28,30 @@ class Login extends Component {
     console.log(
       `username:${this.state.username}\npassword:${this.state.password}`
     );
+
+    const w = true;
+
+    if (w) {
+      if (this.state.wrongLogin > 0) {
+        this.setState({
+          wrongLogin: this.state.wrongLogin + 1,
+          wrongDivClassName: "wrong-login wrong-login-show double-wrong",
+        });
+        setTimeout(
+          () =>
+            this.setState({
+              wrongDivClassName: "wrong-login wrong-login-show",
+            }),
+          600
+        );
+      } else {
+        this.setState({
+          wrongLogin: this.state.wrongLogin + 1,
+          wrongDivClassName: "wrong-login wrong-login-show",
+        });
+      }
+    }
+    this.usernameInput.current.focus();
   };
 
   render() {
@@ -44,8 +72,14 @@ class Login extends Component {
             </div>
           </div>
 
+          <div className={this.state.wrongDivClassName}>
+            <span className="material-icons">error_outline</span>
+            Wrong Username/Password
+          </div>
+
           <div className="login-input-container">
             <input
+              ref={this.usernameInput}
               type="text"
               name="username"
               className="login-input"
@@ -70,8 +104,10 @@ class Login extends Component {
             </label>
           </div>
 
-          <button className="forgot-password">Forgot Password?</button>
-          <button className="login-button">Login</button>
+          <button type="button" className="forgot-password">
+            Forgot Password?
+          </button>
+          <input type="submit" className="login-button" value="Login" />
         </form>
       </div>
     );
