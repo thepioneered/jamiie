@@ -2,18 +2,21 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/dashboard.dart';
-import 'package:jamiee_flutter/src/screens/myPoolUser.dart';
+import 'package:jamiee_flutter/src/screens/auth/loginPage.dart';
+// im'myPoolUser/myPoolUser.dart'art';
+import 'package:jamiee_flutter/src/screens/myPoolUser/myPoolUser.dart';
 import 'package:jamiee_flutter/src/screens/navbar.dart';
 import '../styles/base.dart';
 import '../BloC/authBloC.dart';
 import '../BloC/authBloCLogin.dart';
 import '../providers/passwordVisible.dart';
-import './loginPage.dart';
-import './signupPage.dart';
+// import 'auth/loginPage.dart;
+// i'auth/'auth/signupPage.dart'rt';
 import '../styles/colors.dart';
 import '../styles/text.dart';
 import 'package:provider/provider.dart';
+
+import 'auth/signupPage.dart';
 
 class HomePagePlatform extends StatelessWidget {
   @override

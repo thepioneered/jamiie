@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/providers/faqData.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
+import 'package:jamiee_flutter/src/widgets/settings/appBar.dart';
 import 'package:provider/provider.dart';
 //TODO: FAQ PAGE PENDING
 
@@ -18,18 +19,7 @@ class FaqPage extends StatelessWidget {
           print(data[0]["title"]);
         },
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "FAQ",
-          style: AppTextStyle.appBarTitle,
-        ),
-        elevation: 0.0,
-        leading: BackButton(
-          color: AppColors.black,
-        ),
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: settingsAppBar(title:"FAQ's"),
       body: !_faqData.isDataLoaded
           ? Center(
               child: CircularProgressIndicator(),

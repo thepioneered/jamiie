@@ -11,7 +11,7 @@ class UserPool extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: BaseStyles.headingPadding ,
+              padding: BaseStyles.headingPadding,
               child: Text(
                 "Joined Pool's",
                 style: AppTextStyle.topHeading,

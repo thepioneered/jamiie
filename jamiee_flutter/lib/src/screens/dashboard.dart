@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
+import 'package:jamiee_flutter/src/widgets/topHeading.dart';
 import '../styles/colors.dart';
 import '../utils/icons.dart';
 import '../widgets/drawer.dart';
@@ -26,54 +27,46 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: BaseStyles.pagePadingDashboard,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: BaseStyles.headingPadding,
-            child: Text(
-              "Dashboard",
-              style: AppTextStyle.topHeading,
+      padding: EdgeInsets.only(top: BaseStyles.topPadding),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            topHeading(title: "Dashboard"),
+            SizedBox(
+              height: 20.0,
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        DashboardContainer(
-                          ctx: context,
-                          height: MediaQuery.of(context).size.height / 3,
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        DashboardContainer(
-                          ctx: context,
-                          height: MediaQuery.of(context).size.height / 3,
-                        ),
-                        DashboardContainer(
-                          ctx: context,
-                          height: MediaQuery.of(context).size.height / 3,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+            Container(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Row(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      DashboardContainer(
+                        ctx: context,
+                        height: MediaQuery.of(context).size.height / 3,
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      DashboardContainer(
+                        ctx: context,
+                        height: MediaQuery.of(context).size.height / 3,
+                      ),
+                      DashboardContainer(
+                        ctx: context,
+                        height: MediaQuery.of(context).size.height / 3,
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

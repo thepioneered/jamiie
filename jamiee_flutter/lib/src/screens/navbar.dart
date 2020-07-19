@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
 import 'package:provider/provider.dart';
 import '../screens/dashboard.dart';
-import '../screens/myPoolUser.dart';
+import 'myPoolUser/myPoolUser.dart';
 import '../screens/page3.dart';
-import '../screens/settingPage.dart';
+import 'settings/settingPage.dart';
 
 int index = 0;
 
@@ -17,6 +17,7 @@ class AppNavigationBar extends StatefulWidget {
 class _AppNavigationBarState extends State<AppNavigationBar> {
   final List<Object> _pages = <Object>[
     DashboardPagePlatform(),
+    MyPool(),
     UserPool(),
     SettingPage(),
   ];
@@ -41,6 +42,10 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
             title: Text("Dashboard"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_box),
+            title: Text("Your Pool"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),

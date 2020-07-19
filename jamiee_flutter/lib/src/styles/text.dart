@@ -6,9 +6,7 @@ import './colors.dart';
 class AppTextStyle {
   static TextStyle settingButton(Color color) {
     return GoogleFonts.openSans(
-        // fontWeight: FontWeight.w700,
-        fontSize: 24.0,
-        textStyle: TextStyle(color: color));
+        fontSize: 24.0, textStyle: TextStyle(color: color));
   }
 
   static TextStyle settingButtonSubtitle(Color color) {
@@ -16,13 +14,32 @@ class AppTextStyle {
         fontSize: 12.0, textStyle: TextStyle(color: color));
   }
 
-  ///
+  ///////
 
   static TextStyle get loginButtonText => GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
       textStyle: TextStyle(color: AppColors.white));
-  ////
+
+  ////////
+
+  static TextStyle logoutButton(Color color) {
+    return GoogleFonts.openSans(
+        fontSize: 15.0,
+        fontWeight: FontWeight.w600,
+        textStyle: TextStyle(color: color));
+  }
+
+  /////////
+
+  static TextStyle get logoutTitle => GoogleFonts.openSans(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w600,
+        textStyle: TextStyle(color: AppColors.black),
+      );
+
+  ///////
+
   static TextStyle get faqTitle => GoogleFonts.openSans(
         fontSize: 22.0,
         textStyle: TextStyle(color: AppColors.black),

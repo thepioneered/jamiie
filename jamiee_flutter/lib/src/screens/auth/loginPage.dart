@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/utils/check.dart';
 import 'package:jamiee_flutter/src/utils/loadingDialog.dart';
-import '../BloC/authBloCLogin.dart';
-import '../styles/colors.dart';
-import '../widgets/button.dart';
-import '../widgets/textField.dart';
-import '../models/login.dart';
+import '../../BloC/authBloCLogin.dart';
+import '../../styles/colors.dart';
+import '../../widgets/button.dart';
+import '../../widgets/textField.dart';
+import '../../models/login.dart';
 // import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
