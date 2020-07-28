@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
-import logo from "../../NewLogo.svg";
+import logo from "../../images/NewLogo.svg";
+import { Link } from "react-router-dom";
 
 export default class Sidebar extends Component {
   sendList = () => {
@@ -16,18 +17,21 @@ export default class Sidebar extends Component {
           className={li_class}
           onClick={() => this.props.changePage(item.name)}
         >
-          <div
-            className={
-              this.props.isSidebarOpen
-                ? "index-icon"
-                : "index-icon index-icon-close"
-            }
-          >
-            <span className="material-icons">{item.icon}</span>
-          </div>
-          {this.props.isSidebarOpen ? (
-            <div className="index-text">{item.name}</div>
-          ) : null}
+          <Link to={`/dashboard/${item.name}`}>
+            <div
+              className={
+                this.props.isSidebarOpen
+                  ? "index-icon"
+                  : "index-icon index-icon-close"
+              }
+            >
+              <span className="material-icons">{item.icon}</span>
+            </div>
+
+            {this.props.isSidebarOpen ? (
+              <div className="index-text">{item.name}</div>
+            ) : null}
+          </Link>
         </li>
       );
     });

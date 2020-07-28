@@ -7,8 +7,8 @@
 }
 
 .Login {
-  background: -webkit-gradient(linear, left top, right top, from(#c0d5ff), to(#ffdbdb));
-  background: linear-gradient(90deg, #c0d5ff 0%, #ffdbdb 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#c0d5ff), to(#e7dbff));
+  background: linear-gradient(90deg, #c0d5ff 0%, #e7dbff 100%);
   width: 100%;
   height: 100vh;
   overflow: auto;

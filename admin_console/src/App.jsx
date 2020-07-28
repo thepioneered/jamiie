@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Header, Sidebar, Main, Login } from "./components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Header, Sidebar, Main, Login, NotFound } from "./components";
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      isLoggedIn: false,
       isSidebarOpen: true,
       index: [
         { name: "Dashboard", icon: "dashboard", active: true },
@@ -35,9 +35,14 @@ export default class App extends Component {
   };
 
   render() {
-    const activeIndex = this.state.index.filter((item) => item.active);
-
-    if (this.state.isLoggedIn) {
+    const login = () => {
+      return (
+        <div className="app-login">
+          <Login />
+        </div>
+      );
+    };
+    const dashboard = () => {
       return (
         <div className="App">
           <Sidebar
@@ -52,12 +57,17 @@ export default class App extends Component {
           />
         </div>
       );
-    } else {
-      return (
-        <div className="app-login">
-          <Login />
-        </div>
-      );
-    }
+    };
+    const activeIndex = this.state.index.filter((item) => item.active);
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/login" component={login} />
+          <Route exact path="/dashboard" component={dashboard} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }

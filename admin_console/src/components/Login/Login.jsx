@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../../NewLogo.svg";
+import logo from "../../images/NewLogo.svg";
 import "./Login.css";
 
 class Login extends Component {
@@ -29,9 +29,9 @@ class Login extends Component {
       `username:${this.state.username}\npassword:${this.state.password}`
     );
 
-    const w = true;
+    const wrong = true;
 
-    if (w) {
+    if (wrong) {
       if (this.state.wrongLogin > 0) {
         this.setState({
           wrongLogin: this.state.wrongLogin + 1,

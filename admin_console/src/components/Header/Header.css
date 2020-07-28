@@ -171,7 +171,7 @@
   padding: 0;
 }
 
-.avatar-menu li:hover {
+.avatar-menu button:hover {
   background-color: rgba(126, 126, 126, 0.1);
 }
 
