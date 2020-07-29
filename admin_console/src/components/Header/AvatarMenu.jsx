@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import auth from "../../utils/auth";
+import { withRouter } from "react-router-dom";
 
 class AvatarMenu extends Component {
   componentDidMount = () => {
@@ -10,17 +12,33 @@ class AvatarMenu extends Component {
   };
 
   handleClickOutside = (event) => {
-    if (event.target.className !== "avatar") this.props.toggle_avatar_menu();
+    if (event.target.className !== "avatar-menu-button")
+      this.props.toggle_avatar_menu();
   };
   render() {
     return (
       <div className="avatar-menu">
         <ul>
           <li>
-            <button>Account Info</button>
+            <button
+              className="avatar-menu-button"
+              onClick={(e) => {
+                console.log(auth.isLoggedIn());
+              }}
+            >
+              Account Info
+            </button>
           </li>
           <li>
-            <button>Logout</button>
+            <button
+              className="avatar-menu-button"
+              onClick={(e) => {
+                auth.logout();
+                this.props.history.push("/login");
+              }}
+            >
+              Logout
+            </button>
           </li>
         </ul>
       </div>
@@ -28,4 +46,4 @@ class AvatarMenu extends Component {
   }
 }
 
-export default AvatarMenu;
+export default withRouter(AvatarMenu);
