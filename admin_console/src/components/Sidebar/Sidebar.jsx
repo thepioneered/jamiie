@@ -17,7 +17,7 @@ export default class Sidebar extends Component {
           className={li_class}
           onClick={() => this.props.changePage(item.name)}
         >
-          <Link to={`/dashboard/${item.name}`}>
+          <Link to={`/dashboard/${item.name.toLowerCase()}`}>
             <div
               className={
                 this.props.isSidebarOpen

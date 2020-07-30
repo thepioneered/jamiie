@@ -3,6 +3,7 @@ import auth from "../../utils/auth";
 import logo from "../../images/NewLogo.svg";
 import "./Login.css";
 import { Redirect } from "react-router-dom";
+import { Loading } from "..";
 
 class Login extends Component {
   constructor() {
@@ -10,6 +11,7 @@ class Login extends Component {
 
     this.usernameInput = React.createRef();
     this.state = {
+      loading: true,
       username: "",
       password: "",
       // check the wrong count
@@ -20,9 +22,8 @@ class Login extends Component {
   }
 
   componentDidMount = async () => {
-    const result = await auth.setup();
-    console.log(result);
-    // if (result) this.props.history.push("/dashboard");
+    await auth.setup();
+    this.setState({ loading: false });
   };
 
   handleChange = (event) => {
@@ -75,6 +76,9 @@ class Login extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loading />;
+    }
     if (!auth.isLoggedIn()) {
       return (
         <div className="Login">

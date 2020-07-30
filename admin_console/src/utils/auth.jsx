@@ -12,14 +12,13 @@ class Auth {
         method: "post",
         withCredentials: true,
       });
-      console.log("umm", result);
 
       this.loggedIn = true;
       this.accessToken = result.data.accessToken;
 
       return true;
     } catch (err) {
-      console.log(err);
+      this.logout();
       return false;
     }
   };

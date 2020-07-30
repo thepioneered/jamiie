@@ -38,32 +38,32 @@ export default class Dashboard extends Component {
   render() {
     const activeIndex = this.state.index.filter((item) => item.active);
 
-    // if (auth.isLoggedIn()) {
-    return (
-      <div className="App">
-        <Sidebar
-          isSidebarOpen={this.state.isSidebarOpen}
-          index={this.state.index}
-          changePage={this.changePage}
+    if (auth.isLoggedIn()) {
+      return (
+        <div className="App">
+          <Sidebar
+            isSidebarOpen={this.state.isSidebarOpen}
+            index={this.state.index}
+            changePage={this.changePage}
+          />
+          <Header toggleSidebar={this.toggleSidebar} />
+          <Main
+            activeIndex={activeIndex[0]}
+            isSidebarOpen={this.state.isSidebarOpen}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: {
+              from: this.props.location,
+            },
+          }}
         />
-        <Header toggleSidebar={this.toggleSidebar} />
-        <Main
-          activeIndex={activeIndex[0]}
-          isSidebarOpen={this.state.isSidebarOpen}
-        />
-      </div>
-    );
-    // } else {
-    //   return (
-    //     <Redirect
-    //       to={{
-    //         pathname: "/login",
-    //         state: {
-    //           from: this.props.location,
-    //         },
-    //       }}
-    //     />
-    //   );
-    // }
+      );
+    }
   }
 }
