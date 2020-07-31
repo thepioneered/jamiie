@@ -1,0 +1,16 @@
+{
+    "phone":"9816456561",
+    "email":"abc@gmail.com",
+    "password":"123",
+    "name":"Nitish",
+    "state":"himachal",
+    "city":"raja ka talab"
+}
+
+{
+    "phone":"9816456561",
+    "password":"123"
+}
+{
+"phone":"+919816456565"
+}

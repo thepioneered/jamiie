@@ -1,0 +1,109 @@
+Phone Verification:
+
+endpoint: /api/phone
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565"
+}
+If phone number already exist then
+Response: status code = 409
+
+If its new registration
+Response : status code = 200
+
+
+
+OTP Verfication:
+
+endpoint: /api/phoneverication
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565",
+"otp":"5-digit"
+}
+
+If OTP correct then
+Response: status = 200
+
+else 
+response: status = 401
+
+
+
+Resend OTP:
+
+endpoint: /api/resendotp
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565",
+"otp":"5-digit"
+}
+
+If otp resent then
+Response: status = 200
+else if otp already verified then
+Response: status = 302
+
+
+Register:
+
+endpoint: /api/register
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565",
+"password":"123",
+"email":"nitishrkt@gmail.com",
+"name":"Nitish Sharma",
+"state":"Himachal Pradesh",
+"city":"Raja ka talab"
+}
+
+If everything is right then
+Response: status= 200
+
+else 
+Response: status = 401
+
+
+Login:
+
+endpoint: /api/login
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565",
+"password":"123"
+}
+
+If credentials are valid then 
+Response: status = 200
+else
+Response:status = 401
+
+
+Forgot Password:
+
+endpoint: /api/forgotpassword
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565",
+"otp":"5-digit"
+}
+
+Response: status = 200
+
+
+after otp verification for create new password
+
+endpoint: /api/forgotpassword/<phone no.>/
+Request Type: 'PUT'
+data:
+{
+"password":"new password"
+}
+Response: status = 200
