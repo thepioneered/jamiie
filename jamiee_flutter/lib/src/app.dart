@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/providers/auth/mobileProvider.dart';
+import 'package:jamiee_flutter/src/providers/auth/otpProvider.dart';
+import 'package:jamiee_flutter/src/providers/passwordVisible.dart';
+import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
+import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
 import 'package:jamiee_flutter/src/screens/dashboard.dart';
 import 'package:jamiee_flutter/src/screens/navbar.dart';
 import 'package:jamiee_flutter/src/providers/faqData.dart';
+import 'package:jamiee_flutter/src/screens/splashscreen/splashScreen.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
 import 'package:provider/provider.dart';
 import './routes/routes.dart';
@@ -40,7 +46,17 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformApp();
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => PasswordStatus(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => MobileProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => OtpProvider(),
+      ),
+    ], child: PlatformApp());
   }
 }
 
@@ -53,17 +69,14 @@ class PlatformApp extends StatelessWidget {
       );
     } else {
       return MaterialApp(
-        theme: ThemeData(primaryColor: AppColors.primaryBlue),
+        theme: ThemeData(
+          primaryColor: AppColors.primaryColorLight,
+          accentColor: AppColors.primaryColorLight,
+          // primarySwatch: MaterialColor()
+        ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: MultiProvider(
-          providers: [
-            Provider(create: (conntext) => FaqData()),
-            ChangeNotifierProvider(
-              create: (ctx) => FaqData(),
-            )
-          ],
-          child: AppNavigationBar(),
-        ), //TODO:EDIT HOME PAGE HERE LATER
+        home: MobilePage(),
+        // home: AppNavigationBar(),
         debugShowCheckedModeBanner: true,
       );
     }

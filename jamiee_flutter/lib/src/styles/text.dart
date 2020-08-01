@@ -16,10 +16,11 @@ class AppTextStyle {
 
   ///////
 
-  static TextStyle get loginButtonText => GoogleFonts.openSans(
+  static TextStyle loginButtonText(Color color) { return GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      textStyle: TextStyle(color: AppColors.white));
+      textStyle: TextStyle(color: color));
+  }
 
   ////////
 

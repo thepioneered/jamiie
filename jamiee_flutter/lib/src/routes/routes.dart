@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
+import 'package:jamiee_flutter/src/screens/auth/signupPage.dart';
+import 'package:jamiee_flutter/src/screens/navbar.dart';
 import 'package:jamiee_flutter/src/screens/settings/editprofilePage.dart';
+import 'package:jamiee_flutter/src/screens/splashscreen/splashScreen.dart';
 import '../screens/settings/aboutusPage.dart';
 import 'package:provider/provider.dart';
 import "../screens/settings/contactPage.dart";
@@ -14,33 +18,45 @@ class AppRoutes {
     switch (routeSettings.name) {
       case "/HomePage":
         return MaterialPageRoute(
-          builder: (context) => HomePagePlatform(),
+          builder: (context) => SplashScreenPage(),
+        );
+      case "/NavBar":
+        return MaterialPageRoute(
+          builder: (context) => AppNavigationBar(),
         );
       case "/DashboardPage":
         return MaterialPageRoute(
-          builder: (context) => DashboardPagePlatform(),
+          // builder: (context) => DashboardPagePlatform(),
+          builder: (context) => MainPage(),
         );
       case "/FaqPage":
         return MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider(
               create: (context) => FaqData(), child: FaqPage()),
         );
-        break;
+
       case "/ContactPage":
         return MaterialPageRoute(
           builder: (context) => ContactPage(),
         );
-        break;
+      case "/SignupPage":
+        return MaterialPageRoute(
+          builder: (context) => SignupPage(),
+        );
+
       case "/AboutusPage":
         return MaterialPageRoute(
           builder: (context) => AboutusPage(),
         );
-        break;
+
       case "/EditprofilePage":
         return MaterialPageRoute(
           builder: (context) => EditprofilePage(),
         );
-        break;
+      case "/OtpPage":
+        return MaterialPageRoute(
+          builder: (context) => OtpPage(),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => HomePagePlatform(),
@@ -56,8 +72,8 @@ class AppRoutes {
         );
       case "/DashboardPage":
         return CupertinoPageRoute(
-          builder: (context) => DashboardPagePlatform(),
-        );
+            // builder: (context) => DashboardPagePlatform(),
+            );
       default:
         return CupertinoPageRoute(
           builder: (context) => HomePagePlatform(),

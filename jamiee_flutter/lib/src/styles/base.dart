@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './colors.dart';
 
 class BaseStyles {
+  static double get buttonRadius => 40.0;
   static double get topPadding => 24.0;
   static EdgeInsetsGeometry get headingPadding => const EdgeInsets.only(top: 25.0, left: 15.0);
   static BorderRadiusGeometry get radius => BorderRadius.circular(30.0);

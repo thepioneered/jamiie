@@ -89,14 +89,15 @@ class _LoginPageState extends State<LoginPage> {
                   }
 
                   onceClicked = true;
+                  Navigator.pushReplacementNamed(context, "/NavBar");
 
                   //TODO: Login Request will be made under this
                   //TODO: Logic need's to be shift
                   if (!snapshot.hasError &&
                       _login.email != null &&
                       _login.password != null) {
-                    FocusScope.of(context).unfocus(); //To close keyboar if open
-                    AppDialog.showDialogApp(context);
+                    FocusScope.of(context).unfocus();
+
                     // AppCheck.check(context,
                     //     "{${_login.email.replaceAll(" ", "")},${_login.password}}");
                   }
