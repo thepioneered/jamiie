@@ -20,8 +20,8 @@ from .views import *
 urlpatterns = [
     path('register',Register.as_view(), name = "register"),
     path('login',Login.as_view(), name = "login"),
-    path('phone',phoneVerification.as_view(), name="phone verification"),
-    path('phoneverification', otpVerification.as_view(), name="phone verification"),
+    path('phone',Phone.as_view(), name="phone verification"),
+    path('phoneverification', PhoneVerification.as_view(), name="phone verification"),
     path('resendotp',resendotp.as_view(),name = "resend otp"),
     path('forgotpassword',ForgotPassword.as_view(), name = "forgot password"),
     path('forgotpassword/<int:id>/',ForgotPassword.as_view(), name = "forgot password id")

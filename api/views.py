@@ -13,18 +13,31 @@ def otpGenerator():
     otp = random.randrange(10000,100000)
     return otp
 
-class phoneVerification(APIView):
+class Phone(APIView):
     def post(self,request):
         data = request.data
         phone = data["phone"]
-        otp = otpGenerator()
         if OTP.objects.filter(phone=phone).exists():
-            val = True
-            return Response(status = status.HTTP_409_CONFLICT)
+            user_instance = OTP.objects.get(phone=phone)
+            if user_instance.validated == True:
+                return Response(status = status.HTTP_409_CONFLICT)
+            else:
+                otp = otpGenerator()
+                user_instance.otp = otp
+                user_instance.save()
+                account_sid = 'AC682a134035589f334183428895b1bbe2'
+                auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+                client = Client(account_sid, auth_token)
+                message = client.messages \
+                       .create(
+                           body="Your otp number is "+str(otp),
+                          from_='+18123704981',
+                          to=str(phone)
+                      )
+                print(message.sid)
+                return Response(status=status.HTTP_200_OK)
         else:
-            val = False
-
-        if val == False:
+            otp = otpGenerator()
             OTP.objects.create(phone=phone, otp = otp, validated=False)
             '''
             Otp service created here using AWS SNS
@@ -42,7 +55,7 @@ class phoneVerification(APIView):
             print(message.sid)
             return Response(status=status.HTTP_200_OK)       
 
-class otpVerification(APIView):
+class PhoneVerification(APIView):
     def post(self,request):
         data = request.data
         phone = data["phone"]
