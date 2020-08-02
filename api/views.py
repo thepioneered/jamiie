@@ -61,7 +61,7 @@ class resendotp(APIView):
         phone = data["phone"]
         user_instance = OTP.objects.get(phone=phone)
         if user_instance.validated == False:
-            otp = otpGenerator
+            otp = otpGenerator()
             user_instance.otp = otp
             user_instance.save()
             account_sid = 'AC682a134035589f334183428895b1bbe2'
