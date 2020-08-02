@@ -51,9 +51,9 @@ class otpVerification(APIView):
         if user.otp == otp:
             user.validated=True
             user.save()
-            return Response(status=HTTP_200_OK)
+            return Response(status = status.HTTP_200_OK)
         else:
-            return Response (status = HTTP_401_UNAUTHORIZED)
+            return Response (status = status.HTTP_401_UNAUTHORIZED)
 
 class resendotp(APIView):   
     def post(self,request):
@@ -74,18 +74,18 @@ class resendotp(APIView):
                         to=str(phone)
                     )
             print(message.sid)
-            return Response(status=HTTP_200_OK)  
+            return Response(status=status.HTTP_200_OK)  
         else: 
-            return Response(status=HTTP_302_FOUND)
+            return Response(status=status.HTTP_302_FOUND)
 
 class Register(APIView):
     def post(self,request):
         serializer = RegisterSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK)
         else:
-            return Response(status=HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class Login(APIView):
     
@@ -97,11 +97,11 @@ class Login(APIView):
         if user is not None:
             real_password = user.password
             if password == real_password:
-                return Response(status=HTTP_200_OK)
+                return Response(status=status.HTTP_200_OK)
             else:
-                return Response(status=HTTP_401_UNAUTHORIZED)
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
         else:
-            return Response(status=HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class ForgotPassword(APIView):
     def post(self,request):
@@ -121,7 +121,7 @@ class ForgotPassword(APIView):
                     to=str(phone)
                 )
         print(message.sid)
-        return Response(status=HTTP_200_OK) 
+        return Response(status=status.HTTP_200_OK) 
     def put(self,request,id):
         data = request.data
         phone = id
@@ -129,4 +129,4 @@ class ForgotPassword(APIView):
         user = User.objects.get(phone=phone)
         user.set_password(password)
         user.save()
-        return Response(status=HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)
