@@ -6,7 +6,10 @@ import random
 import boto3
 from twilio.rest import Client
 from rest_framework import status
+from .models import *
 #Create your views here.
+from rest_framework.authtoken.models import Token
+
 
 #OTP GENERATOR
 def otpGenerator():
@@ -110,7 +113,8 @@ class Login(APIView):
         if user is not None:
             real_password = user.password
             if password == real_password:
-                return Response(status=status.HTTP_200_OK)
+                token, created = Token.objects.get_or_create(user=user)
+                return Response({'token': token.key},status=status.HTTP_200_OK)
             else:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
         else:
