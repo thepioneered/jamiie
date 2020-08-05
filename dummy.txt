@@ -14,3 +14,8 @@
 {
 "phone":"+919816456565"
 }
+
+
+
+authentication_classes = [TokenAuthentication]
+permission_classes=[IsAuthenticated,] 

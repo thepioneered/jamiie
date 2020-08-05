@@ -9,6 +9,8 @@ from rest_framework import status
 from .models import *
 #Create your views here.
 from rest_framework.authtoken.models import Token
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 #OTP GENERATOR
@@ -59,6 +61,8 @@ class Phone(APIView):
             return Response(status=status.HTTP_200_OK)       
 
 class PhoneVerification(APIView):
+    authentication_classes = []
+    permission_classes=[] 
     def post(self,request):
         data = request.data
         phone = data["phone"]
@@ -71,7 +75,9 @@ class PhoneVerification(APIView):
         else:
             return Response (status = status.HTTP_401_UNAUTHORIZED)
 
-class resendotp(APIView):   
+class resendotp(APIView):  
+    authentication_classes = []
+    permission_classes=[]  
     def post(self,request):
         data = request.data
         phone = data["phone"]
@@ -95,6 +101,8 @@ class resendotp(APIView):
             return Response(status=status.HTTP_302_FOUND)
 
 class Register(APIView):
+    authentication_classes = []
+    permission_classes=[] 
     def post(self,request):
         serializer = RegisterSerializer(data = request.data)
         if serializer.is_valid():
@@ -104,7 +112,8 @@ class Register(APIView):
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class Login(APIView):
-    
+    authentication_classes = []
+    permission_classes=[] 
     def post(self,request):
         value = request.data
         phone  = value["phone"]
@@ -121,6 +130,8 @@ class Login(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 class ForgotPassword(APIView):
+    authentication_classes = []
+    permission_classes=[]
     def post(self,request):
         data = request.data
         phone = data["phone"]
