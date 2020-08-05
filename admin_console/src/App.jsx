@@ -3,6 +3,16 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Admin, Login, NotFound } from "./components";
 
 export default class App extends Component {
+  componentDidMount = () => {
+    window.addEventListener("storage", this.syncLogout);
+  };
+
+  syncLogout = (event) => {
+    if (event.key === "logout") {
+      console.log("logged out from storage!", this.props);
+    }
+  };
+
   render() {
     return (
       <BrowserRouter>

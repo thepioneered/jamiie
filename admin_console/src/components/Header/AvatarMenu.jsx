@@ -32,8 +32,10 @@ class AvatarMenu extends Component {
           <li>
             <button
               className="avatar-menu-button"
-              onClick={(e) => {
-                auth.logout();
+              onClick={async (e) => {
+                console.log("uaa");
+                const r = await auth.logout();
+                console.log(r);
                 this.props.history.push("/login");
               }}
             >

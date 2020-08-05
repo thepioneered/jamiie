@@ -41,9 +41,22 @@ class Auth {
     }
   };
 
-  logout = () => {
-    this.loggedIn = false;
-    this.accessToken = "";
+  logout = async () => {
+    try {
+      await axios("http://localhost:4000/logout", {
+        method: "post",
+        withCredentials: true,
+      });
+
+      this.loggedIn = false;
+      this.accessToken = "";
+      window.localStorage.setItem("logout", Date.now());
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   };
 
   isLoggedIn = () => {
