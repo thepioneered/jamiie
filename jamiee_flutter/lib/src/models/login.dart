@@ -1,5 +1,14 @@
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
+
 class Login {
-  String email;
+  String mobile;
   String password;
-  Login({this.email, this.password});
+  Login({this.mobile, this.password});
+
+  void setPassword(String _password) {
+    // var bytes = utf8.encode(_password);
+
+    this.password = sha256.convert(utf8.encode(_password)).toString();
+  }
 }

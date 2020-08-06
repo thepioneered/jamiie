@@ -1,18 +1,23 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
-import 'package:http/http.dart' as http;
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/validationRegex.dart';
 
 class MobileProvider extends ChangeNotifier {
   bool onceClicked;
   TextEditingController mobileController = TextEditingController();
   GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
+  static String mobile;
 
   MobileProvider() {
     onceClicked = false;
+  }
+
+  void setOnceClicked() {
+    onceClicked = false;
+    notifyListeners();
   }
 
   Widget sendOtpButton({@required Function onTap, @required bool loader}) {
@@ -56,7 +61,7 @@ class MobileProvider extends ChangeNotifier {
   void mobileNumberCheck(BuildContext ctx) async {
     onceClicked = true;
     notifyListeners();
-    String mobile = mobileController.text;
+    mobile = mobileController.text;
 
     if (mobile == null || mobile == "") {
       loginScaffoldKey.currentState.showSnackBar(
@@ -78,27 +83,42 @@ class MobileProvider extends ChangeNotifier {
         onceClicked = false;
         notifyListeners();
       } else {
-        var body = json.encode({"otp": mobile});
-        await http.post(
-          "https://desolate-stream-61233.herokuapp.com/otp",
-          body: body,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        ).then((value) {
-          onceClicked = false;
-          notifyListeners();
-          if (value.statusCode == 501) {
-            loginScaffoldKey.currentState.showSnackBar(
-              snackBar(
-                  title: "You have been blocked",
-                  backgroundColor: AppColors.red,
-                  textColor: AppColors.white),
-            );
-          } else if (value.statusCode == 200) {
-            Navigator.pushNamed(ctx, "/OtpPage");
-          }
-        });
+        mobile = '+91$mobile';
+        Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+            key: loginScaffoldKey,
+            endPoint: EndPoints.sendOtp,
+            afterRequest: () {},
+            //TODO
+            body: {"phone": "${mobile.toString()}"});
+        onceClicked = false;
+
+        notifyListeners();
+
+        if (body["status"] == true) {
+          mobileController.clear();
+          Navigator.pushNamed(ctx, "/OtpPage");
+        }
+        // var body = json.encode({"otp": mobile});
+        // await http.post(
+        //   "https://desolate-stream-61233.herokuapp.com/otp",
+        //   body: body,
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // ).then((value) {
+        //   onceClicked = false;
+        //   notifyListeners();
+        //   if (value.statusCode == 501) {
+        //     loginScaffoldKey.currentState.showSnackBar(
+        //       snackBar(
+        //           title: "You have been blocked",
+        //           backgroundColor: AppColors.red,
+        //           textColor: AppColors.white),
+        //     );
+        //   } else if (value.statusCode == 200) {
+        //     Navigator.pushNamed(ctx, "/OtpPage");
+        //   }
+        // });
       }
     }
   }

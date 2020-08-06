@@ -1,19 +1,22 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/mobileProvider.dart';
-import 'package:jamiee_flutter/src/providers/auth/otpProvider.dart';
-import 'package:jamiee_flutter/src/providers/passwordVisible.dart';
+import 'dart:io';
+import 'package:jamiee_flutter/src/providers/appProvider.dart';
+import 'package:jamiee_flutter/src/screens/auth/loginPage.dart';
 import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
 import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
-import 'package:jamiee_flutter/src/screens/dashboard.dart';
-import 'package:jamiee_flutter/src/screens/navbar.dart';
-import 'package:jamiee_flutter/src/providers/faqData.dart';
-import 'package:jamiee_flutter/src/screens/splashscreen/splashScreen.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
+import 'package:jamiee_flutter/src/screens/splashscreen/chooseSignIn.dart';
+import 'package:jamiee_flutter/src/utils/sharedPref.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import './providers/auth/loginProvider.dart';
+import './providers/auth/mobileProvider.dart';
+import './providers/auth/otpProvider.dart';
+import './providers/auth/signupProvider.dart';
+import './providers/passwordVisible.dart';
+import './screens/auth/signupPage.dart';
+import './styles/colors.dart';
 import './routes/routes.dart';
-import 'dart:io';
-import './screens/homePage.dart';
+import 'screens/splashscreen/splashScreen.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 class App extends StatefulWidget {
@@ -51,10 +54,19 @@ class _AppState extends State<App> {
         create: (context) => PasswordStatus(),
       ),
       ChangeNotifierProvider(
+        create: (context) => AppProvider(),
+      ),
+      ChangeNotifierProvider(
         create: (context) => MobileProvider(),
       ),
       ChangeNotifierProvider(
         create: (context) => OtpProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => SignupProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => LoginProvider(),
       ),
     ], child: PlatformApp());
   }
@@ -68,6 +80,7 @@ class PlatformApp extends StatelessWidget {
         onGenerateRoute: AppRoutes.cupertinoPageRoute,
       );
     } else {
+      var appProvider = Provider.of<AppProvider>(context);
       return MaterialApp(
         theme: ThemeData(
           primaryColor: AppColors.primaryColorLight,
@@ -75,8 +88,8 @@ class PlatformApp extends StatelessWidget {
           // primarySwatch: MaterialColor()
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: MobilePage(),
-        // home: AppNavigationBar(),
+        home: ChooseSignInPage(),
+        // home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
 import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
 import 'package:jamiee_flutter/src/screens/auth/signupPage.dart';
 import 'package:jamiee_flutter/src/screens/navbar.dart';
@@ -53,6 +54,10 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => EditprofilePage(),
         );
+      case "/MobilePage":
+        return MaterialPageRoute(
+          builder: (context) => MobilePage(),
+        );
       case "/OtpPage":
         return MaterialPageRoute(
           builder: (context) => OtpPage(),
@@ -70,10 +75,10 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) => HomePagePlatform(),
         );
-      case "/DashboardPage":
-        return CupertinoPageRoute(
-            // builder: (context) => DashboardPagePlatform(),
-            );
+      // case "/DashboardPage":
+      //   return CupertinoPageRoute(
+      //       // builder: (context) => DashboardPagePlatform(),
+      //       );
       default:
         return CupertinoPageRoute(
           builder: (context) => HomePagePlatform(),

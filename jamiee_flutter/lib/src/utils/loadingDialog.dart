@@ -7,7 +7,7 @@ import 'package:jamiee_flutter/src/models/login.dart';
 
 class AppDialog {
   static showDialogApp(BuildContext context) {
-    print(Login().email);
+    // print(Login().email);
     // flutter defined function
 // Timer(, callback)
     Future.delayed(Duration(milliseconds: 3000), () {
