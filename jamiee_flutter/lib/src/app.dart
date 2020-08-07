@@ -79,7 +79,6 @@ class PlatformApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: AppColors.primaryColorLight,
           accentColor: AppColors.primaryColorLight,
-          // primarySwatch: MaterialColor()
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
         // home: ChooseSignInPage(),
