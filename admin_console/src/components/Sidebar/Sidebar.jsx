@@ -1,54 +1,44 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Sidebar.css";
-import logo from "../../NewLogo.svg";
+import logo from "../../images/NewLogo.svg";
 
-export default class Sidebar extends Component {
-  sendList = () => {
-    return this.props.index.map((item) => {
+export default function Sidebar({ isSidebarOpen, changePage, index }) {
+  function sendList() {
+    return index.map((item) => {
       let li_class = "not-active ";
 
       if (item.active) li_class = "active ";
-      if (!this.props.isSidebarOpen) li_class += "li-close";
+      if (!isSidebarOpen) li_class += "li-close";
 
       return (
         <li
           key={item.name}
           className={li_class}
-          onClick={() => this.props.changePage(item.name)}
+          onClick={() => changePage(item.name)}
         >
           <div
             className={
-              this.props.isSidebarOpen
-                ? "index-icon"
-                : "index-icon index-icon-close"
+              isSidebarOpen ? "index-icon" : "index-icon index-icon-close"
             }
           >
             <span className="material-icons">{item.icon}</span>
           </div>
-          {this.props.isSidebarOpen ? (
-            <div className="index-text">{item.name}</div>
-          ) : null}
+          {isSidebarOpen ? <div className="index-text">{item.name}</div> : null}
         </li>
       );
     });
-  };
-
-  render() {
-    return (
-      <div
-        className={
-          this.props.isSidebarOpen ? "Sidebar" : "Sidebar Sidebar-close"
-        }
-      >
-        <div className="logo-wrapper">
-          <img
-            src={logo}
-            className={this.props.isSidebarOpen ? "logo" : "logo-close"}
-            alt="logo"
-          />
-        </div>
-        <ul className="index">{this.sendList()}</ul>
-      </div>
-    );
   }
+
+  return (
+    <div className={isSidebarOpen ? "Sidebar" : "Sidebar Sidebar-close"}>
+      <div className="logo-wrapper">
+        <img
+          src={logo}
+          className={isSidebarOpen ? "logo" : "logo-close"}
+          alt="logo"
+        />
+      </div>
+      <ul className="index">{sendList()}</ul>
+    </div>
+  );
 }

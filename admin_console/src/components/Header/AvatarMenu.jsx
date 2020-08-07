@@ -1,31 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { useEffect } from "react";
 
-class AvatarMenu extends Component {
-  componentDidMount = () => {
-    document.addEventListener("mousedown", this.handleClickOutside);
-  };
+// TODO useEffect dependency ?
+export default function AvatarMenu({ toggle_avatar_menu }) {
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
 
-  componentWillUnmount = () => {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  };
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
-  handleClickOutside = (event) => {
-    if (event.target.className !== "avatar") this.props.toggle_avatar_menu();
-  };
-  render() {
-    return (
-      <div className="avatar-menu">
-        <ul>
-          <li>
-            <button>Account Info</button>
-          </li>
-          <li>
-            <button>Logout</button>
-          </li>
-        </ul>
-      </div>
-    );
+  function handleClickOutside(event) {
+    if (event.target.className !== "avatar") toggle_avatar_menu();
   }
-}
 
-export default AvatarMenu;
+  return (
+    <div className="avatar-menu">
+      <ul>
+        <li>
+          <button>Account Info</button>
+        </li>
+        <li>
+          <button>Logout</button>
+        </li>
+      </ul>
+    </div>
+  );
+}
