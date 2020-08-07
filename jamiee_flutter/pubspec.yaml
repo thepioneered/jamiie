@@ -22,13 +22,11 @@ dependencies:
   flutter_sparkline: ^0.1.0
   numeric_keyboard: ^1.0.0
   shared_preferences: ^0.5.8
-  path_provider: ^1.5.1
   crypto: ^2.1.4
   data_connection_checker: ^0.3.4
   google_sign_in: ^4.5.1
   # firebase_messaging: ^6.0.16
-  # lottie: ^0.4.1
-  # titled_navigation_bar: ^4.1.0
+
 
 
 
