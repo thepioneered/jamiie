@@ -30,9 +30,9 @@ void appLogoutDialog(BuildContext context) {
               ),
               onPressed: () {
                 //TODO:Logout Functioning will come here
-                // Navigator.pop(ctx);
-                // Navigator.pushReplacementNamed(context,"/HomePage");
-                Navigator.pushNamedAndRemoveUntil(context,"/HomePage", (route) => false);
+
+                Navigator.pushNamedAndRemoveUntil(
+                    context, "/HomePage", (route) => false);
               },
             ),
           ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/faqData.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/widgets/settings/appBar.dart';
 import 'package:provider/provider.dart';
+import '../../providers/settings/faqData.dart';
+import '../../styles/text.dart';
+import '../../widgets/appBar.dart';
+
 //TODO: FAQ PAGE PENDING
 
 class FaqPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class FaqPage extends StatelessWidget {
           print(data[0]["title"]);
         },
       ),
-      appBar: settingsAppBar(title:"FAQ's"),
+      appBar: AppBarWidget.getAppBar(context, "FAQ's"),
       body: !_faqData.isDataLoaded
           ? Center(
               child: CircularProgressIndicator(),

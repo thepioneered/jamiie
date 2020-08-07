@@ -20,6 +20,11 @@ class MobileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  dis() {
+    print("till here");
+    mobileController.clear();
+  }
+
   Widget sendOtpButton({@required Function onTap, @required bool loader}) {
     return loader
         ? Center(child: CupertinoActivityIndicator())
@@ -93,6 +98,7 @@ class MobileProvider extends ChangeNotifier {
         onceClicked = false;
 
         notifyListeners();
+        print(body["status"]);
 
         if (body["status"] == true) {
           mobileController.clear();

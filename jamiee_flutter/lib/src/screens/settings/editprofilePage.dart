@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/widgets/settings/appBar.dart';
+import '../../widgets/appBar.dart';
 
 class EditprofilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingsAppBar(title: "Edit Profile"),
+      appBar: AppBarWidget.getAppBar(context, "Edit Profile"),
       body: Center(
         child: Text("EDit profile Page"),
       ),

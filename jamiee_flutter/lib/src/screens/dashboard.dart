@@ -1,4 +1,4 @@
-import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -352,56 +352,57 @@ class _MainPageState extends State<MainPage> {
             ),
             _buildTile(
               Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('Revenue',
-                                  style: TextStyle(color: Colors.green)),
-                              Text('\$16K',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 34.0)),
-                            ],
-                          ),
-                          DropdownButton(
-                              isDense: true,
-                              value: actualDropdown,
-                              onChanged: (String value) => setState(() {
-                                    actualDropdown = value;
-                                    actualChart = chartDropdownItems
-                                        .indexOf(value); // Refresh the chart
-                                  }),
-                              items: chartDropdownItems.map((String title) {
-                                return DropdownMenuItem(
-                                  value: title,
-                                  child: Text(title,
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14.0)),
-                                );
-                              }).toList())
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.only(bottom: 4.0)),
-                      Sparkline(
-                        data: charts[actualChart],
-                        lineWidth: 5.0,
-                        lineColor: Colors.greenAccent,
-                      )
-                    ],
-                  )),
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Revenue',
+                                style: TextStyle(color: Colors.green)),
+                            Text('\$16K',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 34.0)),
+                          ],
+                        ),
+                        DropdownButton(
+                            isDense: true,
+                            value: actualDropdown,
+                            onChanged: (String value) => setState(() {
+                                  actualDropdown = value;
+                                  actualChart = chartDropdownItems
+                                      .indexOf(value); // Refresh the chart
+                                }),
+                            items: chartDropdownItems.map((String title) {
+                              return DropdownMenuItem(
+                                value: title,
+                                child: Text(title,
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14.0)),
+                              );
+                            }).toList())
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.only(bottom: 4.0)),
+                    Sparkline(
+                      data: charts[actualChart],
+                      lineWidth: 5.0,
+                      lineColor: Colors.greenAccent,
+                    )
+                  ],
+                ),
+              ),
             ),
             _buildTile(
               Padding(
@@ -449,16 +450,17 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildTile(Widget child, {Function() onTap}) {
     return Material(
-        elevation: 14.0,
-        borderRadius: BorderRadius.circular(12.0),
-        shadowColor: Color(0x802196F3),
-        child: InkWell(
-            // Do onTap() if it isn't null, otherwise do print()
-            onTap: onTap != null
-                ? () => onTap()
-                : () {
-                    print('Not set yet');
-                  },
-            child: child));
+      elevation: 14.0,
+      borderRadius: BorderRadius.circular(12.0),
+      shadowColor: Color(0x802196F3),
+      child: InkWell(
+          // Do onTap() if it isn't null, otherwise do print()
+          onTap: onTap != null
+              ? () => onTap()
+              : () {
+                  print('Not set yet');
+                },
+          child: child),
+    );
   }
 }

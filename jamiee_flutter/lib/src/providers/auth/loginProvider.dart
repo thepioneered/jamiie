@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/models/login.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/sharedPref.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
+import '../../models/login.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../server/statusCode.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/validationRegex.dart';
 
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
@@ -84,14 +85,27 @@ class LoginProvider extends ChangeNotifier {
             "phone": login.mobile.toString(),
             "password": login.password,
           });
-      if (body["status"] == true)
-        await LocalStorage().setToken(body["body"]["token"]);
-      onceClicked = false;
-      notifyListeners();
-      print(body["status"]);
       if (body["status"] == true) {
-        print("Correct Credentials");
+        await LocalStorage().setToken(body["body"]["token"]);
+        onceFormSubmitted = false;
+        onceClicked = false;
         print(body["body"]["token"]);
+        loginFormKey.currentState.reset();
+        notifyListeners();
+      } else {
+        onceClicked = false;
+        notifyListeners();
+      }
+
+      //TODO: Check if required else remove it
+      if (body["status"] == true) {
+        loginScaffoldKey.currentState.showSnackBar(
+          StatusCodeCheck.snackBar(
+              title: "Login Successful", backgroundColor: AppColors.green),
+        );
+        Future.delayed(Duration(milliseconds: 1300), () {
+          print("DONE");
+        });
       }
     }
   }

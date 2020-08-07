@@ -1,22 +1,15 @@
 import 'dart:io';
-import 'package:jamiee_flutter/src/providers/appProvider.dart';
-import 'package:jamiee_flutter/src/screens/auth/loginPage.dart';
-import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
-import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
-import 'package:jamiee_flutter/src/screens/splashscreen/chooseSignIn.dart';
-import 'package:jamiee_flutter/src/utils/sharedPref.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './providers/app/appProvider.dart';
 import './providers/auth/loginProvider.dart';
 import './providers/auth/mobileProvider.dart';
 import './providers/auth/otpProvider.dart';
 import './providers/auth/signupProvider.dart';
-import './providers/passwordVisible.dart';
-import './screens/auth/signupPage.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
-import 'screens/splashscreen/splashScreen.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 class App extends StatefulWidget {
@@ -49,10 +42,11 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiProvider(providers: [
-      ChangeNotifierProvider(
-        create: (context) => PasswordStatus(),
-      ),
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
       ),
@@ -67,7 +61,7 @@ class _AppState extends State<App> {
       ),
       ChangeNotifierProvider(
         create: (context) => LoginProvider(),
-      ),
+      )
     ], child: PlatformApp());
   }
 }
@@ -88,11 +82,10 @@ class PlatformApp extends StatelessWidget {
           // primarySwatch: MaterialColor()
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: ChooseSignInPage(),
-        // home: appProvider.child,
+        // home: ChooseSignInPage(),
+        home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );
     }
   }
 }
-//checking

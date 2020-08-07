@@ -1,34 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
-import 'package:jamiee_flutter/src/screens/auth/otpPage.dart';
-import 'package:jamiee_flutter/src/screens/auth/signupPage.dart';
-import 'package:jamiee_flutter/src/screens/navbar.dart';
-import 'package:jamiee_flutter/src/screens/settings/editprofilePage.dart';
-import 'package:jamiee_flutter/src/screens/splashscreen/splashScreen.dart';
-import '../screens/settings/aboutusPage.dart';
 import 'package:provider/provider.dart';
+import '../providers/auth/loginProvider.dart';
+import '../screens/auth/mobilePage.dart';
+import '../screens/auth/otpPage.dart';
+import '../screens/auth/signupPage.dart';
+import '../screens/navbar.dart';
+import '../screens/settings/editprofilePage.dart';
+import '../screens/auth/loginPage.dart';
+import '../screens/settings/aboutusPage.dart';
 import "../screens/settings/contactPage.dart";
-import '../providers/faqData.dart';
+import '../providers/settings/faqData.dart';
 import '../screens/settings/faqPage.dart';
 import '../screens/dashboard.dart';
-import '../screens/HomePage.dart';
 
 class AppRoutes {
   static MaterialPageRoute materialPageRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case "/HomePage":
-        return MaterialPageRoute(
-          builder: (context) => SplashScreenPage(),
-        );
       case "/NavBar":
         return MaterialPageRoute(
           builder: (context) => AppNavigationBar(),
         );
       case "/DashboardPage":
         return MaterialPageRoute(
-          // builder: (context) => DashboardPagePlatform(),
           builder: (context) => MainPage(),
+        );
+      case "/LoginPage":
+        return MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (context) => LoginProvider(),
+            child: LoginPage(),
+          ),
         );
       case "/FaqPage":
         return MaterialPageRoute(
@@ -64,25 +66,19 @@ class AppRoutes {
         );
       default:
         return MaterialPageRoute(
-          builder: (context) => HomePagePlatform(),
+          builder: (context) => LoginPage(),
         );
     }
   }
 
   static CupertinoPageRoute cupertinoPageRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case "/HomePage":
+      case "/LoginPage":
         return CupertinoPageRoute(
-          builder: (context) => HomePagePlatform(),
+          builder: (context) => LoginPage(),
         );
-      // case "/DashboardPage":
-      //   return CupertinoPageRoute(
-      //       // builder: (context) => DashboardPagePlatform(),
-      //       );
       default:
-        return CupertinoPageRoute(
-          builder: (context) => HomePagePlatform(),
-        );
+        return CupertinoPageRoute(builder: (context) => LoginPage());
     }
   }
 }

@@ -20,12 +20,18 @@ class NetworkCalls {
         var request = await http.post(EndPoints.ipAddress + endPoint,
             headers: EndPoints.header, body: json.encode(body));
         print(request.statusCode);
+        print(request.body);
+        print(request.body.isEmpty);
 
         if (request.statusCode != 200) {
           StatusCodeCheck.checkStatusCode(request.statusCode, key);
           return {"status": false};
         } else {
-          return {"status": true, "body": json.decode(request.body)};
+          if (request.body.isEmpty) {
+            return {"status": true};
+          } else {
+            return {"status": true, "body": json.decode(request.body)};
+          }
         }
       } catch (e) {
         print("Error in file Network Calls catch $e");
@@ -38,39 +44,7 @@ class NetworkCalls {
           backgroundColor: AppColors.red));
       return {"status": false};
     }
-    // try {
-    //   await http
-    //       .get(EndPoints.toCheckInternet, headers: EndPoints.header)
-    //       .timeout(Duration(seconds: 3))
-    //       .then((value) {
-    //     if (value.statusCode == 200) {
-    //       status = true;
-    //     }
-    //   });
-    // } catch (e) {
-    //   // print("Error here");
-    //   // key.currentState.showSnackBar(StatusCodeCheck.snackBar(
-    //   //     title: "No internet.Please check your connection.",
-    //   //     backgroundColor: AppColors.red));
-    //   // return {"status": false};
-    // } finally {
-    // if (status == true) {
-    // try {
-    //   var request = await http.post(EndPoints.ipAddress + endPoint,
-    //       headers: EndPoints.header, body: json.encode(body));
-    //   print(request.statusCode);
-
-    //   if (request.statusCode != 200) {
-    //     StatusCodeCheck.checkStatusCode(request.statusCode, key);
-    //     return {"status": false};
-    //   } else {
-    //     return {"status": true, "body": json.decode(request.body)};
-    //   }
-    // } catch (e) {
-    //   print("Error in file Network Calls catch $e");
-    //   return {"status": false};
-    // }
-    // }
-    // }
   }
+
+  void getDataFromServer() {}
 }

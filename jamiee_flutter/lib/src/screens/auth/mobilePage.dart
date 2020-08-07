@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/mobileProvider.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/widgets/appBar.dart';
 import 'package:provider/provider.dart';
+import '../../providers/auth/mobileProvider.dart';
+import '../../styles/colors.dart';
+import '../../widgets/appBar.dart';
 
 class MobilePage extends StatefulWidget {
   @override
@@ -12,8 +12,13 @@ class MobilePage extends StatefulWidget {
 
 class _MobilePageState extends State<MobilePage> {
   @override
+  void dispose() {
+    print("Inside Dispose");
+    super.dispose();
+    MobileProvider().dis();
+  }
+  @override
   Widget build(BuildContext context) {
-    // var mobileProvider = Provider.of<MobileProvider>(context,);
     return Consumer<MobileProvider>(builder: (_, mobileProvider, child) {
       print("++++++++++++++Mobile Page Rebuild+++++++++++++++++");
       return Scaffold(

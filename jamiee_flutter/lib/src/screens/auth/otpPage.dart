@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/otpProvider.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/widgets/appBar.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '../../providers/auth/otpProvider.dart';
+import '../../styles/colors.dart';
+import '../../widgets/appBar.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);
@@ -76,7 +76,7 @@ class _OtpPageState extends State<OtpPage> {
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: Text(
-                                  'Enter 6 digits verification code sent to your number',
+                                  'Enter 5 digits verification code sent to your number',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 26,

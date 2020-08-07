@@ -1,8 +1,14 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/models/signup.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../models/signup.dart';
+import '../../providers/auth/mobileProvider.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../server/statusCode.dart';
+import '../../styles/colors.dart';
+import '../../utils/validationRegex.dart';
 
 class SignupProvider extends ChangeNotifier {
   //Page Variables and keys
@@ -11,12 +17,14 @@ class SignupProvider extends ChangeNotifier {
   Signup signup;
   bool onceClicked;
   bool onceFormValidated;
-  TextEditingController confirmPassword;
+  TextEditingController password;
 
   //Class Constructor
   SignupProvider() {
-    confirmPassword = TextEditingController();
+    password = TextEditingController();
+
     signup = Signup();
+
     onceClicked = false;
     onceFormValidated = false;
   }
@@ -60,17 +68,56 @@ class SignupProvider extends ChangeNotifier {
           );
   }
 
-  void validateForm() {
+  void validateForm(BuildContext ctx) async {
+    if (ImageProviderSignup().isImage == null) {
+      print("No image");
+    } else {
+      print("Image");
+    }
     if (signupFormKey.currentState.validate()) {
+      onceClicked = true;
+      notifyListeners();
       signupFormKey.currentState.save();
-      print("\n");
-      print(signup.name);
-      print(signup.email);
-      print(signup.password);
-      print("\n");
+
+      //Todo
+      Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        key: signupScaffoldKey,
+        endPoint: EndPoints.userRegistration,
+        afterRequest: () {},
+        body: {
+          "phone": MobileProvider.mobile.toString(),
+          "password": signup.password,
+          "email": signup.email,
+          "name": signup.name,
+          "state": signup.state,
+          "city": signup.city,
+        },
+      );
+      if (body["status"] == true) {
+        onceFormValidated = false;
+        onceClicked = false;
+
+        notifyListeners();
+      } else {
+        onceClicked = false;
+        notifyListeners();
+      }
+      print(body["status"]);
+
+      signupScaffoldKey.currentState.showSnackBar(
+        StatusCodeCheck.snackBar(
+            title: "You have successfully registered",
+            backgroundColor: AppColors.green),
+      );
+      Future.delayed(Duration(milliseconds: 1300), () {
+        Navigator.pushNamed(ctx, "/LoginPage");
+      });
+
+      signupFormKey.currentState.reset();
+      password.clear();
+
       onceFormValidated = false;
       notifyListeners();
-      // signupFormKey.currentState.reset();
     }
   }
 
@@ -112,15 +159,15 @@ class SignupProvider extends ChangeNotifier {
   }
 
   String signupPageConfirmPasswordValidation(String data) {
-    print(confirmPassword.text);
-    print(data);
+    // print(confirmPassword.text);
+
     if (data == "null") {
       return "Please Enter Password";
     } else if (data.trim() == null) {
       return "Please Enter Password";
     } else if (data.trim() == "") {
       return "Please Enter Password";
-    } else if (data != confirmPassword.text) {
+    } else if (data != password.text) {
       return "Password Does not match";
     } else {
       return null;
@@ -134,7 +181,7 @@ class SignupProvider extends ChangeNotifier {
       return "Please Enter your Name";
     } else if (data.trim() == "") {
       return "Please Enter your Name";
-    } else if (data.length < 7) {
+    } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
       return "Please enter full Name";
     } else {
       return null;
@@ -151,5 +198,41 @@ class SignupProvider extends ChangeNotifier {
     } else {
       return null;
     }
+  }
+}
+
+class ImageProviderSignup extends ChangeNotifier {
+  File image;
+  ImagePicker imagePicker;
+  bool isImage;
+
+  ImageProviderSignup() {
+    imagePicker = ImagePicker();
+  }
+  Future getImage() async {
+    final pickedFile = await imagePicker.getImage(source: ImageSource.camera);
+    image = File(pickedFile.path);
+    isImage = true;
+    notifyListeners();
+  }
+}
+
+class PasswordStatusSignUp extends ChangeNotifier {
+  bool showPassword;
+  bool confirmShowPassword;
+
+  PasswordStatusSignUp() {
+    showPassword = false;
+    confirmShowPassword = false;
+  }
+
+  void setStatusPassword() {
+    this.showPassword = !showPassword;
+    notifyListeners();
+  }
+
+  void setStateConfirmPassword() {
+    this.confirmShowPassword = !confirmShowPassword;
+    notifyListeners();
   }
 }

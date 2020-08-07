@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/auth/mobilePage.dart';
-import 'package:jamiee_flutter/src/screens/splashscreen/chooseSignIn.dart';
-import 'package:jamiee_flutter/src/utils/sharedPref.dart';
+import '../../screens/navbar.dart';
+import '../../screens/auth/loginPage.dart';
+import '../../utils/sharedPref.dart';
 
 class AppProvider extends ChangeNotifier {
   Widget child;
   String token;
+
+
+  
   AppProvider() {
     child = MaterialApp(
       home: Scaffold(
@@ -19,9 +22,9 @@ class AppProvider extends ChangeNotifier {
   void getToken() {
     checkSession().then((value) {
       if (value != null) {
-        child = MobilePage();
+        child = AppNavigationBar();
       } else {
-        child = ChooseSignInPage();
+        child = LoginPage();
       }
       notifyListeners();
     });

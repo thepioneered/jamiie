@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/providers/faqData.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/icons.dart';
-import 'package:jamiee_flutter/src/widgets/settings/logoutDialog.dart';
-import 'package:jamiee_flutter/src/widgets/topHeading.dart';
-import 'package:provider/provider.dart';
+import '../../styles/colors.dart';
+import '../../utils/icons.dart';
+import '../../widgets/settings/logoutDialog.dart';
+import '../../widgets/topHeading.dart';
 import '../../styles/base.dart';
 import '../../styles/text.dart';
 

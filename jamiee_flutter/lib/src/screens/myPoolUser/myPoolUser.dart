@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/models/group.dart';
-import 'package:jamiee_flutter/src/styles/base.dart';
-import 'package:jamiee_flutter/src/utils/icons.dart';
-import 'package:jamiee_flutter/src/widgets/topHeading.dart';
+import '../../styles/base.dart';
+import '../../utils/icons.dart';
+import '../../widgets/topHeading.dart';
 
 class MyPool extends StatelessWidget {
   @override
@@ -10,9 +9,7 @@ class MyPool extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: AppIcons.searchIcon,
-        onPressed: () {
-          
-        },
+        onPressed: () {},
       ),
       body: Container(
         width: double.infinity,

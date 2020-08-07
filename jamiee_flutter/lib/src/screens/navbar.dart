@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:provider/provider.dart';
 import '../screens/dashboard.dart';
 import 'myPoolUser/myPoolUser.dart';
 import '../screens/page3.dart';

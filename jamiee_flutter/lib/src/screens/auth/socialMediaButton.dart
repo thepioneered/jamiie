@@ -9,8 +9,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SocialMediaButton extends StatelessWidget {
   final SocialType buttonType;
+   final  Function onTap;
 
-  const SocialMediaButton({Key key, this.buttonType}) : super(key: key);
+  const SocialMediaButton({Key key, this.buttonType, this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     IconData icon;
@@ -44,16 +45,19 @@ class SocialMediaButton extends StatelessWidget {
     }
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        height: 50.0,
-        width: 50.0,
-        decoration: BoxDecoration(
-          color: buttonColor,
-          borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
-        ),
-        child: Icon(
-          icon,
-          color: iconColor,
+      child: InkWell(
+        onTap: onTap,
+              child: Container(
+          height: 50.0,
+          width: 50.0,
+          decoration: BoxDecoration(
+            color: buttonColor,
+            borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
+          ),
+          child: Icon(
+            icon,
+            color: iconColor,
+          ),
         ),
       ),
     );

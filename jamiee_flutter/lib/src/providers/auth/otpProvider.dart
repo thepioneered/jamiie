@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/mobileProvider.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-// import 'package:http/http.dart' as http;
+import '../../providers/auth/mobileProvider.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
 
 class OtpProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> otpScaffoldKey = GlobalKey<ScaffoldState>();
@@ -13,27 +12,6 @@ class OtpProvider extends ChangeNotifier {
   OtpProvider() {
     onceClicked = false;
   }
-
-  // Future<Object> checkFor() async {
-  //   try {
-  //     print("Getting Data");
-  //     await http.get(
-  //       "https://jsonplaceholder.typicode.com/posts",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     );
-  //     return "Done";
-  //   } catch (e) {
-  //     print(e);
-  //     return Future.error(100);
-
-  //     // return Exception(e);
-  //     // return "error";
-  //   }
-
-  //   // return true;
-  // }
   Widget sendOtpButton({@required Function onTap, @required bool loader}) {
     return loader
         ? Center(child: CupertinoActivityIndicator())
@@ -81,7 +59,7 @@ class OtpProvider extends ChangeNotifier {
           textColor: AppColors.white,
           title: "Please enter OTP"));
     } else if (otp.length == 5) {
-      Map<String,dynamic> body = await NetworkCalls.postDataToServer(
+      Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,
           afterRequest: () {},
