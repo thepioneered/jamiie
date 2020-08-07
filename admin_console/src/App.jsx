@@ -3,7 +3,7 @@ import { Header, Sidebar, Main, Login } from "./components";
 
 // TODO changePage ?
 export default function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [isSidebarOpen, setSidebar] = useState(true);
   const [index, setIndex] = useState([
     { name: "Dashboard", icon: "dashboard", active: true },
