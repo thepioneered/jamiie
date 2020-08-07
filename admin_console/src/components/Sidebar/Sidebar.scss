@@ -47,12 +47,16 @@
   color: $primary-gray;
   width: 100%;
 
-  li {
+  a {
     display: flex;
 
     cursor: pointer;
     padding: 1em 0.8em;
     transition: background-color 250ms ease;
+
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
   }
 }
 

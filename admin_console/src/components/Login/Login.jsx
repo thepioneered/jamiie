@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../images/NewLogo.svg";
 import "./Login.css";
+import { Redirect } from "react-router-dom";
+import { Loading } from "..";
 
 export default function Login() {
   const usernameInput = React.createRef();
@@ -28,6 +30,9 @@ export default function Login() {
         setWrongDivClassName("wrong-login wrong-login-show");
         setWrongLogin((prevState) => prevState + 1);
       }
+
+      // Focus on username
+      this.usernameInput.current.focus();
     }
     usernameInput.current.focus();
   };
