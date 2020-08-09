@@ -19,7 +19,7 @@ class FaqPage extends StatelessWidget {
           print(data[0]["title"]);
         },
       ),
-      appBar: AppBarWidget.getAppBar(context, "FAQ's"),
+      appBar: AppBarWidget.getAppBar(context, "FAQ's", isRegistration: false),
       body: !_faqData.isDataLoaded
           ? Center(
               child: CircularProgressIndicator(),

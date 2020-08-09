@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20.0,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  // height: MediaQuery.of(context).size.height * 02,
                   child: MultiProvider(
                     providers: [
                       ChangeNotifierProvider(
@@ -93,26 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: Container(),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/MobilePage");
-                  },
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Have no account yet? ",
-                          style: TextStyle(fontSize: 15.0),
-                        ),
-                        Text(
-                          "Sign Up",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18.0),
-                        ),
-                      ],
-                    ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FlatButton(
+                    padding: EdgeInsets.zero,
+                    child: Text("Have no account? Signup",
+                        style: TextStyle(fontSize: 18.0)),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, "/MobilePage"),
                   ),
                 ),
               ],

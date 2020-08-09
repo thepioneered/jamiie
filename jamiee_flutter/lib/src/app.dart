@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:jamiee_flutter/src/screens/navbar.dart';
+import 'package:jamiee_flutter/src/screens/settings/settingPage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,23 +48,26 @@ class _AppState extends State<App> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(
-        create: (context) => AppProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => MobileProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => OtpProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => SignupProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => LoginProvider(),
-      )
-    ], child: PlatformApp());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AppProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MobileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => OtpProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SignupProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LoginProvider(),
+        )
+      ],
+      child: PlatformApp(),
+    );
   }
 }
 
@@ -76,13 +81,14 @@ class PlatformApp extends StatelessWidget {
     } else {
       var appProvider = Provider.of<AppProvider>(context);
       return MaterialApp(
+        title: "Jamiee",
         theme: ThemeData(
           primaryColor: AppColors.primaryColorLight,
           accentColor: AppColors.primaryColorLight,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: ChooseSignInPage(),
-        home: appProvider.child,
+        home: AppNavigationBar(),
+        // home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );
     }

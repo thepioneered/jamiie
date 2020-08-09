@@ -16,7 +16,7 @@ class LoginPageWidget extends StatelessWidget {
       Widget onEyeClick,
       int maxLength}) {
     return SizedBox(
-      height: 70,
+      height: 80,
       child: TextFormField(
         obscureText: showPassword == null ? false : !showPassword,
         validator: validator,
@@ -66,9 +66,9 @@ class LoginPageWidget extends StatelessWidget {
                 autoValidate: loginProvider.onceFormSubmitted ? true : false,
                 onSaved: (String e) => loginProvider.login.mobile = e,
               ),
-              SizedBox(
-                height: 10.0,
-              ),
+              // SizedBox(
+              //   height: 10.0,
+              // ),
               Consumer<PasswordStatusLogin>(
                 builder: (_, passwordStatus, child) {
                   return screenTextField(
@@ -86,21 +86,34 @@ class LoginPageWidget extends StatelessWidget {
                       ));
                 },
               ),
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                constraints: const BoxConstraints(maxWidth: 150),
-                child: loginProvider.onceClicked
-                    ? loginProvider.loginButton(loader: true, onTap: () {})
-                    : loginProvider.loginButton(
-                        loader: false,
-                        onTap: () {
-                          loginProvider.validateLoginForm();
-                          FocusScope.of(context).unfocus();
-                          loginProvider.setOnceFormValidated();
-                        },
-                      ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    // margin:
+                    //     const EdgeInsets.symmetric(vertical: 10),
+                    constraints: const BoxConstraints(maxWidth: 150),
+                    child: loginProvider.onceClicked
+                        ? loginProvider.loginButton(loader: true, onTap: () {})
+                        : loginProvider.loginButton(
+                            loader: false,
+                            onTap: () {
+                              loginProvider.validateLoginForm();
+                              FocusScope.of(context).unfocus();
+                              loginProvider.setOnceFormValidated();
+                            },
+                          ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: FlatButton(
+                      color: Colors.transparent,
+                      onPressed: () {},
+                      child: Text("Forgot Password"),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         );

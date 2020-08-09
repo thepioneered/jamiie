@@ -5,7 +5,11 @@ class AboutusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget.getAppBar(context, "About Us"),
+      appBar: AppBarWidget.getAppBar(
+        context,
+        "About Us",
+        isRegistration: false,
+      ),
       body: Center(
         child: Text("About Us"),
       ),

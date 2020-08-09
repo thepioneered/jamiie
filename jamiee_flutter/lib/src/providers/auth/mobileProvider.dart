@@ -102,29 +102,8 @@ class MobileProvider extends ChangeNotifier {
 
         if (body["status"] == true) {
           mobileController.clear();
-          Navigator.pushNamed(ctx, "/OtpPage");
+          Navigator.pushReplacementNamed(ctx, "/OtpPage");
         }
-        // var body = json.encode({"otp": mobile});
-        // await http.post(
-        //   "https://desolate-stream-61233.herokuapp.com/otp",
-        //   body: body,
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        // ).then((value) {
-        //   onceClicked = false;
-        //   notifyListeners();
-        //   if (value.statusCode == 501) {
-        //     loginScaffoldKey.currentState.showSnackBar(
-        //       snackBar(
-        //           title: "You have been blocked",
-        //           backgroundColor: AppColors.red,
-        //           textColor: AppColors.white),
-        //     );
-        //   } else if (value.statusCode == 200) {
-        //     Navigator.pushNamed(ctx, "/OtpPage");
-        //   }
-        // });
       }
     }
   }

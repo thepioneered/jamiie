@@ -58,7 +58,7 @@ class _OtpPageState extends State<OtpPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         key: otpProvider.otpScaffoldKey,
-        appBar: AppBarWidget.getAppBar(context,""),
+        appBar: AppBarWidget.getAppBar(context,"",isRegistration: true),
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

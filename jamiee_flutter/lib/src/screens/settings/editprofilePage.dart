@@ -5,7 +5,7 @@ class EditprofilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget.getAppBar(context, "Edit Profile"),
+      appBar: AppBarWidget.getAppBar(context, "Edit Profile",isRegistration: false),
       body: Center(
         child: Text("EDit profile Page"),
       ),

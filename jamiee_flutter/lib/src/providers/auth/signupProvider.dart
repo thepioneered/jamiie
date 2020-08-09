@@ -98,26 +98,28 @@ class SignupProvider extends ChangeNotifier {
         onceClicked = false;
 
         notifyListeners();
+        signupScaffoldKey.currentState.showSnackBar(
+          StatusCodeCheck.snackBar(
+              title: "You have successfully registered",
+              backgroundColor: AppColors.green),
+        );
+        Future.delayed(Duration(milliseconds: 1300), () {
+          // signupScaffoldKey.currentState.dispose();
+          // // ignore: invalid_use_of_protected_member
+          // signupFormKey.currentState.dispose();
+          Navigator.pushReplacementNamed(ctx, "/LoginPage");
+        });
+
+        signupFormKey.currentState.reset();
+        
+        password.clear();
       } else {
         onceClicked = false;
         notifyListeners();
       }
-      print(body["status"]);
 
-      signupScaffoldKey.currentState.showSnackBar(
-        StatusCodeCheck.snackBar(
-            title: "You have successfully registered",
-            backgroundColor: AppColors.green),
-      );
-      Future.delayed(Duration(milliseconds: 1300), () {
-        Navigator.pushNamed(ctx, "/LoginPage");
-      });
-
-      signupFormKey.currentState.reset();
-      password.clear();
-
-      onceFormValidated = false;
-      notifyListeners();
+      // onceFormValidated = false;
+      // notifyListeners();
     }
   }
 

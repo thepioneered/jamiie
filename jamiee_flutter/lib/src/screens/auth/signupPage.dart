@@ -69,7 +69,8 @@ class _SignupPageState extends State<SignupPage> {
         return Scaffold(
           key: signupProvider.signupScaffoldKey,
           backgroundColor: AppColors.white,
-          appBar: AppBarWidget.getAppBar(context, "Enter your details"),
+          appBar: AppBarWidget.getAppBar(context, "Enter your details",
+              isRegistration: true),
           body: SingleChildScrollView(
             child: Container(
               // height: MediaQuery.of(context).size.height - 75.0,

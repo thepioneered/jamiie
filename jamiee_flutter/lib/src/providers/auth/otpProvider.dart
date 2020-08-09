@@ -51,30 +51,28 @@ class OtpProvider extends ChangeNotifier {
   }
 
   void checkOtp(BuildContext ctx, String otp) async {
-    onceClicked = true;
-    notifyListeners();
     if (otp.length < 5) {
       otpScaffoldKey.currentState.showSnackBar(snackBar(
           backgroundColor: AppColors.red,
           textColor: AppColors.white,
           title: "Please enter OTP"));
     } else if (otp.length == 5) {
+      onceClicked = true;
+      notifyListeners();
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,
           afterRequest: () {},
           body: {"phone": MobileProvider.mobile.trim(), "otp": otp.toString()});
-      onceClicked = false;
 
-      notifyListeners();
       if (body["status"] == true) {
-        Navigator.pushNamedAndRemoveUntil(ctx, "/SignupPage", (route) => true);
+        Navigator.pushReplacementNamed(ctx, "/SignupPage");
+        onceClicked = false;
+        notifyListeners();
+      } else {
+        onceClicked = false;
+        notifyListeners();
       }
-    } else {
-      otpScaffoldKey.currentState.showSnackBar(snackBar(
-          backgroundColor: AppColors.red,
-          textColor: AppColors.white,
-          title: "Error occured at OTP page"));
     }
   }
 
