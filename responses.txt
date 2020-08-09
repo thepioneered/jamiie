@@ -106,3 +106,18 @@ data:
 "password":"new password"
 }
 Response: status = 200
+
+
+Logout:
+
+endpoint: /api/logout
+
+Request Type: 'POST'
+data:
+{
+"phone":"+919816456565"
+}
+
+Response: status = 200
+
+After this endpoint the token will get deleted from database
