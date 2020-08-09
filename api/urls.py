@@ -24,6 +24,7 @@ urlpatterns = [
     path('phoneverification', PhoneVerification.as_view(), name="phone verification"),
     path('resendotp',resendotp.as_view(),name = "resend otp"),
     path('forgotpassword',ForgotPassword.as_view(), name = "forgot password"),
-    path('forgotpassword/<int:id>/',ForgotPassword.as_view(), name = "forgot password id")
+    path('forgotpassword/<int:id>/',ForgotPassword.as_view(), name = "forgot password id"),
+    path('logout', Logout.as_view(), name="logout")
 
 ]

@@ -91,8 +91,7 @@ endpoint: /api/forgotpassword
 Request Type: 'POST'
 data:
 {
-"phone":"+919816456565",
-"otp":"5-digit"
+"phone":"+919816456565"
 }
 
 Response: status = 200

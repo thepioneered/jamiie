@@ -134,7 +134,7 @@ class Login(APIView):
 class ForgotPassword(APIView):
     authentication_classes = []
     permission_classes=[]
-    def post(self,request):
+    def post(self,request,):
         data = request.data
         phone = data["phone"]
         user = OTP.objects.get(phone=phone)
@@ -159,4 +159,15 @@ class ForgotPassword(APIView):
         user = User.objects.get(phone=phone)
         user.set_password(password)
         user.save()
+        return Response(status=status.HTTP_200_OK)
+
+class Logout(APIView):
+    authentication_classes = []
+    permission_classes=[]
+    def post(self, request):
+        data = request.data
+        phone = data["phone"]
+        user = User.objects.get(phone=phone) 
+        user = Token.objects.get(user=user)
+        user.delete()
         return Response(status=status.HTTP_200_OK)
