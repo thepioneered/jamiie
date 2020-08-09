@@ -74,6 +74,7 @@ class LoginProvider extends ChangeNotifier {
       onceClicked = true;
       notifyListeners();
       loginFormKey.currentState.save();
+      //Todo
       login.mobile = '+91${login.mobile}';
       print(login.mobile);
       print(login.password);
@@ -86,7 +87,8 @@ class LoginProvider extends ChangeNotifier {
             "password": login.password,
           });
       if (body["status"] == true) {
-        await LocalStorage().setToken(body["body"]["token"]);
+        await LocalStorage()
+            .setTokenMobile(body["body"]["token"], login.mobile);
         onceFormSubmitted = false;
         onceClicked = false;
         print(body["body"]["token"]);
@@ -103,8 +105,10 @@ class LoginProvider extends ChangeNotifier {
           StatusCodeCheck.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
+
         Future.delayed(Duration(milliseconds: 1300), () {
-          print("DONE");
+          Navigator.pushReplacementNamed(
+              loginScaffoldKey.currentContext, "/NavBar");
         });
       }
     }

@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import '../../styles/text.dart';
 import '../../styles/colors.dart';
 
-void appLogoutDialog(BuildContext context) {
+void appLogoutDialog(BuildContext context,Function onTap) {
   showDialog(
       context: context,
       builder: (ctx) {
@@ -28,12 +28,7 @@ void appLogoutDialog(BuildContext context) {
                 "Logout",
                 style: AppTextStyle.logoutButton(AppColors.white),
               ),
-              onPressed: () {
-                //TODO:Logout Functioning will come here
-
-                Navigator.pushNamedAndRemoveUntil(
-                    context, "/HomePage", (route) => false);
-              },
+              onPressed: onTap
             ),
           ],
         );

@@ -12,7 +12,7 @@ import '../screens/settings/aboutusPage.dart';
 import "../screens/settings/contactPage.dart";
 import '../providers/settings/faqData.dart';
 import '../screens/settings/faqPage.dart';
-import '../screens/dashboard.dart';
+import '../screens/Dashboard/dashboard.dart';
 
 class AppRoutes {
   static MaterialPageRoute materialPageRoute(RouteSettings routeSettings) {
@@ -23,7 +23,7 @@ class AppRoutes {
         );
       case "/DashboardPage":
         return MaterialPageRoute(
-          builder: (context) => MainPage(),
+          builder: (context) => DashboardPage(),
         );
       case "/LoginPage":
         return MaterialPageRoute(

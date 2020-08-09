@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:jamiee_flutter/src/providers/Dashboard/dashboardProvider.dart';
 import 'package:jamiee_flutter/src/screens/navbar.dart';
 import 'package:jamiee_flutter/src/screens/settings/settingPage.dart';
 import 'package:provider/provider.dart';
@@ -50,9 +51,12 @@ class _AppState extends State<App> {
     ]);
     return MultiProvider(
       providers: [
+        //App Provider which checks whether session logged in or not
         ChangeNotifierProvider(
           create: (context) => AppProvider(),
         ),
+
+        //All auth Providers
         ChangeNotifierProvider(
           create: (context) => MobileProvider(),
         ),
@@ -64,7 +68,12 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
-        )
+        ),
+
+        //Dashboard Provider
+        ChangeNotifierProvider(
+          create: (context) => DashboardProvider(),
+        ),
       ],
       child: PlatformApp(),
     );
@@ -87,8 +96,8 @@ class PlatformApp extends StatelessWidget {
           accentColor: AppColors.primaryColorLight,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: AppNavigationBar(),
-        // home: appProvider.child,
+        // home: AppNavigationBar(),
+        home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );
     }

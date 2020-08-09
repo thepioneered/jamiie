@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jamiee_flutter/src/providers/settings/logoutProvider.dart';
+import 'package:jamiee_flutter/src/server/endpoint.dart';
+import 'package:jamiee_flutter/src/server/networkCalls.dart';
+import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import '../../utils/icons.dart';
 import '../../widgets/settings/logoutDialog.dart';
@@ -10,68 +14,72 @@ import '../../styles/text.dart';
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: BaseStyles.pagePadingDashboard,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            topHeading(title: "Settings"),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1),
-              child: Column(
-                children: <Widget>[
-                  AppSettingButtons(
-                    title: "Profile",
-                    subtitle: "Edit your profile",
-                    icon: AppIcons.accountIcon,
-                    onTap: () {
-                      Navigator.pushNamed(context, "/EditprofilePage");
-                    },
+    return ChangeNotifierProvider(
+      create: (_) => LogoutProvider(),
+      child: Consumer<LogoutProvider>(builder: (_, logoutProvider, child) {
+        return Scaffold(
+          key: logoutProvider.settingScaffoldKey,
+          body: Container(
+            padding: BaseStyles.pagePadingDashboard,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                topHeading(title: "Settings"),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.1),
+                  child: Column(
+                    children: <Widget>[
+                      AppSettingButtons(
+                        title: "Profile",
+                        subtitle: "Edit your profile",
+                        icon: AppIcons.accountIcon,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/EditprofilePage");
+                        },
+                      ),
+                      AppSettingButtons(
+                        title: "Contact Us",
+                        subtitle: "Contact us for more support",
+                        icon: AppIcons.questionIcon,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/ContactPage");
+                        },
+                      ),
+                      AppSettingButtons(
+                          title: "FAQ's",
+                          subtitle: "Checkout some FAQ's",
+                          icon: AppIcons.profileIcon,
+                          onTap: () {
+                            Navigator.pushNamed(context, "/FaqPage");
+                          }),
+                      AppSettingButtons(
+                        title: "Logout",
+                        subtitle: "Logout from your account",
+                        icon: AppIcons.logoutIcon,
+                        onTap: logoutProvider.handleLogout,
+                      ),
+                      AppSettingButtons(
+                        title: "About Us",
+                        subtitle: "Check out more about us",
+                        icon: AppIcons.infoIcon,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/AboutusPage");
+                        },
+                      ),
+                    ],
                   ),
-                  AppSettingButtons(
-                    title: "Contact Us",
-                    subtitle: "Contact us for more support",
-                    icon: AppIcons.questionIcon,
-                    onTap: () {
-                      Navigator.pushNamed(context, "/ContactPage");
-                    },
-                  ),
-                  AppSettingButtons(
-                      title: "FAQ's",
-                      subtitle: "Checkout some FAQ's",
-                      icon: AppIcons.profileIcon,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/FaqPage");
-                      }),
-                  AppSettingButtons(
-                    title: "Logout",
-                    subtitle: "Logout from your account",
-                    icon: AppIcons.logoutIcon,
-                    onTap: () {
-                      appLogoutDialog(context);
-                    },
-                  ),
-                  AppSettingButtons(
-                    title: "About Us",
-                    subtitle: "Check out more about us",
-                    icon: AppIcons.infoIcon,
-                    onTap: () {
-                      Navigator.pushNamed(context, "/AboutusPage");
-                    },
-                  ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: Container(),
+                ),
+              ],
             ),
-            Expanded(
-              child: Container(),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }),
     );
   }
 }

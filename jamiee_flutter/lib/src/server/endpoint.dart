@@ -5,5 +5,6 @@ class EndPoints {
   static String verifyOtp = "/api/phoneverification";
   static String userRegistration = "/api/register";
   static String userLogin = "/api/login";
-  static Map<String,String> header = {"Content-Type": "application/json"};
+  static String userlogout = "/api/logout";
+  static Map<String, String> header = {"Content-Type": "application/json"};
 }
