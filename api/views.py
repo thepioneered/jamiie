@@ -19,6 +19,8 @@ def otpGenerator():
     return otp
 
 class Phone(APIView):
+    authentication_classes = []
+    permission_classes=[] 
     def post(self,request):
         data = request.data
         phone = data["phone"]
