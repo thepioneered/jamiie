@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import styles from "../styles/header.module.scss";
+import styles from "../../styles/header.module.scss";
 
 // TODO useEffect dependency ?
 export default function AvatarMenu({ toggle_avatar_menu }) {

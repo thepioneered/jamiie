@@ -1,6 +1,6 @@
 import React from "react";
 import { AvatarMenu } from "./index";
-import styles from "../styles/header.module.scss";
+import styles from "../../styles/header.module.scss";
 import { useState } from "react";
 
 // TODO searchUnfocus timeout

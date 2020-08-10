@@ -1,5 +1,5 @@
 import React from "react";
-import { TotalCard, Layout } from "../../components";
+import { TotalCard, Layout } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/dashboard.module.scss";
 

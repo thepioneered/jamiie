@@ -1,6 +1,5 @@
 import React from "react";
-import cn from "classnames";
-import styles from "../styles/totalCard.module.scss";
+import styles from "../../styles/totalCard.module.scss";
 
 function totalCard({ name, number, percentage }) {
   const addCommasToNumber = number

@@ -67,6 +67,7 @@ export default function Login() {
             name="username"
             className={styles.input}
             required={true}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <label htmlFor="username" className={styles.label}>
@@ -80,6 +81,7 @@ export default function Login() {
             name="password"
             className={styles.input}
             required={true}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <label htmlFor="password" className={styles.label}>

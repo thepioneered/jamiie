@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
-import styles from "../styles/sidebar.module.scss";
-import Logo from "../public/images/svg/NewLogo.svg";
+import styles from "../../styles/sidebar.module.scss";
+import Logo from "../../public/images/svg/NewLogo.svg";
 
 export default function Sidebar({ isSidebarOpen }) {
   function sendList() {
