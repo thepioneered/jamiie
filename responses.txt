@@ -121,3 +121,34 @@ data:
 Response: status = 200
 
 After this endpoint the token will get deleted from database
+
+
+
+ADMIN SECTION:
+
+Login:
+
+endpoint : /api/adminlogin
+
+Request Type: 'POST'
+data:
+{
+    "phone":"+919816456565",
+    "password":"abc"
+}
+
+Response: status = 200
+Token will be sent to the cookies
+
+
+Logout:
+endpoint : /api/adminlogout
+
+Request Type: 'POST'
+data:
+{
+    "phone":"+919816456565"
+}
+
+Response: status = 200
+Token and cookies will get deleted

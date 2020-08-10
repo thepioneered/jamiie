@@ -191,3 +191,16 @@ class AdminLogin(APIView):
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+class AdminLogout(APIView):
+    authentication_classes = []
+    permission_classes=[] 
+    def post(self, request):
+        data = request.data
+        phone = data["phone"]
+        user = User.objects.get(phone = phone)
+        user = Token.objects.get(user=user)
+        user.delete()
+        response = HttpResponse(status = status.HTTP_200_OK)
+        response.delete_cookie(phone)
+        return response

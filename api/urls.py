@@ -27,5 +27,5 @@ urlpatterns = [
     path('forgotpassword/<int:id>/',ForgotPassword.as_view(), name = "forgot password id"),
     path('logout', Logout.as_view(), name="logout"),
     path('adminlogin',AdminLogin.as_view(), name="admin login"),
-
+    path('adminlogout',AdminLogout.as_view(), name="admin logout"),
 ]
