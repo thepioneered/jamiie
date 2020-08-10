@@ -1,0 +1,137 @@
+@import "./variables.module.scss";
+
+// ------------
+// Sidebar
+// ------------
+
+.Sidebar {
+  background-color: #ffffff;
+  grid-area: Sidebar;
+  padding-top: 1.5em;
+  width: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Sidebar__close {
+  width: 80px;
+}
+
+// ------------
+// logo-wrapper
+// ------------
+
+.logo {
+  $size: 13em;
+  height: $size;
+  width: $size;
+  margin-right: 6px;
+}
+
+.logo__close {
+  $size: 5em;
+  height: $size;
+  width: $size;
+}
+
+// ------------
+// index
+// ------------
+
+.index {
+  list-style: none;
+  padding: 0;
+  margin-top: 3em;
+  color: $primary-gray;
+  width: 100%;
+
+  li {
+    display: flex;
+
+    cursor: pointer;
+    padding: 1em 0.8em;
+    transition: background-color 250ms ease;
+
+    width: 100%;
+    // color: inherit;
+    text-decoration: none;
+  }
+}
+
+.not__active {
+  position: relative;
+}
+
+.not__active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0px;
+  height: 100%;
+  background-color: $secondary-gray;
+  transition: width 250ms ease;
+}
+
+.not__active:hover {
+  background-color: $hover-background;
+  color: $primary-gray;
+
+  &::after {
+    width: 5px;
+  }
+}
+
+.li__close {
+  justify-content: center;
+}
+
+.index__icon {
+  align-self: flex-end;
+  margin-left: 12px;
+}
+
+.index__icon__close {
+  margin-left: 0;
+}
+
+.index__icon span {
+  font-size: 18px;
+}
+
+.index__text {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 20px;
+  padding-bottom: 2px;
+
+  align-self: flex-start;
+}
+
+.active {
+  position: relative;
+  background-color: $background-blue;
+  color: $primary-blue;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background-color: $primary-blue;
+  transition: width 250ms ease;
+}
+
+.active:hover {
+  background-color: rgba(6, 160, 255, 0.23);
+  color: $primary-blue;
+
+  &::after {
+    width: 7px;
+  }
+}

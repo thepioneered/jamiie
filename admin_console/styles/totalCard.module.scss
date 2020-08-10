@@ -1,0 +1,72 @@
+@import "./variables.module.scss";
+
+// ------------
+// card-container and card
+// ------------
+
+.flex__wrapper {
+  // max-width: calc(100vw - 280px);
+  overflow: hidden;
+}
+
+.container {
+  padding: 0.5rem 0;
+  display: flex;
+  // gap: 1em;
+  overflow: auto;
+}
+
+.container::-webkit-scrollbar {
+  height: 0.25rem;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: $secondary-gray;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: $primary-gray;
+}
+
+.container::-webkit-scrollbar-thumb:active {
+  background: $primary-blue;
+}
+
+.card {
+  padding: 1.5rem;
+  margin: 0 0.5em;
+  padding-left: 1.2rem;
+  border-radius: 10px;
+  background-color: white;
+  min-width: 320px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+// ------------
+// card items
+// ------------
+
+.heading {
+  color: $primary-gray;
+  font-size: 1.15em;
+}
+
+.number {
+  font-size: 2em;
+}
+
+.description {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5em;
+}
+
+.icon {
+  font-size: 18px;
+  margin-top: 1px;
+  align-self: center;
+}
+
+.status {
+  color: $secondary-gray;
+}
