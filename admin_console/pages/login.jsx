@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import cn from "classnames";
-import Logo from "../../public/images/svg/NewLogo.svg";
-import styles from "../../styles/login.module.scss";
 import Head from "next/head";
+import cn from "classnames";
+import Logo from "../public/images/svg/NewLogo.svg";
+import styles from "../styles/login.module.scss";
 
 export default function Login() {
   const usernameInput = React.createRef();

@@ -13,6 +13,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  min-height: 620px;
 
   display: flex;
   flex-direction: column;
@@ -51,7 +52,7 @@
   color: $primary-gray;
   width: 100%;
 
-  li {
+  a {
     display: flex;
 
     cursor: pointer;
@@ -59,7 +60,7 @@
     transition: background-color 250ms ease;
 
     width: 100%;
-    // color: inherit;
+    color: inherit;
     text-decoration: none;
   }
 }
@@ -117,7 +118,7 @@
 .active {
   position: relative;
   background-color: $background-blue;
-  color: $primary-blue;
+  color: $primary-blue !important;
 }
 
 .active::after {
