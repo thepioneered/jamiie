@@ -11,8 +11,8 @@ from .models import *
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
-
+from django.contrib.auth.hashers import check_password
+from django.http import HttpResponse
 #OTP GENERATOR
 def otpGenerator():
     otp = random.randrange(10000,100000)
@@ -77,7 +77,7 @@ class PhoneVerification(APIView):
         else:
             return Response (status = status.HTTP_401_UNAUTHORIZED)
 
-class resendotp(APIView):  
+class ResendOtp(APIView):  
     authentication_classes = []
     permission_classes=[]  
     def post(self,request):
@@ -171,3 +171,23 @@ class Logout(APIView):
         user = Token.objects.get(user=user)
         user.delete()
         return Response(status=status.HTTP_200_OK)
+
+class AdminLogin(APIView):
+    authentication_classes = []
+    permission_classes=[] 
+    def post(self,request):
+        value = request.data
+        phone  = value["phone"]
+        password = value["password"]
+        user = User.objects.get(phone = phone)
+        if user is not None:
+            valid_password = check_password(password,user.password)
+            if valid_password==True:
+                token, created = Token.objects.get_or_create(user=user)
+                response = HttpResponse(status=status.HTTP_200_OK)
+                response.set_cookie(phone,token)
+                return response
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
