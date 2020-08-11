@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Head from "next/head";
 import cn from "classnames";
+import { postData } from "../src/services/apiServices";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
+import Router from "next/router";
 
 export default function Login() {
-  const usernameInput = React.createRef();
+  const usernameInput = useRef();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [wrongLogin, setWrongLogin] = useState(0);
   const [wrongDivClassName, setWrongDivClassName] = useState(styles.wrong);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const w = true;
+    const payload = {
+      phone: username,
+      password: password,
+    };
 
-    if (w) {
+    try {
+      await postData("LOGIN_ADMIN", payload);
+      Router.push("/admin/dashboard");
+    } catch (e) {
       if (wrongLogin > 0) {
         setWrongLogin((prevState) => prevState + 1);
         setWrongDivClassName(
@@ -31,11 +39,8 @@ export default function Login() {
         setWrongDivClassName(cn(styles.wrong, styles.wrongShow));
         setWrongLogin((prevState) => prevState + 1);
       }
-
-      // Focus on username
       usernameInput.current.focus();
     }
-    usernameInput.current.focus();
   };
 
   return (
