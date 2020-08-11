@@ -134,7 +134,7 @@ Request Type: 'POST'
 data:
 {
     "phone":"+919816456565",
-    "password":"abc"
+    "password":"Password"
 }
 
 Response: status = 200
