@@ -200,7 +200,10 @@ class AdminLogout(APIView):
         phone = data["phone"]
         user = User.objects.get(phone = phone)
         user = Token.objects.get(user=user)
-        user.delete()
-        response = HttpResponse(status = status.HTTP_200_OK)
-        response.delete_cookie(phone)
-        return response
+        if user == request.COOKIES[phone]:
+            user.delete()
+            response = HttpResponse(status = status.HTTP_200_OK)
+            response.delete_cookie(phone)
+            return response
+        else:
+            response = HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
