@@ -120,14 +120,17 @@ class Login(APIView):
         value = request.data
         phone  = value["phone"]
         password = value["password"]
-        user = User.objects.get(phone = phone)
-        if user is not None:
-            real_password = user.password
-            if password == real_password:
-                token, created = Token.objects.get_or_create(user=user)
-                return Response({'token': token.key},status=status.HTTP_200_OK)
+        if User.objects.get(phone = phone).exists():
+            user = User.objects.get(phone = phone)
+            if user is not None:
+                real_password = user.password
+                if password == real_password:
+                    token, created = Token.objects.get_or_create(user=user)
+                    return Response({'token': token.key},status=status.HTTP_200_OK)
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
             else:
-                return Response(status=status.HTTP_401_UNAUTHORIZED)
+                return Response(status=status.HTTP_404_NOT_FOUND)        
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
