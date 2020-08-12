@@ -6,6 +6,7 @@ import '../../../providers/auth/login/loginProvider.dart';
 import 'loginPageWidget.dart';
 import '../../../styles/base.dart';
 import '../socialMediaButton.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../styles/colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -48,11 +49,16 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.3,
                   margin: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/logo4.png"),
-                    ),
+                  child: SvgPicture.asset(
+                    "assets/LOGO.svg",
                   ),
+//                   decoration: BoxDecoration(
+//                     image: DecorationImage(
+//                       image: SvgPicture.asset(
+//  "assets/LOGO.svg",)
+// );
+//                     ),
+                  // ),
                 ),
                 SizedBox(
                   height: 15.0,

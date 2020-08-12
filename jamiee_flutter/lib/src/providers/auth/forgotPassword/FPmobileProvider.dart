@@ -60,6 +60,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
       );
       if (body["status"]) {
         onceClicked = false;
+        onceFormsubmitted = false;
         notifyListeners();
         forgotPasswordFormKey.currentState.reset();
         Navigator.pushReplacementNamed(

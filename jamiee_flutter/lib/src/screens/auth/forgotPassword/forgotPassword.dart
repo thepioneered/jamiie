@@ -46,6 +46,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       AppTextField.screenTextField(
+                        textInputType: TextInputType.number,
                         maxLength: 10,
                         prefixIcon: Icons.phone,
                         hintText: "Mobile",

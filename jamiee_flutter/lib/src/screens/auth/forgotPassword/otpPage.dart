@@ -125,10 +125,10 @@ class _ForgotPasswordOtpPageState extends State<ForgotPasswordOtpPage> {
                       print(d);
                     }
                   : _onKeyboardTap,
-              textColor: AppColors.primaryColorLight,
+              textColor: AppColors.black,
               rightIcon: Icon(
                 Icons.backspace,
-                color: AppColors.primaryColorLight,
+                color: AppColors.black,
               ),
               rightButtonFn: () {
                 if (text != "") {
