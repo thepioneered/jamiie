@@ -185,7 +185,7 @@ class AdminLogin(APIView):
             if valid_password==True:
                 token, created = Token.objects.get_or_create(user=user)
                 response = HttpResponse(status=status.HTTP_200_OK)
-                response.set_cookie(phone,token)
+                response.set_cookie(phone, value = token, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True, samesite='strict')
                 return response
             else:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
@@ -196,14 +196,41 @@ class AdminLogout(APIView):
     authentication_classes = []
     permission_classes=[] 
     def post(self, request):
-        data = request.data
-        phone = data["phone"]
-        user = User.objects.get(phone = phone)
-        user = Token.objects.get(user=user)
-        if user == request.COOKIES[phone]:
-            user.delete()
-            response = HttpResponse(status = status.HTTP_200_OK)
-            response.delete_cookie(phone)
-            return response
-        else:
-            response = HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+        val = request.COOKIES
+        print("cookies=",val)
+        count = 0
+        for i in val:
+            count=count+1
+            if (count == 1):
+                user = User.objects.get(phone = i)
+                if Token.objects.filter(user=user).exists():
+                    user_token = Token.objects.get(user=user)
+                    user_cookies = request.COOKIES[i]
+                    if str(user_token) == str(user_cookies):
+                        user_token.delete()
+                        response = HttpResponse(status = status.HTTP_200_OK)
+                        response.delete_cookie(i)
+                        return response
+                    else:
+                        return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)
+                else:
+                    return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)
+
+class Check(APIView):
+    authentication_classes = []
+    permission_classes = []
+    def post(self,request):
+        val = request.COOKIES
+        print("cookies=",val)
+        count = 0
+        for i in val:
+            count=count+1
+            if (count == 1):
+                user = User.objects.get(phone = i)
+                if Token.objects.filter(user=user).exists():
+                    if str(Token.objects.get(user=user)) == str(request.COOKIES[i]):
+                        return HttpResponse(status = status.HTTP_200_OK)
+                    else:
+                        return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)
+                else:
+                    return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)                  
