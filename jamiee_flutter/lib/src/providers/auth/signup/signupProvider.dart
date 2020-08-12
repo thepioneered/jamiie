@@ -2,13 +2,14 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../models/signup.dart';
-import '../../providers/auth/mobileProvider.dart';
-import '../../server/endpoint.dart';
-import '../../server/networkCalls.dart';
-import '../../server/statusCode.dart';
-import '../../styles/colors.dart';
-import '../../utils/validationRegex.dart';
+import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../models/signup.dart';
+import 'mobileProvider.dart';
+import '../../../server/endpoint.dart';
+import '../../../server/networkCalls.dart';
+import '../../../server/statusCode.dart';
+import '../../../styles/colors.dart';
+import '../../../utils/validationRegex.dart';
 
 class SignupProvider extends ChangeNotifier {
   //Page Variables and keys
@@ -31,41 +32,8 @@ class SignupProvider extends ChangeNotifier {
 
   //Page Logic
   Widget signupButtonCreateAccount({bool loader, Function onTap}) {
-    return loader
-        ? Center(child: CupertinoActivityIndicator())
-        : RaisedButton(
-            onPressed: onTap,
-            color: AppColors.primaryColorPurple,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(14))),
-            child: Container(
-              width: 100.0,
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: AppColors.primaryColorLight,
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
+    return AppButton.loginButton(
+        loader: loader, onTap: onTap, title: "Sign Up");
   }
 
   void validateForm(BuildContext ctx) async {
@@ -104,14 +72,11 @@ class SignupProvider extends ChangeNotifier {
               backgroundColor: AppColors.green),
         );
         Future.delayed(Duration(milliseconds: 1300), () {
-          // signupScaffoldKey.currentState.dispose();
-          // // ignore: invalid_use_of_protected_member
-          // signupFormKey.currentState.dispose();
           Navigator.pushReplacementNamed(ctx, "/LoginPage");
         });
 
         signupFormKey.currentState.reset();
-        
+
         password.clear();
       } else {
         onceClicked = false;

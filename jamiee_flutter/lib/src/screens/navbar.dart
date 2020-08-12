@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
+import 'package:jamiee_flutter/src/utils/roughWork.dart';
+import '../screens/adminPoolScreen/adminPoolPage.dart';
+import '../styles/colors.dart';
 import 'Dashboard/dashboard.dart';
-import '../screens/page3.dart';
 import 'settings/settingPage.dart';
 import 'userPoolScreens/myPoolUser.dart';
 
@@ -17,13 +18,23 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   final List<Object> _pages = <Object>[
     DashboardPage(),
     MyPool(),
-    UserPool(),
+    AdminPool(),
     SettingPage(),
   ];
 
   Widget _bottomNavigationBar() {
     return Container(
-      color: AppColors.white,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
       height: 55.0,
       width: MediaQuery.of(context).size.width,
       child: SafeArea(
@@ -42,6 +53,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
 
   Widget _navbarButton(int _index, String title, IconData iconData) {
     return Container(
+      decoration: null,
       width: MediaQuery.of(context).size.width / 4,
       child: FlatButton(
         padding: EdgeInsets.zero,
@@ -52,16 +64,27 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             });
         },
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
               iconData,
-              color: AppColors.primaryColorLight,
+              color: index == _index
+                  ? AppColors.primaryColorLight
+                  : AppColors.grayInputHeading,
             ),
-            Text(
-              title,
-              style: TextStyle(color: AppColors.primaryColorLight),
-            ),
+            index == _index
+                ? Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(color: AppColors.primaryColorLight),
+                      ),
+                    ],
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -79,9 +102,11 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             });
         },
         child: Container(
+          margin: EdgeInsets.all(12.0),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
+            border: Border.all(width: 1.0, color: AppColors.primaryColorLight),
             image: DecorationImage(
                 image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
           ),
@@ -93,7 +118,10 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   @override
   Widget build(BuildContext context) {
     print("State is set");
+    print(index);
+    setContext(context);
     return Scaffold(
+      
       body: _pages.elementAt(index),
       bottomNavigationBar: _bottomNavigationBar(),
     );

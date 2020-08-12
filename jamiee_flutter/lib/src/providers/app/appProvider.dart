@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../screens/navbar.dart';
-import '../../screens/auth/loginPage.dart';
+import '../../screens/auth/login/loginPage.dart';
 import '../../utils/sharedPref.dart';
 
 class AppProvider extends ChangeNotifier {

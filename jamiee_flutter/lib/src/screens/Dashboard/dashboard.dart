@@ -8,7 +8,10 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
-        body: FutureBuilder(builder: (context, snapshot) {
+        key: dashboardProvider.dashboardScaffoldKey,
+        body: FutureBuilder(
+          future: dashboardProvider.getDashboardData(),
+          builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
               child: Text("Error! Please Try later"),

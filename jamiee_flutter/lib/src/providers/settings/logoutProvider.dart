@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/utils/sharedPref.dart';
-import 'package:jamiee_flutter/src/widgets/settings/logoutDialog.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../utils/sharedPref.dart';
+import '../../widgets/settings/logoutDialog.dart';
 
 class LogoutProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> settingScaffoldKey = GlobalKey<ScaffoldState>();

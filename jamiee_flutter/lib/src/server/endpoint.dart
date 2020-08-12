@@ -1,10 +1,12 @@
 class EndPoints {
-  static String toCheckInternet = "https://google.com";
-  static String ipAddress = "https://gentle-crag-42252.herokuapp.com";
-  static String sendOtp = "/api/phone";
-  static String verifyOtp = "/api/phoneverification";
-  static String userRegistration = "/api/register";
-  static String userLogin = "/api/login";
-  static String userlogout = "/api/logout";
-  static Map<String, String> header = {"Content-Type": "application/json"};
+  static const String ipAddress = "https://jamiieapi.herokuapp.com";
+  static const String sendOtp = "/api/phone";
+  static const String verifyOtp = "/api/phoneverification";
+  static const String userRegistration = "/api/register";
+  static const String userLogin = "/api/login";
+  static const String userlogout = "/api/logout";
+  static const String forgotPassword = "/api/forgotpassword";
+
+  //Header
+  static const Map<String, String> header = {"Content-Type": "application/json"};
 }

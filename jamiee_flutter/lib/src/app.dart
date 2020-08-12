@@ -1,16 +1,23 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:jamiee_flutter/src/providers/Dashboard/dashboardProvider.dart';
+import 'providers/Dashboard/dashboardProvider.dart';
+import 'providers/auth/forgotPassword/FPotpProvider.dart';
+import 'providers/auth/forgotPassword/FPmobileProvider.dart';
+import 'screens/auth/forgotPassword/FPnewpassPage.dart';
+import 'package:jamiee_flutter/src/screens/auth/singup/mobilePage.dart';
+import 'package:jamiee_flutter/src/screens/auth/singup/otpPage.dart';
+import 'package:jamiee_flutter/src/screens/auth/singup/signupPage.dart';
 import 'package:jamiee_flutter/src/screens/navbar.dart';
 import 'package:jamiee_flutter/src/screens/settings/settingPage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './providers/app/appProvider.dart';
-import './providers/auth/loginProvider.dart';
-import './providers/auth/mobileProvider.dart';
-import './providers/auth/otpProvider.dart';
-import './providers/auth/signupProvider.dart';
+import 'providers/auth/forgotPassword/FPnewPasswordProvider.dart';
+import 'providers/auth/login/loginProvider.dart';
+import 'providers/auth/signup/mobileProvider.dart';
+import 'providers/auth/signup/otpProvider.dart';
+import 'providers/auth/signup/signupProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
@@ -69,6 +76,15 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ForgotPasswordProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ForgotPasswordOtpProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NewPasswordProvider(),
+        ),
 
         //Dashboard Provider
         ChangeNotifierProvider(
@@ -92,11 +108,11 @@ class PlatformApp extends StatelessWidget {
       return MaterialApp(
         title: "Jamiee",
         theme: ThemeData(
-          primaryColor: AppColors.primaryColorLight,
-          accentColor: AppColors.primaryColorLight,
+          primaryColor: AppColors.primaryColorPurple,
+          accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AppNavigationBar(),
+        // home: SignupPage(),
         home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );

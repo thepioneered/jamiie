@@ -1,6 +1,4 @@
-// import 'package:FarmingApp/src/styles/base.dart';
-// import 'package:FarmingApp/src/styles/button.dart';
-import 'package:jamiee_flutter/src/styles/base.dart';
+import '../../styles/base.dart';
 
 import '../../styles/colors.dart';
 
@@ -9,9 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SocialMediaButton extends StatelessWidget {
   final SocialType buttonType;
-   final  Function onTap;
+  final Function onTap;
 
-  const SocialMediaButton({Key key, this.buttonType, this.onTap}) : super(key: key);
+  const SocialMediaButton({Key key, this.buttonType, this.onTap})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     IconData icon;
@@ -47,7 +46,7 @@ class SocialMediaButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: InkWell(
         onTap: onTap,
-              child: Container(
+        child: Container(
           height: 50.0,
           width: 50.0,
           decoration: BoxDecoration(
@@ -64,4 +63,4 @@ class SocialMediaButton extends StatelessWidget {
   }
 }
 
-enum SocialType { Facebook, Google,Twitter,Linkdin }
+enum SocialType { Facebook, Google, Twitter, Linkdin }

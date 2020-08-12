@@ -5,3 +5,17 @@ class AppRegularExpression {
   static RegExp emailRegExp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 }
+
+class TextFieldValidation {
+  static String passwordValidation(String data) {
+    if (data == "null") {
+      return "Please Enter Password";
+    } else if (data.trim() == null) {
+      return "Please Enter Password";
+    } else if (data.trim() == "") {
+      return "Please Enter Password";
+    } else {
+      return null;
+    }
+  }
+}

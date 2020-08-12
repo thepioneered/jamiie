@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../models/login.dart';
-import '../../server/endpoint.dart';
-import '../../server/networkCalls.dart';
-import '../../server/statusCode.dart';
-import '../../styles/colors.dart';
-import '../../utils/sharedPref.dart';
-import '../../utils/validationRegex.dart';
+import 'package:jamiee_flutter/src/styles/text.dart';
+import '../../../models/login.dart';
+import '../../../server/endpoint.dart';
+import '../../../server/networkCalls.dart';
+import '../../../server/statusCode.dart';
+import '../../../styles/colors.dart';
+import '../../../utils/sharedPref.dart';
+import '../../../utils/validationRegex.dart';
 
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
@@ -36,33 +37,15 @@ class LoginProvider extends ChangeNotifier {
         : RaisedButton(
             onPressed: onTap,
             color: AppColors.primaryColorPurple,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(14))),
             child: Container(
-              width: 100.0,
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: AppColors.primaryColorLight,
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  )
-                ],
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: 50.0,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
+              child: Text(
+                'Login',
+                style: AppTextStyle.loginButtonText(AppColors.white),
               ),
             ),
           );
