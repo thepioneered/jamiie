@@ -111,7 +111,7 @@ class Register(APIView):
             serializer.save()
             return Response(status=status.HTTP_200_OK)
         else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
 class Login(APIView):
     authentication_classes = []
@@ -120,7 +120,7 @@ class Login(APIView):
         value = request.data
         phone  = value["phone"]
         password = value["password"]
-        if User.objects.get(phone = phone).exists():
+        if User.objects.filter(phone = phone).exists():
             user = User.objects.get(phone = phone)
             if user is not None:
                 real_password = user.password
@@ -132,7 +132,7 @@ class Login(APIView):
             else:
                 return Response(status=status.HTTP_404_NOT_FOUND)        
         else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class ForgotPassword(APIView):
     authentication_classes = []
