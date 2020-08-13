@@ -9,7 +9,26 @@ import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
 import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
 
-class NewPasswordPage extends StatelessWidget {
+class NewPasswordPage extends StatefulWidget {
+  @override
+  _NewPasswordPageState createState() => _NewPasswordPageState();
+}
+
+class _NewPasswordPageState extends State<NewPasswordPage> {
+  FocusNode confirmNode;
+
+  @override
+  void initState() {
+    super.initState();
+    confirmNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    confirmNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var newPasswordProvider = Provider.of<NewPasswordProvider>(context);
@@ -30,7 +49,9 @@ class NewPasswordPage extends StatelessWidget {
                 child: Column(
                   children: [
                     AppTextField.screenTextField(
+                        onEdittingComplete: () => confirmNode.requestFocus(),
                         hintText: "Password",
+                        autofocus: true,
                         showPassword: false,
                         validator: TextFieldValidation.passwordValidation,
                         autoValidate: newPasswordProvider.onceFormSubmitted,
@@ -38,6 +59,7 @@ class NewPasswordPage extends StatelessWidget {
                         onSaved: null,
                         prefixIcon: Icons.lock),
                     AppTextField.screenTextField(
+                        focusNode: confirmNode,
                         hintText: "Confrim Password",
                         showPassword: false,
                         validator:

@@ -13,12 +13,21 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  // @override
-  // // void initState() {
-  // //   // LoginProvider().
-  // //   Focus.of(context).requestFocus(LoginProvider().nodePassword);
-  // //   super.initState();
-  // // }
+  FocusNode passwordNode;
+  @override
+  void initState() {
+    super.initState();
+
+    passwordNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+print("DISPOSED");
+    passwordNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +40,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             children: <Widget>[
               AppTextField.screenTextField(
                   prefixIcon: Icons.phone,
-                  focusNode: loginProvider.nodeMobile,
-                  onEdittingComplete: () {
-                    print("Done");
-                    Focus.of(context).requestFocus(loginProvider.nodePassword);
-                  },
+                  onEdittingComplete: () => passwordNode.requestFocus(),
                   maxLength: 10,
                   hintText: "Mobile",
+                  autofocus: false,
                   validator: TextFieldValidation.mobileValidation,
                   autoValidate: loginProvider.onceFormSubmitted ? true : false,
                   onSaved: (String e) => loginProvider.login.mobile = e,
@@ -47,7 +53,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 child: Consumer<PasswordStatusLogin>(
                   builder: (_, passwordStatus, child) {
                     return AppTextField.screenTextField(
-                      focusNode: loginProvider.nodePassword,
+                      autofocus: false,
+                      focusNode: passwordNode,
                       prefixIcon: Icons.lock,
                       hintText: "Password",
                       showPassword: passwordStatus.showPassword,

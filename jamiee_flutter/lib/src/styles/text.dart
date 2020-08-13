@@ -6,8 +6,9 @@ import './colors.dart';
 class AppTextStyle {
   static TextStyle settingButton(Color color) {
     return GoogleFonts.poppins(
-      fontWeight: FontWeight.w400,
-        fontSize: 22.0, textStyle: TextStyle(color: color));
+        fontWeight: FontWeight.w400,
+        fontSize: 22.0,
+        textStyle: TextStyle(color: color));
   }
 
   static TextStyle get hintText => GoogleFonts.poppins(
@@ -16,6 +17,11 @@ class AppTextStyle {
         textStyle: TextStyle(
           color: Colors.grey[400],
         ),
+      );
+  static TextStyle get dropDownStyle => GoogleFonts.poppins(
+        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        textStyle: TextStyle(color: AppColors.black),
       );
 
   static TextStyle get dialogTitle => GoogleFonts.poppins(
@@ -68,6 +74,13 @@ class AppTextStyle {
           color: Colors.grey[400],
         ),
       );
+  static TextStyle get minMaxPeople => GoogleFonts.poppins(
+        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        textStyle: TextStyle(
+          color: Colors.grey[400],
+        ),
+      );
   static TextStyle get inputText => GoogleFonts.poppins(
         fontWeight: FontWeight.w400,
         fontSize: 16.0,
@@ -88,8 +101,9 @@ class AppTextStyle {
 
   static TextStyle settingButtonSubtitle(Color color) {
     return GoogleFonts.poppins(
-      fontWeight: FontWeight.w400,
-        fontSize: 12.0, textStyle: TextStyle(color: color));
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        textStyle: TextStyle(color: color));
   }
 
   ///////

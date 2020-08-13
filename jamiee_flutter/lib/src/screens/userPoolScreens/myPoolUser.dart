@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/userPoolScreens/searchPoolPage.dart';
 import '../../styles/base.dart';
 import '../../utils/icons.dart';
 import '../../widgets/topHeading.dart';
@@ -9,7 +10,11 @@ class MyPool extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: AppIcons.searchIcon,
-        onPressed: () {},
+        onPressed: () {
+          //TODO
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SearchPoolPage()));
+        },
       ),
       body: Container(
         width: double.infinity,

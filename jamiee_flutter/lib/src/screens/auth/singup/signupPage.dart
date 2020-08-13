@@ -14,6 +14,25 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  FocusNode emailNode;
+  FocusNode passwordNode;
+  FocusNode confirmPasswordNode;
+  @override
+  void initState() {
+    super.initState();
+    emailNode = FocusNode();
+    passwordNode = FocusNode();
+    confirmPasswordNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    emailNode.dispose();
+    passwordNode.dispose();
+    confirmPasswordNode.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     print("+++++++++Signup Build+++++++++");
     return Consumer<SignupProvider>(
@@ -74,6 +93,9 @@ class _SignupPageState extends State<SignupPage> {
                           onSaved: (String e) {
                             signupProvider.signup.name = e;
                           },
+                          onEdittingComplete: () {
+                            emailNode.requestFocus();
+                          },
                           hintText: "Name",
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
@@ -82,10 +104,12 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         AppTextField.screenTextField(
                           prefixIcon: Icons.email,
+                          focusNode: emailNode,
                           textInputType: TextInputType.emailAddress,
                           onSaved: (String e) {
                             signupProvider.signup.email = e;
                           },
+                          onEdittingComplete: () => passwordNode.requestFocus(),
                           hintText: "Email",
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
@@ -97,11 +121,14 @@ class _SignupPageState extends State<SignupPage> {
                           child: Consumer<PasswordStatusSignUp>(
                             builder: (_, showPassword, child) {
                               return AppTextField.screenTextField(
+                                focusNode: passwordNode,
                                 prefixIcon: Icons.lock,
                                 controller: signupProvider.password,
                                 onSaved: (String e) {
                                   signupProvider.signup.setPassword(e);
                                 },
+                                onEdittingComplete: () =>
+                                    confirmPasswordNode.requestFocus(),
                                 hintText: "Password",
                                 showPassword: showPassword.showPassword,
                                 autoValidate: signupProvider.onceFormValidated
@@ -119,6 +146,7 @@ class _SignupPageState extends State<SignupPage> {
                             builder: (_, showPassword, child) {
                               return AppTextField.screenTextField(
                                 prefixIcon: Icons.lock,
+                                focusNode: confirmPasswordNode,
                                 showPassword: showPassword.confirmShowPassword,
                                 onSaved: null,
                                 hintText: "Confirm Password",

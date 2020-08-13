@@ -18,8 +18,6 @@ class LoginProvider extends ChangeNotifier {
   // GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
   final loginFormKey = GlobalKey<FormState>();
   final loginScaffoldKey = GlobalKey<ScaffoldState>();
-  FocusNode nodeMobile = FocusNode();
-  FocusNode nodePassword = FocusNode();
   Login login;
   bool onceFormSubmitted;
   bool onceClicked;
@@ -27,8 +25,6 @@ class LoginProvider extends ChangeNotifier {
 
   //Class Constructor
   LoginProvider() {
-    // print("Working");
-    // Focus.of(loginFormKey.currentContext).requestFocus(nodeMobile);
     onceClicked = false;
     onceFormSubmitted = false;
     showPassword = false;
@@ -47,26 +43,6 @@ class LoginProvider extends ChangeNotifier {
       title: "Login",
     );
   }
-
-  // Widget loginButton({bool loader, Function onTap}) {
-  //   return loader
-  //       ? Center(child: CupertinoActivityIndicator())
-  //       : RaisedButton(
-  //           onPressed: onTap,
-  //           color: AppColors.primaryColorPurple,
-  //           child: Container(
-  //             alignment: Alignment.center,
-  //             width: double.infinity,
-  //             height: 50.0,
-  //             padding:
-  //                 const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
-  //             child: Text(
-  //               'Login',
-  //               style: AppTextStyle.loginButtonText(AppColors.white),
-  //             ),
-  //           ),
-  //         );
-  // }
 
   //Form Validation Function
   void validateLoginForm() async {

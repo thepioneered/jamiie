@@ -8,10 +8,11 @@ class AppTextField {
       @required Function(String) validator,
       @required bool autoValidate,
       @required Function(String) onSaved,
+      ToolbarOptions toolbarOptions,
       Function onEdittingComplete,
       bool autofocus,
       bool showPassword,
-      GestureDetector onEyeClick,
+      Widget onEyeClick,
       int maxLength,
       FocusNode focusNode,
       @required IconData prefixIcon,
@@ -20,7 +21,7 @@ class AppTextField {
     return SizedBox(
       height: 80,
       child: TextFormField(
-
+        toolbarOptions: toolbarOptions,
         focusNode: focusNode,
         style: AppTextStyle.inputText,
         onEditingComplete: onEdittingComplete,

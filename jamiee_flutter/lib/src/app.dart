@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:jamiee_flutter/src/providers/adminPool/createPoolProvider.dart';
+import 'package:jamiee_flutter/src/screens/adminPool/creatPool.dart';
 import 'providers/Dashboard/dashboardProvider.dart';
 import 'providers/auth/forgotPassword/FPotpProvider.dart';
 import 'providers/auth/forgotPassword/FPmobileProvider.dart';
@@ -117,7 +118,7 @@ class PlatformApp extends StatelessWidget {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AppNavigationBar(),
+        // home: CreatePoolPage(),
         home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );

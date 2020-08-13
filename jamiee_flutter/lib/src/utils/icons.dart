@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppIcons {
@@ -7,8 +9,7 @@ class AppIcons {
         size: 20.0,
       );
   static FaIcon get infoIcon => FaIcon(
-        FontAwesomeIcons.infoCircle,
-        size: 20.0,
+        FontAwesomeIcons.info,
       );
   static FaIcon get profileIcon => FaIcon(
         FontAwesomeIcons.userCircle,
@@ -26,4 +27,5 @@ class AppIcons {
   static FaIcon get searchIcon => FaIcon(
         FontAwesomeIcons.search,
       );
+  static IconData get dollarIcon => FontAwesomeIcons.dollarSign;
 }
