@@ -26,7 +26,7 @@ class Phone(APIView):
         phone = data["phone"]
         if OTP.objects.filter(phone=phone).exists():
             user_instance = OTP.objects.get(phone=phone)
-            if user_instance.validated == True:
+            if user_instance.validated == True and user_instance.register==True:
                 return Response(status = status.HTTP_409_CONFLICT)
             else:
                 otp = otpGenerator()
@@ -106,8 +106,13 @@ class Register(APIView):
     authentication_classes = []
     permission_classes=[] 
     def post(self,request):
-        serializer = RegisterSerializer(data = request.data)
+        data = request.data
+        phone = data["phone"]
+        serializer = RegisterSerializer(data = data)
         if serializer.is_valid():
+            user = OTP.objects.get(phone=phone)
+            user.register = True
+            user.save()
             serializer.save()
             return Response(status=status.HTTP_200_OK)
         else:

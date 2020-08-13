@@ -97,6 +97,7 @@ class OTP(models.Model):
     phone = models.CharField(unique=True, max_length=255, blank=False, null=False)
     otp = models.CharField(max_length=255, unique=True)
     validated = models.BooleanField(blank=False, null=False)
+    register = models.BooleanField(blank=False, null=False, default=False)
 
     def __str__(self):
         return self.phone
