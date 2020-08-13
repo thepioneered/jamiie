@@ -11,32 +11,43 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../styles/colors.dart';
 
 class LoginPage extends StatefulWidget {
+//   @override
+//   _LoginPageState createState() => _LoginPageState();
+// }
+
+// class _LoginPageState extends State<LoginPage> {
+//   GoogleSignIn _googleSignIn = GoogleSignIn(
+//     scopes: [
+//       'email',
+//       'https://www.googleapis.com/auth/contacts.readonly',
+//     ],
+//   );
+
+//   Future<void> _handleSignIn() async {
+//     try {
+//       await _googleSignIn.signIn();
+//     } catch (error) {
+//       print(error);
+//     }
+//   }
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
-
-  Future<void> _handleSignIn() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      print(error);
-    }
+  @override
+  void dispose() {
+    // LoginProviderScaffold().loginScaffoldKey.currentState.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Chooose Sign IN build");
-    var loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    print("+++++LOGIN PAGE REBUILD+++++");
+    var a = Provider.of<LoginProvider>(context);
     return Scaffold(
-      key: loginProvider.loginScaffoldKey,
+      key: a.loginScaffoldKey,
       body: Container(
         padding: EdgeInsets.only(top: BaseStyles.topPadding),
         child: SingleChildScrollView(
@@ -59,16 +70,16 @@ class _LoginPageState extends State<LoginPage> {
                   height: 15.0,
                 ),
                 SizedBox(
-                  // height: MediaQuery.of(context).size.height * 02,
-                  child: MultiProvider(
-                    providers: [
-                      ChangeNotifierProvider(
-                        create: (context) => PasswordStatusLogin(),
-                      ),
-                    ],
-                    child: LoginPageWidget(),
-                  ),
+                  // child: MultiProvider(
+                  //   providers: [
+                  //     ChangeNotifierProvider(
+                  //       create: (context) => PasswordStatusLogin(),
+                  //     ),
+                  //   ],
+                  //   child:
+                  child: LoginPageWidget(),
                 ),
+                // ),
                 InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/ForgotPasswordPage");
@@ -100,17 +111,17 @@ class _LoginPageState extends State<LoginPage> {
                           children: <Widget>[
                             SocialMediaButton(
                               buttonType: SocialType.Google,
-                              onTap: _handleSignIn,
+                              // onTap: _handleSignIn,
                             ),
                             SocialMediaButton(
                               buttonType: SocialType.Facebook,
                               onTap: () {
-                                loginProvider.loginScaffoldKey.currentState
-                                    .showSnackBar(
-                                  AppSnackBar.snackBar(
-                                      title: "Checkingg",
-                                      backgroundColor: Colors.green),
-                                );
+                                // loginProvider.loginScaffoldKey.currentState
+                                //     .showSnackBar(
+                                //   AppSnackBar.snackBar(
+                                //       title: "Checkingg",
+                                //       backgroundColor: Colors.green),
+                                // );
                               },
                             ),
                             SocialMediaButton(
@@ -125,10 +136,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Align(
+                Container(
                   alignment: Alignment.bottomCenter,
-                  child: FlatButton(
-                    padding: EdgeInsets.zero,
+                  margin: const EdgeInsets.only(bottom: 3.0),
+                  child: GestureDetector(
+                    // padding: EdgeInsets.zero,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -140,8 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, "/MobilePage"),
+                    onTap: () => Navigator.pushNamed(context, "/MobilePage"),
                   ),
                 ),
               ],

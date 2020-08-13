@@ -6,7 +6,8 @@ import './colors.dart';
 class AppTextStyle {
   static TextStyle settingButton(Color color) {
     return GoogleFonts.poppins(
-        fontSize: 24.0, textStyle: TextStyle(color: color));
+      fontWeight: FontWeight.w400,
+        fontSize: 22.0, textStyle: TextStyle(color: color));
   }
 
   static TextStyle get hintText => GoogleFonts.poppins(
@@ -87,6 +88,7 @@ class AppTextStyle {
 
   static TextStyle settingButtonSubtitle(Color color) {
     return GoogleFonts.poppins(
+      fontWeight: FontWeight.w400,
         fontSize: 12.0, textStyle: TextStyle(color: color));
   }
 

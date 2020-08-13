@@ -158,7 +158,7 @@ class _SignupPageState extends State<SignupPage> {
                           validator: TextFieldValidation.stateCityValidation,
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          // margin: const EdgeInsets.symmetric(vertical: 10),
                           child: signupProvider.onceClicked
                               ? signupProvider.signupButtonCreateAccount(
                                   loader: true, onTap: () {})

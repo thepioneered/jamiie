@@ -14,6 +14,11 @@ class StatusCodeCheck {
         AppSnackBar.snackBar(
             backgroundColor: AppColors.red, title: "User already exsist."),
       );
+    } else if (statusCode == 406) {
+      key.currentState.showSnackBar(
+        AppSnackBar.snackBar(
+            backgroundColor: AppColors.red, title: "Email already exsist."),
+      );
     } else if (statusCode == 500) {
       key.currentState.showSnackBar(
         AppSnackBar.snackBar(
@@ -23,12 +28,12 @@ class StatusCodeCheck {
     } else if (statusCode == 401) {
       key.currentState.showSnackBar(
         AppSnackBar.snackBar(
-            backgroundColor: AppColors.red, title: "Wrong Credentials"),
+            backgroundColor: AppColors.red, title: "Wrong Credentials."),
       );
     } else {
       key.currentState.showSnackBar(
         AppSnackBar.snackBar(
-            backgroundColor: AppColors.red, title: "Please contact Admin"),
+            backgroundColor: AppColors.red, title: "Please contact Admin."),
       );
     }
   }

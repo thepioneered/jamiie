@@ -8,10 +8,18 @@ import '../../../server/networkCalls.dart';
 import '../../../styles/colors.dart';
 import '../../../utils/sharedPref.dart';
 
+class LoginProviderScaffold {
+  final loginScaffoldKey = GlobalKey<ScaffoldState>();
+}
+
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
+  // GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  // GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
+  final loginFormKey = GlobalKey<FormState>();
+  final loginScaffoldKey = GlobalKey<ScaffoldState>();
+  FocusNode nodeMobile = FocusNode();
+  FocusNode nodePassword = FocusNode();
   Login login;
   bool onceFormSubmitted;
   bool onceClicked;
@@ -19,6 +27,8 @@ class LoginProvider extends ChangeNotifier {
 
   //Class Constructor
   LoginProvider() {
+    // print("Working");
+    // Focus.of(loginFormKey.currentContext).requestFocus(nodeMobile);
     onceClicked = false;
     onceFormSubmitted = false;
     showPassword = false;

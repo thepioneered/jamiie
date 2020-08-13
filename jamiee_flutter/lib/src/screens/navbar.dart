@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jamiee_flutter/src/utils/roughWork.dart';
-import '../screens/adminPoolScreen/adminPoolPage.dart';
+import '../screens/adminPool/adminPoolPage.dart';
 import '../styles/colors.dart';
 import 'Dashboard/dashboard.dart';
 import 'settings/settingPage.dart';
@@ -69,7 +69,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             Icon(
               iconData,
               color: index == _index
-                  ? AppColors.primaryColorLight
+                  ? AppColors.primaryColorPurple
                   : AppColors.grayInputHeading,
             ),
             index == _index
@@ -80,7 +80,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
                       ),
                       Text(
                         title,
-                        style: TextStyle(color: AppColors.primaryColorLight),
+                        style: TextStyle(color: AppColors.primaryColorPurple),
                       ),
                     ],
                   )
@@ -106,7 +106,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(width: 1.0, color: AppColors.primaryColorLight),
+            border: Border.all(width: 1.0, color: AppColors.primaryColorPurple),
             image: DecorationImage(
                 image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
           ),

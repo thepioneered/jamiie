@@ -1,5 +1,6 @@
 import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPotpProvider.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
+import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,28 +72,9 @@ class _ForgotPasswordOtpPageState extends State<ForgotPasswordOtpPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Enter your OTP",
-                      style: AppTextStyle.authHeading,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 30.0),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Please enter otp sent to your mobile number.",
-                      style: AppTextStyle.forgotPasswordSubTitle,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            PageHeading.topHeading(
+                title: "Enter your OTP",
+                subTitle: "Please enter otp sent to your mobile number."),
             SizedBox(
               height: 30.0,
             ),

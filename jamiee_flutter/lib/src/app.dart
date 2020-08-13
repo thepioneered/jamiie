@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:jamiee_flutter/src/providers/adminPool/createPoolProvider.dart';
 import 'providers/Dashboard/dashboardProvider.dart';
 import 'providers/auth/forgotPassword/FPotpProvider.dart';
 import 'providers/auth/forgotPassword/FPmobileProvider.dart';
@@ -86,6 +87,10 @@ class _AppState extends State<App> {
           create: (context) => NewPasswordProvider(),
         ),
 
+        ChangeNotifierProvider(
+          create: (_) => CreatePoolProvider(),
+        ),
+
         //Dashboard Provider
         ChangeNotifierProvider(
           create: (context) => DashboardProvider(),
@@ -112,7 +117,7 @@ class PlatformApp extends StatelessWidget {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: SignupPage(),
+        // home: AppNavigationBar(),
         home: appProvider.child,
         debugShowCheckedModeBanner: true,
       );

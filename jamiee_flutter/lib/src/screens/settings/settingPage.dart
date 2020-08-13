@@ -19,6 +19,7 @@ class SettingPage extends StatelessWidget {
       child: Consumer<LogoutProvider>(builder: (_, logoutProvider, child) {
         return Scaffold(
           key: logoutProvider.settingScaffoldKey,
+          backgroundColor: AppColors.white,
           body: Container(
             padding: BaseStyles.pagePadingDashboard,
             child: Column(
@@ -129,7 +130,7 @@ class AppSettingButtons extends StatelessWidget {
                 Text(
                   subtitle,
                   style: AppTextStyle.settingButtonSubtitle(
-                      AppColors.grayLoginTabColor),
+                      AppColors.grayInputHeading),
                 ),
               ],
             ),

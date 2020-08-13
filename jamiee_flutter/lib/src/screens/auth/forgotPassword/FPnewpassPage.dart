@@ -6,6 +6,7 @@ import 'package:jamiee_flutter/src/utils/validationRegex.dart';
 import 'package:jamiee_flutter/src/widgets/appBar.dart';
 import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
 import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
 
 class NewPasswordPage extends StatelessWidget {
@@ -22,22 +23,8 @@ class NewPasswordPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
             children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "New Password",
-                  style: AppTextStyle.authHeading,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 20.0),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Enter your new password.",
-                  style: AppTextStyle.forgotPasswordSubTitle,
-                ),
-              ),
+              PageHeading.topHeading(
+                  title: "New Password", subTitle: "Enter your new password."),
               Form(
                 key: newPasswordProvider.newpassFormKey,
                 child: Column(

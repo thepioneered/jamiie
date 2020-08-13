@@ -4,6 +4,7 @@ import 'package:jamiee_flutter/src/styles/text.dart';
 import 'package:jamiee_flutter/src/utils/onWillPopScope.dart';
 import 'package:jamiee_flutter/src/utils/validationRegex.dart';
 import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
+import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/auth/signup/mobileProvider.dart';
 import '../../../styles/colors.dart';
@@ -31,22 +32,10 @@ class _MobilePageState extends State<MobilePage> {
               height: MediaQuery.of(context).size.height - 75.0,
               child: Column(
                 children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Create Account",
-                      style: AppTextStyle.authHeading,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 30.0),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Please enter your mobile number for verification.",
-                      style: AppTextStyle.forgotPasswordSubTitle,
-                    ),
-                  ),
+                  PageHeading.topHeading(
+                      title: "Create Account",
+                      subTitle:
+                          "Please enter your mobile number for verification."),
                   Form(
                     key: mobileProvider.mobileFormKey,
                     child: AppTextField.screenTextField(

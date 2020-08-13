@@ -7,9 +7,22 @@ import '../../../widgets/appTextFields/appTextField.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../providers/auth/login/loginProvider.dart';
 
-class LoginPageWidget extends StatelessWidget {
+class LoginPageWidget extends StatefulWidget {
+  @override
+  _LoginPageWidgetState createState() => _LoginPageWidgetState();
+}
+
+class _LoginPageWidgetState extends State<LoginPageWidget> {
+  // @override
+  // // void initState() {
+  // //   // LoginProvider().
+  // //   Focus.of(context).requestFocus(LoginProvider().nodePassword);
+  // //   super.initState();
+  // // }
+
   @override
   Widget build(BuildContext context) {
+    print("+++++LOGIN WIDGET REBUILD+++++");
     return Consumer<LoginProvider>(
       builder: (_, loginProvider, child) {
         return Form(
@@ -18,30 +31,39 @@ class LoginPageWidget extends StatelessWidget {
             children: <Widget>[
               AppTextField.screenTextField(
                   prefixIcon: Icons.phone,
+                  focusNode: loginProvider.nodeMobile,
+                  onEdittingComplete: () {
+                    print("Done");
+                    Focus.of(context).requestFocus(loginProvider.nodePassword);
+                  },
                   maxLength: 10,
                   hintText: "Mobile",
                   validator: TextFieldValidation.mobileValidation,
                   autoValidate: loginProvider.onceFormSubmitted ? true : false,
                   onSaved: (String e) => loginProvider.login.mobile = e,
                   textInputType: TextInputType.number),
-              Consumer<PasswordStatusLogin>(
-                builder: (_, passwordStatus, child) {
-                  return AppTextField.screenTextField(
-                    prefixIcon: Icons.lock,
-                    hintText: "Password",
-                    showPassword: passwordStatus.showPassword,
-                    validator: TextFieldValidation.passwordValidation,
-                    autoValidate:
-                        loginProvider.onceFormSubmitted ? true : false,
-                    onSaved: (String e) => loginProvider.login.setPassword(e),
-                    onEyeClick: GestureDetector(
-                      onTap: passwordStatus.setStatus,
-                      child: Icon(passwordStatus.showPassword
-                          ? FontAwesomeIcons.eye
-                          : FontAwesomeIcons.eyeSlash),
-                    ),
-                  );
-                },
+              ChangeNotifierProvider(
+                create: (context) => PasswordStatusLogin(),
+                child: Consumer<PasswordStatusLogin>(
+                  builder: (_, passwordStatus, child) {
+                    return AppTextField.screenTextField(
+                      focusNode: loginProvider.nodePassword,
+                      prefixIcon: Icons.lock,
+                      hintText: "Password",
+                      showPassword: passwordStatus.showPassword,
+                      validator: TextFieldValidation.passwordValidation,
+                      autoValidate:
+                          loginProvider.onceFormSubmitted ? true : false,
+                      onSaved: (String e) => loginProvider.login.setPassword(e),
+                      onEyeClick: GestureDetector(
+                        onTap: passwordStatus.setStatus,
+                        child: Icon(passwordStatus.showPassword
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash),
+                      ),
+                    );
+                  },
+                ),
               ),
               Container(
                 child: loginProvider.onceClicked

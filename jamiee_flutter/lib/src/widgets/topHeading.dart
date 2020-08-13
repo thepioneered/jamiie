@@ -7,7 +7,7 @@ Widget topHeading({@required String title}) {
     padding: BaseStyles.headingPadding,
     child: Text(
       title,
-      style: AppTextStyle.topHeading,
+      style: AppTextStyle.authHeading,
     ),
   );
 }

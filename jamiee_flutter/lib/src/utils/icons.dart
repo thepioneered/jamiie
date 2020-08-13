@@ -22,6 +22,7 @@ class AppIcons {
         FontAwesomeIcons.key,
         size: 20.0,
       );
+
   static FaIcon get searchIcon => FaIcon(
         FontAwesomeIcons.search,
       );
