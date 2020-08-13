@@ -1,10 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import { Layout, TotalCard } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
 
+const getRows = (arr) => {
+  return arr.map((item) => row(item));
+};
+
+const deleteUser = () => {
+  console.log("Delete");
+};
+
+const openModal = () => {
+  console.log("Modal...");
+};
+
+const row = ({ no, name, date, status }) => {
+  return (
+    <tr key={no}>
+      <td>{no}</td>
+      <td>{name}</td>
+      <td>{date}</td>
+      <td>{status}</td>
+      <td className={styles.action}>
+        <span
+          className={cn("material-icons", styles.delete)}
+          onClick={deleteUser}
+        >
+          delete_outline
+        </span>
+        {/* <span
+          className={cn("material-icons-outlined", styles.info)}
+          onClick={openModal}
+        >
+          info
+        </span> */}
+        <span
+          className={cn("material-icons-outlined", styles.settings)}
+          onClick={openModal}
+        >
+          settings
+        </span>
+      </td>
+    </tr>
+  );
+};
+
 function Users() {
+  const [data, changeData] = useState([
+    {
+      no: "1.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "2.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "3.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "4.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "5.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "6.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "7.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "8.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "9.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+    {
+      no: "10.",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "Active",
+    },
+  ]);
+
   return (
     <Layout>
       <div className={styles.User}>
@@ -26,36 +132,7 @@ function Users() {
                   <td>Action</td>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>Paritosh</td>
-                  <td>24th August 2020</td>
-                  <td>Active</td>
-                  <td>
-                    <span
-                      className="material-icons"
-                      onClick={(e) => console.log("Delete")}
-                    >
-                      delete_outline
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Paritosh</td>
-                  <td>24th August 2020</td>
-                  <td>Active</td>
-                  <td>
-                    <span
-                      className="material-icons"
-                      onClick={(e) => console.log("Delete")}
-                    >
-                      delete_outline
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody>{getRows(data)}</tbody>
             </table>
           </div>
         </div>

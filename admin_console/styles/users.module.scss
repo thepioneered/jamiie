@@ -36,11 +36,10 @@
 
   tbody tr {
     transition: background-color 250ms ease;
-    cursor: pointer;
   }
 
   tbody tr:hover {
-    background-color: $hover-background;
+    background-color: $hover-blue;
   }
 
   td {
@@ -52,16 +51,50 @@
     border-bottom: 1px solid $secondary-gray;
     font-weight: 700;
   }
+}
 
-  span {
-    color: $primary-red;
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-    transition: transform 250ms ease;
-  }
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
-  span:hover {
-    transform: scale(2);
-  }
+.delete {
+  padding: 0.5rem;
+  color: $primary-red;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 250ms ease;
+}
+
+.delete:hover {
+  transform: scale(2);
+}
+
+.info {
+  padding: 0.5rem;
+  color: $primary-green;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 250ms ease;
+}
+
+.info:hover {
+  transform: scale(2);
+}
+
+.settings {
+  padding: 0.5rem;
+  color: $primary-blue;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 250ms ease;
+}
+
+.settings:hover {
+  transform: scale(2);
 }
