@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
+import 'package:jamiee_flutter/src/utils/snackBar.dart';
 import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../providers/auth/login/loginProvider.dart';
@@ -49,16 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.3,
                   margin: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.only(top: 3.0),
                   child: SvgPicture.asset(
                     "assets/LOGO.svg",
                   ),
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: SvgPicture.asset(
-//  "assets/LOGO.svg",)
-// );
-//                     ),
-                  // ),
                 ),
                 SizedBox(
                   height: 15.0,
@@ -79,12 +74,13 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.pushNamed(context, "/ForgotPasswordPage");
                   },
                   child: Container(
-                      margin: const EdgeInsets.only(top: 30.0),
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        "Forgot Password ?",
-                        style: AppTextStyle.forgotPassword,
-                      )),
+                    margin: const EdgeInsets.only(top: 30.0),
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "Forgot Password ?",
+                      style: AppTextStyle.forgotPassword,
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: Container(
@@ -108,6 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SocialMediaButton(
                               buttonType: SocialType.Facebook,
+                              onTap: () {
+                                loginProvider.loginScaffoldKey.currentState
+                                    .showSnackBar(
+                                  AppSnackBar.snackBar(
+                                      title: "Checkingg",
+                                      backgroundColor: Colors.green),
+                                );
+                              },
                             ),
                             SocialMediaButton(
                               buttonType: SocialType.Twitter,

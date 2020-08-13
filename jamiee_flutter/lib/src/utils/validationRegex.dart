@@ -7,6 +7,20 @@ class AppRegularExpression {
 }
 
 class TextFieldValidation {
+  static String nameValidation(String data) {
+    if (data == "null") {
+      return "Please Enter your Name";
+    } else if (data.trim() == null) {
+      return "Please Enter your Name";
+    } else if (data.trim() == "") {
+      return "Please Enter your Name";
+    } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
+      return "Please enter full Name";
+    } else {
+      return null;
+    }
+  }
+
   static String passwordValidation(String data) {
     if (data == "null") {
       return "Please Enter Password";
@@ -14,6 +28,48 @@ class TextFieldValidation {
       return "Please Enter Password";
     } else if (data.trim() == "") {
       return "Please Enter Password";
+    } else {
+      return null;
+    }
+  }
+
+  static String emailValidation(String data) {
+    if (data == "null") {
+      return "Please Enter Email";
+    } else if (data.trim() == null) {
+      return "Please Enter Email";
+    } else if (data.trim() == "") {
+      return "Please Enter Email";
+    } else if (!AppRegularExpression.emailRegExp
+        .hasMatch(data.toString().trim())) {
+      return "Please enter a valid Email";
+    } else {
+      return null;
+    }
+  }
+
+  static String stateCityValidation(String data) {
+    if (data == "null") {
+      return "Please Enter your State";
+    } else if (data.trim() == null) {
+      return "Please Enter your State";
+    } else if (data.trim() == "") {
+      return "Please Enter your State";
+    } else {
+      return null;
+    }
+  }
+
+  static String mobileValidation(String data) {
+    if (data == "null") {
+      return "Please Enter Mobile Number";
+    } else if (data.trim() == null) {
+      return "Please Enter Mobile Number";
+    } else if (data.trim() == "") {
+      return "Please Enter Mobile Number";
+    } else if (!AppRegularExpression.mobileRegExp
+        .hasMatch(data.toString().trim())) {
+      return "Please enter a valid Mobile Number";
     } else {
       return null;
     }

@@ -66,7 +66,6 @@ class _OtpPageState extends State<OtpPage> {
         height: MediaQuery.of(context).size.height - 75.0,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               child: Column(

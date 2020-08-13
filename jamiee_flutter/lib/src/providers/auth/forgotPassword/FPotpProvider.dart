@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPmobileProvider.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../providers/auth/forgotPassword/FPmobileProvider.dart';
+import '../../../utils/snackBar.dart';
+import '../../../widgets/button/appButton.dart';
 
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
@@ -21,10 +22,8 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
 
   void checkOtp(BuildContext ctx, String otp) async {
     if (otp.length < 5) {
-      otpScaffoldKey.currentState.showSnackBar(snackBar(
-          backgroundColor: AppColors.red,
-          textColor: AppColors.white,
-          title: "Please enter OTP"));
+      otpScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
+          backgroundColor: AppColors.red, title: "Please enter OTP"));
     } else if (otp.length == 5) {
       onceClicked = true;
       notifyListeners();
@@ -47,17 +46,5 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
         notifyListeners();
       }
     }
-  }
-
-  SnackBar snackBar(
-      {@required String title,
-      @required Color backgroundColor,
-      @required Color textColor}) {
-    return SnackBar(
-      duration: Duration(milliseconds: 1200),
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: backgroundColor,
-      content: Text(title, style: TextStyle(color: textColor)),
-    );
   }
 }

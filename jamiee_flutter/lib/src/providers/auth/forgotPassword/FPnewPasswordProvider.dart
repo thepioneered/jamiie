@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPmobileProvider.dart';
 import 'package:jamiee_flutter/src/server/networkCalls.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
+import 'package:jamiee_flutter/src/utils/snackBar.dart';
 import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
 
 class NewPasswordProvider extends ChangeNotifier {
@@ -49,12 +50,13 @@ class NewPasswordProvider extends ChangeNotifier {
         onceFormSubmitted = false;
         notifyListeners();
         newpassFormKey.currentState.reset();
-        
-        newpassScaffoldKey.currentState.showSnackBar(NewPasswordProvider()
-            .snackBar(
-                title: "Password Changed.",
-                backgroundColor: AppColors.green,
-                textColor: null));
+
+        newpassScaffoldKey.currentState.showSnackBar(
+          AppSnackBar.snackBar(
+            title: "Password Changed.",
+            backgroundColor: AppColors.green,
+          ),
+        );
 
         Future.delayed(Duration(seconds: 1300), () {
           Navigator.pushReplacementNamed(
@@ -63,11 +65,12 @@ class NewPasswordProvider extends ChangeNotifier {
       } else {
         onceClicked = false;
         notifyListeners();
-        newpassScaffoldKey.currentState.showSnackBar(NewPasswordProvider()
-            .snackBar(
-                title: "Password Not Changed.",
-                backgroundColor: AppColors.red,
-                textColor: null));
+        newpassScaffoldKey.currentState.showSnackBar(
+          AppSnackBar.snackBar(
+            title: "Password Not Changed.",
+            backgroundColor: AppColors.red,
+          ),
+        );
 
         // Future.delayed(Duration(seconds: 1300), () {
         //     // Navigator.pushReplacementNamed(
@@ -94,15 +97,15 @@ class NewPasswordProvider extends ChangeNotifier {
     }
   }
 
-  SnackBar snackBar(
-      {@required String title,
-      @required Color backgroundColor,
-      @required Color textColor}) {
-    return SnackBar(
-      duration: Duration(milliseconds: 1200),
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: backgroundColor,
-      content: Text(title, style: TextStyle(color: textColor)),
-    );
-  }
+  // SnackBar snackBar(
+  //     {@required String title,
+  //     @required Color backgroundColor,
+  //     @required Color textColor}) {
+  //   return SnackBar(
+  //     duration: Duration(milliseconds: 1200),
+  //     behavior: SnackBarBehavior.floating,
+  //     backgroundColor: backgroundColor,
+  //     content: Text(title, style: TextStyle(color: textColor)),
+  //   );
+  // }
 }

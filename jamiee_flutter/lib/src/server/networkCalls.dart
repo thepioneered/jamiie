@@ -5,6 +5,7 @@ import 'package:jamiee_flutter/src/server/endpoint.dart';
 import 'package:jamiee_flutter/src/server/statusCode.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:jamiee_flutter/src/utils/snackBar.dart';
 
 class NetworkCalls {
   static bool status;
@@ -36,7 +37,7 @@ class NetworkCalls {
       }
     } else {
       print("Error here");
-      key.currentState.showSnackBar(StatusCodeCheck.snackBar(
+      key.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "No internet. Please check your connection.",
           backgroundColor: AppColors.red));
       return {"status": false};
@@ -70,7 +71,7 @@ class NetworkCalls {
       }
     } else {
       print("Error here");
-      key.currentState.showSnackBar(StatusCodeCheck.snackBar(
+      key.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "No internet.Please check your connection.",
           backgroundColor: AppColors.red));
       return {"status": false};
@@ -105,7 +106,7 @@ class NetworkCalls {
       }
     } else {
       print("Error here");
-      key.currentState.showSnackBar(StatusCodeCheck.snackBar(
+      key.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "No internet.Please check your connection.",
           backgroundColor: AppColors.red));
       return {"status": false};

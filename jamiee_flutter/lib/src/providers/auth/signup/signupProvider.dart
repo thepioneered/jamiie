@@ -2,14 +2,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../utils/snackBar.dart';
+import '../../../widgets/button/appButton.dart';
 import '../../../models/signup.dart';
 import 'mobileProvider.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
-import '../../../server/statusCode.dart';
 import '../../../styles/colors.dart';
-import '../../../utils/validationRegex.dart';
 
 class SignupProvider extends ChangeNotifier {
   //Page Variables and keys
@@ -67,7 +66,7 @@ class SignupProvider extends ChangeNotifier {
 
         notifyListeners();
         signupScaffoldKey.currentState.showSnackBar(
-          StatusCodeCheck.snackBar(
+          AppSnackBar.snackBar(
               title: "You have successfully registered",
               backgroundColor: AppColors.green),
         );
@@ -98,32 +97,32 @@ class SignupProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String signupPageEmailValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Email";
-    } else if (data.trim() == null) {
-      return "Please Enter Email";
-    } else if (data.trim() == "") {
-      return "Please Enter Email";
-    } else if (!AppRegularExpression.emailRegExp
-        .hasMatch(data.toString().trim())) {
-      return "Please enter a valid Email";
-    } else {
-      return null;
-    }
-  }
+  // String signupPageEmailValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter Email";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter Email";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter Email";
+  //   } else if (!AppRegularExpression.emailRegExp
+  //       .hasMatch(data.toString().trim())) {
+  //     return "Please enter a valid Email";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  String signupPagePasswordValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Password";
-    } else if (data.trim() == null) {
-      return "Please Enter Password";
-    } else if (data.trim() == "") {
-      return "Please Enter Password";
-    } else {
-      return null;
-    }
-  }
+  // String signupPagePasswordValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter Password";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter Password";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter Password";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   String signupPageConfirmPasswordValidation(String data) {
     // print(confirmPassword.text);
@@ -141,31 +140,31 @@ class SignupProvider extends ChangeNotifier {
     }
   }
 
-  String signupPageNameValidation(String data) {
-    if (data == "null") {
-      return "Please Enter your Name";
-    } else if (data.trim() == null) {
-      return "Please Enter your Name";
-    } else if (data.trim() == "") {
-      return "Please Enter your Name";
-    } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
-      return "Please enter full Name";
-    } else {
-      return null;
-    }
-  }
+  // String signupPageNameValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter your Name";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter your Name";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter your Name";
+  //   } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
+  //     return "Please enter full Name";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  String signupPageStateCityValidation(String data) {
-    if (data == "null") {
-      return "Please Enter your State";
-    } else if (data.trim() == null) {
-      return "Please Enter your State";
-    } else if (data.trim() == "") {
-      return "Please Enter your State";
-    } else {
-      return null;
-    }
-  }
+  // String signupPageStateCityValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter your State";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter your State";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter your State";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }
 
 class ImageProviderSignup extends ChangeNotifier {

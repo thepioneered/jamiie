@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../utils/snackBar.dart';
+import '../../../widgets/button/appButton.dart';
 import 'mobileProvider.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
@@ -20,9 +21,8 @@ class OtpProvider extends ChangeNotifier {
 
   void checkOtp(BuildContext ctx, String otp) async {
     if (otp.length < 5) {
-      otpScaffoldKey.currentState.showSnackBar(snackBar(
+      otpScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
           backgroundColor: AppColors.red,
-          textColor: AppColors.white,
           title: "Please enter OTP"));
     } else if (otp.length == 5) {
       onceClicked = true;
@@ -44,15 +44,5 @@ class OtpProvider extends ChangeNotifier {
     }
   }
 
-  SnackBar snackBar(
-      {@required String title,
-      @required Color backgroundColor,
-      @required Color textColor}) {
-    return SnackBar(
-      duration: Duration(milliseconds: 1200),
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: backgroundColor,
-      content: Text(title, style: TextStyle(color: textColor)),
-    );
-  }
+ 
 }

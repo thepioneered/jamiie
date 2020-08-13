@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
 import 'package:jamiee_flutter/src/utils/onWillPopScope.dart';
+import 'package:jamiee_flutter/src/utils/validationRegex.dart';
 import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/auth/signup/mobileProvider.dart';
@@ -52,7 +53,7 @@ class _MobilePageState extends State<MobilePage> {
                         textInputType: TextInputType.number,
                         maxLength: 10,
                         hintText: "Mobile",
-                        validator: mobileProvider.mobilePageMobileValidation,
+                        validator: TextFieldValidation.mobileValidation,
                         autoValidate: mobileProvider.onceClicked,
                         onSaved: (String e) => mobileProvider.formMobile = e,
                         prefixIcon: Icons.phone),

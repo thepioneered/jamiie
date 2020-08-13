@@ -72,6 +72,11 @@ class AppTextStyle {
         fontSize: 16.0,
         textStyle: TextStyle(),
       );
+  static TextStyle get snackBar => GoogleFonts.poppins(
+        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        textStyle: TextStyle(),
+      );
 
   static TextStyle connectUsing() {
     return GoogleFonts.poppins(

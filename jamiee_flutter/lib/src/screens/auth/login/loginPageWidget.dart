@@ -1,63 +1,13 @@
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utils/validationRegex.dart';
+import '../../../widgets/appTextFields/appTextField.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../providers/auth/login/loginProvider.dart';
-import '../../../styles/colors.dart';
 
 class LoginPageWidget extends StatelessWidget {
-  // Widget screenTextField(
-  //     {@required String placeholder,
-  //     @required Function(String) validator,
-  //     @required bool autoValidate,
-  //     @required Function(String) onSaved,
-  //     bool autofocus,
-  //     bool showPassword,
-  //     Widget onEyeClick,
-  //     int maxLength,
-  //     @required IconData prefixIcon,
-  //     TextInputType textInputType}) {
-  //   return SizedBox(
-  //     height: 80,
-  //     child: TextFormField(
-  //       keyboardType: textInputType,
-  //       obscureText: showPassword == null ? false : !showPassword,
-  //       validator: validator,
-  //       maxLength: maxLength,
-  //       autovalidate: autoValidate,
-  //       decoration: InputDecoration(
-  //         prefixIcon: Icon(prefixIcon),
-  //         suffixIcon: onEyeClick == null ? null : onEyeClick,
-  //         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-  //         hintText: placeholder,
-  //         hintStyle: AppTextStyle.logoutTitle,
-  //         focusedBorder: OutlineInputBorder(
-  //           gapPadding: 10.0,
-  //         ),
-  //         enabledBorder: OutlineInputBorder(
-  //           gapPadding: 10.0,
-  //         ),
-  //         focusedErrorBorder: OutlineInputBorder(
-  //           gapPadding: 10.0,
-  //           borderSide: BorderSide(color: AppColors.red),
-  //         ),
-  //         errorBorder: OutlineInputBorder(
-  //           gapPadding: 10.0,
-  //           borderSide: BorderSide(color: AppColors.red),
-  //         ),
-  //         border: OutlineInputBorder(
-  //           gapPadding: 10.0,
-  //         ),
-  //       ),
-  //       onSaved: onSaved,
-  //       autofocus: autofocus == null ? false : autofocus,
-  //       maxLines: 1,
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<LoginProvider>(
@@ -70,7 +20,7 @@ class LoginPageWidget extends StatelessWidget {
                   prefixIcon: Icons.phone,
                   maxLength: 10,
                   hintText: "Mobile",
-                  validator: loginProvider.loginPageMobileValidation,
+                  validator: TextFieldValidation.mobileValidation,
                   autoValidate: loginProvider.onceFormSubmitted ? true : false,
                   onSaved: (String e) => loginProvider.login.mobile = e,
                   textInputType: TextInputType.number),
@@ -80,7 +30,7 @@ class LoginPageWidget extends StatelessWidget {
                     prefixIcon: Icons.lock,
                     hintText: "Password",
                     showPassword: passwordStatus.showPassword,
-                    validator: loginProvider.loginPagePasswordValidation,
+                    validator: TextFieldValidation.passwordValidation,
                     autoValidate:
                         loginProvider.onceFormSubmitted ? true : false,
                     onSaved: (String e) => loginProvider.login.setPassword(e),

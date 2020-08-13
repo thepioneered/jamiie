@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
+import 'package:jamiee_flutter/src/utils/validationRegex.dart';
 import 'package:provider/provider.dart';
+import '../../../widgets/appTextFields/appTextField.dart';
 import '../../../providers/auth/signup/signupProvider.dart';
 import '../../../widgets/appBar.dart';
 import '../../../styles/colors.dart';
@@ -77,7 +78,7 @@ class _SignupPageState extends State<SignupPage> {
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
                           autofocus: true,
-                          validator: signupProvider.signupPageNameValidation,
+                          validator: TextFieldValidation.nameValidation,
                         ),
                         AppTextField.screenTextField(
                           prefixIcon: Icons.email,
@@ -89,7 +90,7 @@ class _SignupPageState extends State<SignupPage> {
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
                           autofocus: true,
-                          validator: signupProvider.signupPageEmailValidation,
+                          validator: TextFieldValidation.emailValidation,
                         ),
                         ChangeNotifierProvider(
                           create: (_) => PasswordStatusSignUp(),
@@ -107,13 +108,7 @@ class _SignupPageState extends State<SignupPage> {
                                     ? true
                                     : false,
                                 validator:
-                                    signupProvider.signupPagePasswordValidation,
-                                // onEyeClick: GestureDetector(
-                                //   onTap: showPassword.setStatusPassword,
-                                //   child: Icon(showPassword.showPassword
-                                //       ? FontAwesomeIcons.eye
-                                //       : FontAwesomeIcons.eyeSlash),
-                                // ),
+                                    TextFieldValidation.passwordValidation,
                               );
                             },
                           ),
@@ -150,8 +145,7 @@ class _SignupPageState extends State<SignupPage> {
                           hintText: "Enter your State",
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
-                          validator:
-                              signupProvider.signupPageStateCityValidation,
+                          validator: TextFieldValidation.stateCityValidation,
                         ),
                         AppTextField.screenTextField(
                           prefixIcon: null,
@@ -161,8 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                           hintText: "Enter your city",
                           autoValidate:
                               signupProvider.onceFormValidated ? true : false,
-                          validator:
-                              signupProvider.signupPageStateCityValidation,
+                          validator: TextFieldValidation.stateCityValidation,
                         ),
                         Container(
                           margin: const EdgeInsets.symmetric(vertical: 10),

@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../../../widgets/button/appButton.dart';
+import '../../../utils/snackBar.dart';
 import '../../../models/login.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
-import '../../../server/statusCode.dart';
 import '../../../styles/colors.dart';
 import '../../../utils/sharedPref.dart';
-import '../../../utils/validationRegex.dart';
 
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
@@ -31,25 +30,33 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Widget loginButton({bool loader, Function onTap}) {
-    return loader
-        ? Center(child: CupertinoActivityIndicator())
-        : RaisedButton(
-            onPressed: onTap,
-            color: AppColors.primaryColorPurple,
-            child: Container(
-              alignment: Alignment.center,
-              width: double.infinity,
-              height: 50.0,
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
-              child: Text(
-                'Login',
-                style: AppTextStyle.loginButtonText(AppColors.white),
-              ),
-            ),
-          );
+  Widget loginButton({@required Function onTap, @required bool loader}) {
+    return AppButton.loginButton(
+      loader: loader,
+      onTap: onTap,
+      title: "Login",
+    );
   }
+
+  // Widget loginButton({bool loader, Function onTap}) {
+  //   return loader
+  //       ? Center(child: CupertinoActivityIndicator())
+  //       : RaisedButton(
+  //           onPressed: onTap,
+  //           color: AppColors.primaryColorPurple,
+  //           child: Container(
+  //             alignment: Alignment.center,
+  //             width: double.infinity,
+  //             height: 50.0,
+  //             padding:
+  //                 const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
+  //             child: Text(
+  //               'Login',
+  //               style: AppTextStyle.loginButtonText(AppColors.white),
+  //             ),
+  //           ),
+  //         );
+  // }
 
   //Form Validation Function
   void validateLoginForm() async {
@@ -85,7 +92,7 @@ class LoginProvider extends ChangeNotifier {
       //TODO: Check if required else remove it
       if (body["status"] == true) {
         loginScaffoldKey.currentState.showSnackBar(
-          StatusCodeCheck.snackBar(
+          AppSnackBar.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
 
@@ -94,33 +101,6 @@ class LoginProvider extends ChangeNotifier {
               loginScaffoldKey.currentContext, "/NavBar");
         });
       }
-    }
-  }
-
-  String loginPageMobileValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == null) {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == "") {
-      return "Please Enter Mobile Number";
-    } else if (!AppRegularExpression.mobileRegExp
-        .hasMatch(data.toString().trim())) {
-      return "Please enter a valid Mobile Number";
-    } else {
-      return null;
-    }
-  }
-
-  String loginPagePasswordValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Password";
-    } else if (data.trim() == null) {
-      return "Please Enter Password";
-    } else if (data.trim() == "") {
-      return "Please Enter Password";
-    } else {
-      return null;
     }
   }
 }

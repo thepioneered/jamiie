@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/auth/singup/mobilePage.dart';
 import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
-import '../../../styles/colors.dart';
-import '../../../utils/validationRegex.dart';
-
 class MobileProvider extends ChangeNotifier {
   bool onceClicked;
   GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
@@ -52,18 +48,18 @@ class MobileProvider extends ChangeNotifier {
     }
   }
 
-  String mobilePageMobileValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == null) {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == "") {
-      return "Please Enter Mobile Number";
-    } else if (!AppRegularExpression.mobileRegExp
-        .hasMatch(data.toString().trim())) {
-      return "Please enter a valid Mobile Number";
-    } else {
-      return null;
-    }
-  }
+  // String mobilePageMobileValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter Mobile Number";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter Mobile Number";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter Mobile Number";
+  //   } else if (!AppRegularExpression.mobileRegExp
+  //       .hasMatch(data.toString().trim())) {
+  //     return "Please enter a valid Mobile Number";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

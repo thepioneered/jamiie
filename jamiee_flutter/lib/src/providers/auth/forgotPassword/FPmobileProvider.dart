@@ -28,20 +28,20 @@ class ForgotPasswordProvider extends ChangeNotifier {
     );
   }
 
-  String loginPageMobileValidation(String data) {
-    if (data == "null") {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == null) {
-      return "Please Enter Mobile Number";
-    } else if (data.trim() == "") {
-      return "Please Enter Mobile Number";
-    } else if (!AppRegularExpression.mobileRegExp
-        .hasMatch(data.toString().trim())) {
-      return "Please enter a valid Mobile Number";
-    } else {
-      return null;
-    }
-  }
+  // String loginPageMobileValidation(String data) {
+  //   if (data == "null") {
+  //     return "Please Enter Mobile Number";
+  //   } else if (data.trim() == null) {
+  //     return "Please Enter Mobile Number";
+  //   } else if (data.trim() == "") {
+  //     return "Please Enter Mobile Number";
+  //   } else if (!AppRegularExpression.mobileRegExp
+  //       .hasMatch(data.toString().trim())) {
+  //     return "Please enter a valid Mobile Number";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   void forgotPassword() async {
     onceFormsubmitted = true;
