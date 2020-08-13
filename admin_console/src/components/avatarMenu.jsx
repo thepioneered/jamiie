@@ -17,25 +17,26 @@ export default function AvatarMenu({ toggle_avatar_menu }) {
   const router = useRouter();
 
   function handleClickOutside(event) {
-    console.log(event.target.className);
-    if (event.target.className !== "avatar") {
+    if (
+      event.target.className !== "avatar" &&
+      event.target.className !== "avatar__button"
+    ) {
       setTimeout(toggle_avatar_menu(), 1600);
     }
   }
 
   const logoutReq = async () => {
     console.log("check");
+    // logoutUser();
     try {
       await postDataWithXcsrf("LOGOUT_ADMIN", {
-        phone: "7071006000",
+        phone: "9816456565",
       });
       logoutUser();
     } catch (e) {
       console.log("Logout Err", e);
     }
   };
-
-  // logoutReq();
 
   return (
     <div className={styles.avatar__menu}>
@@ -44,10 +45,7 @@ export default function AvatarMenu({ toggle_avatar_menu }) {
           <button className="avatar__button">Account Info</button>
         </li>
         <li>
-          <button
-            className="avatar__button"
-            onClick={(e) => console.log("asdfasdf")}
-          >
+          <button className="avatar__button" onClick={logoutReq}>
             Logout
           </button>
         </li>

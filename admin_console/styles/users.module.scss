@@ -1,0 +1,67 @@
+@import "./variables.module.scss";
+.User {
+  padding: 0.5em;
+}
+
+.container {
+  position: relative;
+  border-radius: 10px;
+  background-color: white;
+  margin: 0.5em;
+  max-width: 80rem;
+}
+
+.heading {
+  background-color: $primary-blue;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  padding: 1em;
+  font-size: 1.2em;
+
+  &::after {
+    content: " Management";
+    font-weight: 700;
+  }
+}
+
+.table__container {
+  position: relative;
+  border-radius: 0 0 10px 10px;
+  background-color: white;
+  padding: 0.5em;
+}
+
+.table {
+  width: 100%;
+
+  tbody tr {
+    transition: background-color 250ms ease;
+    cursor: pointer;
+  }
+
+  tbody tr:hover {
+    background-color: $hover-background;
+  }
+
+  td {
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  .theading td {
+    border-bottom: 1px solid $secondary-gray;
+    font-weight: 700;
+  }
+
+  span {
+    color: $primary-red;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: transform 250ms ease;
+  }
+
+  span:hover {
+    transform: scale(2);
+  }
+}

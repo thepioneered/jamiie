@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import styles from "../../styles/totalCard.module.scss";
 
 function totalCard({ name, number, percentage }) {
@@ -21,10 +22,10 @@ function totalCard({ name, number, percentage }) {
   }
 
   return (
-    <div className={styles.card}>
+    <div className={cn(styles.card, "hover")}>
       <div className={styles.heading}>{name}</div>
       <div className={styles.number}>{addCommasToNumber}</div>
-      <div className={styles.description}>
+      {/* <div className={styles.description}>
         <span
           className={`material-icons ${styles.icon}`}
           style={{ color: color }}
@@ -35,7 +36,7 @@ function totalCard({ name, number, percentage }) {
           &nbsp;{Math.abs(percentage)}%
         </span>
         <span className={styles.status}>&nbsp;{status} from Yesterday</span>
-      </div>
+      </div> */}
     </div>
   );
 }

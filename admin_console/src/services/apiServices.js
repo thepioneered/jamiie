@@ -2,7 +2,7 @@ import apiCalls from "../constants/apiEndpoints";
 import { httpHandler, httpXcsrfHandler } from "./httpHandlers";
 import logoutUser from "../utils/logoutUser";
 
-export const API_ENDPOINT = "https://gentle-crag-42252.herokuapp.com";
+export const API_ENDPOINT = "https://jamiieapi.herokuapp.com";
 
 const logout = (status) => {
   if (status === 401) {

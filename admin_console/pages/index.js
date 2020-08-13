@@ -1,28 +1,16 @@
-import React from "react";
-import Head from "next/head";
-import { postDataWithXcsrf } from "../src/services/apiServices";
-import Login from "./login.jsx";
+import React, { useEffect, useState } from "react";
+import Loading from "../src/components/Loading";
+import checkToken from "../src/utils/checkToken";
+import Router from "next/router";
 
 // TODO changePage ?
 export default function App() {
-  const checkToken = async () => {
-    try {
-      const checkAuthRes = await postDataWithXcsrf("TOKEN_CHECK");
-      console.log(checkAuthRes);
-    } catch (e) {
-      console.log("E:", e);
-    }
-  };
+  const [isLoading, setLoading] = useState(true);
 
-  checkToken();
+  useEffect(() => {
+    checkToken();
+  }, []);
 
-  return (
-    <div className="app-login">
-      <Head>
-        <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Login />
-    </div>
-  );
+  if (isLoading) return <Loading />;
+  else Router.push("/login");
 }

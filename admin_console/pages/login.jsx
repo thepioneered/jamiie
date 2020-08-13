@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Head from "next/head";
 import cn from "classnames";
-import { postData } from "../src/services/apiServices";
+import { postDataWithXcsrf } from "../src/services/apiServices";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
 import Router from "next/router";
@@ -12,10 +12,12 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [wrongLogin, setWrongLogin] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [wrongDivClassName, setWrongDivClassName] = useState(styles.wrong);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const payload = {
       phone: username,
@@ -23,7 +25,7 @@ export default function Login() {
     };
 
     try {
-      await postData("LOGIN_ADMIN", payload);
+      await postDataWithXcsrf("LOGIN_ADMIN", payload);
       Router.push("/admin/dashboard");
     } catch (e) {
       if (wrongLogin > 0) {
@@ -39,6 +41,7 @@ export default function Login() {
         setWrongDivClassName(cn(styles.wrong, styles.wrongShow));
         setWrongLogin((prevState) => prevState + 1);
       }
+      setLoading(false);
       usernameInput.current.focus();
     }
   };
@@ -94,10 +97,21 @@ export default function Login() {
           </label>
         </div>
 
-        <button type="button" className={styles.forgot}>
+        <button
+          type="button"
+          className={styles.forgot}
+          onClick={(e) => setLoading((prevState) => !prevState)}
+        >
           Forgot Password?
         </button>
-        <input type="submit" className={styles.button} value="Login" />
+
+        {loading ? (
+          <div className={styles.spinner}></div>
+        ) : (
+          <button type="submit" className={styles.button}>
+            Login
+          </button>
+        )}
       </form>
     </div>
   );
