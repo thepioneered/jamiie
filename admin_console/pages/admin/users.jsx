@@ -128,7 +128,7 @@ function Users() {
                   <td>#</td>
                   <td>Name</td>
                   <td>Date Created</td>
-                  <td>Status</td>
+                  <td>Address</td>
                   <td>Action</td>
                 </tr>
               </thead>

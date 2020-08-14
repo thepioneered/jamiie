@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { LoaderContext } from "./_app";
 import Loading from "../src/components/Loading";
-import checkToken from "../src/utils/checkToken";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
-// TODO changePage ?
 export default function App() {
-  const [isLoading, setLoading] = useState(true);
+  const { state, globalState } = useContext(LoaderContext);
+  const router = useRouter();
 
   useEffect(() => {
-    checkToken();
+    if (state.tokenValidated) router.push("/admin/dashboard");
+    else router.push("/login");
   }, []);
 
-  if (isLoading) return <Loading />;
-  else Router.push("/login");
+  return <Loading />;
 }

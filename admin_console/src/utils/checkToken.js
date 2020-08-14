@@ -1,15 +1,13 @@
-import Router from "next/router";
 import { postDataWithXcsrf } from "../services/apiServices";
 
 async function checkToken() {
   try {
     const r = await postDataWithXcsrf("TOKEN_CHECK");
-    console.log("Check R", r);
-    if (Router.pathname === "/" || Router.pathname === "/login")
-      Router.push("/admin/dashboard");
+    console.log("CheckToken Result:", r);
+    return true;
   } catch (e) {
-    console.log("Check E", e);
-    Router.push("/login");
+    console.log("CheckToken Error:", e);
+    return false;
   }
 }
 

@@ -1,13 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import Head from "next/head";
 import cn from "classnames";
+import { LoaderContext } from "./_app";
 import { postDataWithXcsrf } from "../src/services/apiServices";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const usernameInput = useRef();
+
+  const { state, changeGlobal } = useContext(LoaderContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.tokenValidated) router.push("/admin/dashboard");
+  }, []);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +34,8 @@ export default function Login() {
 
     try {
       await postDataWithXcsrf("LOGIN_ADMIN", payload);
-      Router.push("/admin/dashboard");
+      changeGlobal("tokenValidated");
+      router.push("/admin/dashboard");
     } catch (e) {
       if (wrongLogin > 0) {
         setWrongLogin((prevState) => prevState + 1);
@@ -55,7 +64,10 @@ export default function Login() {
         <Logo />
       </div>
 
-      <form className={styles.card} onSubmit={(event) => handleSubmit(event)}>
+      <form
+        className={cn(styles.card, "hover")}
+        onSubmit={(event) => handleSubmit(event)}
+      >
         <div>
           <div className={styles.heading}>Admin</div>
           <div className={styles.subheading}>

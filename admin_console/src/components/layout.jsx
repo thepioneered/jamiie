@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import { Header, Sidebar } from "./index";
+import { LoaderContext } from "../../pages/_app";
+import { useRouter } from "next/router";
 
 function Layout({ children }) {
-  const [isSidebarOpen, setSidebar] = useState(true);
-  // useEffect(() => {
-  //   checkToken();
-  // }, []);
+  const { state, changeGlobal } = useContext(LoaderContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log("layout.js :)");
+    if (!state.tokenValidated) router.push("/login");
+  }, []);
 
   const toggleSidebar = () => {
-    setSidebar((prevState) => !prevState);
+    changeGlobal("isSidebarOpen");
   };
 
   return (
@@ -17,10 +22,8 @@ function Layout({ children }) {
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-
       <Header toggleSidebar={toggleSidebar} />
-
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+      <Sidebar isSidebarOpen={state.isSidebarOpen} />
       <main>{children}</main>
     </div>
   );

@@ -1,38 +1,38 @@
 import React from "react";
-import { useEffect } from "react";
-import logoutUser from "../utils/logoutUser";
+import { useEffect, useContext } from "react";
 import styles from "../../styles/header.module.scss";
 import { postDataWithXcsrf } from "../services/apiServices";
 import { useRouter } from "next/router";
+import { LoaderContext } from "../../pages/_app";
 
 // TODO useEffect dependency ?
 export default function AvatarMenu({ toggle_avatar_menu }) {
+  const { state, changeGlobal } = useContext(LoaderContext);
+  const router = useRouter();
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  });
-  const router = useRouter();
+  }, []);
 
   function handleClickOutside(event) {
     if (
       event.target.className !== "avatar" &&
       event.target.className !== "avatar__button"
     ) {
-      setTimeout(toggle_avatar_menu(), 1600);
+      toggle_avatar_menu();
     }
   }
 
   const logoutReq = async () => {
     console.log("check");
-    // logoutUser();
     try {
-      await postDataWithXcsrf("LOGOUT_ADMIN", {
-        phone: "9816456565",
-      });
-      logoutUser();
+      await postDataWithXcsrf("LOGOUT_ADMIN", {});
+      changeGlobal("tokenValidated");
+      router.push("/login");
     } catch (e) {
       console.log("Logout Err", e);
     }
