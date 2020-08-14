@@ -17,6 +17,24 @@ class AppTextStyle {
         fontSize: 15.0,
         color: Colors.grey[400],
       );
+  static TextStyle get poolTitle => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 30.0,
+        color: Colors.black,
+      );
+  static TextStyle get amountSubHeading => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        color: AppColors.grayInputHeading,
+      );
+  static TextStyle get amountStyle => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 30.0,
+        color: Colors.black,
+      );
   static TextStyle get dropDownStyle => TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w400,

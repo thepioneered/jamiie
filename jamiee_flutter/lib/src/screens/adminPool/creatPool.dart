@@ -69,6 +69,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                         toolbarOptions: ToolbarOptions(paste: false),
                         onEyeClick: Tooltip(
                             padding: EdgeInsets.all(10.0),
+                            
                             message:
                                 "Data regarding what is amount \nwill be submitted here",
                             child: Icon(Icons.info)),
