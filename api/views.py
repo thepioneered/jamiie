@@ -137,7 +137,7 @@ class Login(APIView):
             else:
                 return Response(status=status.HTTP_404_NOT_FOUND)        
         else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 class ForgotPassword(APIView):
     authentication_classes = []
@@ -232,7 +232,6 @@ class Check(APIView):
     permission_classes = []
     def post(self,request):
         val = request.COOKIES
-        print("cookies=",val)
         count = 0
         for i in val:
             count=count+1
