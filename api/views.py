@@ -145,27 +145,30 @@ class ForgotPassword(APIView):
     def post(self,request,):
         data = request.data
         phone = data["phone"]
-        user = OTP.objects.get(phone=phone)
-        otp = otpGenerator()
-        user.otp = otp
-        user.save()
-        account_sid = 'AC682a134035589f334183428895b1bbe2'
-        auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
-        client = Client(account_sid, auth_token)
-        message = client.messages \
-                .create(
-                    body="Your otp number is "+str(otp),                        
-                    from_='+18123704981',
-                    to=str(phone)
-                )
-        print(message.sid)
-        return Response(status=status.HTTP_200_OK) 
+        if User.objects.filter(phone=phone).exists():
+            user = OTP.objects.get(phone=phone)
+            otp = otpGenerator()
+            user.otp = otp
+            user.save()
+            account_sid = 'AC682a134035589f334183428895b1bbe2'
+            auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+            client = Client(account_sid, auth_token)
+            message = client.messages \
+                    .create(
+                        body="Your otp number is "+str(otp),                        
+                        from_='+18123704981',
+                        to=str(phone)
+                    )
+            print(message.sid)
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN) 
     def put(self,request,id):
         data = request.data
         phone = "+"+str(id)
         password = data["password"]
         user = User.objects.get(phone=phone)
-        user.set_password(password)
+        user.password=password
         user.save()
         return Response(status=status.HTTP_200_OK)
 
@@ -193,7 +196,7 @@ class AdminLogin(APIView):
             if valid_password==True:
                 token, created = Token.objects.get_or_create(user=user)
                 response = HttpResponse(status=status.HTTP_200_OK)
-                response.set_cookie(phone, value = token, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True, samesite='strict')
+                response.set_cookie(phone, value = token, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True, samesite='none')
                 return response
             else:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
