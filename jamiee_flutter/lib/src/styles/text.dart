@@ -22,6 +22,11 @@ class AppTextStyle {
       fontWeight: FontWeight.w400,
       fontSize: 15.0,
       color: AppColors.black);
+  static TextStyle get dropDownStyleForm => TextStyle(
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
+      fontSize: 17.0,
+      color: AppColors.black);
 
   static TextStyle get dialogTitle => TextStyle(
         fontFamily: "Poppins",
@@ -171,7 +176,15 @@ class AppTextStyle {
   }
 
   static TextStyle get subheadingText => TextStyle(
-      fontFamily: "Poppins", fontSize: 20.0, color: AppColors.grayInputHeading);
+        fontFamily: "Poppins",
+        fontSize: 20.0,
+        color: AppColors.grayInputHeading,
+      );
+  static TextStyle get subheadingTextForm => TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 16.0,
+        color: AppColors.grayInputHeading,
+      );
 
   //
   static TextStyle get placeholderText => TextStyle(
