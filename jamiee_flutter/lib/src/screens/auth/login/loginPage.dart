@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamiee_flutter/src/screens/auth/singup/mobilePage.dart';
 import 'package:jamiee_flutter/src/styles/text.dart';
 import 'package:jamiee_flutter/src/utils/snackBar.dart';
 import 'package:provider/provider.dart';
@@ -80,18 +81,24 @@ class _LoginPageState extends State<LoginPage> {
                   child: LoginPageWidget(),
                 ),
                 // ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/ForgotPasswordPage");
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 30.0),
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "Forgot Password ?",
-                      style: AppTextStyle.forgotPassword,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/ForgotPasswordPage");
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30.0),
+                        width: 160.0,
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          "Forgot Password ?",
+                          style: AppTextStyle.forgotPassword,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 Expanded(
                   child: Container(
@@ -115,14 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SocialMediaButton(
                               buttonType: SocialType.Facebook,
-                              onTap: () {
-                                // loginProvider.loginScaffoldKey.currentState
-                                //     .showSnackBar(
-                                //   AppSnackBar.snackBar(
-                                //       title: "Checkingg",
-                                //       backgroundColor: Colors.green),
-                                // );
-                              },
+                              onTap: () {},
                             ),
                             SocialMediaButton(
                               buttonType: SocialType.Twitter,

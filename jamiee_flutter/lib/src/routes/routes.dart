@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/auth/forgotPassword/forgotPassword.dart';
-import 'package:jamiee_flutter/src/screens/auth/forgotPassword/FPnewpassPage.dart';
-import 'package:jamiee_flutter/src/screens/auth/forgotPassword/otpPage.dart';
 import 'package:provider/provider.dart';
+import '../screens/auth/forgotPassword/forgotPassword.dart';
+import '../screens/auth/forgotPassword/FPnewpassPage.dart';
+import '../screens/auth/forgotPassword/otpPage.dart';
 import '../providers/auth/login/loginProvider.dart';
 import '../screens/auth/singup/mobilePage.dart';
 import '../screens/auth/singup/otpPage.dart';
@@ -62,6 +62,7 @@ class AppRoutes {
       case "/MobilePage":
         return MaterialPageRoute(
           builder: (context) => MobilePage(),
+          maintainState: false,
         );
       case "/OtpPage":
         return MaterialPageRoute(
@@ -83,17 +84,6 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => LoginPage(),
         );
-    }
-  }
-
-  static CupertinoPageRoute cupertinoPageRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
-      case "/LoginPage":
-        return CupertinoPageRoute(
-          builder: (context) => LoginPage(),
-        );
-      default:
-        return CupertinoPageRoute(builder: (context) => LoginPage());
     }
   }
 }

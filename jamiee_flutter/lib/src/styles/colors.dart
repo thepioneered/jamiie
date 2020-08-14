@@ -5,6 +5,7 @@ abstract class AppColors {
   static Color get primaryBlue => const Color(0xFF06A0FF);
   // static Color get primaryColorPurple => const Color(0xFF503E9D);
   static Color get primaryColorPurple => const Color(0xFF06A0FF);
+  // static Color get primaryColorPurple => const Color(0xFF366fa5);
   static Color get primaryColorLight => const Color(0xFF6252A7);
   static Color get primaryOrange => const Color(0xFFFF9600);
   static Color get primaryRed => const Color(0xFFEA3A3A);

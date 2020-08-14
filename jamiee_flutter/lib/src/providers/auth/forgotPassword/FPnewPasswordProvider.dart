@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPmobileProvider.dart';
+import 'package:jamiee_flutter/src/server/endpoint.dart';
 import 'package:jamiee_flutter/src/server/networkCalls.dart';
 import 'package:jamiee_flutter/src/styles/colors.dart';
 import 'package:jamiee_flutter/src/utils/snackBar.dart';
@@ -40,28 +41,36 @@ class NewPasswordProvider extends ChangeNotifier {
       print(password.text);
       print(password.text == confirmPassword);
       confirmPassword = hashPassword(confirmPassword);
+      print(confirmPassword);
       Map<String, dynamic> body = await NetworkCalls.putDataToServer(
-          key: newpassScaffoldKey,
-          endPoint: '/${ForgotPasswordProvider.mobilee.trim()}/',
-          body: {"password": "$confirmPassword"});
+        key: newpassScaffoldKey,
+        endPoint:
+            '${EndPoints.forgotPassword}/${ForgotPasswordProvider.mobilee.trim().substring(1, ForgotPasswordProvider.mobilee.length)}/',
+        body: {
+          "password": "$confirmPassword",
+        },
+      );
 
       if (body["status"]) {
         onceClicked = false;
         onceFormSubmitted = false;
         notifyListeners();
+        password.clear();
+
         newpassFormKey.currentState.reset();
 
+        Future.delayed(Duration(milliseconds: 1300), () {
+          // Navigator.pushReplacementNamed(
+          //     newpassScaffoldKey.currentContext, "/LoginPage");
+          Navigator.pushNamedAndRemoveUntil(newpassScaffoldKey.currentContext,
+              "/LoginPage", (route) => false);
+        });
         newpassScaffoldKey.currentState.showSnackBar(
           AppSnackBar.snackBar(
             title: "Password Changed.",
             backgroundColor: AppColors.green,
           ),
         );
-
-        Future.delayed(Duration(seconds: 1300), () {
-          Navigator.pushReplacementNamed(
-              newpassScaffoldKey.currentContext, "/LoginPage");
-        });
       } else {
         onceClicked = false;
         notifyListeners();
@@ -71,12 +80,6 @@ class NewPasswordProvider extends ChangeNotifier {
             backgroundColor: AppColors.red,
           ),
         );
-
-        // Future.delayed(Duration(seconds: 1300), () {
-        //     // Navigator.pushReplacementNamed(
-        //     //     newpassScaffoldKey.currentContext, "/LoginPage");
-        // }
-        // );
       }
     }
   }

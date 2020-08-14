@@ -71,7 +71,9 @@ class SignupProvider extends ChangeNotifier {
               backgroundColor: AppColors.green),
         );
         Future.delayed(Duration(milliseconds: 1300), () {
-          Navigator.pushReplacementNamed(ctx, "/LoginPage");
+          // Navigator.pushReplacementNamed(ctx, "/LoginPage");
+          Navigator.pushNamedAndRemoveUntil(
+              ctx, "/LoginPage", (route) => false);
         });
 
         signupFormKey.currentState.reset();

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPnewPasswordProvider.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
-import 'package:jamiee_flutter/src/widgets/appBar.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
-import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
+import '../../../providers/auth/forgotPassword/FPnewPasswordProvider.dart';
+import '../../../styles/colors.dart';
+import '../../../utils/validationRegex.dart';
+import '../../../widgets/appBar.dart';
+import '../../../widgets/appTextFields/appTextField.dart';
+import '../../../widgets/pageHeading.dart';
 
 class NewPasswordPage extends StatefulWidget {
   @override
@@ -25,6 +23,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
 
   @override
   void dispose() {
+    NewPasswordProvider().dispose();
     confirmNode.dispose();
     super.dispose();
   }
@@ -39,7 +38,6 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15.0),
-          height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
             children: <Widget>[
               PageHeading.topHeading(
@@ -51,7 +49,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                     AppTextField.screenTextField(
                         onEdittingComplete: () => confirmNode.requestFocus(),
                         hintText: "Password",
-                        autofocus: true,
+                        autofocus: false,
                         showPassword: false,
                         validator: TextFieldValidation.passwordValidation,
                         autoValidate: newPasswordProvider.onceFormSubmitted,
@@ -70,7 +68,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                     newPasswordProvider.onceClicked
                         ? newPasswordProvider.updatePasswordButton(true, () {})
                         : newPasswordProvider.updatePasswordButton(false, () {
-                            // Focus.of(context).unfocus();
+                            FocusScope.of(context).unfocus();
                             newPasswordProvider.updateNewPassword();
                           }),
                   ],

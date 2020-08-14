@@ -11,8 +11,6 @@ import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/pageHeading.dart';
 
-import 'package:webview_flutter/webview_flutter.dart';
-
 class CreatePoolPage extends StatefulWidget {
   @override
   _CreatePoolPageState createState() => _CreatePoolPageState();
@@ -31,7 +29,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
   @override
   void dispose() {
     super.dispose();
-    
+
     CreatePoolProvider().dispose();
     nodeAmount.dispose();
   }
@@ -182,7 +180,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                           style: AppTextStyle.minMaxPeople,
                         ),
                         Text(
-                          "Min People",
+                          "Max People",
                           style: AppTextStyle.minMaxPeople,
                         ),
                       ],

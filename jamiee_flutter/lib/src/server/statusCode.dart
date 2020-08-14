@@ -14,6 +14,11 @@ class StatusCodeCheck {
         AppSnackBar.snackBar(
             backgroundColor: AppColors.red, title: "User already exsist."),
       );
+    } else if (statusCode == 403) {
+      key.currentState.showSnackBar(
+        AppSnackBar.snackBar(
+            backgroundColor: AppColors.red, title: "User does not exsist."),
+      );
     } else if (statusCode == 406) {
       key.currentState.showSnackBar(
         AppSnackBar.snackBar(

@@ -1,20 +1,12 @@
-import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:jamiee_flutter/src/providers/adminPool/createPoolProvider.dart';
-import 'package:jamiee_flutter/src/screens/adminPool/creatPool.dart';
-import 'providers/Dashboard/dashboardProvider.dart';
-import 'providers/auth/forgotPassword/FPotpProvider.dart';
-import 'providers/auth/forgotPassword/FPmobileProvider.dart';
-import 'screens/auth/forgotPassword/FPnewpassPage.dart';
-import 'package:jamiee_flutter/src/screens/auth/singup/mobilePage.dart';
-import 'package:jamiee_flutter/src/screens/auth/singup/otpPage.dart';
-import 'package:jamiee_flutter/src/screens/auth/singup/signupPage.dart';
-import 'package:jamiee_flutter/src/screens/navbar.dart';
-import 'package:jamiee_flutter/src/screens/settings/settingPage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './providers/app/appProvider.dart';
+import 'providers/adminPool/createPoolProvider.dart';
+import 'providers/Dashboard/dashboardProvider.dart';
+import 'providers/auth/forgotPassword/FPotpProvider.dart';
+import 'providers/auth/forgotPassword/FPmobileProvider.dart';
+import 'providers/app/appProvider.dart';
 import 'providers/auth/forgotPassword/FPnewPasswordProvider.dart';
 import 'providers/auth/login/loginProvider.dart';
 import 'providers/auth/signup/mobileProvider.dart';
@@ -97,31 +89,22 @@ class _AppState extends State<App> {
           create: (context) => DashboardProvider(),
         ),
       ],
-      child: PlatformApp(),
-    );
-  }
-}
-
-class PlatformApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    if (Platform.isIOS) {
-      return CupertinoApp(
-        onGenerateRoute: AppRoutes.cupertinoPageRoute,
-      );
-    } else {
-      var appProvider = Provider.of<AppProvider>(context);
-      return MaterialApp(
-        title: "Jamiee",
+      child: MaterialApp(
+        title: "Jamiie",
         theme: ThemeData(
           primaryColor: AppColors.primaryColorPurple,
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: CreatePoolPage(),
-        home: appProvider.child,
+        // home: LoginPage(),
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ),
         debugShowCheckedModeBanner: true,
-      );
-    }
+      ),
+    );
   }
 }
+

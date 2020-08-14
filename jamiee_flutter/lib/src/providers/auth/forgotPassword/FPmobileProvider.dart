@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamiee_flutter/src/server/endpoint.dart';
 import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
 import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
 
 class ForgotPasswordProvider extends ChangeNotifier {
@@ -28,21 +27,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
     );
   }
 
-  // String loginPageMobileValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter Mobile Number";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter Mobile Number";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter Mobile Number";
-  //   } else if (!AppRegularExpression.mobileRegExp
-  //       .hasMatch(data.toString().trim())) {
-  //     return "Please enter a valid Mobile Number";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   void forgotPassword() async {
     onceFormsubmitted = true;
     notifyListeners();
@@ -56,6 +40,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
         key: forgotPasswordScaffoldKey,
         endPoint: EndPoints.forgotPassword,
         afterRequest: () {},
+        //TODO:EDIT MOBILE NUMBER HARDCODE
         body: {"phone": "+91$mobile"},
       );
       if (body["status"]) {
@@ -67,6 +52,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
             forgotPasswordScaffoldKey.currentContext, "/FPOtpPage");
       } else {
         onceClicked = false;
+        onceFormsubmitted = false;
         notifyListeners();
       }
     }
