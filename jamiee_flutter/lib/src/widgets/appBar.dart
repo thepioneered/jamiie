@@ -7,7 +7,6 @@ class AppBarWidget {
       {@required bool isRegistration}) {
     return AppBar(
       centerTitle: true,
-      //TODO:Style pending
       title: Text(title, style: AppTextStyle.appBarTitle),
       leading: IconButton(
         icon: Container(

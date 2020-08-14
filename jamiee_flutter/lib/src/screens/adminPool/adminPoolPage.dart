@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/adminPool/creatPool.dart';
-// import 'package:jamiee_flutter/src/utils/roughWork.dart';
+import '../../screens/adminPool/creatPool.dart';
 import '../../styles/colors.dart';
 
 class AdminPool extends StatefulWidget {
