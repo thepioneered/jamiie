@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/utils/roughWork.dart';
 import '../screens/adminPool/adminPoolPage.dart';
 import '../styles/colors.dart';
 import 'Dashboard/dashboard.dart';
@@ -30,7 +29,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
         boxShadow: [
           BoxShadow(
             color: Colors.grey,
-            offset: Offset(0.0, 1.0), //(x,y)
+            offset: Offset(0.0, 1.0),
             blurRadius: 6.0,
           ),
         ],
@@ -117,11 +116,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    print("State is set");
-    print(index);
-    setContext(context);
     return Scaffold(
-      
       body: _pages.elementAt(index),
       bottomNavigationBar: _bottomNavigationBar(),
     );

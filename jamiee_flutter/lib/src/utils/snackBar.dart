@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../styles/text.dart';
 
 class AppSnackBar {
   static SnackBar snackBar({
