@@ -40,7 +40,7 @@ function Header({ toggleSidebar }) {
       <div className={styles.hamburger} onClick={toggleSidebar}>
         <span className="material-icons">menu</span>
       </div>
-      <div className={styles.searchbar}>
+      {/* <div className={styles.searchbar}>
         <input
           type="text"
           className={styles.input}
@@ -78,7 +78,8 @@ function Header({ toggleSidebar }) {
           </a>
         </div>
         <span className={`material-icons ${styles.search__icon}`}>search</span>
-      </div>
+        </div>*/}
+      <div className={styles.heading}>Admin Console - </div>
       <div className={styles.account__info}>
         <div className={styles.name}>Paritosh Batish</div>
         <div className={styles.admin}>Admin</div>

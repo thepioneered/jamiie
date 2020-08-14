@@ -1,0 +1,34 @@
+@import "./variables.module.scss";
+
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(244, 246, 251, 0.7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  margin: 2.11em;
+  $size: 85px;
+  $border-size: 8px;
+  height: $size;
+  width: $size;
+  align-self: center;
+  border-radius: 50%;
+  border: $border-size solid transparent;
+  border-top: $border-size solid $primary-blue;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

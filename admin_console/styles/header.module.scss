@@ -124,6 +124,21 @@ $menu-size: 2.6em;
 }
 
 // ------------
+// heading
+// ------------
+
+.heading {
+  font-size: 1.4em;
+  color: $primary-gray;
+}
+
+.heading::after {
+  content: "JAMIIE";
+  font-weight: 700;
+  color: $primary-blue;
+}
+
+// ------------
 // account-info
 // ------------
 

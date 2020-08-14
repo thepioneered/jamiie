@@ -15,6 +15,7 @@ export default function AvatarMenu({ toggle_avatar_menu }) {
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      changeGlobal("layoutLoader");
     };
   }, []);
 
@@ -32,9 +33,13 @@ export default function AvatarMenu({ toggle_avatar_menu }) {
     try {
       await postDataWithXcsrf("LOGOUT_ADMIN", {});
       changeGlobal("tokenValidated");
+      changeGlobal("layoutLoader");
       router.push("/login");
     } catch (e) {
       console.log("Logout Err", e);
+      changeGlobal("tokenValidated");
+      changeGlobal("layoutLoader");
+      router.push("/login");
     }
   };
 

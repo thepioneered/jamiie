@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
     isLoading: true,
     tokenValidated: false,
     isSidebarOpen: true,
+    layoutLoader: false,
   });
 
   const router = useRouter();

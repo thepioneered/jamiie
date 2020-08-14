@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import Head from "next/head";
-import { Header, Sidebar } from "./index";
+import { Header, Sidebar, LayoutLoader } from "./index";
 import { LoaderContext } from "../../pages/_app";
 import { useRouter } from "next/router";
 
@@ -17,6 +17,8 @@ function Layout({ children }) {
     changeGlobal("isSidebarOpen");
   };
 
+  console.log(state);
+
   return (
     <div className="App">
       <Head>
@@ -24,6 +26,7 @@ function Layout({ children }) {
       </Head>
       <Header toggleSidebar={toggleSidebar} />
       <Sidebar isSidebarOpen={state.isSidebarOpen} />
+      {state.layoutLoader && <LayoutLoader />}
       <main>{children}</main>
     </div>
   );
