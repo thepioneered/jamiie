@@ -162,7 +162,7 @@ class ForgotPassword(APIView):
         return Response(status=status.HTTP_200_OK) 
     def put(self,request,id):
         data = request.data
-        phone = id
+        phone = "+"+str(id)
         password = data["password"]
         user = User.objects.get(phone=phone)
         user.set_password(password)
@@ -242,3 +242,4 @@ class Check(APIView):
                         return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)
                 else:
                     return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)                  
+

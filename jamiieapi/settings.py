@@ -67,7 +67,7 @@ REST_FRAMEWORK = {
 }
 
 
-ROOT_URLCONF = 'practiceapi.urls'
+ROOT_URLCONF = 'jamiieapi.urls'
 
 TEMPLATES = [
     {
@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'practiceapi.wsgi.application'
+WSGI_APPLICATION = 'jamiieapi.wsgi.application'
 
 
 # Database
