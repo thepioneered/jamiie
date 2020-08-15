@@ -7,3 +7,5 @@ class UserModel(admin.ModelAdmin):
     list_display = ['phone','email','name','state','city','createdat','lastlogin']
 admin.site.register(User, UserModel)
 admin.site.register(OTP)
+admin.site.register(RiskCondition)
+admin.site.register(UserInfo)

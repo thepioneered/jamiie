@@ -245,3 +245,37 @@ class Check(APIView):
                 else:
                     return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)                  
 
+class ScoreCalculator(APIView):
+    authentication_classes = []
+    permission_classes = []
+    def post(self,request):
+        data  = request.data
+        phone = data['phone']
+        jobage = data['jobage']
+        family = data['family']
+        age = data['age']
+        savingmoney = data['savingmoney']
+        loans  = data['loans']
+        living = data['living']
+        jobage = RiskCondition.objects.get(jobage=jobage)
+        family = RiskCondition.objects.get(family=family)
+        age = RiskCondition.objects.get(age=age)
+        savingmoney = RiskCondition.objects.get(savingmoney=savingmoney)
+        loans = RiskCondition.objects.get(loans=loans)
+        living = RiskCondition.objects.get(living=living)
+        riskscore = jobage.score + family.score + age.score + savingmoney.score + loans.score + living.score
+        serializer = UserInfoSerializer(data = data)
+        if serializer.is_valid():
+                serializer.save()
+                user = UserInfo.objects.get(phone=phone)
+                user.riskscore = riskscore
+                if riskscore >=24 and riskscore<=50:
+                    user.riskband = 'Risky'
+                elif riskscore >=51 and riskscore<=70:
+                    user.riskband = 'Moderate'
+                else:
+                    user.riskband = 'Low'
+                user.save()
+                return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)

@@ -51,7 +51,7 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser):
-    phone = models.CharField( max_length=255,unique=True, null=False, blank= False)
+    phone = models.CharField( primary_key = True, max_length=255,unique=True, null=False, blank= False)
     email = models.EmailField(unique=True, null=False, blank = False)
     name = models.CharField(max_length=255, blank=False, null = False)
     state = models.CharField(max_length=255, blank=False, null = False)
@@ -67,7 +67,8 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['email','name','state','city']
 
     def __str__(self):
-        return self.name
+        phone = self.phone
+        return str(phone)
 
     def get_full_name(self):
         return self.name
@@ -101,3 +102,32 @@ class OTP(models.Model):
 
     def __str__(self):
         return self.phone
+
+class RiskCondition(models.Model):
+    jobage = models.CharField(max_length=255)
+    family = models.CharField(max_length=255)
+    age = models.CharField(max_length=255)
+    savingmoney = models.CharField(max_length=255)
+    loans = models.CharField(max_length=255)
+    living = models.CharField(max_length=255)
+    profilepic = models.BooleanField(default=False)
+    score = models.IntegerField(blank=False, null=False)
+    def __str__(self):
+        score = self.score
+        return 'score = '+str(score)
+
+class UserInfo(models.Model):
+    phone = models.ForeignKey(User, related_name='phoneno', on_delete = models.CASCADE)
+    jobage = models.CharField(max_length=255)
+    family = models.CharField(max_length=255)
+    age = models.CharField(max_length=255)
+    savingmoney = models.CharField(max_length=255)
+    loans = models.CharField(max_length=255)
+    living = models.CharField(max_length=255)
+    riskscore = models.IntegerField(blank=False, null=True)
+    riskband = models.CharField(max_length=255)
+
+    def __str__(self):
+        phone=self.phone
+        return str(phone)
+
