@@ -152,3 +152,18 @@ data:
 
 Response: status = 200
 Token and cookies will get deleted
+
+RiskScore :
+
+endpoint: /api/riskscore
+Request Type: 'POST'
+data:
+{
+    "phone":"9816456565",
+    "jobage":"select options",
+    "family":"select options",
+    "age":"select options",
+    "savingmoney":"select options",
+    "loans":"select options",
+    "living":"select options"
+}
