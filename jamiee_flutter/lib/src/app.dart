@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -94,12 +95,12 @@ class _AppState extends State<App> {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AfterLoginFormPage(),
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+         home: AfterLoginFormPage(),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvider, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );
