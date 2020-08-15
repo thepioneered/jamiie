@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/AfterLoginForm/formProvider.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/widgets/AfterLoginForm/formwidget.dart';
-import 'package:jamiee_flutter/src/widgets/appBar.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../providers/AfterLoginForm/formProvider.dart';
+import '../../styles/text.dart';
+import '../../widgets/AfterLoginForm/formwidget.dart';
+import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 
 class AfterLoginFormPage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../styles/text.dart';
 import '../styles/colors.dart';
 
 class AppBarWidget {

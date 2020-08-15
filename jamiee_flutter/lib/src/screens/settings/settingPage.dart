@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/providers/settings/logoutProvider.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
+import '../../providers/settings/logoutProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import '../../utils/icons.dart';
-import '../../widgets/settings/logoutDialog.dart';
 import '../../widgets/topHeading.dart';
 import '../../styles/base.dart';
 import '../../styles/text.dart';
@@ -44,7 +41,7 @@ class SettingPage extends StatelessWidget {
                       AppSettingButtons(
                         title: "Contact Us",
                         subtitle: "Contact us for more support",
-                        icon: AppIcons.questionIcon,
+                        icon: AppIcons.headsetIcon,
                         onTap: () {
                           Navigator.pushNamed(context, "/ContactPage");
                         },
@@ -52,7 +49,7 @@ class SettingPage extends StatelessWidget {
                       AppSettingButtons(
                           title: "FAQ's",
                           subtitle: "Checkout some FAQ's",
-                          icon: AppIcons.profileIcon,
+                          icon: AppIcons.questionIcon,
                           onTap: () {
                             Navigator.pushNamed(context, "/FaqPage");
                           }),

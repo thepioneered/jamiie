@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../widgets/button/appButton.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
 class MobileProvider extends ChangeNotifier {

@@ -8,10 +8,13 @@ class AppIcons {
         size: 20.0,
       );
   static FaIcon get infoIcon => FaIcon(
-        FontAwesomeIcons.info,
+        FontAwesomeIcons.infoCircle
+      );
+  static FaIcon get headsetIcon => FaIcon(
+        FontAwesomeIcons.headset
       );
   static FaIcon get profileIcon => FaIcon(
-        FontAwesomeIcons.userCircle,
+        FontAwesomeIcons.info,
         size: 20.0,
       );
   static FaIcon get questionIcon => FaIcon(

@@ -1,12 +1,12 @@
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:provider/provider.dart';
+
+import '../../../widgets/pageHeading.dart';
+import 'package:numeric_keyboard/numeric_keyboard.dart';
+import '../../../providers/auth/signup/otpProvider.dart';
+import '../../../widgets/appBar.dart';
+import '../../../styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../providers/auth/signup/otpProvider.dart';
-import '../../../styles/colors.dart';
-import '../../../widgets/appBar.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);

@@ -1,19 +1,14 @@
-import 'package:flutter/services.dart';
-import 'package:jamiee_flutter/src/providers/AfterLoginForm/formProvider.dart';
-import 'package:jamiee_flutter/src/screens/AfterLoginForm/form.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import './providers/AfterLoginForm/formProvider.dart';
 import 'providers/adminPool/createPoolProvider.dart';
 import 'providers/Dashboard/dashboardProvider.dart';
 import 'providers/auth/forgotPassword/FPotpProvider.dart';
-import 'providers/auth/forgotPassword/FPmobileProvider.dart';
 import 'providers/app/appProvider.dart';
-import 'providers/auth/forgotPassword/FPnewPasswordProvider.dart';
 import 'providers/auth/login/loginProvider.dart';
 import 'providers/auth/signup/mobileProvider.dart';
 import 'providers/auth/signup/otpProvider.dart';
-import 'providers/auth/signup/signupProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
@@ -66,21 +61,20 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => OtpProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => SignupProvider(),
-        ),
+       
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => ForgotPasswordProvider(),
-        ),
+
+
+        //Forgot Password Provider
+        // ChangeNotifierProvider(
+          
+        // ),
         ChangeNotifierProvider(
           create: (context) => ForgotPasswordOtpProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => NewPasswordProvider(),
-        ),
+        //TODO NEW PASSWORD REMOVED FROM HERE
 
         ChangeNotifierProvider(
           create: (_) => CreatePoolProvider(),
@@ -100,12 +94,12 @@ class _AppState extends State<App> {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: AfterLoginFormPage(),
-        // home: Consumer<AppProvider>(
-        //   builder: (_, appProvider, child) {
-        //     return appProvider.child;
-        //   },
-        // ),
+        // home: AfterLoginFormPage(),
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ),
         debugShowCheckedModeBanner: true,
       ),
     );

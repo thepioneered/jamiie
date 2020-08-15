@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/utils/onWillPopScope.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
-import 'package:jamiee_flutter/src/widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
+import '../../../utils/onWillPopScope.dart';
+import '../../../utils/validationRegex.dart';
+import '../../../widgets/appTextFields/appTextField.dart';
+import '../../../widgets/pageHeading.dart';
 import '../../../providers/auth/signup/mobileProvider.dart';
 import '../../../styles/colors.dart';
 import '../../../widgets/appBar.dart';

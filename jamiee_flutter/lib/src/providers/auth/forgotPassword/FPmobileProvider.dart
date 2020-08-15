@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../server/endpoint.dart';
+import '../../../server/networkCalls.dart';
+import '../../../widgets/button/appButton.dart';
 
 class ForgotPasswordProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> forgotPasswordScaffoldKey =
@@ -52,7 +52,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
             forgotPasswordScaffoldKey.currentContext, "/FPOtpPage");
       } else {
         onceClicked = false;
-        onceFormsubmitted = false;
+        // onceFormsubmitted = false;
         notifyListeners();
       }
     }

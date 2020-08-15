@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../../styles/colors.dart';
+import '../../styles/text.dart';
 
 class AppInputDecoration {
   static InputDecoration textFieldDecoration(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/userPoolScreens/searchPoolPage.dart';
+import '../../screens/userPoolScreens/searchPoolPage.dart';
 import '../../styles/base.dart';
 import '../../utils/icons.dart';
 import '../../widgets/topHeading.dart';

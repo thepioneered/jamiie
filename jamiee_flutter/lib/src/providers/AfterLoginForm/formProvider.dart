@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/models/afterLoginform.dart';
+import '../../models/afterLoginform.dart';
 
 class FormProvider extends ChangeNotifier{
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/Dashboard/dashboardProvider.dart';
+import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatelessWidget {

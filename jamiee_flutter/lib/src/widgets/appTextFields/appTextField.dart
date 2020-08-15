@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/inputDeoration.dart';
+import '../../styles/text.dart';
+import '../../widgets/appTextFields/inputDeoration.dart';
 
 class AppTextField {
   static SizedBox screenTextField(

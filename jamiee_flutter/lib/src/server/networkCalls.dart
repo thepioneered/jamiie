@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/statusCode.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/snackBar.dart';
+import 'endpoint.dart';
+import 'statusCode.dart';
+import '../styles/colors.dart';
+import '../utils/snackBar.dart';
 
 class NetworkCalls {
   static bool status;

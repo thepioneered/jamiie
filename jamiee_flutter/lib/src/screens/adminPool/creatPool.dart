@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jamiee_flutter/src/providers/adminPool/createPoolProvider.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/utils/icons.dart';
-import 'package:jamiee_flutter/src/utils/validationRegex.dart';
-import 'package:jamiee_flutter/src/widgets/appTextFields/appTextField.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../providers/adminPool/createPoolProvider.dart';
+import '../../styles/text.dart';
+import '../../utils/icons.dart';
+import '../../utils/validationRegex.dart';
+import '../../widgets/appTextFields/appTextField.dart';
+import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../../styles/colors.dart';
+import '../../styles/text.dart';
 
 class OurDropdown {
   static Container dropdown({
@@ -22,7 +22,6 @@ class OurDropdown {
           dropdownColor: AppColors.white,
           hint: Text('Choose option'),
           iconSize: 40,
-          //iconEnabledColor: AppColors.primaryBlue,
           style: AppTextStyle.dropDownStyleForm,
           underline: SizedBox(),
           isExpanded: true,

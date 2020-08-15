@@ -1,5 +1,5 @@
-name: jamiee_flutter
-description: A new Flutter project.
+name: Jamiie
+description: A project made for project Jamiie
 
 publish_to: "none"
 
@@ -22,6 +22,7 @@ dependencies:
   data_connection_checker: ^0.3.4
   google_sign_in: ^4.5.1
   flutter_svg: ^0.18.0
+  share: ^0.6.4+3
 
 dev_dependencies:
   flutter_test:

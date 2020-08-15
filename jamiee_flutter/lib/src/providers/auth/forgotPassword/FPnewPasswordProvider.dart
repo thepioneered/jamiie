@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/providers/auth/forgotPassword/FPmobileProvider.dart';
-import 'package:jamiee_flutter/src/server/endpoint.dart';
-import 'package:jamiee_flutter/src/server/networkCalls.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/snackBar.dart';
-import 'package:jamiee_flutter/src/widgets/button/appButton.dart';
+import '../../../providers/auth/forgotPassword/FPmobileProvider.dart';
+import '../../../server/endpoint.dart';
+import '../../../server/networkCalls.dart';
+import '../../../styles/colors.dart';
+import '../../../utils/snackBar.dart';
+import '../../../widgets/button/appButton.dart';
 
 class NewPasswordProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> newpassScaffoldKey = GlobalKey<ScaffoldState>();

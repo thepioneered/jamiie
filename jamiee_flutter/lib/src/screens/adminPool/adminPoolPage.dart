@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../../styles/text.dart';
 import '../../screens/adminPool/creatPool.dart';
 import '../../styles/colors.dart';
 
@@ -13,7 +13,7 @@ class _AdminPoolState extends State<AdminPool> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: Color(0XFFf5f7fb),
         floatingActionButton: FloatingActionButton(
           tooltip: "Create Pool",
           onPressed: () {
@@ -94,10 +94,15 @@ class _AdminPoolState extends State<AdminPool> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 6,
                       itemBuilder: (context, index) {
-                        return CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: AppColors.primaryColorPurple,
-                          backgroundImage: AssetImage("assets/logo3.png"),
+                        return Container(
+                          margin: const EdgeInsets.only(right:10.0),
+                          child: CircleAvatar(
+                            radius: 24.0,
+                            backgroundColor: AppColors.primaryColorPurple,
+                            backgroundImage: NetworkImage(
+                              "https://picsum.photos/200",
+                            ),
+                          ),
                         );
                       },
                     ),

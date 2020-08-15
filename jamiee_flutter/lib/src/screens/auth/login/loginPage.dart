@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/auth/singup/mobilePage.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
-import 'package:jamiee_flutter/src/utils/snackBar.dart';
+import '../../../styles/text.dart';
 import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../providers/auth/login/loginProvider.dart';

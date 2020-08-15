@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/base.dart';
-import 'package:jamiee_flutter/src/styles/text.dart';
+import '../styles/base.dart';
+import '../styles/text.dart';
 
 Widget topHeading({@required String title}) {
   return Padding(

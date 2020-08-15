@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
+import '../styles/colors.dart';
 
 Future<bool> appConfirmRemoveScreenDialog(BuildContext context) async {
   showDialog(

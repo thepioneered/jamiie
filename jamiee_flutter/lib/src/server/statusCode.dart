@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/styles/colors.dart';
-import 'package:jamiee_flutter/src/utils/snackBar.dart';
+import '../styles/colors.dart';
+import '../utils/snackBar.dart';
 
 class StatusCodeCheck {
   static void checkStatusCode(int statusCode, GlobalKey<ScaffoldState> key) {

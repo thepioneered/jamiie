@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/screens/AfterLoginForm/form.dart';
 import 'package:provider/provider.dart';
+import '../screens/AfterLoginForm/form.dart';
 import '../screens/auth/forgotPassword/forgotPassword.dart';
 import '../screens/auth/forgotPassword/FPnewpassPage.dart';
 import '../screens/auth/forgotPassword/otpPage.dart';

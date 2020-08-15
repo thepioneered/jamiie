@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamiee_flutter/src/models/createPool.dart';
+import '../../models/createPool.dart';
 
 class CreatePoolProvider with ChangeNotifier {
   final createPoolFormKey = GlobalKey<FormState>();
