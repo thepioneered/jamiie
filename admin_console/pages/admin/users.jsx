@@ -1,51 +1,8 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import { Layout, TotalCard } from "../../src/components";
+import { Layout, TotalCard, Modal } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-
-const getRows = (arr) => {
-  return arr.map((item) => row(item));
-};
-
-const deleteUser = () => {
-  console.log("Delete");
-};
-
-const openModal = () => {
-  console.log("Modal...");
-};
-
-const row = ({ no, name, date, status }) => {
-  return (
-    <tr key={no}>
-      <td>{no}</td>
-      <td>{name}</td>
-      <td>{date}</td>
-      <td>{status}</td>
-      <td className={styles.action}>
-        <span
-          className={cn("material-icons", styles.delete)}
-          onClick={deleteUser}
-        >
-          delete_outline
-        </span>
-        {/* <span
-          className={cn("material-icons-outlined", styles.info)}
-          onClick={openModal}
-        >
-          info
-        </span> */}
-        <span
-          className={cn("material-icons-outlined", styles.settings)}
-          onClick={openModal}
-        >
-          settings
-        </span>
-      </td>
-    </tr>
-  );
-};
 
 function Users() {
   const [data, changeData] = useState([
@@ -110,6 +67,57 @@ function Users() {
       status: "Active",
     },
   ]);
+  const [showModal, toggleModal] = useState(false);
+  const [modalHeader, setModalHeader] = useState("User Info");
+
+  const getRows = (arr) => {
+    return arr.map((item) => row(item));
+  };
+
+  const deleteUser = () => {
+    setModalHeader("Are You Sure?");
+    toggleModal(true);
+  };
+
+  const openModal = () => {
+    setModalHeader("User Info");
+    toggleModal(true);
+  };
+
+  const closeModal = () => {
+    toggleModal(false);
+  };
+
+  const row = ({ no, name, date, status }) => {
+    return (
+      <tr key={no}>
+        <td>{no}</td>
+        <td>{name}</td>
+        <td>{date}</td>
+        <td>{status}</td>
+        <td className={styles.action}>
+          <span
+            className={cn("material-icons", styles.delete)}
+            onClick={deleteUser}
+          >
+            delete_outline
+          </span>
+          {/* <span
+            className={cn("material-icons-outlined", styles.info)}
+            onClick={openModal}
+          >
+            info
+          </span> */}
+          <span
+            className={cn("material-icons-outlined", styles.settings)}
+            onClick={openModal}
+          >
+            settings
+          </span>
+        </td>
+      </tr>
+    );
+  };
 
   return (
     <Layout>
@@ -136,6 +144,9 @@ function Users() {
             </table>
           </div>
         </div>
+        <Modal show={showModal} onClose={closeModal} header={modalHeader}>
+          ......Modal......
+        </Modal>
       </div>
     </Layout>
   );

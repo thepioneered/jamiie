@@ -15,7 +15,6 @@ export default function AvatarMenu({ toggle_avatar_menu }) {
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      changeGlobal("layoutLoader");
     };
   }, []);
 

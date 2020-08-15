@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const setToken = async () => {
     const isTokenInCookie = await checkToken();
+    console.log("isToken:", isTokenInCookie);
     if (isTokenInCookie) {
       setGlobal((prevState) => {
         return { ...prevState, isLoading: false, tokenValidated: true };

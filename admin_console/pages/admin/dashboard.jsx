@@ -8,11 +8,11 @@ export default function Dashboard() {
     <Layout>
       <div className={styles.Dashboard}>
         <div className={card.container}>
-          {/* <TotalCard
+          <TotalCard
             name="Total Transactions"
             number="46289"
             percentage="2.4"
-          /> */}
+          />
           <TotalCard name="Total Users" number="22544" percentage="0.4" />
           <TotalCard name="Total Groups" number="46289" percentage="-1.4" />
           <TotalCard name="Completed Pools" number="33289" percentage="0" />
