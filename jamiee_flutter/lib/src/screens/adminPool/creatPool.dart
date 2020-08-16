@@ -18,8 +18,8 @@ class CreatePoolPage extends StatefulWidget {
 
 class _CreatePoolPageState extends State<CreatePoolPage> {
   FocusNode nodeAmount;
-  List<String> _dropdownValues = ["One", "Three", "Four"];
-  int index = 0;
+  List<String> _dropdownValues = ["Monthly", "Weekly"];
+  // int index = 0;
   @override
   void initState() {
     nodeAmount = FocusNode();
@@ -52,26 +52,30 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                   title: "Create Pool",
                   subTitle: "Enter details to create your own pool"),
               Form(
-                autovalidate: createPoolProvider.onceFormValidated,
+                autovalidate: createPoolProvider.pageModel.onceFormSubmitted,
                 key: createPoolProvider.createPoolFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppTextField.screenTextField(
-                        hintText: "Pool Name",
-                        onEdittingComplete: () => nodeAmount.requestFocus(),
-                        validator: TextFieldValidation.nameValidation,
-                        autoValidate: false,
-                        onSaved: (e) =>
-                            createPoolProvider.createPool.poolName = e,
-                        prefixIcon: FontAwesomeIcons.pen),
+                      hintText: "Pool Name",
+                      onEdittingComplete: () => nodeAmount.requestFocus(),
+                      validator: TextFieldValidation.nameValidation,
+                      autoValidate: false,
+                      onSaved: (e) =>
+                          createPoolProvider.createPool.poolName = e,
+                      prefixIcon: FontAwesomeIcons.pen,
+                    ),
                     AppTextField.screenTextField(
                         toolbarOptions: ToolbarOptions(paste: false),
                         onEyeClick: Tooltip(
-                            padding: EdgeInsets.all(10.0),
-                            message:
-                                "Data regarding what is amount \nwill be submitted here",
-                            child: Icon(Icons.info)),
+                          padding: EdgeInsets.all(10.0),
+                          message:
+                              "Data regarding what is amount \nwill be submitted here",
+                          child: Icon(
+                            Icons.info,
+                          ),
+                        ),
                         hintText: "Pool Amount",
                         validator: TextFieldValidation.amountValidation,
                         autoValidate: false,
@@ -129,14 +133,13 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                             ],
                           ),
                         ),
-                        //  DropdownButtonHideUnderline(
-                        //       child:
-
                         Container(
                           width:
                               (MediaQuery.of(context).size.width - 30.0) / 2 -
                                   15.0,
                           child: DropdownButtonFormField<String>(
+                            onSaved: (e) =>
+                                createPoolProvider.createPool.poolType = e,
                             decoration: InputDecoration(
                               errorStyle: AppTextStyle.errorText,
                               contentPadding:
@@ -158,9 +161,12 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                               'Pool Type',
                               style: AppTextStyle.hintText,
                             ),
-                            validator: (value) =>
-                                value == null ? 'Please select Pool type' : null,
-                            onChanged: (e) {},
+                            validator: (value) => value == null
+                                ? 'Please select Pool type'
+                                : null,
+                            onChanged: (e) {
+                              print(e);
+                            },
                             items: _dropdownValues
                                 .map((value) => DropdownMenuItem<String>(
                                       child: Text(
@@ -178,6 +184,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                       height: 30.0,
                     ),
                     RangeSlider(
+                    
                         activeColor: AppColors.primaryColorPurple,
                         divisions: 30,
                         labels: RangeLabels(createPoolProvider.start.toString(),
@@ -207,21 +214,19 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                     SizedBox(
                       height: 30.0,
                     ),
-                    createPoolProvider.onceClicked
+                    createPoolProvider.pageModel.onceClicked
                         ? AppButton.loginButton(
                             loader: true, onTap: () {}, title: "Create Pool")
                         : AppButton.loginButton(
                             loader: false,
                             onTap: () {
-                              // print(Focus.of(context).hasFocus);
-                              // if (Focus.of(context).hasFocus)
-                              //   Focus.of(context).unfocus();
+                              FocusScope.of(context).unfocus();
                               createPoolProvider.createPoolLogic();
                             },
                             title: "Create Pool"),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

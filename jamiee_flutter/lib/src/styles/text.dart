@@ -101,6 +101,11 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         fontSize: 16.0,
       );
+  static TextStyle get poolDataText => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 22.0,
+      );
   static TextStyle get snackBar => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,

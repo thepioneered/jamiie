@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/pageModel.dart';
 import 'package:flutter/material.dart';
 import '../../models/createPoolModel.dart';
 
@@ -7,8 +8,9 @@ class CreatePoolProvider with ChangeNotifier {
   DateTime selectedDate;
 
   CreatePoolModel createPool;
-  bool onceClicked;
-  bool onceFormValidated;
+  PageModel pageModel;
+  // bool onceClicked;
+  // bool onceFormValidated;
   bool onceDatePickerClicked;
   double start;
   double end;
@@ -20,8 +22,9 @@ class CreatePoolProvider with ChangeNotifier {
     createPool = CreatePoolModel();
     selectedDate = DateTime(0);
     dateHasError = false;
-    onceClicked = false;
-    onceFormValidated = false;
+    pageModel = PageModel();
+    // onceClicked = false;
+    // onceFormValidated = false;
     onceDatePickerClicked = false;
   }
 
@@ -29,7 +32,6 @@ class CreatePoolProvider with ChangeNotifier {
   void dispose() {
     super.dispose();
     onceDatePickerClicked = false;
-
     print("DIPOSED");
   }
 
@@ -56,7 +58,8 @@ class CreatePoolProvider with ChangeNotifier {
   void createPoolLogic() {
     // print(selectedDate.toIso8601String()[0]);
     // print(selectedDate);
-    onceFormValidated = true;
+    // onceFormValidated = true;
+    pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (createPoolFormKey.currentState.validate() &&
         selectedDate.toIso8601String()[0] != '0') {
@@ -68,6 +71,7 @@ class CreatePoolProvider with ChangeNotifier {
       print(createPool.poolName);
       print(createPool.amount);
       print(selectedDate);
+      print(createPool.poolType);
     } else {
       if (selectedDate.toIso8601String()[0] != '0') {
         dateHasError = false;
