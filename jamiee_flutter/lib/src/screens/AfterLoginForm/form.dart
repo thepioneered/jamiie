@@ -1,15 +1,23 @@
+import 'package:Jamiie/src/repositry/afterLoginForm.dart';
 import 'package:flutter/material.dart';
-import '../../providers/AfterLoginForm/formProvider.dart';
+import '../../providers/AfterLoginForm/afterLoginForm.dart';
 import '../../styles/text.dart';
 import '../../widgets/AfterLoginForm/formwidget.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 
-class AfterLoginFormPage extends StatelessWidget {
+class AfterLoginFormPage extends StatefulWidget {
+  @override
+  _AfterLoginFormPageState createState() => _AfterLoginFormPageState();
+}
+
+class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
   @override
   Widget build(BuildContext context) {
-    var formProvider = Provider.of<FormProvider>(context);
-
+    try{
+    var formProvider = Provider.of<AfterLoginFormProvider>(context);
+    // return Consumer<AfterLoginFormProvider>(
+    //     builder: (_, formProvider, child) {
     return Scaffold(
       key: formProvider.scaffoldKey,
       body: SingleChildScrollView(
@@ -29,12 +37,7 @@ class AfterLoginFormPage extends StatelessWidget {
                   children: [
                     Text('Job Age :', style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: [
-                        'upto 1 year',
-                        'upto 2 years',
-                        'upto 3 years',
-                        'upto 4 years'
-                      ],
+                      items: AfterLoginDataRepo.one,
                       onchanged: (e) {
                         formProvider.listModel.data1 = e;
                         formProvider.callListners();
@@ -45,12 +48,7 @@ class AfterLoginFormPage extends StatelessWidget {
                     ),
                     Text('Family :', style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: [
-                        'Single no children',
-                        'Single with children',
-                        'Stable relation or marriage with no children',
-                        'Stable relation or marriage with children'
-                      ],
+                      items: AfterLoginDataRepo.two,
                       onchanged: (e) {
                         formProvider.listModel.data2 = e;
                         formProvider.callListners();
@@ -61,12 +59,7 @@ class AfterLoginFormPage extends StatelessWidget {
                     ),
                     Text('Age :', style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: [
-                        '<20 years',
-                        '<25 years',
-                        '<30 years',
-                        '>35 years'
-                      ],
+                      items: AfterLoginDataRepo.three,
                       onchanged: (e) {
                         formProvider.listModel.data3 = e;
                         formProvider.callListners();
@@ -78,7 +71,7 @@ class AfterLoginFormPage extends StatelessWidget {
                     Text('Saving Money since how many Years :',
                         style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: ['<1', '1-2', '2-3', '>3'],
+                      items: AfterLoginDataRepo.four,
                       onchanged: (e) {
                         formProvider.listModel.data4 = e;
                         formProvider.callListners();
@@ -90,7 +83,7 @@ class AfterLoginFormPage extends StatelessWidget {
                     Text('How Many loans you have :',
                         style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: ['>3', '3', '2', '1'],
+                      items: AfterLoginDataRepo.five,
                       onchanged: (e) {
                         formProvider.listModel.data5 = e;
                         formProvider.callListners();
@@ -102,7 +95,7 @@ class AfterLoginFormPage extends StatelessWidget {
                     Text('Living in USA since :',
                         style: AppTextStyle.subheadingTextForm),
                     OurDropdown.dropdown(
-                      items: ['1', '2', '3', '>3'],
+                      items: AfterLoginDataRepo.six,
                       onchanged: (e) {
                         formProvider.listModel.data6 = e;
                         formProvider.callListners();
@@ -136,6 +129,13 @@ class AfterLoginFormPage extends StatelessWidget {
           ),
         ),
       ),
+      //   );
+      // },
     );
+  }catch(e){
+    print(e);
+    
   }
+  }
+  
 }

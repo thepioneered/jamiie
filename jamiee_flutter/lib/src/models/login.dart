@@ -9,4 +9,9 @@ class Login {
   void setPassword(String _password) {
     this.password = sha256.convert(utf8.encode(_password)).toString();
   }
+
+  Map<String, dynamic> toJson() => {
+        "phone": "+91$mobile",
+        "password": "$password",
+      };
 }

@@ -52,8 +52,7 @@ class LoginProvider extends ChangeNotifier {
       loginFormKey.currentState.save();
       // Todo:Change is req
       login.mobile = '+91${login.mobile}';
-      print(login.mobile);
-      print(login.password);
+      print(login.toJson());
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: loginScaffoldKey,
           endPoint: EndPoints.userLogin,

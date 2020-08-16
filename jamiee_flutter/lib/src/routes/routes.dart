@@ -81,7 +81,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => NewPasswordPage(),
         );
-      case "/AfterLoginForm":
+      case "/AfterLoginFormPage":
         return MaterialPageRoute(
           builder: (context) => AfterLoginFormPage(),
         );

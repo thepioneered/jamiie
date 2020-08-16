@@ -14,12 +14,19 @@ class OurDropdown {
       padding: EdgeInsets.symmetric(vertical: 20),
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
+          errorStyle: AppTextStyle.errorText,
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
           ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.grayInputHeading),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.primaryColorPurple),
+          ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.primaryBlue,
+              color: AppColors.primaryColorPurple,
               width: 1,
             ),
           ),

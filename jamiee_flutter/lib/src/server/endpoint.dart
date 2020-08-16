@@ -6,6 +6,7 @@ class EndPoints {
   static const String userLogin = "/api/login";
   static const String userlogout = "/api/logout";
   static const String forgotPassword = "/api/forgotpassword";
+  static const String riskScore = "/api/riskscore";
 
   //Header
   static const Map<String, String> header = {"Content-Type": "application/json"};

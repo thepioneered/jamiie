@@ -1,13 +1,15 @@
+import 'package:Jamiie/src/server/endpoint.dart';
+import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:flutter/material.dart';
 import '../../models/afterLoginform.dart';
 
-class FormProvider extends ChangeNotifier {
+class AfterLoginFormProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  AfterLoginForm listModel = AfterLoginForm();
+  AfterLoginFormModel listModel = AfterLoginFormModel();
   bool autoValidate;
 
-  FormProvider() {
+  AfterLoginFormProvider() {
     autoValidate = false;
   }
 
@@ -23,20 +25,26 @@ class FormProvider extends ChangeNotifier {
     }
   }
 
-  void onPressed() {
+  void onPressed() async {
     autoValidate = true;
     notifyListeners();
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
       autoValidate = false;
       notifyListeners();
-      print(listModel.data1);
-      print(listModel.data2);
-      print(listModel.data3);
-      print(listModel.data4);
-      print(listModel.data5);
-      print(listModel.data6);
-      print(listModel.data7);
+      listModel.mobile = "9816456565";
+      print(listModel.toJson());
+
+      Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        key: scaffoldKey,
+        endPoint: EndPoints.riskScore,
+        afterRequest: () {},
+        body: listModel.toJson(),
+      );
+
+      if (body["status"]) {
+        print("Data Posted");
+      } else {}
     }
   }
 }

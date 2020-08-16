@@ -1,9 +1,8 @@
-
-import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
+import 'providers/AfterLoginForm/afterLoginForm.dart';
+import 'screens/AfterLoginForm/form.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './providers/AfterLoginForm/formProvider.dart';
 import 'providers/adminPool/createPoolProvider.dart';
 import 'providers/Dashboard/dashboardProvider.dart';
 import 'providers/auth/forgotPassword/FPotpProvider.dart';
@@ -13,6 +12,7 @@ import 'providers/auth/signup/mobileProvider.dart';
 import 'providers/auth/signup/otpProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
+import 'screens/auth/login/loginPage.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 class App extends StatefulWidget {
@@ -79,9 +79,10 @@ class _AppState extends State<App> {
 
         ChangeNotifierProvider(
           create: (_) => CreatePoolProvider(),
+          
         ),
         ChangeNotifierProvider(
-          create: (_) => FormProvider(),
+          create: (_) => AfterLoginFormProvider(),
         ),
         //Dashboard Provider
         ChangeNotifierProvider(
@@ -96,11 +97,8 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        // home: AppNavigationBar(),
-
         // home: LoginPage(),
-
-        home: AfterLoginFormPage(),
+        home:  AfterLoginFormPage(),
         // home: Consumer<AppProvider>(
         //   builder: (_, appProvider, child) {
         //     return appProvider.child;
