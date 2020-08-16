@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/models/mobileModel.dart';
-
 import '../../../models/pageModel.dart';
 import '../../../utils/sharedPref.dart';
 import 'package:flutter/cupertino.dart';

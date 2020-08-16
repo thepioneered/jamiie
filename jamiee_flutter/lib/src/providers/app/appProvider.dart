@@ -35,11 +35,6 @@ class AppProvider extends ChangeNotifier {
           child = LoginPage();
           break;
       }
-      // if (value != null) {
-      //   child = AppNavigationBar();
-      // } else {
-      //   child = LoginPage();
-      // }
       notifyListeners();
     });
   }
@@ -60,4 +55,4 @@ class AppProvider extends ChangeNotifier {
   }
 }
 
-enum PageType { LoginPage, AppNavigationBar, AfterLoginForm }
+enum PageType {LoginPage, AppNavigationBar,AfterLoginForm}

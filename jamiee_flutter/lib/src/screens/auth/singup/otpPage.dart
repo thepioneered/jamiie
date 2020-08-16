@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/utils/onWillPopScope.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/pageHeading.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -64,73 +65,76 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
   @override
   Widget build(BuildContext context) {
     var otpProvider = Provider.of<OtpProvider>(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      key: otpProvider.otpScaffoldKey,
-      appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
-        height: MediaQuery.of(context).size.height - 75.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            PageHeading.topHeading(
-                title: "Enter your OTP",
-                subTitle: "Please enter otp sent to your mobile number."),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  otpNumberWidget(0),
-                  otpNumberWidget(1),
-                  otpNumberWidget(2),
-                  otpNumberWidget(3),
-                  otpNumberWidget(4),
-                ],
+    return WillPopScope(
+      onWillPop: () => appConfirmRemoveScreenDialog(context),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        key: otpProvider.otpScaffoldKey,
+        appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          height: MediaQuery.of(context).size.height - 75.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              PageHeading.topHeading(
+                  title: "Enter your OTP",
+                  subTitle: "Please enter otp sent to your mobile number."),
+              SizedBox(
+                height: 30.0,
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              child: otpProvider.pageModel.onceClicked
-                  ? otpProvider.verifyOTP(onTap: () {}, loader: true)
-                  : otpProvider.verifyOTP(
-                      onTap: () {
-                        otpProvider.otpModel.otp = text;
-                        otpProvider.checkOtp();
-                      },
-                      loader: false),
-            ),
-            NumericKeyboard(
-              onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
-              textColor: AppColors.black,
-              rightIcon: Icon(
-                Icons.backspace,
-                color: AppColors.black,
+              Container(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    otpNumberWidget(0),
+                    otpNumberWidget(1),
+                    otpNumberWidget(2),
+                    otpNumberWidget(3),
+                    otpNumberWidget(4),
+                  ],
+                ),
               ),
-              rightButtonFn: () {
-                if (text != "") {
-                  try {
-                    if (text.length == 5) {
-                      setState(() {
-                        text = text.substring(0, text.length - 1);
-                        complete = false;
-                      });
-                    } else {
-                      setState(() {
-                        text = text.substring(0, text.length - 1);
-                      });
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: otpProvider.pageModel.onceClicked
+                    ? otpProvider.verifyOTP(onTap: () {}, loader: true)
+                    : otpProvider.verifyOTP(
+                        onTap: () {
+                          otpProvider.otpModel.otp = text;
+                          otpProvider.checkOtp();
+                        },
+                        loader: false),
+              ),
+              NumericKeyboard(
+                onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
+                textColor: AppColors.black,
+                rightIcon: Icon(
+                  Icons.backspace,
+                  color: AppColors.black,
+                ),
+                rightButtonFn: () {
+                  if (text != "") {
+                    try {
+                      if (text.length == 5) {
+                        setState(() {
+                          text = text.substring(0, text.length - 1);
+                          complete = false;
+                        });
+                      } else {
+                        setState(() {
+                          text = text.substring(0, text.length - 1);
+                        });
+                      }
+                    } catch (e) {
+                      print(e);
                     }
-                  } catch (e) {
-                    print(e);
                   }
-                }
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

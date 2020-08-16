@@ -26,12 +26,15 @@ class TextFieldValidation {
   }
 
   static String amountValidation(String data) {
+    print(data.contains("-"));
     if (data == "null") {
       return "Please Enter Amount";
     } else if (data.trim() == null) {
       return "Please Enter Amount";
     } else if (data.trim() == "") {
       return "Please Enter Amount";
+    } else if (data.contains("-") || data.contains(",") || data.contains(".")) {
+      return "Please Enter valid Amount";
     } else if (data.length > 5) {
       return "Amount can not exceed \$ 99999";
     } else if (!AppRegularExpression.amountRegExp.hasMatch(data.toString())) {
@@ -40,6 +43,7 @@ class TextFieldValidation {
       return null;
     }
   }
+
   static String socialNumber(String data) {
     if (data == "null") {
       return "Please Enter Social Security number";

@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
-
 import 'providers/AfterLoginForm/afterLoginFormProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

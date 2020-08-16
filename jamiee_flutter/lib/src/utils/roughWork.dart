@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 
-BuildContext _context;
+// BuildContext _context;
 
-void setContext(BuildContext ctx) {
-  _context = ctx;
-}
+// void setContext(BuildContext ctx) {
+//   _context = ctx;
+// }
 
-BuildContext getContext() {
-  return _context;
-}
+// BuildContext getContext() {
+//   return _context;
+// }

@@ -4,7 +4,7 @@ import 'package:crypto/crypto.dart';
 
 class Signup {
   String firstName;
-  String lastaName;
+  String lastName;
   String email;
   String password;
   String city;
@@ -13,7 +13,7 @@ class Signup {
 
   Signup(
       {this.firstName,
-      this.lastaName,
+      this.lastName,
       this.email,
       this.password,
       this.city,
@@ -28,7 +28,7 @@ class Signup {
         "phone": _mobile,
         "password": password,
         "email": email,
-        "name": '$firstName $lastaName',
+        "name": '$firstName $lastName',
         "state": state,
         "city": city
         // "socialNumber": socialNumber
