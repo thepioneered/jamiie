@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
+import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:flutter/material.dart';
 import '../../models/afterLoginform.dart';
 
@@ -32,7 +33,7 @@ class AfterLoginFormProvider extends ChangeNotifier {
       formKey.currentState.save();
       autoValidate = false;
       notifyListeners();
-      listModel.mobile = "9816456565";
+      listModel.mobile = await LocalStorage.getMobile();
       print(listModel.toJson());
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(

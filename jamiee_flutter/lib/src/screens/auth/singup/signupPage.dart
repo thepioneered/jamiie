@@ -100,7 +100,7 @@ class _SignupPageState extends State<SignupPage> {
                             },
                             hintText: "Name",
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             autofocus: false,
                             validator: TextFieldValidation.nameValidation,
                           ),
@@ -115,18 +115,13 @@ class _SignupPageState extends State<SignupPage> {
                                 passwordNode.requestFocus(),
                             hintText: "Email",
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             validator: TextFieldValidation.emailValidation,
                           ),
-                          // ChangeNotifierProvider(
-                          //   create: (_) => PasswordStatusSignUp(),
-                          //   child: Consumer<PasswordStatusSignUp>(
-                          //     builder: (_, showPassword, child) {
-                          //       return
-
                           AppTextField.screenTextField(
                             focusNode: passwordNode,
                             prefixIcon: Icons.lock,
+                            showPassword: false,
                             controller: signupProvider.password,
                             onSaved: (String e) {
                               signupProvider.signup.setPassword(e);
@@ -134,34 +129,20 @@ class _SignupPageState extends State<SignupPage> {
                             onEdittingComplete: () =>
                                 confirmPasswordNode.requestFocus(),
                             hintText: "Password",
-                            // showPassword: showPassword.showPassword,
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             validator: TextFieldValidation.passwordValidation,
-                            //     );
-                            //   },
-                            // ),
                           ),
-                          // ChangeNotifierProvider(
-                          //   create: (_) => PasswordStatusSignUp(),
-                          //   child: Consumer<PasswordStatusSignUp>(
-                          //     builder: (_, showPassword, child) {
-                          //       return
-
                           AppTextField.screenTextField(
                             prefixIcon: Icons.lock,
                             focusNode: confirmPasswordNode,
-                            // showPassword:
-                            //     showPassword.confirmShowPassword,
+                            showPassword: false,
                             onSaved: null,
                             hintText: "Confirm Password",
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             validator: signupProvider
                                 .signupPageConfirmPasswordValidation,
-                            //     );
-                            //   },
-                            // ),
                           ),
                           AppTextField.screenTextField(
                             prefixIcon: null,
@@ -170,7 +151,7 @@ class _SignupPageState extends State<SignupPage> {
                             },
                             hintText: "Enter your State",
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             validator: TextFieldValidation.stateCityValidation,
                           ),
                           AppTextField.screenTextField(
@@ -180,12 +161,11 @@ class _SignupPageState extends State<SignupPage> {
                             },
                             hintText: "Enter your city",
                             autoValidate:
-                                signupProvider.onceFormValidated ? true : false,
+                                signupProvider.pageModel.onceFormSubmitted,
                             validator: TextFieldValidation.stateCityValidation,
                           ),
                           Container(
-                            // margin: const EdgeInsets.symmetric(vertical: 10),
-                            child: signupProvider.onceClicked
+                            child: signupProvider.pageModel.onceClicked
                                 ? signupProvider.signupButtonCreateAccount(
                                     loader: true, onTap: () {})
                                 : signupProvider.signupButtonCreateAccount(
@@ -193,7 +173,6 @@ class _SignupPageState extends State<SignupPage> {
                                     onTap: () {
                                       FocusScope.of(context).unfocus();
                                       signupProvider.validateForm(context);
-                                      signupProvider.setOnceFormValidated();
                                     },
                                   ),
                           ),

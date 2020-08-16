@@ -32,6 +32,7 @@ class ForgotPasswordPage extends StatelessWidget {
                             "Enter your mobile number to reset your password."),
                     Form(
                       key: forgotPasswordProvider.forgotPasswordFormKey,
+                      autovalidate: forgotPasswordProvider.pageModel.onceFormSubmitted,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -42,11 +43,11 @@ class ForgotPasswordPage extends StatelessWidget {
                             hintText: "Mobile",
                             validator: TextFieldValidation.mobileValidation,
                             autoValidate:
-                                forgotPasswordProvider.onceFormsubmitted,
+                                false,
                             onSaved: (String e) =>
-                                forgotPasswordProvider.mobile = e,
+                                forgotPasswordProvider.mobileModel.setMobile(e),
                           ),
-                          forgotPasswordProvider.onceClicked
+                          forgotPasswordProvider.pageModel.onceClicked
                               ? CupertinoActivityIndicator()
                               : forgotPasswordProvider.sendOtpButton(
                                   onTap: () {

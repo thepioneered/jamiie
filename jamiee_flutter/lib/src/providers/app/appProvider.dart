@@ -8,8 +8,6 @@ class AppProvider extends ChangeNotifier {
   Widget child;
   String token;
 
-
-  
   AppProvider() {
     child = MaterialApp(
       home: Scaffold(
@@ -29,10 +27,10 @@ class AppProvider extends ChangeNotifier {
       notifyListeners();
     });
   }
-  
 
   Future<String> checkSession() async {
-    String value = await LocalStorage().getToken();
+    String value = await LocalStorage.getToken();
+    print(await LocalStorage.getMobile());
     print("+++++++++++++++++$value++++++++++++++++++++");
     return value;
   }

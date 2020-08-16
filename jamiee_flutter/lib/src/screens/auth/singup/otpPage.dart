@@ -1,5 +1,4 @@
 import 'package:provider/provider.dart';
-
 import '../../../widgets/pageHeading.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import '../../../providers/auth/signup/otpProvider.dart';
@@ -19,10 +18,9 @@ class _OtpPageState extends State<OtpPage> {
   bool complete = false;
 
   void _onKeyboardTap(String value) {
-    print(value + "In function keyboard type");
     setState(() {
       text = text + value;
-      if (text.length == 6) {
+      if (text.length == 5) {
         complete = true;
       }
     });
@@ -56,7 +54,6 @@ class _OtpPageState extends State<OtpPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Build Again");
     var otpProvider = Provider.of<OtpProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -89,22 +86,18 @@ class _OtpPageState extends State<OtpPage> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
-              child: otpProvider.onceClicked
+              child: otpProvider.pageModel.onceClicked
                   ? otpProvider.verifyOTP(onTap: () {}, loader: true)
                   : otpProvider.verifyOTP(
                       onTap: () {
-                        otpProvider.checkOtp(context, text);
+                        otpProvider.otpModel.otp = text;
+                        otpProvider.checkOtp();
                       },
                       loader: false),
             ),
             NumericKeyboard(
-              onKeyboardTap: complete
-                  ? (String d) {
-                      print(d);
-                    }
-                  : _onKeyboardTap,
+              onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
               textColor: AppColors.black,
-              // textColor: Colors.grey[500],
               rightIcon: Icon(
                 Icons.backspace,
                 color: AppColors.black,
@@ -112,10 +105,9 @@ class _OtpPageState extends State<OtpPage> {
               rightButtonFn: () {
                 if (text != "") {
                   try {
-                    if (text.length == 6) {
+                    if (text.length == 5) {
                       setState(() {
                         text = text.substring(0, text.length - 1);
-
                         complete = false;
                       });
                     } else {

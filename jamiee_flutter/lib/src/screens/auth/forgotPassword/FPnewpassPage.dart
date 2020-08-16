@@ -30,64 +30,68 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    // var newPasswordProvider = Provider.of<NewPasswordProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => NewPasswordProvider(),
-      child: Consumer<NewPasswordProvider>(builder: (_, newPasswordProvider, child) {
-        return Scaffold(
-          key: newPasswordProvider.newpassScaffoldKey,
-          appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
-          backgroundColor: AppColors.white,
-          body: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                children: <Widget>[
-                  PageHeading.topHeading(
-                      title: "New Password",
-                      subTitle: "Enter your new password."),
-                  Form(
-                    key: newPasswordProvider.newpassFormKey,
-                    child: Column(
-                      children: [
-                        AppTextField.screenTextField(
-                            onEdittingComplete: () =>
-                                confirmNode.requestFocus(),
-                            hintText: "Password",
-                            autofocus: false,
-                            showPassword: false,
-                            validator: TextFieldValidation.passwordValidation,
-                            autoValidate: newPasswordProvider.onceFormSubmitted,
-                            controller: newPasswordProvider.password,
-                            onSaved: null,
-                            prefixIcon: Icons.lock),
-                        AppTextField.screenTextField(
-                            focusNode: confirmNode,
-                            hintText: "Confrim Password",
-                            showPassword: false,
-                            validator:
-                                newPasswordProvider.confirmPasswordValidation,
-                            autoValidate: newPasswordProvider.onceFormSubmitted,
-                            onSaved: (e) =>
-                                newPasswordProvider.confirmPassword = e,
-                            prefixIcon: Icons.lock),
-                        newPasswordProvider.onceClicked
-                            ? newPasswordProvider.updatePasswordButton(
-                                true, () {})
-                            : newPasswordProvider.updatePasswordButton(false,
-                                () {
-                                FocusScope.of(context).unfocus();
-                                newPasswordProvider.updateNewPassword();
-                              }),
-                      ],
-                    ),
-                  )
-                ],
+      child: Consumer<NewPasswordProvider>(
+        builder: (_, newPasswordProvider, child) {
+          return Scaffold(
+            key: newPasswordProvider.newpassScaffoldKey,
+            appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
+            backgroundColor: AppColors.white,
+            body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                child: Column(
+                  children: <Widget>[
+                    PageHeading.topHeading(
+                        title: "New Password",
+                        subTitle: "Enter your new password."),
+                    Form(
+                      key: newPasswordProvider.newpassFormKey,
+                      autovalidate:
+                          newPasswordProvider.pageModel.onceFormSubmitted,
+                      child: Column(
+                        children: [
+                          AppTextField.screenTextField(
+                              onEdittingComplete: () =>
+                                  confirmNode.requestFocus(),
+                              hintText: "Password",
+                              autofocus: false,
+                              showPassword: false,
+                              validator: TextFieldValidation.passwordValidation,
+                              autoValidate: false,
+                              controller: newPasswordProvider.password,
+                              onSaved: null,
+                              prefixIcon: Icons.lock),
+                          AppTextField.screenTextField(
+                              focusNode: confirmNode,
+                              hintText: "Confrim Password",
+                              showPassword: false,
+                              validator:
+                                  newPasswordProvider.confirmPasswordValidation,
+                              autoValidate: false,
+                              onSaved: (e) => newPasswordProvider
+                                  .newPasswordModel
+                                  .setPassword(e),
+                              prefixIcon: Icons.lock),
+                          newPasswordProvider.pageModel.onceClicked
+                              ? newPasswordProvider.updatePasswordButton(
+                                  true, () {})
+                              : newPasswordProvider.updatePasswordButton(false,
+                                  () {
+                                  FocusScope.of(context).unfocus();
+                                  newPasswordProvider.updateNewPassword();
+                                }),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

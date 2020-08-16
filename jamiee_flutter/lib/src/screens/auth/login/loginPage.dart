@@ -6,7 +6,6 @@ import '../../../providers/auth/login/loginProvider.dart';
 import 'loginPageWidget.dart';
 import '../../../styles/base.dart';
 import '../socialMediaButton.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../styles/colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,7 +36,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
-    // LoginProviderScaffold().loginScaffoldKey.currentState.dispose();
     super.dispose();
   }
 
@@ -46,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
     print("+++++LOGIN PAGE REBUILD+++++");
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
-      
       key: a.loginScaffoldKey,
       body: Container(
         padding: EdgeInsets.only(top: BaseStyles.topPadding),
@@ -69,13 +66,6 @@ class _LoginPageState extends State<LoginPage> {
                     scale: 100.0,
                     image: AssetImage("assets/LOGO1.jpg"),
                   )),
-                  // child: SvgPicture.asset(
-                  //   "assets/NEW_LOGO.svg",
-                  // ),
-                  // child: Image(
-                  //   image: AssetImage("assets/NEW_LOGO.png"),
-                  //   fit: BoxFit.contain,
-                  // ),
                 ),
                 SizedBox(
                   height: 15.0,

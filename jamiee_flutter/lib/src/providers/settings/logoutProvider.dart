@@ -31,7 +31,8 @@ class LogoutProvider extends ChangeNotifier {
       () async {
         Navigator.pop(settingScaffoldKey.currentContext);
         _onLoading(settingScaffoldKey.currentContext);
-        String mobile = await LocalStorage().getMobile();
+        String mobile = await LocalStorage.getMobile();
+        print(mobile);
         Map<String, dynamic> body = await NetworkCalls.postDataToServer(
             key: settingScaffoldKey,
             endPoint: EndPoints.userlogout,
@@ -39,7 +40,7 @@ class LogoutProvider extends ChangeNotifier {
             body: {"phone": mobile});
 
         if (body["status"]) {
-          await LocalStorage().deleteData();
+          await LocalStorage.deleteData();
           Navigator.pushNamedAndRemoveUntil(settingScaffoldKey.currentContext,
               "/LoginPage", (route) => false);
         } else {

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import '../../../models/mobileModel.dart';
+import '../../../models/pageModel.dart';
+import '../../../utils/sharedPref.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
 import '../../../widgets/button/appButton.dart';
 
 class ForgotPasswordProvider extends ChangeNotifier {
+  PageModel pageModel;
   GlobalKey<ScaffoldState> forgotPasswordScaffoldKey =
       GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
-  Widget child;
-  String mobile;
-  static String mobilee;
-  bool onceClicked;
-  bool onceFormsubmitted;
+  MobileModel mobileModel;
 
   ForgotPasswordProvider() {
-    onceClicked = false;
-    onceFormsubmitted = false;
+    pageModel = PageModel();
+    mobileModel = MobileModel();
   }
 
   Widget sendOtpButton({@required Function onTap, @required bool loader}) {
@@ -28,31 +28,30 @@ class ForgotPasswordProvider extends ChangeNotifier {
   }
 
   void forgotPassword() async {
-    onceFormsubmitted = true;
+    pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (forgotPasswordFormKey.currentState.validate()) {
       forgotPasswordFormKey.currentState.save();
-      onceClicked = true;
+      pageModel.onceClicked = true;
       notifyListeners();
-      mobilee = '+91$mobile';
-
+      print(mobileModel.mobile);
+      print(mobileModel.toJson());
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-        key: forgotPasswordScaffoldKey,
-        endPoint: EndPoints.forgotPassword,
-        afterRequest: () {},
-        //TODO:EDIT MOBILE NUMBER HARDCODE
-        body: {"phone": "+91$mobile"},
-      );
+          key: forgotPasswordScaffoldKey,
+          endPoint: EndPoints.forgotPassword,
+          afterRequest: () {},
+          body: mobileModel.toJson());
+
       if (body["status"]) {
-        onceClicked = false;
-        onceFormsubmitted = false;
+        await LocalStorage.setMobile(mobileModel.mobile);
+        pageModel.onceClicked = false;
+        pageModel.onceFormSubmitted = false;
         notifyListeners();
         forgotPasswordFormKey.currentState.reset();
         Navigator.pushReplacementNamed(
             forgotPasswordScaffoldKey.currentContext, "/FPOtpPage");
       } else {
-        onceClicked = false;
-        // onceFormsubmitted = false;
+        pageModel.onceClicked = false;
         notifyListeners();
       }
     }

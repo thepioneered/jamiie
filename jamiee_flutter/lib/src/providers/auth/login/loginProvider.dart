@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/pageModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/button/appButton.dart';
@@ -14,28 +15,18 @@ class LoginProviderScaffold {
 
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
-  // GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  // GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
   final loginFormKey = GlobalKey<FormState>();
   final loginScaffoldKey = GlobalKey<ScaffoldState>();
   Login login;
-  bool onceFormSubmitted;
-  bool onceClicked;
+  PageModel pageModel;
   bool showPassword;
 
   //Class Constructor
   LoginProvider() {
-    onceClicked = false;
-    onceFormSubmitted = false;
+    pageModel = PageModel();
     showPassword = false;
     login = Login();
   }
-
-  void setOnceFormValidated() {
-    onceFormSubmitted = true;
-    notifyListeners();
-  }
-
   Widget loginButton({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
       loader: loader,
@@ -46,45 +37,36 @@ class LoginProvider extends ChangeNotifier {
 
   //Form Validation Function
   void validateLoginForm() async {
+    pageModel.onceFormSubmitted = true;
+    notifyListeners();
     if (loginFormKey.currentState.validate()) {
-      onceClicked = true;
+      pageModel.onceClicked = true;
       notifyListeners();
       loginFormKey.currentState.save();
-      // Todo:Change is req
-      login.mobile = '+91${login.mobile}';
       print(login.toJson());
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: loginScaffoldKey,
           endPoint: EndPoints.userLogin,
           afterRequest: () {},
-          body: {
-            "phone": login.mobile.toString(),
-            "password": login.password,
-          });
-      if (body["status"] == true) {
-        await LocalStorage()
-            .setTokenMobile(body["body"]["token"], login.mobile);
-        onceFormSubmitted = false;
-        onceClicked = false;
+          body: login.toJson());
+      if (body["status"]) {
+        await LocalStorage.setTokenMobile(body["body"]["token"], login.mobile);
+        pageModel.onceClicked = false;
+        pageModel.onceFormSubmitted = false;
+        notifyListeners();
         print(body["body"]["token"]);
         loginFormKey.currentState.reset();
-        notifyListeners();
-      } else {
-        onceClicked = false;
-        notifyListeners();
-      }
-
-      //TODO: Check if required else remove it
-      if (body["status"] == true) {
         loginScaffoldKey.currentState.showSnackBar(
           AppSnackBar.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
-
         Future.delayed(Duration(milliseconds: 1300), () {
           Navigator.pushReplacementNamed(
               loginScaffoldKey.currentContext, "/NavBar");
         });
+      } else {
+        pageModel.onceClicked = false;
+        notifyListeners();
       }
     }
   }

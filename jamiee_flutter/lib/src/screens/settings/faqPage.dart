@@ -11,7 +11,6 @@ class FaqPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var _faqData = Provider.of<FaqData>(context);
     return Scaffold(
-      //TODO: Floating for debugging
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var data = _faqData.faqData();

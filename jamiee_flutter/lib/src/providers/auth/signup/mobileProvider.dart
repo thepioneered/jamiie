@@ -1,65 +1,59 @@
+import 'package:Jamiie/src/models/mobileModel.dart';
+
+import '../../../models/pageModel.dart';
+import '../../../utils/sharedPref.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/button/appButton.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
+
 class MobileProvider extends ChangeNotifier {
-  bool onceClicked;
-  GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
+  PageModel pageModel;
+  GlobalKey<ScaffoldState> mobileScaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> mobileFormKey = GlobalKey<FormState>();
-  static String mobile;
-  String formMobile;
+  MobileModel mobileModel;
 
   MobileProvider() {
-    onceClicked = false;
-  }
-
-  void setOnceClicked() {
-    onceClicked = false;
-    notifyListeners();
+    pageModel = PageModel();
+    mobileModel = MobileModel();
   }
 
   Widget sendOtpButton({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: "Send OTP",);
+      loader: loader,
+      onTap: onTap,
+      title: "Send OTP",
+    );
   }
 
-  void mobileNumberCheck(BuildContext ctx) async {
+  void mobileNumberCheck() async {
+    pageModel.onceFormSubmitted = true;
+    notifyListeners();
     if (mobileFormKey.currentState.validate()) {
       mobileFormKey.currentState.save();
-      print(formMobile);
-      mobile = '+91$formMobile';
-      onceClicked = true;
+      pageModel.onceClicked = true;
       notifyListeners();
+      print(mobileModel.mobile);
+      print(mobileModel.toJson());
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-          key: loginScaffoldKey,
+          key: mobileScaffoldKey,
           endPoint: EndPoints.sendOtp,
           afterRequest: () {},
-          //TODO
-          body: {"phone": "${mobile.toString()}"});
-      onceClicked = false;
-      notifyListeners();
-      print(body["status"]);
+          body: mobileModel.toJson());
 
-      if (body["status"] == true) {
+      if (body["status"]) {
+        await LocalStorage.setMobile(mobileModel.mobile);
+        pageModel.onceClicked = false;
+        pageModel.onceFormSubmitted = false;
+        notifyListeners();
         mobileFormKey.currentState.reset();
-        Navigator.pushReplacementNamed(ctx, "/OtpPage");
+        Navigator.pushReplacementNamed(
+            mobileScaffoldKey.currentContext, "/OtpPage");
+      } else {
+        pageModel.onceClicked = false;
+        notifyListeners();
       }
     }
   }
-
-  // String mobilePageMobileValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter Mobile Number";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter Mobile Number";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter Mobile Number";
-  //   } else if (!AppRegularExpression.mobileRegExp
-  //       .hasMatch(data.toString().trim())) {
-  //     return "Please enter a valid Mobile Number";
-  //   } else {
-  //     return null;
-  //   }
-  // }
 }

@@ -22,7 +22,7 @@ class _MobilePageState extends State<MobilePage> {
       return WillPopScope(
         onWillPop: () => appConfirmRemoveScreenDialog(context),
         child: Scaffold(
-          key: mobileProvider.loginScaffoldKey,
+          key: mobileProvider.mobileScaffoldKey,
           backgroundColor: AppColors.white,
           appBar: AppBarWidget.getAppBar(context, '', isRegistration: true),
           body: SingleChildScrollView(
@@ -37,27 +37,30 @@ class _MobilePageState extends State<MobilePage> {
                           "Please enter your mobile number for verification."),
                   Form(
                     key: mobileProvider.mobileFormKey,
+                    autovalidate: mobileProvider.pageModel.onceFormSubmitted,
                     child: AppTextField.screenTextField(
                         textInputType: TextInputType.number,
                         maxLength: 10,
                         hintText: "Mobile",
                         validator: TextFieldValidation.mobileValidation,
-                        autoValidate: mobileProvider.onceClicked,
-                        onSaved: (String e) => mobileProvider.formMobile = e,
+                        autoValidate: false,
+                        onSaved: (String e) =>
+                            mobileProvider.mobileModel.setMobile(e),
                         prefixIcon: Icons.phone),
                   ),
                   Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: mobileProvider.onceClicked
-                          ? mobileProvider.sendOtpButton(
-                              loader: true, onTap: () {})
-                          : mobileProvider.sendOtpButton(
-                              loader: false,
-                              onTap: () {
-                                FocusScope.of(context).unfocus();
-                                mobileProvider.mobileNumberCheck(context);
-                              },
-                            )),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    child: mobileProvider.pageModel.onceClicked
+                        ? mobileProvider.sendOtpButton(
+                            loader: true, onTap: () {})
+                        : mobileProvider.sendOtpButton(
+                            loader: false,
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              mobileProvider.mobileNumberCheck();
+                            },
+                          ),
+                  ),
                 ],
               ),
             ),

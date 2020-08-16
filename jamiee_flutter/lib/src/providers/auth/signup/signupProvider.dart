@@ -1,11 +1,12 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import '../../../models/pageModel.dart';
+import '../../../utils/sharedPref.dart';
 import '../../../utils/snackBar.dart';
 import '../../../widgets/button/appButton.dart';
 import '../../../models/signup.dart';
-import 'mobileProvider.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
 import '../../../styles/colors.dart';
@@ -15,18 +16,14 @@ class SignupProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> signupScaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
   Signup signup;
-  bool onceClicked;
-  bool onceFormValidated;
+  PageModel pageModel;
   TextEditingController password;
 
   //Class Constructor
   SignupProvider() {
     password = TextEditingController();
-
+    pageModel = PageModel();
     signup = Signup();
-
-    onceClicked = false;
-    onceFormValidated = false;
   }
 
   //Page Logic
@@ -36,99 +33,51 @@ class SignupProvider extends ChangeNotifier {
   }
 
   void validateForm(BuildContext ctx) async {
+    pageModel.onceFormSubmitted = true;
+    notifyListeners();
     if (ImageProviderSignup().isImage == null) {
       print("No image");
     } else {
       print("Image");
     }
     if (signupFormKey.currentState.validate()) {
-      onceClicked = true;
+      pageModel.onceClicked = true;
       notifyListeners();
       signupFormKey.currentState.save();
-
-      //Todo
+      print(signup.toJson(await LocalStorage.getMobile()));
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
         key: signupScaffoldKey,
         endPoint: EndPoints.userRegistration,
         afterRequest: () {},
-        body: {
-          "phone": MobileProvider.mobile.toString(),
-          "password": signup.password,
-          "email": signup.email,
-          "name": signup.name,
-          "state": signup.state,
-          "city": signup.city,
-        },
+        body: signup.toJson(await LocalStorage.getMobile()),
       );
-      if (body["status"] == true) {
-        onceFormValidated = false;
-        onceClicked = false;
-
+      if (body["status"]) {
+        pageModel.onceFormSubmitted = false;
+        pageModel.onceClicked = false;
         notifyListeners();
+        signupFormKey.currentState.reset();
+        password.clear();
         signupScaffoldKey.currentState.showSnackBar(
           AppSnackBar.snackBar(
               title: "You have successfully registered",
               backgroundColor: AppColors.green),
         );
-        Future.delayed(Duration(milliseconds: 1300), () {
-          // Navigator.pushReplacementNamed(ctx, "/LoginPage");
-          Navigator.pushNamedAndRemoveUntil(
-              ctx, "/LoginPage", (route) => false);
-        });
-
-        signupFormKey.currentState.reset();
-
-        password.clear();
+        await LocalStorage.deleteData();
+        Future.delayed(
+          Duration(milliseconds: 1300),
+          () {
+            Navigator.pushNamedAndRemoveUntil(
+                ctx, "/LoginPage", (route) => false);
+          },
+        );
       } else {
-        onceClicked = false;
+        pageModel.onceClicked = false;
         notifyListeners();
       }
-
-      // onceFormValidated = false;
-      // notifyListeners();
     }
   }
 
-  void setOnceClicked() {
-    onceClicked = true;
-    notifyListeners();
-  }
-
-  void setOnceFormValidated() {
-    onceFormValidated = true;
-    notifyListeners();
-  }
-
-  // String signupPageEmailValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter Email";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter Email";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter Email";
-  //   } else if (!AppRegularExpression.emailRegExp
-  //       .hasMatch(data.toString().trim())) {
-  //     return "Please enter a valid Email";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
-  // String signupPagePasswordValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter Password";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter Password";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter Password";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   String signupPageConfirmPasswordValidation(String data) {
-    // print(confirmPassword.text);
-
     if (data == "null") {
       return "Please Enter Password";
     } else if (data.trim() == null) {
@@ -141,32 +90,6 @@ class SignupProvider extends ChangeNotifier {
       return null;
     }
   }
-
-  // String signupPageNameValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter your Name";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter your Name";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter your Name";
-  //   } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
-  //     return "Please enter full Name";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
-  // String signupPageStateCityValidation(String data) {
-  //   if (data == "null") {
-  //     return "Please Enter your State";
-  //   } else if (data.trim() == null) {
-  //     return "Please Enter your State";
-  //   } else if (data.trim() == "") {
-  //     return "Please Enter your State";
-  //   } else {
-  //     return null;
-  //   }
-  // }
 }
 
 class ImageProviderSignup extends ChangeNotifier {
@@ -181,26 +104,6 @@ class ImageProviderSignup extends ChangeNotifier {
     final pickedFile = await imagePicker.getImage(source: ImageSource.camera);
     image = File(pickedFile.path);
     isImage = true;
-    notifyListeners();
-  }
-}
-
-class PasswordStatusSignUp extends ChangeNotifier {
-  bool showPassword;
-  bool confirmShowPassword;
-
-  PasswordStatusSignUp() {
-    showPassword = false;
-    confirmShowPassword = false;
-  }
-
-  void setStatusPassword() {
-    this.showPassword = !showPassword;
-    notifyListeners();
-  }
-
-  void setStateConfirmPassword() {
-    this.confirmShowPassword = !confirmShowPassword;
     notifyListeners();
   }
 }

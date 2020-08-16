@@ -17,14 +17,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   void initState() {
     super.initState();
-
     passwordNode = FocusNode();
   }
 
   @override
   void dispose() {
-    // Clean up the focus node when the Form is disposed.
-print("DISPOSED");
     passwordNode.dispose();
     super.dispose();
   }
@@ -45,8 +42,8 @@ print("DISPOSED");
                   hintText: "Mobile",
                   autofocus: false,
                   validator: TextFieldValidation.mobileValidation,
-                  autoValidate: loginProvider.onceFormSubmitted ? true : false,
-                  onSaved: (String e) => loginProvider.login.mobile = e,
+                  autoValidate: loginProvider.pageModel.onceFormSubmitted,
+                  onSaved: (String e) => loginProvider.login.setMobile(e),
                   textInputType: TextInputType.number),
               ChangeNotifierProvider(
                 create: (context) => PasswordStatusLogin(),
@@ -59,8 +56,7 @@ print("DISPOSED");
                       hintText: "Password",
                       showPassword: passwordStatus.showPassword,
                       validator: TextFieldValidation.passwordValidation,
-                      autoValidate:
-                          loginProvider.onceFormSubmitted ? true : false,
+                      autoValidate: loginProvider.pageModel.onceFormSubmitted,
                       onSaved: (String e) => loginProvider.login.setPassword(e),
                       onEyeClick: GestureDetector(
                         onTap: passwordStatus.setStatus,
@@ -73,14 +69,13 @@ print("DISPOSED");
                 ),
               ),
               Container(
-                child: loginProvider.onceClicked
+                child: loginProvider.pageModel.onceClicked
                     ? loginProvider.loginButton(loader: true, onTap: () {})
                     : loginProvider.loginButton(
                         loader: false,
                         onTap: () {
-                          loginProvider.validateLoginForm();
                           FocusScope.of(context).unfocus();
-                          loginProvider.setOnceFormValidated();
+                          loginProvider.validateLoginForm();
                         },
                       ),
               ),
