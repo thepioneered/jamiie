@@ -1,3 +1,6 @@
+import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
+import 'package:Jamiie/src/screens/adminPool/poolDataPage.dart';
+import 'package:Jamiie/src/screens/userPoolScreens/searchPoolPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,6 +87,18 @@ class AppRoutes {
       case "/AfterLoginFormPage":
         return MaterialPageRoute(
           builder: (context) => AfterLoginFormPage(),
+        );
+      case "/SearchPoolPage":
+        return MaterialPageRoute(
+          builder: (context) => SearchPoolPage(),
+        );
+      case "/PoolDataPage":
+        return MaterialPageRoute(
+          builder: (context) => PoolDataPage(),
+        );
+      case "/CreatePoolPage":
+        return MaterialPageRoute(
+          builder: (context) => CreatePoolPage(),
         );
       default:
         return MaterialPageRoute(

@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/snackBar.dart';
 import '../../../widgets/button/appButton.dart';
-import 'mobileProvider.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
 import '../../../styles/colors.dart';
@@ -33,7 +32,6 @@ class OtpProvider extends ChangeNotifier {
     } else if (otpModel.otp.length == 5) {
       pageModel.onceClicked = true;
       notifyListeners();
-      print(otpModel.toJson(await LocalStorage.getMobile()));
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,

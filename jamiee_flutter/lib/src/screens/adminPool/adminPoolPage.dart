@@ -1,10 +1,7 @@
-// import 'package:jamiee_flutter/src/widgets/topHeading.dart';
-
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
-import '../../screens/adminPool/creatPool.dart';
 import '../../styles/colors.dart';
 
 class AdminPool extends StatefulWidget {
@@ -20,9 +17,7 @@ class _AdminPoolState extends State<AdminPool> {
         floatingActionButton: FloatingActionButton(
           tooltip: "Create Pool",
           onPressed: () {
-            //TODOOOOOOOOO bd main thik krna hai isko
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CreatePoolPage()));
+            Navigator.pushNamed(context, '/CreatePoolPage');
           },
           child: Icon(Icons.add),
         ),
@@ -52,8 +47,6 @@ class _AdminPoolState extends State<AdminPool> {
       alignment: Alignment.center,
       child: GestureDetector(
         onTap: () {
-          //TODO: PENDING
-          print("DONE");
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => PoolDataPage()));
         },
