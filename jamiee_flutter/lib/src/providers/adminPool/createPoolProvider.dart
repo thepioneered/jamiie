@@ -66,6 +66,7 @@ class CreatePoolProvider with ChangeNotifier {
       }
       print(createPool.poolName);
       print(createPool.amount);
+      print(selectedDate);
     } else {
       if (selectedDate.toIso8601String()[0] != '0') {
         dateHasError = false;

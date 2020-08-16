@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
     print("+++++LOGIN PAGE REBUILD+++++");
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
+      
       key: a.loginScaffoldKey,
       body: Container(
         padding: EdgeInsets.only(top: BaseStyles.topPadding),
@@ -59,26 +60,29 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.3,
+                  width: 200.0,
                   margin: const EdgeInsets.symmetric(horizontal: 12),
                   padding: const EdgeInsets.only(top: 3.0),
-                  child: SvgPicture.asset(
-                    "assets/LOGO.svg",
-                  ),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    fit: BoxFit.fitWidth,
+                    scale: 100.0,
+                    image: AssetImage("assets/LOGO1.jpg"),
+                  )),
+                  // child: SvgPicture.asset(
+                  //   "assets/NEW_LOGO.svg",
+                  // ),
+                  // child: Image(
+                  //   image: AssetImage("assets/NEW_LOGO.png"),
+                  //   fit: BoxFit.contain,
+                  // ),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 SizedBox(
-                  // child: MultiProvider(
-                  //   providers: [
-                  //     ChangeNotifierProvider(
-                  //       create: (context) => PasswordStatusLogin(),
-                  //     ),
-                  //   ],
-                  //   child:
                   child: LoginPageWidget(),
                 ),
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

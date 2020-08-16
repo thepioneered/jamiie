@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../styles/colors.dart';
 import '../../providers/adminPool/createPoolProvider.dart';
 import '../../styles/text.dart';
 import '../../utils/icons.dart';
@@ -7,7 +8,6 @@ import '../../utils/validationRegex.dart';
 import '../../widgets/appTextFields/appTextField.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
-import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/pageHeading.dart';
 
@@ -69,7 +69,6 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                         toolbarOptions: ToolbarOptions(paste: false),
                         onEyeClick: Tooltip(
                             padding: EdgeInsets.all(10.0),
-                            
                             message:
                                 "Data regarding what is amount \nwill be submitted here",
                             child: Icon(Icons.info)),
@@ -89,78 +88,97 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                           onTap: () {
                             createPoolProvider.selectDate(context);
                           },
-                          child: pageChild(
-                              context,
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.date_range,
-                                    color: AppColors.grayInputHeading,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              pageChild(
+                                  context,
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.date_range,
+                                        color: AppColors.grayInputHeading,
+                                      ),
+                                      SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      createPoolProvider.onceDatePickerClicked
+                                          ? Text(
+                                              "${createPoolProvider.selectedDate.toLocal()}"
+                                                  .split(' ')[0],
+                                              style: AppTextStyle.inputText,
+                                            )
+                                          : Text(
+                                              "Deadline",
+                                              style: AppTextStyle.hintText,
+                                            )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 12.0,
-                                  ),
-                                  createPoolProvider.onceDatePickerClicked
-                                      ? Text(
-                                          "${createPoolProvider.selectedDate.toLocal()}"
-                                              .split(' ')[0],
-                                          style: AppTextStyle.inputText,
-                                        )
-                                      : Text(
-                                          "Deadline",
-                                          style: AppTextStyle.hintText,
-                                        )
-                                ],
-                              ),
+                                  createPoolProvider.dateHasError
+                                      ? AppColors.red
+                                      : AppColors.grayInputHeading),
                               createPoolProvider.dateHasError
-                                  ? AppColors.red
-                                  : AppColors.grayInputHeading),
+                                  ? Container(
+                                      margin:
+                                          EdgeInsets.only(top: 8.0, left: 15.0),
+                                      child: Text(
+                                        "Please Select Date",
+                                        style: AppTextStyle.errorText,
+                                      ))
+                                  : Container(),
+                            ],
+                          ),
                         ),
-                        pageChild(
-                            context,
-                            DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                // value: Text('Pool Type'),
-                                hint: Text(
-                                  'Pool Type',
-                                  style: AppTextStyle.hintText,
-                                ),
-                                onChanged: (e) {
-                                  // int _index = _dropdownValues.indexWhere(
-                                  //   (note) => note.startsWith(e[0]),
-                                  // );
-                                  // print(_index);
-                                  // setState(() {
-                                  //   index = _index;
-                                  //   print(_dropdownValues[index]);
-                                  // });
-                                },
-                                items: _dropdownValues
-                                    .map((value) => DropdownMenuItem(
-                                          child: Text(
-                                            value,
-                                            style: AppTextStyle.inputText,
-                                          ),
-                                          value: value,
-                                        ))
-                                    .toList(),
+                        //  DropdownButtonHideUnderline(
+                        //       child:
+
+                        Container(
+                          width:
+                              (MediaQuery.of(context).size.width - 30.0) / 2 -
+                                  15.0,
+                          child: DropdownButtonFormField<String>(
+                            decoration: InputDecoration(
+                              errorStyle: AppTextStyle.errorText,
+                              contentPadding:
+                                  EdgeInsets.only(left: 15.0, right: 10.0),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColors.grayInputHeading),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColors.grayInputHeading),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.red),
                               ),
                             ),
-                            AppColors.grayInputHeading),
+                            autovalidate: false,
+                            hint: Text(
+                              'Pool Type',
+                              style: AppTextStyle.hintText,
+                            ),
+                            validator: (value) =>
+                                value == null ? 'Please select Pool type' : null,
+                            onChanged: (e) {},
+                            items: _dropdownValues
+                                .map((value) => DropdownMenuItem<String>(
+                                      child: Text(
+                                        value,
+                                        style: AppTextStyle.inputText,
+                                      ),
+                                      value: value,
+                                    ))
+                                .toList(),
+                          ),
+                        ),
                       ],
                     ),
-                    createPoolProvider.dateHasError
-                        ? Container(
-                            margin: EdgeInsets.only(top: 8.0, left: 15.0),
-                            child: Text(
-                              "Please Select Date",
-                              style: AppTextStyle.errorText,
-                            ))
-                        : Container(),
                     SizedBox(
                       height: 30.0,
                     ),
                     RangeSlider(
+                        activeColor: AppColors.primaryColorPurple,
                         divisions: 30,
                         labels: RangeLabels(createPoolProvider.start.toString(),
                             createPoolProvider.end.toString()),

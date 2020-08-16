@@ -1,3 +1,6 @@
+import 'screens/auth/login/loginPage.dart';
+
+import './screens/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +14,8 @@ import 'providers/auth/signup/mobileProvider.dart';
 import 'providers/auth/signup/otpProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
+import 'screens/adminPool/creatPool.dart';
+import 'screens/auth/singup/signupPage.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 class App extends StatefulWidget {
@@ -61,15 +66,14 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => OtpProvider(),
         ),
-       
+
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
 
-
         //Forgot Password Provider
         // ChangeNotifierProvider(
-          
+
         // ),
         ChangeNotifierProvider(
           create: (context) => ForgotPasswordOtpProvider(),
@@ -94,12 +98,14 @@ class _AppState extends State<App> {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AfterLoginFormPage(),
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+        home: AppNavigationBar(),
+
+        // home: LoginPage(),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvider, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );
