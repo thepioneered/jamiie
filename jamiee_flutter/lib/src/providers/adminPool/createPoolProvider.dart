@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../models/createPool.dart';
+import '../../models/createPoolModel.dart';
 
 class CreatePoolProvider with ChangeNotifier {
   final createPoolFormKey = GlobalKey<FormState>();
   final createPoolScaffoldKey = GlobalKey<ScaffoldState>();
   DateTime selectedDate;
 
-  CreatePool createPool;
+  CreatePoolModel createPool;
   bool onceClicked;
   bool onceFormValidated;
   bool onceDatePickerClicked;
@@ -17,7 +17,7 @@ class CreatePoolProvider with ChangeNotifier {
   CreatePoolProvider() {
     start = 5.0;
     end = 10.0;
-    createPool = CreatePool();
+    createPool = CreatePoolModel();
     selectedDate = DateTime(0);
     dateHasError = false;
     onceClicked = false;

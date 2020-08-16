@@ -1,4 +1,6 @@
-import 'providers/AfterLoginForm/afterLoginForm.dart';
+import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
+
+import 'providers/AfterLoginForm/afterLoginFormProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,21 +57,19 @@ class _AppState extends State<App> {
         ),
 
         //All auth Providers
-        ChangeNotifierProvider(
-          create: (context) => MobileProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => OtpProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => MobileProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (context) => OtpProvider(),
+        // ),
 
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => ForgotPasswordOtpProvider(),
-        ),
-        //TODO NEW PASSWORD REMOVED FROM HERE
-
+        // ChangeNotifierProvider(
+        //   create: (context) => ForgotPasswordOtpProvider(),
+        // ),
         ChangeNotifierProvider(
           create: (_) => CreatePoolProvider(),
         ),
@@ -88,11 +88,12 @@ class _AppState extends State<App> {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+        home: SignupPage(),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvider, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../screens/navbar.dart';
@@ -7,6 +8,7 @@ import '../../utils/sharedPref.dart';
 class AppProvider extends ChangeNotifier {
   Widget child;
   String token;
+  PageType pageType;
 
   AppProvider() {
     child = MaterialApp(
@@ -19,19 +21,43 @@ class AppProvider extends ChangeNotifier {
 
   void getToken() {
     checkSession().then((value) {
-      if (value != null) {
-        child = AppNavigationBar();
-      } else {
-        child = LoginPage();
+      switch (value) {
+        case PageType.LoginPage:
+          child = LoginPage();
+          break;
+        case PageType.AfterLoginForm:
+          child = AfterLoginFormPage();
+          break;
+        case PageType.AppNavigationBar:
+          child = AppNavigationBar();
+          break;
+        default:
+          child = LoginPage();
+          break;
       }
+      // if (value != null) {
+      //   child = AppNavigationBar();
+      // } else {
+      //   child = LoginPage();
+      // }
       notifyListeners();
     });
   }
 
-  Future<String> checkSession() async {
+  Future<PageType> checkSession() async {
     String value = await LocalStorage.getToken();
-    print(await LocalStorage.getMobile());
+    bool status = await LocalStorage.getFirstLogin();
     print("+++++++++++++++++$value++++++++++++++++++++");
-    return value;
+    if (value != null) {
+      if (status == false) {
+        return PageType.AfterLoginForm;
+      } else {
+        return PageType.AppNavigationBar;
+      }
+    } else {
+      return PageType.LoginPage;
+    }
   }
 }
+
+enum PageType { LoginPage, AppNavigationBar, AfterLoginForm }

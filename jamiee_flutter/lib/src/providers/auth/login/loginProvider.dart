@@ -50,7 +50,9 @@ class LoginProvider extends ChangeNotifier {
           afterRequest: () {},
           body: login.toJson());
       if (body["status"]) {
-        await LocalStorage.setTokenMobile(body["body"]["token"], login.mobile);
+        print(body["body"]);
+        await LocalStorage.setTokenMobileFirstLogin(
+            body["body"]["token"], login.mobile, body["body"]["firstlogin"]);
         pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
@@ -60,10 +62,17 @@ class LoginProvider extends ChangeNotifier {
           AppSnackBar.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
-        Future.delayed(Duration(milliseconds: 1300), () {
-          Navigator.pushReplacementNamed(
-              loginScaffoldKey.currentContext, "/NavBar");
-        });
+        if (body["body"]["firstlogin"]) {
+          Future.delayed(Duration(milliseconds: 1300), () {
+            Navigator.pushReplacementNamed(
+                loginScaffoldKey.currentContext, "/NavBar");
+          });
+        } else {
+          Future.delayed(Duration(milliseconds: 1300), () {
+            Navigator.pushReplacementNamed(
+                loginScaffoldKey.currentContext, "/AfterLoginFormPage");
+          });
+        }
       } else {
         pageModel.onceClicked = false;
         notifyListeners();

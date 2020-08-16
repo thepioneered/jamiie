@@ -11,7 +11,7 @@ class OurDropdown {
     @required bool autoValidate,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 15),
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           errorStyle: AppTextStyle.errorText,

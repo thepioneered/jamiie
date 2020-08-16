@@ -3,13 +3,22 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
 class Signup {
-  String name;
+  String firstName;
+  String lastaName;
   String email;
   String password;
   String city;
   String state;
+  String socialNumber;
 
-  Signup({this.name, this.email, this.password, this.city, this.state});
+  Signup(
+      {this.firstName,
+      this.lastaName,
+      this.email,
+      this.password,
+      this.city,
+      this.state,
+      this.socialNumber});
 
   void setPassword(String _password) {
     this.password = sha256.convert(utf8.encode(_password)).toString();
@@ -19,8 +28,9 @@ class Signup {
         "phone": _mobile,
         "password": password,
         "email": email,
-        "name": name,
+        "name": '$firstName $lastaName',
         "state": state,
-        "city": city,
+        "city": city
+        // "socialNumber": socialNumber
       };
 }

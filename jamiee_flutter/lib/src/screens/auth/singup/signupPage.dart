@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,12 +15,14 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  FocusNode lastName;
   FocusNode emailNode;
   FocusNode passwordNode;
   FocusNode confirmPasswordNode;
   @override
   void initState() {
     super.initState();
+    lastName = FocusNode();
     emailNode = FocusNode();
     passwordNode = FocusNode();
     confirmPasswordNode = FocusNode();
@@ -45,64 +48,113 @@ class _SignupPageState extends State<SignupPage> {
             appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
             body: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.only(right: 15.0, left: 15.0, top: 30.0),
+                // height: MediaQuery.of(context).size.height - 75.0,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    ChangeNotifierProvider(
-                      create: (context) => ImageProviderSignup(),
-                      child: Consumer<ImageProviderSignup>(
-                        builder: (_, imageProviderSignup, child) {
-                          return imageProviderSignup.image == null
-                              ? InkWell(
-                                  onTap: imageProviderSignup.getImage,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    height: 80.0,
-                                    width: 80.0,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.primaryColorPurple,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(FontAwesomeIcons.camera,
-                                        color: AppColors.white),
-                                  ),
-                                )
-                              : Container(
-                                  alignment: Alignment.center,
-                                  height: 80.0,
-                                  width: 80.0,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: FileImage(
-                                            imageProviderSignup.image),
-                                        fit: BoxFit.fill),
-                                  ),
-                                );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
                     Form(
                       key: signupProvider.signupFormKey,
+                      autovalidate: signupProvider.pageModel.onceFormSubmitted,
                       child: Column(
                         children: <Widget>[
-                          AppTextField.screenTextField(
-                            prefixIcon: Icons.account_circle,
-                            onSaved: (String e) {
-                              signupProvider.signup.name = e;
-                            },
-                            onEdittingComplete: () {
-                              emailNode.requestFocus();
-                            },
-                            hintText: "Name",
-                            autoValidate:
-                                signupProvider.pageModel.onceFormSubmitted,
-                            autofocus: false,
-                            validator: TextFieldValidation.nameValidation,
+                          // PageHeading.topHeading(
+                          //     title: "Signup Details",
+                          //     subTitle:
+                          //         "Please enter your details to complete registration."),
+                          Row(
+                            children: [
+                              Container(
+                                width:
+                                    (MediaQuery.of(context).size.width - 30.0) /
+                                        2,
+                                child: Column(
+                                  children: [
+                                    AppTextField.screenTextField(
+                                      prefixIcon: Icons.account_circle,
+                                      onSaved: (String e) {
+                                        signupProvider.signup.firstName = e;
+                                      },
+                                      onEdittingComplete: () {
+                                        lastName.requestFocus();
+                                      },
+                                      hintText: "First Name",
+                                      autoValidate: signupProvider
+                                          .pageModel.onceFormSubmitted,
+                                      autofocus: false,
+                                      validator:
+                                          TextFieldValidation.nameValidation,
+                                    ),
+                                    AppTextField.screenTextField(
+                                      focusNode: lastName,
+                                      prefixIcon: Icons.account_circle,
+                                      onSaved: (String e) {
+                                        signupProvider.signup.lastaName = e;
+                                      },
+                                      onEdittingComplete: () {
+                                        emailNode.requestFocus();
+                                      },
+                                      hintText: "Last Name",
+                                      autoValidate: signupProvider
+                                          .pageModel.onceFormSubmitted,
+                                      autofocus: false,
+                                      validator:
+                                          TextFieldValidation.nameValidation,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              ChangeNotifierProvider(
+                                create: (context) => ImageProviderSignup(),
+                                child: Consumer<ImageProviderSignup>(
+                                  builder: (_, imageProviderSignup, child) {
+                                    return Container(
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsets.only(
+                                          bottom: 35.0, left: 30.0),
+                                      height: 160.0,
+                                      // color: Colors.pink,
+                                      width:
+                                          (MediaQuery.of(context).size.width -
+                                                  30.0) /
+                                              2,
+                                      // child: Text("A"),
+                                      child: imageProviderSignup.image == null
+                                          ? InkWell(
+                                              onTap:
+                                                  imageProviderSignup.getImage,
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                height: 120.0,
+                                                width: 120.0,
+                                                decoration: BoxDecoration(
+                                                  color: AppColors
+                                                      .primaryColorPurple,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                    FontAwesomeIcons.camera,
+                                                    color: AppColors.white),
+                                              ),
+                                            )
+                                          : Container(
+                                              alignment: Alignment.center,
+                                              height: 80.0,
+                                              width: 80.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: FileImage(
+                                                        imageProviderSignup
+                                                            .image),
+                                                    fit: BoxFit.fill),
+                                              ),
+                                            ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           AppTextField.screenTextField(
                             prefixIcon: Icons.email,
@@ -144,25 +196,56 @@ class _SignupPageState extends State<SignupPage> {
                             validator: signupProvider
                                 .signupPageConfirmPasswordValidation,
                           ),
-                          AppTextField.screenTextField(
-                            prefixIcon: null,
-                            onSaved: (String e) {
-                              signupProvider.signup.state = e;
-                            },
-                            hintText: "Enter your State",
-                            autoValidate:
-                                signupProvider.pageModel.onceFormSubmitted,
-                            validator: TextFieldValidation.stateCityValidation,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width:
+                                    (MediaQuery.of(context).size.width - 50.0) /
+                                        2,
+                                child: AppTextField.screenTextField(
+                                  prefixIcon: null,
+                                  onSaved: (String e) {
+                                    signupProvider.signup.state = e;
+                                  },
+                                  hintText: "State",
+                                  autoValidate: signupProvider
+                                      .pageModel.onceFormSubmitted,
+                                  validator:
+                                      TextFieldValidation.stateCityValidation,
+                                ),
+                              ),
+                              Container(
+                                width:
+                                    (MediaQuery.of(context).size.width - 50.0) /
+                                        2,
+                                child: AppTextField.screenTextField(
+                                  prefixIcon: null,
+                                  onSaved: (String e) {
+                                    signupProvider.signup.city = e;
+                                  },
+                                  hintText: "City",
+                                  autoValidate: signupProvider
+                                      .pageModel.onceFormSubmitted,
+                                  validator:
+                                      TextFieldValidation.stateCityValidation,
+                                ),
+                              ),
+                            ],
                           ),
                           AppTextField.screenTextField(
-                            prefixIcon: null,
+                            prefixIcon: FontAwesomeIcons.shieldAlt,
+                            textInputType: TextInputType.number,
+                            maxLength: 9,
                             onSaved: (String e) {
-                              signupProvider.signup.city = e;
+                              signupProvider.signup.firstName = e;
                             },
-                            hintText: "Enter your city",
+                            onEdittingComplete: () {},
+                            hintText: "Social Security Number",
                             autoValidate:
                                 signupProvider.pageModel.onceFormSubmitted,
-                            validator: TextFieldValidation.stateCityValidation,
+                            autofocus: false,
+                            validator: TextFieldValidation.socialNumber,
                           ),
                           Container(
                             child: signupProvider.pageModel.onceClicked
@@ -176,6 +259,9 @@ class _SignupPageState extends State<SignupPage> {
                                     },
                                   ),
                           ),
+                          SizedBox(
+                            height: 30.0,
+                          )
                         ],
                       ),
                     )

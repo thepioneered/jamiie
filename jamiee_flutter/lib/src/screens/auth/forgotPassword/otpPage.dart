@@ -7,13 +7,24 @@ import 'package:flutter/material.dart';
 import '../../../styles/colors.dart';
 import '../../../widgets/appBar.dart';
 
-class ForgotPasswordOtpPage extends StatefulWidget {
-  const ForgotPasswordOtpPage({Key key}) : super(key: key);
+class ForgotPasswordOtpPage extends StatelessWidget {
   @override
-  _ForgotPasswordOtpPageState createState() => _ForgotPasswordOtpPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => ForgotPasswordOtpProvider(),
+      child: ForgotPasswordOtpWidget(),
+    );
+  }
 }
 
-class _ForgotPasswordOtpPageState extends State<ForgotPasswordOtpPage> {
+class ForgotPasswordOtpWidget extends StatefulWidget {
+  const ForgotPasswordOtpWidget({Key key}) : super(key: key);
+  @override
+  _ForgotPasswordOtpWidgetState createState() =>
+      _ForgotPasswordOtpWidgetState();
+}
+
+class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
   String text = '';
   bool complete = false;
 

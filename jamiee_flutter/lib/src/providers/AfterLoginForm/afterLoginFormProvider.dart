@@ -1,6 +1,8 @@
+import 'package:Jamiie/src/models/pageModel.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
+import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:flutter/material.dart';
 import '../../models/afterLoginform.dart';
 
@@ -8,10 +10,12 @@ class AfterLoginFormProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AfterLoginFormModel listModel = AfterLoginFormModel();
-  bool autoValidate;
+  // bool autoValidate;
+  PageModel pageModel;
 
   AfterLoginFormProvider() {
-    autoValidate = false;
+    // autoValidate = false;
+    pageModel = PageModel();
   }
 
   void callListners() {
@@ -27,11 +31,12 @@ class AfterLoginFormProvider extends ChangeNotifier {
   }
 
   void onPressed() async {
-    autoValidate = true;
+    // autoValidate = true;
+    pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      autoValidate = false;
+      pageModel.onceClicked = true;
       notifyListeners();
       listModel.mobile = await LocalStorage.getMobile();
       print(listModel.toJson());
@@ -45,7 +50,17 @@ class AfterLoginFormProvider extends ChangeNotifier {
 
       if (body["status"]) {
         print("Data Posted");
-      } else {}
+        pageModel.onceClicked = false;
+        pageModel.onceFormSubmitted = false;
+        notifyListeners();
+        formKey.currentState.reset();
+        await LocalStorage.setFirstLogin();
+        Future.delayed(Duration(milliseconds: 500), () {
+          Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
+        });
+      } else {
+        print("Data Not posted");
+      }
     }
   }
 }

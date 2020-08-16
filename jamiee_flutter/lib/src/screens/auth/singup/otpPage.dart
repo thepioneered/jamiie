@@ -7,13 +7,22 @@ import '../../../styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class OtpPage extends StatefulWidget {
-  const OtpPage({Key key}) : super(key: key);
+class OtpPage extends StatelessWidget {
   @override
-  _OtpPageState createState() => _OtpPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => OtpProvider(),
+      child: OtpPageWidget(),
+    );
+  }
 }
 
-class _OtpPageState extends State<OtpPage> {
+class OtpPageWidget extends StatefulWidget {
+  @override
+  _OtpPageWidgetState createState() => _OtpPageWidgetState();
+}
+
+class _OtpPageWidgetState extends State<OtpPageWidget> {
   String text = '';
   bool complete = false;
 

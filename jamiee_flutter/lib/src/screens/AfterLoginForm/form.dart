@@ -1,6 +1,7 @@
 import 'package:Jamiie/src/repositry/afterLoginForm.dart';
+import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
-import '../../providers/AfterLoginForm/afterLoginForm.dart';
+import '../../providers/AfterLoginForm/afterLoginFormProvider.dart';
 import '../../styles/text.dart';
 import '../../widgets/AfterLoginForm/formwidget.dart';
 import '../../widgets/button/appButton.dart';
@@ -20,16 +21,16 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
         key: formProvider.scaffoldKey,
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
             child: Column(
               children: [
-                Text(
-                  'Enter Your Details',
-                  style: AppTextStyle.topHeading,
-                ),
-                SizedBox(height: 20),
+                PageHeading.topHeading(
+                    title: "Few more details",
+                    subTitle:
+                        "Please enter few more details and your are ready to go."),
                 Form(
                   key: formProvider.formKey,
+                  autovalidate: formProvider.pageModel.onceFormSubmitted,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -42,7 +43,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data1,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       Text('Family :', style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
@@ -53,7 +54,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data2,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       Text('Age :', style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
@@ -64,7 +65,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data3,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       Text('Saving Money since how many Years :',
                           style: AppTextStyle.subheadingTextForm),
@@ -76,7 +77,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data4,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       Text('How Many loans you have :',
                           style: AppTextStyle.subheadingTextForm),
@@ -88,7 +89,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data5,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       Text('Living in USA since :',
                           style: AppTextStyle.subheadingTextForm),
@@ -100,7 +101,7 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                         },
                         value: formProvider.listModel.data6,
                         validator: formProvider.validator,
-                        autoValidate: formProvider.autoValidate,
+                        autoValidate: false,
                       ),
                       // Text(
                       //     "How many accounts linked(google, fb, twitter, linkdn) :",
@@ -115,11 +116,16 @@ class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
                       //   validator: formProvider.validator,
                       //   autoValidate: formProvider.autoValidate,
                       // ),
-                      AppButton.loginButton(
-                        loader: false,
-                        title: 'Submit',
-                        onTap: () => formProvider.onPressed(),
-                      ),
+                      formProvider.pageModel.onceClicked
+                          ? AppButton.loginButton(
+                              loader: true,
+                              onTap: () => {},
+                            )
+                          : AppButton.loginButton(
+                              loader: false,
+                              title: 'Submit',
+                              onTap: () => formProvider.onPressed(),
+                            ),
                     ],
                   ),
                 )

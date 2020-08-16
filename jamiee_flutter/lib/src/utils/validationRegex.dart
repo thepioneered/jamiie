@@ -4,6 +4,8 @@ class AppRegularExpression {
       '[0-9]{10}'); //TODO:Mobile number needs to be edited accordingly(conutry)
   static RegExp amountRegExp = RegExp(
       '[0-9]'); //TODO:Mobile number needs to be edited accordingly(conutry)
+  static RegExp socialRegExp = RegExp(
+      '[0-9]{9}'); //TODO:Mobile number needs to be edited accordingly(conutry)
   static RegExp emailRegExp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 }
@@ -34,6 +36,19 @@ class TextFieldValidation {
       return "Amount can not exceed \$ 99999";
     } else if (!AppRegularExpression.amountRegExp.hasMatch(data.toString())) {
       return "Please enter Amount";
+    } else {
+      return null;
+    }
+  }
+  static String socialNumber(String data) {
+    if (data == "null") {
+      return "Please Enter Social Security number";
+    } else if (data.trim() == null) {
+      return "Please Enter Social Security number";
+    } else if (data.trim() == "") {
+      return "Please Enter Social Security number";
+    } else if (!AppRegularExpression.socialRegExp.hasMatch(data.toString())) {
+      return "Please Enter a valid Social Security number";
     } else {
       return null;
     }

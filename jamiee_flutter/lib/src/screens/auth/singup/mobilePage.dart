@@ -9,12 +9,17 @@ import '../../../providers/auth/signup/mobileProvider.dart';
 import '../../../styles/colors.dart';
 import '../../../widgets/appBar.dart';
 
-class MobilePage extends StatefulWidget {
+class MobilePage extends StatelessWidget {
   @override
-  _MobilePageState createState() => _MobilePageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => MobileProvider(),
+      child: MobilePageWidget(),
+    );
+  }
 }
 
-class _MobilePageState extends State<MobilePage> {
+class MobilePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<MobileProvider>(builder: (_, mobileProvider, child) {
