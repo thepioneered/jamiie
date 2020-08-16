@@ -88,12 +88,12 @@ class _AppState extends State<App> {
           accentColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: SignupPage(),
-        // home: Consumer<AppProvider>(
-        //   builder: (_, appProvider, child) {
-        //     return appProvider.child;
-        //   },
-        // ),
+        // home: SignupPage(),
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ),
         debugShowCheckedModeBanner: true,
       ),
     );

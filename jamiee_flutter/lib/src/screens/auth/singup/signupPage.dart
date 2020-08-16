@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -246,6 +247,26 @@ class _SignupPageState extends State<SignupPage> {
                                 signupProvider.pageModel.onceFormSubmitted,
                             autofocus: false,
                             validator: TextFieldValidation.socialNumber,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "By clicking Sign Up,you agree to our",
+                              style: AppTextStyle.dontHaveAccount,
+                              children: [
+                                TextSpan(
+                                    text: " Term's ",
+                                    style: AppTextStyle.createOne),
+                                TextSpan(
+                                    text: "and that you have read our",
+                                    style: AppTextStyle.dontHaveAccount),
+                                TextSpan(
+                                    text: " Privacy policy.",
+                                    style: AppTextStyle.createOne),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.0,
                           ),
                           Container(
                             child: signupProvider.pageModel.onceClicked
