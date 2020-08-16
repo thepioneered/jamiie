@@ -3,37 +3,43 @@ import '../../styles/colors.dart';
 import '../../styles/text.dart';
 
 class OurDropdown {
-  static Container dropdown({
+  static Widget dropdown({
     @required Function(String) onchanged,
     @required String value,
     @required List items,
+    @required Function(String) validator,
+    @required bool autoValidate,
   }) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          width: 1,
-          color: AppColors.primaryColorPurple,
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: DropdownButtonFormField<String>(
+        decoration: InputDecoration(
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.primaryBlue,
+              width: 1,
+            ),
+          ),
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: DropdownButton<String>(
-          dropdownColor: AppColors.white,
-          hint: Text('Choose option'),
-          iconSize: 40,
-          style: AppTextStyle.dropDownStyleForm,
-          underline: SizedBox(),
-          isExpanded: true,
-          items: items.map((e) {
-            return DropdownMenuItem<String>(
-              value: e,
-              child: Text(e),
-            );
-          }).toList(),
-          onChanged: onchanged,
-          value: value,
-        ),
+        hint: Text('Choose option'),
+        iconSize: 40,
+        style: AppTextStyle.dropDownStyleForm,
+        autovalidate: autoValidate,
+        validator: validator,
+        isExpanded: true,
+        items: items.map((e) {
+          return DropdownMenuItem<String>(
+            value: e,
+            child: Text(e),
+          );
+        }).toList(),
+        onChanged: onchanged,
+        value: value,
       ),
     );
   }
