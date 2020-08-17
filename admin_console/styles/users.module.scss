@@ -69,8 +69,10 @@
   transition: transform 250ms ease;
 }
 
-.delete:hover {
-  transform: scale(2);
+@media (min-width: 601px) {
+  .delete:hover {
+    transform: scale(2);
+  }
 }
 
 .info {
@@ -81,9 +83,10 @@
   z-index: 2;
   transition: transform 250ms ease;
 }
-
-.info:hover {
-  transform: scale(2);
+@media (min-width: 601px) {
+  .info:hover {
+    transform: scale(2);
+  }
 }
 
 .settings {
@@ -94,7 +97,8 @@
   z-index: 2;
   transition: transform 250ms ease;
 }
-
-.settings:hover {
-  transform: scale(2);
+@media (min-width: 601px) {
+  .settings:hover {
+    transform: scale(2);
+  }
 }
