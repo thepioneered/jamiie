@@ -4,7 +4,7 @@ import styles from "../../styles/header.module.scss";
 import { useState } from "react";
 
 // TODO searchUnfocus timeout
-function Header({ toggleSidebar }) {
+function Header({ toggleSidebar, loginData }) {
   const [avatarMenuState, avatarMenuToggle] = useState(false);
   const [searchFocused, toggleSearchFocused] = useState(false);
 

@@ -96,11 +96,14 @@ function Users() {
         <td>{date}</td>
         <td>{status}</td>
         <td className={styles.action}>
+          {/* <span className="material-icons">remove_circle_outline</span> */}
           <span
             className={cn("material-icons", styles.delete)}
             onClick={deleteUser}
+            title="Block User"
           >
-            delete_outline
+            remove_circle_outline
+            {/* delete_outline */}
           </span>
           {/* <span
             className={cn("material-icons-outlined", styles.info)}
@@ -111,6 +114,7 @@ function Users() {
           <span
             className={cn("material-icons-outlined", styles.settings)}
             onClick={openModal}
+            title="User Settings"
           >
             settings
           </span>

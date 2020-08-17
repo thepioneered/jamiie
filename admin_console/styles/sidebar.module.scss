@@ -9,8 +9,9 @@
   grid-area: Sidebar;
   padding-top: 1.5em;
   width: 250px;
+  z-index: 100;
 
-  // position: sticky;
+  position: sticky;
   top: 0;
   height: 100%;
   min-height: 100vh;
@@ -22,6 +23,45 @@
 
 .Sidebar__close {
   width: 80px;
+}
+
+@media (max-width: 600px) {
+  .Sidebar {
+    bottom: 0;
+    min-height: 0;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .logo {
+    display: none;
+  }
+  .logo__close {
+    display: none;
+  }
+
+  .index {
+    margin: 0 !important;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+
+    li {
+      width: 100%;
+    }
+  }
+
+  .not__active::after {
+    left: 0;
+    top: -5px !important;
+    width: 100% !important;
+    height: 5px !important;
+  }
+
+  .active::after {
+    left: 0;
+    top: -2px !important;
+    width: 100% !important;
+    height: 7px !important;
+  }
 }
 
 // ------------
@@ -51,6 +91,8 @@
   margin-top: 3em;
   color: $primary-gray;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   a {
     display: flex;
@@ -81,12 +123,14 @@
   transition: transform 250ms ease;
 }
 
-.not__active:hover {
-  background-color: $hover-background;
-  color: $primary-gray;
+@media (min-width: 601px) {
+  .not__active:hover {
+    background-color: $hover-background;
+    color: $primary-gray;
 
-  &::after {
-    transform: translateX(-5px);
+    &::after {
+      transform: translateX(-5px);
+    }
   }
 }
 
@@ -134,11 +178,13 @@
   transition: transform 250ms ease;
 }
 
-.active:hover {
-  background-color: rgba(6, 160, 255, 0.23);
-  color: $primary-blue;
+@media (min-width: 601px) {
+  .active:hover {
+    background-color: rgba(25, 86, 149, 0.23);
+    color: $primary-blue;
 
-  &::after {
-    transform: translateX(-2px);
+    &::after {
+      transform: translateX(-2px);
+    }
   }
 }

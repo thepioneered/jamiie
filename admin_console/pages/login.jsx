@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 export default function Login() {
   const usernameInput = useRef();
 
-  const { state, changeGlobal } = useContext(LoaderContext);
+  const { state, changeGlobal, setLoginData } = useContext(LoaderContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -33,7 +33,9 @@ export default function Login() {
     };
 
     try {
-      await postDataWithXcsrf("LOGIN_ADMIN", payload);
+      const r = await postDataWithXcsrf("LOGIN_ADMIN", payload);
+      console.log(r);
+      setLoginData(r.data);
       changeGlobal("tokenValidated");
       router.push("/admin/dashboard");
     } catch (e) {

@@ -17,14 +17,14 @@ function Layout({ children }) {
     changeGlobal("isSidebarOpen");
   };
 
-  console.log(state);
+  console.log("LayoutLoader:", state);
 
   return (
     <div className="App">
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-      <Header toggleSidebar={toggleSidebar} />
+      <Header toggleSidebar={toggleSidebar} loginData={state.loginData} />
       <Sidebar isSidebarOpen={state.isSidebarOpen} />
       {state.layoutLoader && <LayoutLoader />}
       <main>{children}</main>
