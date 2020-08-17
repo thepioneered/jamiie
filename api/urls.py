@@ -29,4 +29,5 @@ urlpatterns = [
     path('adminlogin',AdminLogin.as_view(), name="admin login"),
     path('adminlogout',AdminLogout.as_view(), name="admin logout"),
     path('riskscore',ScoreCalculator.as_view(), name="score calculator"),
+    path('check',Check.as_view(), name = "check"),
 ]

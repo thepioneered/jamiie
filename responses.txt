@@ -167,3 +167,31 @@ data:
     "loans":"select options",
     "living":"select options"
 }
+
+
+
+
+
+
+
+
+
+POOL:
+
+
+Create Pool:
+Required Token Auth
+endpoint: pool/createpool
+Request Type: "POST"
+data:
+{
+    "poolowner":"+919816456565",
+    "poolname":"PoolName",
+    "poolamount":"1000000",
+    "deadline":"2000-08-04",
+    "pooltype":"Monthly",
+    "minmember":"4",
+    "maxmember":"10"
+}
+
+Response: status = 200

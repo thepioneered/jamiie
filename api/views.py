@@ -13,6 +13,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.hashers import check_password
 from django.http import HttpResponse
+import json
 #OTP GENERATOR
 def otpGenerator():
     otp = random.randrange(10000,100000)
@@ -196,7 +197,8 @@ class AdminLogin(APIView):
             valid_password = check_password(password,user.password)
             if valid_password==True:
                 token, created = Token.objects.get_or_create(user=user)
-                response = HttpResponse(status=status.HTTP_200_OK)
+                return_data = {'name':user.name,'phone':user.phone,'email':user.email}
+                response = HttpResponse(json.dumps(return_data),status=status.HTTP_200_OK)
                 response.set_cookie(phone, value = token, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True, samesite='none')
                 return response
             else:
