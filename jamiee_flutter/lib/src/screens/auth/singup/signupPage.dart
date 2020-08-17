@@ -250,7 +250,6 @@ class _SignupPageState extends State<SignupPage> {
                               onSaved: (String e) {
                                 signupProvider.signup.socialNumber = e;
                               },
-                              onEdittingComplete: () {},
                               hintText: "Social Security Number",
                               autoValidate:
                                   signupProvider.pageModel.onceFormSubmitted,

@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,9 +42,15 @@ class SignupProvider extends ChangeNotifier {
       print("Image");
     }
     if (signupFormKey.currentState.validate()) {
-      pageModel.onceClicked = true;
-      notifyListeners();
       signupFormKey.currentState.save();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
+      try {
+        LoaderDialog.loaderDialog(signupScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       print(signup.toJson(await LocalStorage.getMobile()));
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
         key: signupScaffoldKey,
@@ -51,6 +58,7 @@ class SignupProvider extends ChangeNotifier {
         afterRequest: () {},
         body: signup.toJson(await LocalStorage.getMobile()),
       );
+      Navigator.pop(signupScaffoldKey.currentContext);
       if (body["status"]) {
         pageModel.onceFormSubmitted = false;
         pageModel.onceClicked = false;

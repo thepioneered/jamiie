@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../server/endpoint.dart';
@@ -30,13 +31,19 @@ class LogoutProvider extends ChangeNotifier {
       settingScaffoldKey.currentContext,
       () async {
         Navigator.pop(settingScaffoldKey.currentContext);
-        _onLoading(settingScaffoldKey.currentContext);
+        try {
+          LoaderDialog.loaderDialog(settingScaffoldKey.currentContext);
+        } catch (e) {
+          print("Error At Logout Provider in Loader Dialog!");
+          throw Exception(e);
+        }
         Map<String, dynamic> body = await NetworkCalls.postDataToServer(
             key: settingScaffoldKey,
             endPoint: EndPoints.userlogout,
             authRequest: true,
             afterRequest: () {},
             body: {"phone": await LocalStorage.getMobile()});
+        Navigator.pop(settingScaffoldKey.currentContext);
 
         if (body["status"]) {
           await LocalStorage.deleteData();

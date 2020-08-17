@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/models/mobileModel.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import '../../../models/pageModel.dart';
 import '../../../utils/sharedPref.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,15 +32,22 @@ class MobileProvider extends ChangeNotifier {
     notifyListeners();
     if (mobileFormKey.currentState.validate()) {
       mobileFormKey.currentState.save();
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
       print(mobileModel.mobile);
       print(mobileModel.toJson());
+      try {
+        LoaderDialog.loaderDialog(mobileScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: mobileScaffoldKey,
           endPoint: EndPoints.sendOtp,
           afterRequest: () {},
           body: mobileModel.toJson());
+      Navigator.pop(mobileScaffoldKey.currentContext);
 
       if (body["status"]) {
         await LocalStorage.setMobile(mobileModel.mobile);
