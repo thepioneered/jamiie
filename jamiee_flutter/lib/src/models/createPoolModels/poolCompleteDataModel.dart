@@ -8,8 +8,6 @@ class PoolCompleteDataModel {
   PoolCompleteDataModel.fromJson(Map<String, dynamic> json)
       : peopleJoinedPool = json['peopleJoinedPool'];
 
-
-
   Map<String, dynamic> toJson() => {
         'peopleJoinedPool': peopleJoinedPool,
       };

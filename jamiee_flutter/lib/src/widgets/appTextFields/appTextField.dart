@@ -32,7 +32,7 @@ class AppTextField {
         maxLength: maxLength,
         autovalidate: autoValidate,
         decoration: AppInputDecoration.textFieldDecoration(
-            prefixIcon, onEyeClick, hintText),
+            prefixIcon, onEyeClick, hintText,null),
         onSaved: onSaved,
         autofocus: autofocus == null ? false : autofocus,
         maxLines: 1,

@@ -21,7 +21,8 @@ dependencies:
   crypto: ^2.1.4
   data_connection_checker: ^0.3.4
   google_sign_in: ^4.5.1
-  flutter_svg: ^0.18.0
+  cached_network_image: ^2.2.0+1
+  lottie: ^0.5.1
   share: ^0.6.4+3
 
 dev_dependencies:
@@ -35,6 +36,8 @@ flutter:
     - assets/LOGO.jpeg
     - assets/LOGO1.jpg
     - assets/logo3.png
+    - assets/money.json
+    - assets/loader.json
     - assets/fonts/
 
   fonts:

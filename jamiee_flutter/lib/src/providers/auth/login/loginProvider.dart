@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/models/pageModel.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/button/appButton.dart';
@@ -40,8 +41,14 @@ class LoginProvider extends ChangeNotifier {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (loginFormKey.currentState.validate()) {
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
+      try {
+        LoaderDialog.loaderDialog(loginScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Login Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       loginFormKey.currentState.save();
       print(login.toJson());
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
@@ -49,6 +56,7 @@ class LoginProvider extends ChangeNotifier {
           endPoint: EndPoints.userLogin,
           afterRequest: () {},
           body: login.toJson());
+      Navigator.pop(loginScaffoldKey.currentContext);
       if (body["status"]) {
         print(body["body"]);
         await LocalStorage.setTokenMobileFirstLogin(

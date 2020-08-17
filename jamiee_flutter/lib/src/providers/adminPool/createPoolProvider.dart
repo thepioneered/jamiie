@@ -1,38 +1,30 @@
-import 'package:Jamiie/src/models/pageModel.dart';
+import '../../widgets/sucessCreatePool.dart';
+import '../../models/createPoolModels/poolidModel.dart';
+import '../../models/pageModel.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/snackBar.dart';
 import 'package:flutter/material.dart';
-import '../../models/createPoolModel.dart';
+import '../../models/createPoolModels/createPoolModel.dart';
 
 class CreatePoolProvider with ChangeNotifier {
   final createPoolFormKey = GlobalKey<FormState>();
   final createPoolScaffoldKey = GlobalKey<ScaffoldState>();
   DateTime selectedDate;
-
+  TextEditingController date = TextEditingController();
   CreatePoolModel createPool;
   PageModel pageModel;
-  // bool onceClicked;
-  // bool onceFormValidated;
-  bool onceDatePickerClicked;
   double start;
   double end;
-  bool dateHasError;
 
   CreatePoolProvider() {
     start = 5.0;
     end = 10.0;
     createPool = CreatePoolModel();
-    selectedDate = DateTime(0);
-    dateHasError = false;
+    selectedDate = DateTime.now();
     pageModel = PageModel();
-    // onceClicked = false;
-    // onceFormValidated = false;
-    onceDatePickerClicked = false;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    onceDatePickerClicked = false;
-    print("DIPOSED");
   }
 
   void setRangeSlider(double _start, double _end) {
@@ -45,40 +37,55 @@ class CreatePoolProvider with ChangeNotifier {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2015, 8),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2101),
     );
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
-      onceDatePickerClicked = true;
-      notifyListeners();
+      date.value =
+          TextEditingValue(text: selectedDate.toString().substring(0, 10));
     }
   }
 
-  void createPoolLogic() {
-    // print(selectedDate.toIso8601String()[0]);
-    // print(selectedDate);
-    // onceFormValidated = true;
+  void createPoolLogic() async {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
-    if (createPoolFormKey.currentState.validate() &&
-        selectedDate.toIso8601String()[0] != '0') {
+    if (createPoolFormKey.currentState.validate()) {
       createPoolFormKey.currentState.save();
-      if (dateHasError == true) {
-        dateHasError = false;
+      pageModel.onceClicked = true;
+      notifyListeners();
+      createPool.deadline = selectedDate.toString().substring(0, 10);
+      createPool.minPeople = start.toInt();
+      createPool.maxPeople = end.toInt();
+      print(
+        createPool.toJson(
+          await LocalStorage.getMobile(),
+        ),
+      );
+      Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        key: createPoolScaffoldKey,
+        endPoint: EndPoints.createPool,
+        authRequest: true,
+        afterRequest: () {},
+        body: createPool.toJson(
+          await LocalStorage.getMobile(),
+        ),
+      );
+      if (body["status"]) {
+        pageModel.onceClicked = false;
+        pageModel.onceFormSubmitted = false;
+        date.clear();
+        createPoolFormKey.currentState.reset();
         notifyListeners();
-      }
-      print(createPool.poolName);
-      print(createPool.amount);
-      print(selectedDate);
-      print(createPool.poolType);
-    } else {
-      if (selectedDate.toIso8601String()[0] != '0') {
-        dateHasError = false;
-        notifyListeners();
+        PoolIdModel poolId = PoolIdModel.fromJson(body["body"]);
+        print(poolId.poolId);
+        SuccesCreatePoolBottomSheet.bottomSheet(
+            createPoolScaffoldKey.currentContext, poolId.poolId);
       } else {
-        dateHasError = true;
+        pageModel.onceClicked = false;
         notifyListeners();
+        AppSnackBar.snackBar(
+            title: "Pool not Created", backgroundColor: AppColors.red);
       }
     }
   }

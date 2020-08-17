@@ -1,3 +1,7 @@
+import 'package:Jamiie/src/widgets/appImage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +19,7 @@ class _AdminPoolState extends State<AdminPool> {
     return Scaffold(
         backgroundColor: Color(0XFFf5f7fb),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.primaryColorPurple,
           tooltip: "Create Pool",
           onPressed: () {
             Navigator.pushNamed(context, '/CreatePoolPage');
@@ -65,24 +70,34 @@ class _AdminPoolState extends State<AdminPool> {
                     "Pool Name",
                     style: AppTextStyle.poolTitle,
                   ),
-                  Text(
-                    "Status",
-                    style: AppTextStyle.subheadingText,
-                  )
+                  Icon(FontAwesomeIcons.ellipsisV),
                 ],
               ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "\$ 124.0",
-                      style: AppTextStyle.amountStyle,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "\$ 124.0",
+                          style: AppTextStyle.amountStyle,
+                        ),
+                        Text("Monthly per person",
+                            style: AppTextStyle.amountSubHeading)
+                      ],
                     ),
-                    Text("Monthly per person",
-                        style: AppTextStyle.amountSubHeading)
-                  ],
-                ),
+                  ),
+                  RaisedButton(
+                    color: AppColors.primaryColorPurple,
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: AppColors.white,
+                    ),
+                  )
+                ],
               ),
               Container(
                 child: Column(
@@ -102,13 +117,13 @@ class _AdminPoolState extends State<AdminPool> {
                         scrollDirection: Axis.horizontal,
                         itemCount: 6,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.only(right: 10.0),
-                            child: CircleAvatar(
-                              radius: 24.0,
-                              backgroundColor: AppColors.primaryColorPurple,
-                              backgroundImage: NetworkImage(
-                                "https://picsum.photos/200",
+                          return SizedBox(
+                            height: 25.0,
+                            width: 50.0,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60.0),
+                              child: AppImageWidget.appImageWidget(
+                                "http://via.placeholder.com/100x60",
                               ),
                             ),
                           );

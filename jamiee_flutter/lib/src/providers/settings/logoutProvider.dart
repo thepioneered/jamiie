@@ -31,13 +31,12 @@ class LogoutProvider extends ChangeNotifier {
       () async {
         Navigator.pop(settingScaffoldKey.currentContext);
         _onLoading(settingScaffoldKey.currentContext);
-        String mobile = await LocalStorage.getMobile();
-        print(mobile);
         Map<String, dynamic> body = await NetworkCalls.postDataToServer(
             key: settingScaffoldKey,
             endPoint: EndPoints.userlogout,
+            authRequest: true,
             afterRequest: () {},
-            body: {"phone": mobile});
+            body: {"phone": await LocalStorage.getMobile()});
 
         if (body["status"]) {
           await LocalStorage.deleteData();

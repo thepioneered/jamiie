@@ -7,12 +7,22 @@ import '../../widgets/AfterLoginForm/formwidget.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 
-class AfterLoginFormPage extends StatefulWidget {
+class AfterLoginFormPage extends StatelessWidget {
   @override
-  _AfterLoginFormPageState createState() => _AfterLoginFormPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => AfterLoginFormProvider(),
+      child: AfterLoginFormWidget(),
+    );
+  }
 }
 
-class _AfterLoginFormPageState extends State<AfterLoginFormPage> {
+class AfterLoginFormWidget extends StatefulWidget {
+  @override
+  _AfterLoginFormWidgetState createState() => _AfterLoginFormWidgetState();
+}
+
+class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
   @override
   Widget build(BuildContext context) {
     try {

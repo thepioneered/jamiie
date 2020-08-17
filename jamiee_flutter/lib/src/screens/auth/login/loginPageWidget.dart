@@ -1,3 +1,6 @@
+import 'package:Jamiie/src/styles/colors.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

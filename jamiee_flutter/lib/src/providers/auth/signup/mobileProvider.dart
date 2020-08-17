@@ -22,7 +22,7 @@ class MobileProvider extends ChangeNotifier {
     return AppButton.loginButton(
       loader: loader,
       onTap: onTap,
-      title: "Send OTP",
+      title: "Send Authorization Code",
     );
   }
 

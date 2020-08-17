@@ -1,4 +1,8 @@
+import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
+import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
+import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
+import 'package:Jamiie/src/screens/navbar.dart';
 import 'providers/AfterLoginForm/afterLoginFormProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -69,12 +73,12 @@ class _AppState extends State<App> {
         // ChangeNotifierProvider(
         //   create: (context) => ForgotPasswordOtpProvider(),
         // ),
-        ChangeNotifierProvider(
-          create: (_) => CreatePoolProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => AfterLoginFormProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => CreatePoolProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AfterLoginFormProvider(),
+        // ),
         //Dashboard Provider
         ChangeNotifierProvider(
           create: (context) => DashboardProvider(),
@@ -84,10 +88,10 @@ class _AppState extends State<App> {
         title: "Jamiie",
         theme: ThemeData(
           primaryColor: AppColors.primaryColorPurple,
-          accentColor: AppColors.primaryColorPurple,
+          // accentColor: AppColors.primaryColorPurple..opacity,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: SignupPage(),
+        // home: AppNavigationBar(),
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;

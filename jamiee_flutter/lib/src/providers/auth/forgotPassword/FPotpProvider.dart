@@ -20,7 +20,7 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
   }
   Widget verifyOTP({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: "Verify Otp");
+        loader: loader, onTap: onTap, title: "Verify Authozisation Code");
   }
 
   void checkOtp() async {

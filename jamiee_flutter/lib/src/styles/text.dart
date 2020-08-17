@@ -17,6 +17,18 @@ class AppTextStyle {
         fontSize: 15.0,
         color: Colors.grey[400],
       );
+  static TextStyle get createPoolBottom => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize:24.0,
+        color: AppColors.primaryColorPurple
+      );
+  static TextStyle get poolID => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize:28.0,
+        color: AppColors.primaryOrange,
+      );
   static TextStyle get poolTitle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,

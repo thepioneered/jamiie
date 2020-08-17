@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:crypto/crypto.dart';
 
 class Signup {
@@ -30,7 +29,7 @@ class Signup {
         "email": email,
         "name": '$firstName $lastName',
         "state": state,
-        "city": city
-        // "socialNumber": socialNumber
+        "city": city,
+        "securityno": socialNumber
       };
 }

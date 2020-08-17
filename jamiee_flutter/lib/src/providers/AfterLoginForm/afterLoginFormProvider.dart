@@ -45,6 +45,7 @@ class AfterLoginFormProvider extends ChangeNotifier {
         key: scaffoldKey,
         endPoint: EndPoints.riskScore,
         afterRequest: () {},
+        authRequest: true,
         body: listModel.toJson(),
       );
 

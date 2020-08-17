@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
@@ -14,27 +15,24 @@ class NetworkCalls {
       {@required GlobalKey<ScaffoldState> key,
       @required String endPoint,
       @required Function afterRequest,
+      bool authRequest = false,
       @required Object body}) async {
     status = await DataConnectionChecker().hasConnection;
-    print(status);
+    print(EndPoints.ipAddress + endPoint);
+    print(body);
     if (status == true) {
       try {
         var request = await http
             .post(
               EndPoints.ipAddress + endPoint,
-              headers: EndPoints.header,
+              headers: authRequest
+                  ? EndPoints.authHeader(await LocalStorage.getToken())
+                  : EndPoints.header,
               body: json.encode(body),
             )
             .timeout(
               Duration(seconds: 10),
             );
-            // .catchError(
-            //   () => key.currentState.showSnackBar(
-            //     AppSnackBar.snackBar(
-            //         title: "Catch Error. Server not responding.",
-            //         backgroundColor: AppColors.red),
-            //   ),
-            // );
 
         if (request.statusCode != 200) {
           StatusCodeCheck.checkStatusCode(request.statusCode, key);

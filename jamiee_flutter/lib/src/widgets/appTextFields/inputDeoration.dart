@@ -4,11 +4,16 @@ import '../../styles/text.dart';
 
 class AppInputDecoration {
   static InputDecoration textFieldDecoration(
-      IconData prefixIcon, Widget onEyeClick, String hintText) {
+    IconData prefixIcon,
+    Widget onEyeClick,
+    String hintText,
+    EdgeInsetsGeometry _edge,
+  ) {
     return InputDecoration(
       prefixIcon: Icon(prefixIcon),
       suffixIcon: onEyeClick,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+      contentPadding:
+          _edge != null ? _edge : const EdgeInsets.symmetric(horizontal: 16),
       hintText: hintText,
       hintStyle: AppTextStyle.hintText,
       focusedBorder: OutlineInputBorder(
@@ -31,6 +36,22 @@ class AppInputDecoration {
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.grayInputHeading),
         gapPadding: 10.0,
+      ),
+    );
+  }
+
+  static InputDecoration dropdownDecoration() {
+    return InputDecoration(
+      errorStyle: AppTextStyle.errorText,
+      contentPadding: EdgeInsets.only(left: 15.0, right: 10.0),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.grayInputHeading),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.grayInputHeading),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.red),
       ),
     );
   }

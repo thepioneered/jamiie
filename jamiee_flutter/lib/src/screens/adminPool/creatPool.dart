@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/appTextFields/inputDeoration.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../styles/colors.dart';
@@ -11,15 +12,25 @@ import 'package:provider/provider.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/pageHeading.dart';
 
-class CreatePoolPage extends StatefulWidget {
+class CreatePoolPage extends StatelessWidget {
   @override
-  _CreatePoolPageState createState() => _CreatePoolPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => CreatePoolProvider(),
+      child: CreatePoolWidget(),
+    );
+  }
 }
 
-class _CreatePoolPageState extends State<CreatePoolPage> {
+class CreatePoolWidget extends StatefulWidget {
+  @override
+  _CreatePoolWidgetState createState() => _CreatePoolWidgetState();
+}
+
+class _CreatePoolWidgetState extends State<CreatePoolWidget> {
   FocusNode nodeAmount;
   List<String> _dropdownValues = ["Monthly", "Weekly"];
-  // int index = 0;
+
   @override
   void initState() {
     nodeAmount = FocusNode();
@@ -29,8 +40,6 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
   @override
   void dispose() {
     super.dispose();
-
-    CreatePoolProvider().dispose();
     nodeAmount.dispose();
   }
 
@@ -79,6 +88,9 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                         hintText: "Pool Amount",
                         validator: TextFieldValidation.amountValidation,
                         autoValidate: false,
+                        // onEdittingComplete: () {
+                        //   FocusScope.of(context).unfocus();
+                        // },
                         onSaved: (e) =>
                             createPoolProvider.createPool.amount = e,
                         focusNode: nodeAmount,
@@ -88,49 +100,34 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            createPoolProvider.selectDate(context);
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              pageChild(
-                                  context,
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.date_range,
-                                        color: AppColors.grayInputHeading,
-                                      ),
-                                      SizedBox(
-                                        width: 12.0,
-                                      ),
-                                      createPoolProvider.onceDatePickerClicked
-                                          ? Text(
-                                              "${createPoolProvider.selectedDate.toLocal()}"
-                                                  .split(' ')[0],
-                                              style: AppTextStyle.inputText,
-                                            )
-                                          : Text(
-                                              "Deadline",
-                                              style: AppTextStyle.hintText,
-                                            )
-                                    ],
-                                  ),
-                                  createPoolProvider.dateHasError
-                                      ? AppColors.red
-                                      : AppColors.grayInputHeading),
-                              createPoolProvider.dateHasError
-                                  ? Container(
-                                      margin:
-                                          EdgeInsets.only(top: 8.0, left: 15.0),
-                                      child: Text(
-                                        "Please Select Date",
-                                        style: AppTextStyle.errorText,
-                                      ))
-                                  : Container(),
-                            ],
+                        Container(
+                          height: 80.0,
+                          width:
+                              (MediaQuery.of(context).size.width - 30.0) / 2 -
+                                  15.0,
+                          child: GestureDetector(
+                            onTap: () => createPoolProvider.selectDate(context),
+                            child: AbsorbPointer(
+                              child: TextFormField(
+                                controller: createPoolProvider.date,
+                                keyboardType: TextInputType.datetime,
+                                validator: (value) {
+                                  if (value.isEmpty) return "Select Date!";
+                                  return null;
+                                },
+                                style: AppTextStyle.inputText,
+                                onChanged: (value) {
+                                  nodeAmount.unfocus();
+                                },
+                                decoration:
+                                    AppInputDecoration.textFieldDecoration(
+                                  Icons.date_range,
+                                  null,
+                                  "Deadline",
+                                  null,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         Container(
@@ -140,22 +137,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                           child: DropdownButtonFormField<String>(
                             onSaved: (e) =>
                                 createPoolProvider.createPool.poolType = e,
-                            decoration: InputDecoration(
-                              errorStyle: AppTextStyle.errorText,
-                              contentPadding:
-                                  EdgeInsets.only(left: 15.0, right: 10.0),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColors.grayInputHeading),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColors.grayInputHeading),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.red),
-                              ),
-                            ),
+                            decoration: AppInputDecoration.dropdownDecoration(),
                             autovalidate: false,
                             hint: Text(
                               'Pool Type',
@@ -164,9 +146,7 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                             validator: (value) => value == null
                                 ? 'Please select Pool type'
                                 : null,
-                            onChanged: (e) {
-                              print(e);
-                            },
+                            onChanged: (e) {},
                             items: _dropdownValues
                                 .map((value) => DropdownMenuItem<String>(
                                       child: Text(
@@ -180,19 +160,16 @@ class _CreatePoolPageState extends State<CreatePoolPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
                     RangeSlider(
-                    
+                      
                         activeColor: AppColors.primaryColorPurple,
                         divisions: 30,
                         labels: RangeLabels(createPoolProvider.start.toString(),
                             createPoolProvider.end.toString()),
                         values: RangeValues(
                             createPoolProvider.start, createPoolProvider.end),
-                        min: 0.0,
-                        max: 30.0,
+                        min: 0,
+                        max: 30,
                         onChanged: (values) {
                           createPoolProvider.setRangeSlider(
                               values.start.roundToDouble(),

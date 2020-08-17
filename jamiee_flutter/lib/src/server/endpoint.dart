@@ -1,5 +1,4 @@
 class EndPoints {
-
   //All Endpoint and IP address
   static const String ipAddress = "https://jamiieapi.herokuapp.com";
   static const String sendOtp = "/api/phone";
@@ -9,6 +8,7 @@ class EndPoints {
   static const String userlogout = "/api/logout";
   static const String forgotPassword = "/api/forgotpassword";
   static const String riskScore = "/api/riskscore";
+  static const String createPool = "/pool/createpool";
   static String setNewPassword(String _mobile) {
     return '$forgotPassword/$_mobile/';
   }
@@ -17,4 +17,10 @@ class EndPoints {
   static const Map<String, String> header = {
     "Content-Type": "application/json"
   };
+  static Map<String, String> authHeader(String _token) {
+    return {
+      "Content-Type": "application/json",
+      "Authorization": "Token $_token",
+    };
+  }
 }
