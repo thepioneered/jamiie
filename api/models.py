@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 User Registration and Login is started here...
 """
 class UserManager(BaseUserManager):
-    def create_user(self, phone, email, name, state, city,password=None, is_active = True, is_staff = False, is_admin = False):
+    def create_user(self, phone, email, name, state, city,securityno, password=None, is_active = True, is_staff = False, is_admin = False):
         if not phone:
             raise ValueError("Phone number is required")
         if not password:
@@ -15,7 +15,8 @@ class UserManager(BaseUserManager):
             email = self.normalize_email(email),
             name=name,
             state = state,
-            city = city
+            city = city,
+            securityno = securityno
         )
         user_obj.set_password(password)
         user_obj.active = is_active
@@ -25,25 +26,27 @@ class UserManager(BaseUserManager):
         return user_obj
     
 
-    def create_staffuser(self, phone, email, name, state, city, password=None):
+    def create_staffuser(self, phone, email, name, state, city, securityno, password=None):
         user = self.create_user(
             phone,
             email,
             name,
             state,
             city,
+            securityno,
             password = password,
             is_staff= True
         )
         return user
     
-    def create_superuser(self, phone, email, name, state, city, password=None):
+    def create_superuser(self, phone, email, name, state, city, securityno, password=None):
         user = self.create_user(
             phone,
             email,
             name,
             state,
             city,
+            securityno,
             password = password,
             is_staff= True,
             is_admin=True
@@ -61,10 +64,11 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False)
     createdat = models.DateTimeField(auto_now_add=True)
     lastlogin = models.DateTimeField(auto_now=True)
+    securityno = models.CharField(max_length=255, null=False, blank=False)
     
     objects = UserManager()
     USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = ['email','name','state','city']
+    REQUIRED_FIELDS = ['email','name','state','city','securityno']
 
     def __str__(self):
         phone = self.phone
@@ -110,7 +114,6 @@ class RiskCondition(models.Model):
     savingmoney = models.CharField(max_length=255)
     loans = models.CharField(max_length=255)
     living = models.CharField(max_length=255)
-    profilepic = models.BooleanField(default=False)
     score = models.IntegerField(blank=False, null=False)
     def __str__(self):
         score = self.score
@@ -130,4 +133,3 @@ class UserInfo(models.Model):
     def __str__(self):
         phone=self.phone
         return str(phone)
-

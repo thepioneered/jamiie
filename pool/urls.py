@@ -18,5 +18,5 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
-    
+    path('createpool',CreatePoolApi.as_view(),name='create pool'),
 ]

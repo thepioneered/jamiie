@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'api.apps.ApiConfig',
     'corsheaders',
+    'pool.apps.PoolConfig'
 ]
 
 AUTH_USER_MODEL = 'api.User'

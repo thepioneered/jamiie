@@ -131,7 +131,8 @@ class Login(APIView):
                 real_password = user.password
                 if password == real_password:
                     token, created = Token.objects.get_or_create(user=user)
-                    return Response({'token': token.key},status=status.HTTP_200_OK)
+                    firstlogin = UserInfo.objects.filter(phone=phone).exists()
+                    return Response({'token': token.key,'firstlogin':firstlogin},status=status.HTTP_200_OK)
                 else:
                     return Response(status=status.HTTP_401_UNAUTHORIZED)
             else:
