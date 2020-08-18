@@ -274,7 +274,8 @@ class Check(APIView):
                     user = User.objects.get(phone = i)
                     if Token.objects.filter(user=user).exists():
                         if str(Token.objects.get(user=user)) == str(request.COOKIES[i]):
-                            return HttpResponse(status = status.HTTP_200_OK)
+                            return_data = {'name':user.name,'phone':user.phone,'email':user.email}
+                            return HttpResponse(json.dumps(return_data),status = status.HTTP_200_OK)
                         else:
                             return HttpResponse(status = status.HTTP_401_UNAUTHORIZED)
                     else:
