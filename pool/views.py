@@ -34,6 +34,9 @@ class CreatePoolApi(APIView):
             poolowner = User.objects.get(phone = poolowner)
             poolid = uniqueid()
             obj = CreatePool.objects.create(poolid=poolid, poolowner = poolowner, poolname = poolname, poolamount = poolamount, deadline = deadline, pooltype = pooltype, minmember = minmember,maxmember=maxmember)
+            JoinPool.objects.create(poolid=obj, memberid=poolowner)
+            obj.joinedmember = obj.joinedmember+1
+            obj.save()
             return Response({'poolid':poolid},status=status.HTTP_200_OK)
         except Exception as e:
             print(e)
