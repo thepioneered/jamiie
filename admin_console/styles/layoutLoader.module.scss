@@ -9,9 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 20;
 }
 
 .spinner {
+  z-index: 21;
   margin: 2.11em;
   $size: 85px;
   $border-size: 8px;
