@@ -17,5 +17,11 @@ class CreatePool(models.Model):
         poolid = self.poolid
         return str(poolid)
 
-class TestPool(models.Model):
-    value = models.CharField(max_length=255, unique=True)
+class JoinPool(models.Model):
+    poolid = models.ForeignKey(CreatePool, related_name='joinedpool', on_delete=models.CASCADE)
+    memberid = models.ForeignKey(User, related_name='joinedmember', on_delete=models.CASCADE)
+    joinedat = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        memberid = self.memberid
+        return str(memberid)
