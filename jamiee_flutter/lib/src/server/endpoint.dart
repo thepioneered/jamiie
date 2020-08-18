@@ -9,14 +9,20 @@ class EndPoints {
   static const String forgotPassword = "/api/forgotpassword";
   static const String riskScore = "/api/riskscore";
   static const String createPool = "/pool/createpool";
+  static const String joinPool = "/pool/joinpool";
+  static const String searchPool = "/pool/searchpool";
+
+  //End point for new password put request
   static String setNewPassword(String _mobile) {
     return '$forgotPassword/$_mobile/';
   }
 
-  //Header
+  //Header: Without Token
   static const Map<String, String> header = {
     "Content-Type": "application/json"
   };
+
+  //Header: With Token as argument
   static Map<String, String> authHeader(String _token) {
     return {
       "Content-Type": "application/json",

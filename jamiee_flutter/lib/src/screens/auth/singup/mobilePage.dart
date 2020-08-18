@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,9 +38,8 @@ class MobilePageWidget extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   PageHeading.topHeading(
-                      title: "Create Account",
-                      subTitle:
-                          "Please enter your mobile number for verification."),
+                      title: SignUpFlowText.mobilePageTitle,
+                      subTitle:SignUpFlowText.mobilePageSubTitle),
                   Form(
                     key: mobileProvider.mobileFormKey,
                     autovalidate: mobileProvider.pageModel.onceFormSubmitted,

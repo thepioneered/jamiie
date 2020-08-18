@@ -9,18 +9,13 @@ import '../styles/colors.dart';
 import '../utils/snackBar.dart';
 
 class NetworkCalls {
-  static bool status;
-
   static Future<Map<String, dynamic>> postDataToServer(
       {@required GlobalKey<ScaffoldState> key,
       @required String endPoint,
       @required Function afterRequest,
       bool authRequest = false,
       @required Object body}) async {
-    status = await DataConnectionChecker().hasConnection;
-    print(EndPoints.ipAddress + endPoint);
-    print(body);
-    if (status == true) {
+    if (await DataConnectionChecker().hasConnection) {
       try {
         var request = await http
             .post(
@@ -35,7 +30,12 @@ class NetworkCalls {
             );
 
         if (request.statusCode != 200) {
-          StatusCodeCheck.checkStatusCode(request.statusCode, key);
+          Navigator.pop(key.currentContext);
+          StatusCodeCheck.checkStatusCode(
+            request.statusCode,
+            key,
+            request.body.isEmpty ? null : json.decode(request.body),
+          );
           return {"status": false};
         } else {
           if (request.body.isEmpty) {
@@ -46,6 +46,7 @@ class NetworkCalls {
         }
       } catch (e) {
         print("Error in file Network Calls catch $e");
+        Navigator.pop(key.currentContext);
         key.currentState.showSnackBar(
           AppSnackBar.snackBar(
               title: "Error occured. Server not responding.",
@@ -55,9 +56,13 @@ class NetworkCalls {
       }
     } else {
       print("Error here");
-      key.currentState.showSnackBar(AppSnackBar.snackBar(
+      Navigator.pop(key.currentContext);
+      key.currentState.showSnackBar(
+        AppSnackBar.snackBar(
           title: "No internet. Please check your connection.",
-          backgroundColor: AppColors.red));
+          backgroundColor: AppColors.red,
+        ),
+      );
       return {"status": false};
     }
   }
@@ -66,15 +71,18 @@ class NetworkCalls {
     @required GlobalKey<ScaffoldState> key,
     @required String endPoint,
   }) async {
-    status = await DataConnectionChecker().hasConnection;
-    print(status);
-    if (status == true) {
+    if (await DataConnectionChecker().hasConnection) {
       try {
         var request = await http.get(EndPoints.ipAddress + endPoint,
             headers: EndPoints.header);
 
         if (request.statusCode != 200) {
-          StatusCodeCheck.checkStatusCode(request.statusCode, key);
+          Navigator.pop(key.currentContext);
+          StatusCodeCheck.checkStatusCode(
+            request.statusCode,
+            key,
+            request.body.isEmpty ? null : json.decode(request.body),
+          );
           return {"status": false};
         } else {
           if (request.body.isEmpty) {
@@ -84,11 +92,12 @@ class NetworkCalls {
           }
         }
       } catch (e) {
+        Navigator.pop(key.currentContext);
         print("Error in file Network Calls catch $e");
         return {"status": false};
       }
     } else {
-      print("Error here");
+      Navigator.pop(key.currentContext);
       key.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "No internet.Please check your connection.",
           backgroundColor: AppColors.red));
@@ -101,15 +110,18 @@ class NetworkCalls {
     @required String endPoint,
     @required Object body,
   }) async {
-    print(EndPoints.ipAddress + endPoint);
-    status = await DataConnectionChecker().hasConnection;
-    if (status == true) {
+    if (await DataConnectionChecker().hasConnection) {
       try {
         var request = await http.put(EndPoints.ipAddress + endPoint,
             headers: EndPoints.header, body: json.encode(body));
 
         if (request.statusCode != 200) {
-          StatusCodeCheck.checkStatusCode(request.statusCode, key);
+          Navigator.pop(key.currentContext);
+          StatusCodeCheck.checkStatusCode(
+            request.statusCode,
+            key,
+            request.body.isEmpty ? null : json.decode(request.body),
+          );
           return {"status": false};
         } else {
           if (request.body.isEmpty) {
@@ -119,11 +131,12 @@ class NetworkCalls {
           }
         }
       } catch (e) {
+        Navigator.pop(key.currentContext);
         print("Error in file Network Calls catch $e");
         return {"status": false};
       }
     } else {
-      print("Error here");
+      Navigator.pop(key.currentContext);
       key.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "No internet.Please check your connection.",
           backgroundColor: AppColors.red));

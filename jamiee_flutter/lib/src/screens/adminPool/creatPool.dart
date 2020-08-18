@@ -1,4 +1,4 @@
-import 'package:Jamiie/src/widgets/appTextFields/inputDeoration.dart';
+import '../../widgets/appTextFields/inputDeoration.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../styles/colors.dart';
@@ -109,6 +109,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                             onTap: () => createPoolProvider.selectDate(context),
                             child: AbsorbPointer(
                               child: TextFormField(
+                
                                 controller: createPoolProvider.date,
                                 keyboardType: TextInputType.datetime,
                                 validator: (value) {
@@ -124,7 +125,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                                   Icons.date_range,
                                   null,
                                   "Deadline",
-                                  null,
+                                  EdgeInsets.only(left:16.0),
                                 ),
                               ),
                             ),

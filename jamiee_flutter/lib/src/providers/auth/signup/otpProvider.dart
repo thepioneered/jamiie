@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/models/otpModel.dart';
 import 'package:Jamiie/src/models/pageModel.dart';
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +22,7 @@ class OtpProvider extends ChangeNotifier {
   }
   Widget verifyOTP({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: "Verify Authorization Code");
+        loader: loader, onTap: onTap, title: SignUpFlowText.otpPageButton);
   }
 
   void checkOtp() async {
@@ -44,9 +45,9 @@ class OtpProvider extends ChangeNotifier {
           endPoint: EndPoints.verifyOtp,
           afterRequest: () {},
           body: otpModel.toJson(await LocalStorage.getMobile()));
-      Navigator.pop(otpScaffoldKey.currentContext);
 
       if (body["status"]) {
+      Navigator.pop(otpScaffoldKey.currentContext);
         pageModel.onceClicked = false;
         notifyListeners();
         Navigator.pushReplacementNamed(

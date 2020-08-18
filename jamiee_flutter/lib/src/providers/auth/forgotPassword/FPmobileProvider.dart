@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../../models/mobileModel.dart';
 import '../../../models/pageModel.dart';
@@ -23,7 +25,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
     return AppButton.loginButton(
       loader: loader,
       onTap: onTap,
-      title: "Send Authorization Code",
+      title: ForgotPasswordFlowText.mobilePageButton,
     );
   }
 
@@ -32,10 +34,16 @@ class ForgotPasswordProvider extends ChangeNotifier {
     notifyListeners();
     if (forgotPasswordFormKey.currentState.validate()) {
       forgotPasswordFormKey.currentState.save();
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
       print(mobileModel.mobile);
       print(mobileModel.toJson());
+      try {
+        LoaderDialog.loaderDialog(forgotPasswordScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: forgotPasswordScaffoldKey,
           endPoint: EndPoints.forgotPassword,
@@ -47,6 +55,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
         pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
+        Navigator.pop(forgotPasswordScaffoldKey.currentContext);
         forgotPasswordFormKey.currentState.reset();
         Navigator.pushReplacementNamed(
             forgotPasswordScaffoldKey.currentContext, "/FPOtpPage");

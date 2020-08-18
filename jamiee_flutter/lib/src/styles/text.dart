@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './colors.dart';
 
 class AppTextStyle {
@@ -18,15 +18,14 @@ class AppTextStyle {
         color: Colors.grey[400],
       );
   static TextStyle get createPoolBottom => TextStyle(
-        fontFamily: "Poppins",
-        fontWeight: FontWeight.w500,
-        fontSize:24.0,
-        color: AppColors.primaryColorPurple
-      );
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w500,
+      fontSize: 24.0,
+      color: AppColors.primaryColorPurple);
   static TextStyle get poolID => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
-        fontSize:28.0,
+        fontSize: 28.0,
         color: AppColors.primaryOrange,
       );
   static TextStyle get poolTitle => TextStyle(
@@ -64,6 +63,18 @@ class AppTextStyle {
         fontSize: 18.0,
         color: AppColors.black,
       );
+  static TextStyle get joinPoolHeading => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 17.0,
+        color: AppColors.grayInputHeading,
+      );
+  static TextStyle get joinPoolSubHeading => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 18.0,
+        color: AppColors.black,
+      );
   static TextStyle dialogButton(Color _color) {
     return TextStyle(
         fontFamily: "Poppins",
@@ -72,11 +83,15 @@ class AppTextStyle {
         color: _color);
   }
 
-  static TextStyle get forgotPassword => TextStyle(
-      fontFamily: "Poppins",
-      fontWeight: FontWeight.w400,
-      fontSize: 15.0,
-      color: AppColors.primaryColorPurple);
+  static TextStyle forgotPassword(BuildContext ctx) {
+    // ScreenUtil.init(ctx,allowFontScaling: true);
+    return TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        // fontSize: 15.0,
+        // fontSize: ScreenUtil().setSp(40),
+        color: AppColors.primaryColorPurple);
+  }
 
   static TextStyle get authHeading => TextStyle(
         fontFamily: "Poppins",

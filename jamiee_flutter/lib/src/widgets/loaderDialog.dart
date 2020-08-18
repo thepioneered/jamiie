@@ -24,34 +24,5 @@ class LoaderDialog {
         ),
       ),
     );
-
-    // showDialog(
-    //   context: context,
-    //   barrierDismissible: false,
-    //   builder: (_) {
-    //     return Padding(
-    //       padding: const EdgeInsets.symmetric(horizontal: 125.0),
-    //       child: AlertDialog(
-    //         backgroundColor: Colors.transparent.withOpacity(0.0),
-    //         insetPadding: EdgeInsets.zero,
-    //         actionsPadding: EdgeInsets.zero,
-    //         buttonPadding: EdgeInsets.zero,
-    //         titlePadding: EdgeInsets.zero,
-    //         contentPadding: EdgeInsets.zero,
-    //         content: Builder(
-    //           builder: (ctx) {
-    //             return Container(
-    //               color: Colors.transparent.withOpacity(0.0),
-    //               padding: EdgeInsets.only(bottom: 20.0),
-    //               height: 100.0,
-    //               width: 100.0,
-    //               child: Lottie.asset("assets/loader.json"),
-    //             );
-    //           },
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

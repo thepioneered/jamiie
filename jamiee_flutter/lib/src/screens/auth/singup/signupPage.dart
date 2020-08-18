@@ -21,6 +21,9 @@ class _SignupPageState extends State<SignupPage> {
   FocusNode emailNode;
   FocusNode passwordNode;
   FocusNode confirmPasswordNode;
+  FocusNode stateNode;
+  FocusNode cityNode;
+  FocusNode socialNumber;
   @override
   void initState() {
     super.initState();
@@ -28,13 +31,20 @@ class _SignupPageState extends State<SignupPage> {
     emailNode = FocusNode();
     passwordNode = FocusNode();
     confirmPasswordNode = FocusNode();
+    stateNode = FocusNode();
+    cityNode = FocusNode();
+    socialNumber = FocusNode();
   }
 
   @override
   void dispose() {
+    lastName.dispose();
     emailNode.dispose();
     passwordNode.dispose();
     confirmPasswordNode.dispose();
+    cityNode.dispose();
+    stateNode.dispose();
+    socialNumber.dispose();
     super.dispose();
   }
 
@@ -196,6 +206,9 @@ class _SignupPageState extends State<SignupPage> {
                               showPassword: false,
                               onSaved: null,
                               hintText: "Confirm Password",
+                              onEdittingComplete: (){
+                                stateNode.requestFocus();
+                              },
                               autoValidate:
                                   signupProvider.pageModel.onceFormSubmitted,
                               validator: signupProvider
@@ -214,6 +227,10 @@ class _SignupPageState extends State<SignupPage> {
                                       signupProvider.signup.state = e;
                                     },
                                     hintText: "State",
+                                    onEdittingComplete: () {
+                                      cityNode.requestFocus();
+                                    },
+                                    focusNode: stateNode,
                                     autoValidate: signupProvider
                                         .pageModel.onceFormSubmitted,
                                     validator:
@@ -229,8 +246,14 @@ class _SignupPageState extends State<SignupPage> {
                                     onSaved: (String e) {
                                       signupProvider.signup.city = e;
                                     },
+                                    onEdittingComplete:(){
+                                      socialNumber.requestFocus();
+                                    },
                                     hintText: "City",
+                                    focusNode: cityNode,
                                     autoValidate: signupProvider
+
+                                    
                                         .pageModel.onceFormSubmitted,
                                     validator:
                                         TextFieldValidation.stateCityValidation,
@@ -239,6 +262,7 @@ class _SignupPageState extends State<SignupPage> {
                               ],
                             ),
                             AppTextField.screenTextField(
+                              focusNode: socialNumber,
                               toolbarOptions: ToolbarOptions(
                                   copy: false,
                                   paste: false,

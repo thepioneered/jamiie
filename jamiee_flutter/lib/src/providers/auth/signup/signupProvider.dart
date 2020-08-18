@@ -58,8 +58,8 @@ class SignupProvider extends ChangeNotifier {
         afterRequest: () {},
         body: signup.toJson(await LocalStorage.getMobile()),
       );
-      Navigator.pop(signupScaffoldKey.currentContext);
       if (body["status"]) {
+      Navigator.pop(signupScaffoldKey.currentContext);
         pageModel.onceFormSubmitted = false;
         pageModel.onceClicked = false;
         notifyListeners();

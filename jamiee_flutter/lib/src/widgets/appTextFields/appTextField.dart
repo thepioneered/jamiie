@@ -17,6 +17,7 @@ class AppTextField {
       FocusNode focusNode,
       @required IconData prefixIcon,
       TextEditingController controller,
+      EdgeInsetsGeometry edge,
       TextInputType textInputType}) {
     return SizedBox(
       height: 80,
@@ -32,7 +33,7 @@ class AppTextField {
         maxLength: maxLength,
         autovalidate: autoValidate,
         decoration: AppInputDecoration.textFieldDecoration(
-            prefixIcon, onEyeClick, hintText,null),
+            prefixIcon, onEyeClick, hintText, edge),
         onSaved: onSaved,
         autofocus: autofocus == null ? false : autofocus,
         maxLines: 1,

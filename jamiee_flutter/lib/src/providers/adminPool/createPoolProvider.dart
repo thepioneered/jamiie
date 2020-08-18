@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
+
 import '../../widgets/sucessCreatePool.dart';
 import '../../models/createPoolModels/poolidModel.dart';
 import '../../models/pageModel.dart';
@@ -52,8 +54,13 @@ class CreatePoolProvider with ChangeNotifier {
     notifyListeners();
     if (createPoolFormKey.currentState.validate()) {
       createPoolFormKey.currentState.save();
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
+      try {
+        LoaderDialog.loaderDialog(createPoolScaffoldKey.currentContext);
+      } catch (e) {
+        throw Exception(e);
+      }
       createPool.deadline = selectedDate.toString().substring(0, 10);
       createPool.minPeople = start.toInt();
       createPool.maxPeople = end.toInt();
@@ -72,6 +79,7 @@ class CreatePoolProvider with ChangeNotifier {
         ),
       );
       if (body["status"]) {
+        Navigator.pop(createPoolScaffoldKey.currentContext);
         pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         date.clear();
@@ -79,7 +87,7 @@ class CreatePoolProvider with ChangeNotifier {
         notifyListeners();
         PoolIdModel poolId = PoolIdModel.fromJson(body["body"]);
         print(poolId.poolId);
-        SuccesCreatePoolBottomSheet.bottomSheet(
+        AppBottomModalSheet.bottomSheetSucess(
             createPoolScaffoldKey.currentContext, poolId.poolId);
       } else {
         pageModel.onceClicked = false;

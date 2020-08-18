@@ -10,21 +10,21 @@ class LogoutProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> settingScaffoldKey = GlobalKey<ScaffoldState>();
 
   String mobile;
-  void _onLoading(BuildContext ctx) {
-    showDialog(
-      context: ctx,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: SizedBox(
-            height: 75.0,
-            width: 40.0,
-            child: CupertinoActivityIndicator(),
-          ),
-        );
-      },
-    );
-  }
+  // void _onLoading(BuildContext ctx) {
+  //   showDialog(
+  //     context: ctx,
+  //     barrierDismissible: false,
+  //     builder: (BuildContext context) {
+  //       return Dialog(
+  //         child: SizedBox(
+  //           height: 75.0,
+  //           width: 40.0,
+  //           child: CupertinoActivityIndicator(),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   void handleLogout() async {
     appLogoutDialog(

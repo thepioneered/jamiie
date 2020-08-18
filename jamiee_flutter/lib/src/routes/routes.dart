@@ -1,6 +1,6 @@
-import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
-import 'package:Jamiie/src/screens/adminPool/poolDataPage.dart';
-import 'package:Jamiie/src/screens/userPoolScreens/searchPoolPage.dart';
+import '../screens/adminPool/creatPool.dart';
+import '../screens/adminPool/poolDataPage.dart';
+import '../screens/userJoinedPools/searchPoolPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -10,8 +10,10 @@ class AppInputDecoration {
     EdgeInsetsGeometry _edge,
   ) {
     return InputDecoration(
-      prefixIcon: Icon(prefixIcon),
+      // prefixIcon: Icon(prefixIcon),
+      prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
       suffixIcon: onEyeClick,
+
       contentPadding:
           _edge != null ? _edge : const EdgeInsets.symmetric(horizontal: 16),
       hintText: hintText,

@@ -1,6 +1,8 @@
 import 'package:Jamiie/src/models/otpModel.dart';
 import 'package:Jamiie/src/models/pageModel.dart';
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/snackBar.dart';
@@ -20,7 +22,7 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
   }
   Widget verifyOTP({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: "Verify Authozisation Code");
+        loader: loader, onTap: onTap, title: ForgotPasswordFlowText.otpPageButton);
   }
 
   void checkOtp() async {
@@ -30,9 +32,15 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
             backgroundColor: AppColors.red, title: "Please enter OTP"),
       );
     } else if (otpModel.otp.length == 5) {
-      pageModel.onceClicked = true;
-      notifyListeners();
-      print(otpModel.toJson(await LocalStorage.getMobile()));
+      // pageModel.onceClicked = true;
+      // notifyListeners();
+      // print(otpModel.toJson(await LocalStorage.getMobile()));
+      try {
+        LoaderDialog.loaderDialog(otpScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,
@@ -40,8 +48,9 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
           body: otpModel.toJson(await LocalStorage.getMobile()));
 
       if (body["status"]) {
-        pageModel.onceClicked = false;
-        notifyListeners();
+        // pageModel.onceClicked = false;
+        // notifyListeners();
+        Navigator.pop(otpScaffoldKey.currentContext);
         Navigator.pushReplacementNamed(
             otpScaffoldKey.currentContext, "/FPNewPassword");
       } else {

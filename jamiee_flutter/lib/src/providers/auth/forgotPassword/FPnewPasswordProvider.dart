@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../../models/newPasswordModel.dart';
 import '../../../models/pageModel.dart';
@@ -29,12 +30,17 @@ class NewPasswordProvider extends ChangeNotifier {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (newpassFormKey.currentState.validate()) {
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
       newpassFormKey.currentState.save();
       String a = await LocalStorage.getMobile();
       a = a.substring(1, a.length);
-      print(EndPoints.ipAddress + EndPoints.setNewPassword(a));
+      try {
+        LoaderDialog.loaderDialog(newpassScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       Map<String, dynamic> body = await NetworkCalls.putDataToServer(
         key: newpassScaffoldKey,
         endPoint: EndPoints.setNewPassword(a),
@@ -47,6 +53,7 @@ class NewPasswordProvider extends ChangeNotifier {
         password.clear();
         await LocalStorage.deleteData();
         notifyListeners();
+        Navigator.pop(newpassScaffoldKey.currentContext);
         newpassFormKey.currentState.reset();
         Future.delayed(Duration(milliseconds: 1300), () {
           Navigator.pushNamedAndRemoveUntil(newpassScaffoldKey.currentContext,

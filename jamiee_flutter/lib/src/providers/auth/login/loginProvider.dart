@@ -56,8 +56,8 @@ class LoginProvider extends ChangeNotifier {
           endPoint: EndPoints.userLogin,
           afterRequest: () {},
           body: login.toJson());
-      Navigator.pop(loginScaffoldKey.currentContext);
       if (body["status"]) {
+        Navigator.pop(loginScaffoldKey.currentContext);
         print(body["body"]);
         await LocalStorage.setTokenMobileFirstLogin(
             body["body"]["token"], login.mobile, body["body"]["firstlogin"]);

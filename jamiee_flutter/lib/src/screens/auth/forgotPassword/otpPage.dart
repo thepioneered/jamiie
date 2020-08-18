@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
+
 import '../../../providers/auth/forgotPassword/FPotpProvider.dart';
 import '../../../widgets/pageHeading.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -77,8 +79,8 @@ class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             PageHeading.topHeading(
-                title: "Enter your OTP",
-                subTitle: "Please enter otp sent to your mobile number."),
+                title: ForgotPasswordFlowText.otpPageTitle,
+                subTitle: ForgotPasswordFlowText.otpPageSubTitle),
             SizedBox(
               height: 30.0,
             ),

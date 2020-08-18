@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/utils/onWillPopScope.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/pageHeading.dart';
@@ -78,8 +79,8 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               PageHeading.topHeading(
-                  title: "Enter your OTP",
-                  subTitle: "Please enter otp sent to your mobile number."),
+                  title: SignUpFlowText.otpPageTitle,
+                  subTitle: SignUpFlowText.otpPageSubTitle),
               SizedBox(
                 height: 30.0,
               ),

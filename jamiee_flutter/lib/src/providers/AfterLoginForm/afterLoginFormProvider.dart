@@ -3,6 +3,7 @@ import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:Jamiie/src/utils/snackBar.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../models/afterLoginform.dart';
 
@@ -36,10 +37,15 @@ class AfterLoginFormProvider extends ChangeNotifier {
     notifyListeners();
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      pageModel.onceClicked = true;
-      notifyListeners();
+      // pageModel.onceClicked = true;
+      // notifyListeners();
+      try {
+        LoaderDialog.loaderDialog(scaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
       listModel.mobile = await LocalStorage.getMobile();
-      print(listModel.toJson());
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
         key: scaffoldKey,
@@ -51,10 +57,12 @@ class AfterLoginFormProvider extends ChangeNotifier {
 
       if (body["status"]) {
         print("Data Posted");
+
         pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
         formKey.currentState.reset();
+        Navigator.pop(scaffoldKey.currentContext);
         await LocalStorage.setFirstLogin();
         Future.delayed(Duration(milliseconds: 500), () {
           Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");

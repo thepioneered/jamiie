@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/models/mobileModel.dart';
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import '../../../models/pageModel.dart';
 import '../../../utils/sharedPref.dart';
@@ -23,7 +24,7 @@ class MobileProvider extends ChangeNotifier {
     return AppButton.loginButton(
       loader: loader,
       onTap: onTap,
-      title: "Send Authorization Code",
+      title: SignUpFlowText.mobilePageButton,
     );
   }
 
@@ -47,9 +48,9 @@ class MobileProvider extends ChangeNotifier {
           endPoint: EndPoints.sendOtp,
           afterRequest: () {},
           body: mobileModel.toJson());
-      Navigator.pop(mobileScaffoldKey.currentContext);
 
       if (body["status"]) {
+        Navigator.pop(mobileScaffoldKey.currentContext);
         await LocalStorage.setMobile(mobileModel.mobile);
         pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;

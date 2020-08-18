@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         alignment: Alignment.bottomRight,
                         child: Text(
                           "Forgot Password ?",
-                          style: AppTextStyle.forgotPassword,
+                          style: AppTextStyle.forgotPassword(context),
                         ),
                       ),
                     ),

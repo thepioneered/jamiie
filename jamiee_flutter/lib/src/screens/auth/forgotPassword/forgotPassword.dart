@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
+
 import '../../../utils/validationRegex.dart';
 import '../../../widgets/pageHeading.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +29,8 @@ class ForgotPasswordPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     PageHeading.topHeading(
-                        title: "Forgot Password?",
-                        subTitle:
-                            "Enter your mobile number to reset your password."),
+                        title: ForgotPasswordFlowText.mobilePageTitle,
+                        subTitle:ForgotPasswordFlowText.mobilePageSubTitle),
                     Form(
                       key: forgotPasswordProvider.forgotPasswordFormKey,
                       autovalidate: forgotPasswordProvider.pageModel.onceFormSubmitted,

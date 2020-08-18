@@ -1,19 +1,10 @@
-import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
-import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
-import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
-import 'package:Jamiie/src/screens/navbar.dart';
-import 'providers/AfterLoginForm/afterLoginFormProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'providers/adminPool/createPoolProvider.dart';
 import 'providers/Dashboard/dashboardProvider.dart';
-import 'providers/auth/forgotPassword/FPotpProvider.dart';
 import 'providers/app/appProvider.dart';
 import 'providers/auth/login/loginProvider.dart';
-import 'providers/auth/signup/mobileProvider.dart';
-import 'providers/auth/signup/otpProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
@@ -54,32 +45,12 @@ class _AppState extends State<App> {
     ]);
     return MultiProvider(
       providers: [
-        //App Provider which checks whether session logged in or not
         ChangeNotifierProvider(
           create: (context) => AppProvider(),
         ),
-
-        //All auth Providers
-        // ChangeNotifierProvider(
-        //   create: (context) => MobileProvider(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (context) => OtpProvider(),
-        // ),
-
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => ForgotPasswordOtpProvider(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => CreatePoolProvider(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => AfterLoginFormProvider(),
-        // ),
-        //Dashboard Provider
         ChangeNotifierProvider(
           create: (context) => DashboardProvider(),
         ),
@@ -88,10 +59,9 @@ class _AppState extends State<App> {
         title: "Jamiie",
         theme: ThemeData(
           primaryColor: AppColors.primaryColorPurple,
-          // accentColor: AppColors.primaryColorPurple..opacity,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AppNavigationBar(),
+        // home: SignupPage(),
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;
