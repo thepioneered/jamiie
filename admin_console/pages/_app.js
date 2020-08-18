@@ -21,7 +21,12 @@ function MyApp({ Component, pageProps }) {
     console.log("isToken:", isTokenInCookie);
     if (isTokenInCookie) {
       setGlobal((prevState) => {
-        return { ...prevState, isLoading: false, tokenValidated: true };
+        return {
+          ...prevState,
+          isLoading: false,
+          tokenValidated: true,
+          loginData: isTokenInCookie.data,
+        };
       });
     } else {
       setGlobal((prevState) => {

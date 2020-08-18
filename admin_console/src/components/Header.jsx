@@ -81,14 +81,17 @@ function Header({ toggleSidebar, loginData }) {
         </div>*/}
       <div className={styles.heading}>Admin Console - </div>
       <div className={styles.account__info}>
-        <div className={styles.name}>Paritosh Batish</div>
+        <div className={styles.name}>{loginData.name}</div>
         <div className={styles.admin}>Admin</div>
       </div>
       <div className={styles.avatar} onClick={toggleAvatarMenu}>
-        P
+        {loginData.name[0]}
       </div>
       {avatarMenuState ? (
-        <AvatarMenu toggle_avatar_menu={toggleAvatarMenu} />
+        <AvatarMenu
+          toggle_avatar_menu={toggleAvatarMenu}
+          loginData={loginData}
+        />
       ) : null}
     </div>
   );
