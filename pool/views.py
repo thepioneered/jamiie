@@ -43,8 +43,7 @@ class JoinPoolApi(APIView):
         try:
             data = request.data
             poolid = data['poolid']
-            #memberid = "+"+str(data['memberid'])
-            memberid = data['memberid']
+            memberid = "+"+str(data['memberid'])
             if CreatePool.objects.filter(poolid=poolid).exists() and User.objects.filter(phone=memberid).exists():
                 pool = CreatePool.objects.get(poolid=poolid)
                 member = User.objects.get(phone=memberid)
