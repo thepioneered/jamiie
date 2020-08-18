@@ -20,4 +20,5 @@ from .views import *
 urlpatterns = [
     path('createpool',CreatePoolApi.as_view(),name='create pool'),
     path('joinpool',JoinPoolApi.as_view(),name = 'join pool'),
+    path('searchpool',SearchPoolApi.as_view(), name = 'search pool'),
 ]

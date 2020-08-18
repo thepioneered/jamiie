@@ -195,3 +195,25 @@ data:
 }
 
 Response: status = 200
+
+
+
+Join Pool:
+endpoint: /pool/joinpool
+Request Type: "POST"
+data:
+{
+    "poolid":"8digit pool id",
+    "memberid":"+919816456565"
+}
+
+Response:
+if user already joined the pool 
+status: 405
+
+if maxmember completed:
+{'error':'pool filled'}
+status: 401
+ 
+ otherwise:
+ status = 200
