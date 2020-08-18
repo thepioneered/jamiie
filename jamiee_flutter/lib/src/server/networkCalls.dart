@@ -29,39 +29,52 @@ class NetworkCalls {
               Duration(seconds: 10),
             );
 
-        if (request.statusCode != 200) {
-          Navigator.pop(key.currentContext);
-          StatusCodeCheck.checkStatusCode(
-            request.statusCode,
-            key,
-            request.body.isEmpty ? null : json.decode(request.body),
-          );
-          return {"status": false};
-        } else {
-          if (request.body.isEmpty) {
-            return {"status": true};
-          } else {
-            return {"status": true, "body": json.decode(request.body)};
-          }
-        }
+        return dataHandler(request, key);
       } catch (e) {
-        print("Error in file Network Calls catch $e");
-        Navigator.pop(key.currentContext);
-        key.currentState.showSnackBar(
-          AppSnackBar.snackBar(
-              title: "Error occured. Server not responding.",
-              backgroundColor: AppColors.red),
-        );
-        return {"status": false};
+        return serverError(e, key);
       }
     } else {
-      print("Error here");
+      return noInternetHandler(key);
+    }
+  }
+
+  static Map<String, dynamic> serverError(
+      String e, GlobalKey<ScaffoldState> key) {
+    print("Error in file Network Calls catch $e");
+    Navigator.pop(key.currentContext);
+    key.currentState.showSnackBar(
+      AppSnackBar.snackBar(
+          title: "Error occured. Server not responding.",
+          backgroundColor: AppColors.red),
+    );
+    return {"status": false};
+  }
+
+  static Map<String, dynamic> noInternetHandler(GlobalKey<ScaffoldState> key) {
+    Navigator.pop(key.currentContext);
+    key.currentState.showSnackBar(
+      AppSnackBar.snackBar(
+        title: "No internet. Please check your connection.",
+        backgroundColor: AppColors.red,
+      ),
+    );
+    return {"status": false};
+  }
+
+  static Map<String, dynamic> dataHandler(
+      http.Response request, GlobalKey<ScaffoldState> key) {
+    if (request.statusCode == 200) {
+      return {"status": true, "body": json.decode(request.body)};
+    } else if (request.statusCode == 201) {
+      return {"status": true};
+    } else {
       Navigator.pop(key.currentContext);
-      key.currentState.showSnackBar(
-        AppSnackBar.snackBar(
-          title: "No internet. Please check your connection.",
-          backgroundColor: AppColors.red,
-        ),
+      StatusCodeCheck.checkStatusCode(
+        request.statusCode,
+        key,
+        (json.decode(request.body))["error"] == null
+            ? "Error in ${request.statusCode}"
+            : (json.decode(request.body))["error"],
       );
       return {"status": false};
     }
@@ -70,38 +83,26 @@ class NetworkCalls {
   static Future<Map<String, dynamic>> getDataFromServer({
     @required GlobalKey<ScaffoldState> key,
     @required String endPoint,
+    bool authRequest = false,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
-        var request = await http.get(EndPoints.ipAddress + endPoint,
-            headers: EndPoints.header);
-
-        if (request.statusCode != 200) {
-          Navigator.pop(key.currentContext);
-          StatusCodeCheck.checkStatusCode(
-            request.statusCode,
-            key,
-            request.body.isEmpty ? null : json.decode(request.body),
-          );
-          return {"status": false};
-        } else {
-          if (request.body.isEmpty) {
-            return {"status": true};
-          } else {
-            return {"status": true, "body": json.decode(request.body)};
-          }
-        }
+        var request = await http
+            .get(
+              EndPoints.ipAddress + endPoint,
+              headers: authRequest
+                  ? EndPoints.authHeader(await LocalStorage.getToken())
+                  : EndPoints.header,
+            )
+            .timeout(
+              Duration(seconds: 10),
+            );
+        return dataHandler(request, key);
       } catch (e) {
-        Navigator.pop(key.currentContext);
-        print("Error in file Network Calls catch $e");
-        return {"status": false};
+        return serverError(e, key);
       }
     } else {
-      Navigator.pop(key.currentContext);
-      key.currentState.showSnackBar(AppSnackBar.snackBar(
-          title: "No internet.Please check your connection.",
-          backgroundColor: AppColors.red));
-      return {"status": false};
+      return noInternetHandler(key);
     }
   }
 
@@ -109,38 +110,28 @@ class NetworkCalls {
     @required GlobalKey<ScaffoldState> key,
     @required String endPoint,
     @required Object body,
+    bool authRequest = false,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
-        var request = await http.put(EndPoints.ipAddress + endPoint,
-            headers: EndPoints.header, body: json.encode(body));
+        var request = await http
+            .put(
+              EndPoints.ipAddress + endPoint,
+              headers: authRequest
+                  ? EndPoints.authHeader(await LocalStorage.getToken())
+                  : EndPoints.header,
+              body: json.encode(body),
+            )
+            .timeout(
+              Duration(seconds: 10),
+            );
 
-        if (request.statusCode != 200) {
-          Navigator.pop(key.currentContext);
-          StatusCodeCheck.checkStatusCode(
-            request.statusCode,
-            key,
-            request.body.isEmpty ? null : json.decode(request.body),
-          );
-          return {"status": false};
-        } else {
-          if (request.body.isEmpty) {
-            return {"status": true};
-          } else {
-            return {"status": true, "body": json.decode(request.body)};
-          }
-        }
+        return dataHandler(request, key);
       } catch (e) {
-        Navigator.pop(key.currentContext);
-        print("Error in file Network Calls catch $e");
-        return {"status": false};
+        return serverError(e, key);
       }
     } else {
-      Navigator.pop(key.currentContext);
-      key.currentState.showSnackBar(AppSnackBar.snackBar(
-          title: "No internet.Please check your connection.",
-          backgroundColor: AppColors.red));
-      return {"status": false};
+      return noInternetHandler(key);
     }
   }
 }
