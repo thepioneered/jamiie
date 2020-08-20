@@ -1,6 +1,5 @@
 .vscode/
 .idea/
-venv/
 env/
-.env/
-testing.py/
+.env
+testing.py
