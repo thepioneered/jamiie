@@ -14,6 +14,13 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.hashers import check_password
 from django.http import HttpResponse
 import json
+from dotenv import load_dotenv
+from pathlib import Path
+import os
+env_file = Path('.') / '.env'
+load_dotenv(dotenv_path=env_file)
+
+
 #OTP GENERATOR
 def otpGenerator():
     otp = random.randrange(10000,100000)
@@ -34,13 +41,13 @@ class Phone(APIView):
                     otp = otpGenerator()
                     user_instance.otp = otp
                     user_instance.save()
-                    account_sid = 'AC682a134035589f334183428895b1bbe2'
-                    auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+                    account_sid = os.getenv('ACCOUNT_SID')
+                    auth_token = os.getenv('AUTH')
                     client = Client(account_sid, auth_token)
                     message = client.messages \
                         .create(
                             body="Your otp number is "+str(otp),
-                            from_='+18123704981',
+                            from_=os.getenv('FROM_NUMBER'),
                             to=str(phone)
                         )
                     print(message.sid)
@@ -52,13 +59,13 @@ class Phone(APIView):
                 Otp service created here using AWS SNS
                 +18123704981
                 '''
-                account_sid = 'AC682a134035589f334183428895b1bbe2'
-                auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+                account_sid = os.getenv('ACCOUNT_SID')
+                auth_token = os.getenv('AUTH_TOKEN')
                 client = Client(account_sid, auth_token)
                 message = client.messages \
                         .create(
                             body="Your otp number is "+str(otp),
-                            from_='+18123704981',
+                            from_=os.getenv('FROM_NUMBER'),
                             to=str(phone)
                         )
                 print(message.sid)
@@ -96,13 +103,13 @@ class ResendOtp(APIView):
                 otp = otpGenerator()
                 user_instance.otp = otp
                 user_instance.save()
-                account_sid = 'AC682a134035589f334183428895b1bbe2'
-                auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+                account_sid = os.getenv('ACCOUNT_SID')
+                auth_token = os.getenv('AUTH_TOKEN')
                 client = Client(account_sid, auth_token)
                 message = client.messages \
                         .create(
                             body="Your otp number is "+str(otp),
-                            from_='+18123704981',
+                            from_=os.getenv('FROM_NUMBER'),
                             to=str(phone)
                         )
                 print(message.sid)
@@ -168,13 +175,13 @@ class ForgotPassword(APIView):
                 otp = otpGenerator()
                 user.otp = otp
                 user.save()
-                account_sid = 'AC682a134035589f334183428895b1bbe2'
-                auth_token = 'd0334f39bc9f3a6294aca45badc2ba55'
+                account_sid = os.getenv('ACCOUNT_SID')
+                auth_token = os.getenv('AUTH_TOKEN')
                 client = Client(account_sid, auth_token)
                 message = client.messages \
                         .create(
                             body="Your otp number is "+str(otp),                        
-                            from_='+18123704981',
+                            from_=os.getenv('FROM_NUMBER'),
                             to=str(phone)
                         )
                 print(message.sid)
