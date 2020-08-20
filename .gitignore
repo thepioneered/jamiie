@@ -1,5 +1,4 @@
 .vscode/
 .idea/
 env/
-.env
 testing.py
