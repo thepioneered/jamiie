@@ -36,7 +36,7 @@ class Phone(APIView):
             if OTP.objects.filter(phone=phone).exists():
                 user_instance = OTP.objects.get(phone=phone)
                 if user_instance.validated == True and user_instance.register==True:
-                    return Response(status = status.HTTP_409_CONFLICT)
+                    return Response({'response':'User already exists'},status = status.HTTP_409_CONFLICT)
                 else:
                     otp = otpGenerator()
                     user_instance.otp = otp
@@ -87,7 +87,7 @@ class PhoneVerification(APIView):
                 user.save()
                 return Response(status = status.HTTP_200_OK)
             else:
-                return Response (status = status.HTTP_401_UNAUTHORIZED)
+                return Response ({'response':'Invalid authorization code'},status = status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             print(e)
 
@@ -155,11 +155,11 @@ class Login(APIView):
                         firstlogin = UserInfo.objects.filter(phone=phone).exists()
                         return Response({'token': token.key,'firstlogin':firstlogin},status=status.HTTP_200_OK)
                     else:
-                        return Response(status=status.HTTP_401_UNAUTHORIZED)
+                        return Response({'response':'Wrong Credentials'},status=status.HTTP_401_UNAUTHORIZED)
                 else:
                     return Response(status=status.HTTP_404_NOT_FOUND)        
             else:
-                return Response(status=status.HTTP_403_FORBIDDEN)
+                return Response({'response':'User does not exists'},status=status.HTTP_403_FORBIDDEN)
         except Exception as e:
             print(e)
 
@@ -187,7 +187,7 @@ class ForgotPassword(APIView):
                 print(message.sid)
                 return Response(status=status.HTTP_200_OK)
             else:
-                return Response(status=status.HTTP_403_FORBIDDEN) 
+                return Response({'response':'User does not exists'},status=status.HTTP_403_FORBIDDEN)
         except Exception as e:
             print(e)        
 
