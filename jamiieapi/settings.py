@@ -42,12 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'api.apps.ApiConfig',
+    'userauth.apps.UserAuthConfig',
     'corsheaders',
     'pool.apps.PoolConfig'
 ]
 
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'userauth.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

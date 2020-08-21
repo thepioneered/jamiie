@@ -62,13 +62,13 @@ class User(AbstractBaseUser):
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
-    createdat = models.DateTimeField(auto_now_add=True)
-    lastlogin = models.DateTimeField(auto_now=True)
-    securityno = models.CharField(max_length=255, null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    lastLogin = models.DateTimeField(auto_now=True)
+    securityNumber = models.CharField(unique=True,max_length=4, null=False, blank=False)
     
     objects = UserManager()
     USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = ['email','name','state','city','securityno']
+    REQUIRED_FIELDS = ['email','name','state','city','securityNumber']
 
     def __str__(self):
         phone = self.phone
@@ -108,10 +108,10 @@ class OTP(models.Model):
         return self.phone
 
 class RiskCondition(models.Model):
-    jobage = models.CharField(max_length=255)
+    jobAge = models.CharField(max_length=255)
     family = models.CharField(max_length=255)
     age = models.CharField(max_length=255)
-    savingmoney = models.CharField(max_length=255)
+    savingMoney = models.CharField(max_length=255)
     loans = models.CharField(max_length=255)
     living = models.CharField(max_length=255)
     score = models.IntegerField(blank=False, null=False)
@@ -121,14 +121,14 @@ class RiskCondition(models.Model):
 
 class UserInfo(models.Model):
     phone = models.ForeignKey(User, related_name='phoneno', on_delete = models.CASCADE)
-    jobage = models.CharField(max_length=255)
+    jobAge = models.CharField(max_length=255)
     family = models.CharField(max_length=255)
     age = models.CharField(max_length=255)
-    savingmoney = models.CharField(max_length=255)
+    savingMoney = models.CharField(max_length=255)
     loans = models.CharField(max_length=255)
     living = models.CharField(max_length=255)
-    riskscore = models.IntegerField(blank=False, null=True)
-    riskband = models.CharField(max_length=255)
+    riskScore = models.IntegerField(blank=False, null=True)
+    riskBand = models.CharField(max_length=255)
 
     def __str__(self):
         phone=self.phone

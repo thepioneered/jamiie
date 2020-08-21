@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 class UserModel(admin.ModelAdmin):
     model = User
-    list_display = ['phone','email','name','state','city','securityno','createdat','lastlogin']
+    list_display = ['phone','email','name','state','city','securityNumber','createdAt','lastLogin']
 admin.site.register(User, UserModel)
 admin.site.register(OTP)
 admin.site.register(RiskCondition)

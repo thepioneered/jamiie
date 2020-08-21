@@ -24,20 +24,20 @@ class CreatePoolApi(APIView):
     def post(self,request):
         try:
             data = request.data
-            poolowner = data['poolowner']
-            poolname =  data['poolname']
-            poolamount = data['poolamount']
+            poolOwner = data['poolOwner']
+            poolName =  data['poolName']
+            poolAmount = data['poolAmount']
             deadline = data['deadline']
-            pooltype = data['pooltype']
-            minmember = data['minmember']
-            maxmember = data['maxmember']
-            poolowner = User.objects.get(phone = poolowner)
-            poolid = uniqueid()
-            obj = CreatePool.objects.create(poolid=poolid, poolowner = poolowner, poolname = poolname, poolamount = poolamount, deadline = deadline, pooltype = pooltype, minmember = minmember,maxmember=maxmember)
-            JoinPool.objects.create(poolid=obj, memberid=poolowner)
-            obj.joinedmember = obj.joinedmember+1
+            poolType = data['poolType']
+            minMember = data['minMember']
+            maxMember = data['maxMember']
+            poolOwner = User.objects.get(phone = poolOwner)
+            poolId = uniqueid()
+            obj = CreatePool.objects.create(poolId=poolId, poolOwner = poolOwner, poolName = poolName, poolAmount = poolAmount, deadline = deadline, poolType = poolType, minMember = minMember,maxMember=maxMember)
+            JoinPool.objects.create(poolId=obj, memberId=poolOwner)
+            obj.joinedMember = obj.joinedMember+1
             obj.save()
-            return Response({'poolid':poolid},status=status.HTTP_200_OK)
+            return Response({'poolId':poolId},status=status.HTTP_200_OK)
         except Exception as e:
             print(e)
 
@@ -47,18 +47,18 @@ class JoinPoolApi(APIView):
     def post(self,request):
         try:
             data = request.data
-            poolid = data['poolid']
-            memberid = data['memberid']
-            if CreatePool.objects.filter(poolid=poolid).exists() and User.objects.filter(phone=memberid).exists():
-                pool = CreatePool.objects.get(poolid=poolid)
-                member = User.objects.get(phone=memberid)
-                if JoinPool.objects.filter(poolid=pool, memberid=member):
+            poolId = data['poolId']
+            memberId = data['memberId']
+            if CreatePool.objects.filter(poolId=poolId).exists() and User.objects.filter(phone=memberId).exists():
+                pool = CreatePool.objects.get(poolId=poolId)
+                member = User.objects.get(phone=memberId)
+                if JoinPool.objects.filter(poolId=pool, memberId=member):
                     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-                elif pool.maxmember == pool.joinedmember:
+                elif pool.maxMember == pool.joinedMember:
                     return Response({'error':'pool filled'},status=status.HTTP_401_UNAUTHORIZED)   
                 else:
-                    create_member = JoinPool.objects.create(poolid=pool, memberid=member)
-                    pool.joinedmember = pool.joinedmember + 1 
+                    create_member = JoinPool.objects.create(poolId=pool, memberId=member)
+                    pool.joinedMember = pool.joinedMember + 1 
                     pool.save()
                     return Response(status=status.HTTP_200_OK)
 
@@ -71,12 +71,12 @@ class SearchPoolApi(APIView):
     def post(self,request):
         try:
             data = request.data
-            poolid = data['poolid']
-            if CreatePool.objects.filter(poolid=poolid).exists():
-                pool = CreatePool.objects.get(poolid=poolid)
-                phone = pool.poolowner
-                poolowner = User.objects.get(phone=phone)
-                return_response = {'poolid':pool.poolid,'poolname':pool.poolname,'poolowner':poolowner.phone,'poolamount':pool.poolamount,'maxmember':pool.maxmember,'joinedmember':pool.joinedmember,'deadline':pool.deadline}
+            poolId = data['poolid']
+            if CreatePool.objects.filter(poolId=poolId).exists():
+                pool = CreatePool.objects.get(poolId=poolId)
+                phone = pool.poolOwner
+                poolOwner = User.objects.get(phone=phone)
+                return_response = {'poolId':pool.poolId,'poolName':pool.poolName,'poolOwner':poolOwner.phone,'poolAmount':pool.poolAmount,'maxMember':pool.maxMember,'joinedMember':pool.joinedMember,'deadline':pool.deadline}
                 return Response(return_response, status=status.HTTP_200_OK)
             else:
                 return Response(status=status.HTTP_404_NOT_FOUND)

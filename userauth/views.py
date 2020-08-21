@@ -51,7 +51,7 @@ class Phone(APIView):
                             to=str(phone)
                         )
                     print(message.sid)
-                    return Response(status=status.HTTP_200_OK)
+                    return Response(status=status.HTTP_201_CREATED)
             else:
                 otp = otpGenerator()
                 OTP.objects.create(phone=phone, otp = otp, validated=False)
@@ -69,7 +69,7 @@ class Phone(APIView):
                             to=str(phone)
                         )
                 print(message.sid)
-                return Response(status=status.HTTP_200_OK)
+                return Response(status=status.HTTP_201_CREATED)
         except Exception as e:
             print(e)       
 
@@ -85,7 +85,7 @@ class PhoneVerification(APIView):
             if user.otp == otp:
                 user.validated=True
                 user.save()
-                return Response(status = status.HTTP_200_OK)
+                return Response(status = status.HTTP_201_CREATED)
             else:
                 return Response ({'response':'Invalid authorization code'},status = status.HTTP_400_BAD_REQUEST)
         except Exception as e:
@@ -113,7 +113,7 @@ class ResendOtp(APIView):
                             to=str(phone)
                         )
                 print(message.sid)
-                return Response(status=status.HTTP_200_OK)  
+                return Response(status=status.HTTP_201_CREATED)  
             else: 
                 return Response(status=status.HTTP_302_FOUND)
         except Exception as e:
@@ -132,7 +132,7 @@ class Register(APIView):
                 user.register = True
                 user.save()
                 serializer.save()
-                return Response(status=status.HTTP_200_OK)
+                return Response(status=status.HTTP_201_CREATED)
             else:
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
@@ -185,7 +185,7 @@ class ForgotPassword(APIView):
                             to=str(phone)
                         )
                 print(message.sid)
-                return Response(status=status.HTTP_200_OK)
+                return Response(status=status.HTTP_201_CREATED)
             else:
                 return Response({'response':'User does not exists'},status=status.HTTP_403_FORBIDDEN)
         except Exception as e:
@@ -199,7 +199,7 @@ class ForgotPassword(APIView):
             user = User.objects.get(phone=phone)
             user.password=password
             user.save()
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_201_CREATED)
         except Exception as e:
             print(e)
 
@@ -213,7 +213,7 @@ class Logout(APIView):
             user = User.objects.get(phone=phone) 
             user = Token.objects.get(user=user)
             user.delete()
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_201_CREATED)
         except Exception as e:
             print(e)
 
@@ -297,32 +297,32 @@ class ScoreCalculator(APIView):
         try:
             data  = request.data
             phone = data['phone']
-            jobage = data['jobage']
+            jobAge = data['jobAge']
             family = data['family']
             age = data['age']
-            savingmoney = data['savingmoney']
+            savingMoney = data['savingMoney']
             loans  = data['loans']
             living = data['living']
-            jobage = RiskCondition.objects.get(jobage=jobage)
+            jobAge = RiskCondition.objects.get(jobage=jobAge)
             family = RiskCondition.objects.get(family=family)
             age = RiskCondition.objects.get(age=age)
-            savingmoney = RiskCondition.objects.get(savingmoney=savingmoney)
+            savingMoney = RiskCondition.objects.get(savingmoney=savingMoney)
             loans = RiskCondition.objects.get(loans=loans)
             living = RiskCondition.objects.get(living=living)
-            riskscore = jobage.score + family.score + age.score + savingmoney.score + loans.score + living.score
+            riskScore = jobAge.score + family.score + age.score + savingMoney.score + loans.score + living.score
             serializer = UserInfoSerializer(data = data)
             if serializer.is_valid():
                     serializer.save()
                     user = UserInfo.objects.get(phone=phone)
-                    user.riskscore = riskscore
-                    if riskscore >=24 and riskscore<=50:
-                        user.riskband = 'Risky'
-                    elif riskscore >=51 and riskscore<=70:
-                        user.riskband = 'Moderate'
+                    user.riskScore = riskScore
+                    if riskScore >=24 and riskScore<=50:
+                        user.riskBand = 'Risky'
+                    elif riskScore >=51 and riskScore<=70:
+                        user.riskBand = 'Moderate'
                     else:
-                        user.riskband = 'Low'
+                        user.riskBand = 'Low'
                     user.save()
-                    return Response(status=status.HTTP_200_OK)
+                    return Response(status=status.HTTP_201_CREATED)
             else:
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:

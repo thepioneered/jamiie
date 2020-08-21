@@ -8,7 +8,7 @@ from djoser.serializers import UserCreateSerializer, UserSerializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('phone','password','email','name','state','city','securityno')
+        fields = ('phone','password','email','name','state','city','securityNumber')
 
     def create(self,validated_data):
         user = super(RegisterSerializer,self).create(validated_data)
@@ -19,4 +19,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
-        fields = ('phone','jobage','family','age','savingmoney','loans','living')
+        fields = ('phone','jobAge','family','age','savingMoney','loans','living')
