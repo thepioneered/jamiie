@@ -69,7 +69,7 @@
 }
 
 // ------------
-// Action Buttons
+// Action
 // ------------
 
 .action {
@@ -78,6 +78,10 @@
   align-items: center;
   gap: 1rem;
 }
+
+// ------------
+// Action Buttons
+// ------------
 
 .delete {
   padding: 0.5rem;
@@ -91,20 +95,6 @@
 @media (min-width: 601px) {
   .delete:hover {
     transform: scale(1.45);
-  }
-}
-
-.info {
-  padding: 0.5rem;
-  color: $primary-green;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  transition: transform 250ms ease;
-}
-@media (min-width: 601px) {
-  .info:hover {
-    transform: scale(1.5);
   }
 }
 
