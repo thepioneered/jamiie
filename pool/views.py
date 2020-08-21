@@ -79,6 +79,6 @@ class SearchPoolApi(APIView):
                 return_response = {'poolId':pool.poolId,'poolName':pool.poolName,'poolOwner':poolOwner.phone,'poolAmount':pool.poolAmount,'maxMember':pool.maxMember,'joinedMember':pool.joinedMember,'deadline':pool.deadline}
                 return Response(return_response, status=status.HTTP_200_OK)
             else:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                return Response({'response':'Pool does not exists'},status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             print(e)
