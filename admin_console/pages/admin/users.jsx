@@ -69,6 +69,7 @@ function Users() {
   ]);
   const [showModal, toggleModal] = useState(false);
   const [modalHeader, setModalHeader] = useState("User Info");
+  const [from, setFrom] = useState(0);
 
   const getRows = (arr) => {
     return arr.map((item) => row(item));
@@ -97,14 +98,7 @@ function Users() {
         <td>{status}</td>
         <td className={styles.action}>
           {/* <span className="material-icons">remove_circle_outline</span> */}
-          <span
-            className={cn("material-icons", styles.delete)}
-            onClick={deleteUser}
-            title="Block User"
-          >
-            remove_circle_outline
-            {/* delete_outline */}
-          </span>
+
           {/* <span
             className={cn("material-icons-outlined", styles.info)}
             onClick={openModal}
@@ -118,11 +112,20 @@ function Users() {
           >
             settings
           </span>
+          <span
+            className={cn("material-icons", styles.delete)}
+            onClick={deleteUser}
+            title="Block User"
+          >
+            remove_circle_outline
+            {/* delete_outline */}
+          </span>
         </td>
       </tr>
     );
   };
 
+  console.log(from);
   return (
     <Layout>
       <div className={styles.User}>
@@ -146,6 +149,23 @@ function Users() {
               </thead>
               <tbody>{getRows(data)}</tbody>
             </table>
+            <div className={styles.next__prev__container}>
+              <button
+                className={cn(styles.prev, styles.button, {
+                  [styles.disabled]: from === 0,
+                })}
+                disabled={from === 0}
+                onClick={(_e) => setFrom((prev) => prev - 10)}
+              >
+                Previous
+              </button>
+              <button
+                className={cn(styles.next, styles.button)}
+                onClick={(_e) => setFrom((prev) => prev + 10)}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
         <Modal show={showModal} onClose={closeModal} header={modalHeader}>

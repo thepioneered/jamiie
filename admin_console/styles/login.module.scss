@@ -264,11 +264,15 @@
   transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   background-color: white;
   color: $primary-blue;
   border: 2px solid $primary-blue;
+}
+
+.button:focus {
+  background-color: $hover-blue;
+  color: $primary-blue;
 }
 
 .button:active {

@@ -1,4 +1,9 @@
 @import "./variables.module.scss";
+
+// ------------
+// User, container
+// ------------
+
 .User {
   padding: 0.5em;
 }
@@ -8,7 +13,12 @@
   background-color: white;
   margin: 0.5em;
   max-width: 80rem;
+  border-radius: 10px;
 }
+
+// ------------
+// Heading
+// ------------
 
 .heading {
   background-color: $primary-blue;
@@ -22,6 +32,10 @@
     font-weight: 700;
   }
 }
+
+// ------------
+// Table
+// ------------
 
 .table__container {
   position: relative;
@@ -44,13 +58,19 @@
   td {
     padding: 0.5em;
     text-align: center;
+    border-bottom: 1px solid $secondary-gray-lighter;
   }
 
   .theading td {
-    border-bottom: 1px solid $secondary-gray;
+    border-bottom: 2px solid $secondary-gray-light;
     font-weight: 700;
+    padding: 1em;
   }
 }
+
+// ------------
+// Action Buttons
+// ------------
 
 .action {
   display: flex;
@@ -70,7 +90,7 @@
 
 @media (min-width: 601px) {
   .delete:hover {
-    transform: scale(2);
+    transform: scale(1.45);
   }
 }
 
@@ -84,7 +104,7 @@
 }
 @media (min-width: 601px) {
   .info:hover {
-    transform: scale(2);
+    transform: scale(1.5);
   }
 }
 
@@ -98,6 +118,66 @@
 }
 @media (min-width: 601px) {
   .settings:hover {
-    transform: scale(2);
+    transform: scale(1.55);
   }
+}
+
+// ------------
+// Next Prev container
+// ------------
+
+.next__prev__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5em;
+  padding: 1.5em;
+}
+
+// ------------
+// Next, Prev Button
+// ------------
+
+.button {
+  border: 2px solid $primary-blue;
+  // position: relative;
+  padding: 0.5em 1em;
+  outline: none;
+  color: white;
+  background-color: $primary-blue;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
+}
+
+.button:hover {
+  background-color: white;
+  color: $primary-blue;
+}
+
+.button:focus {
+  background-color: $hover-blue;
+  color: $primary-blue;
+}
+
+.button:active {
+  background-color: $primary-blue;
+  color: white;
+}
+
+// ------------
+// Disabled
+// ------------
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.disabled:hover,
+.disabled:focus,
+.disabled:active {
+  background-color: $primary-blue;
+  color: white;
 }
