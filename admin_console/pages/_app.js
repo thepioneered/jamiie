@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
     isSidebarOpen: true,
     layoutLoader: false,
     loginData: {},
+    totalData: {},
   });
 
   const router = useRouter();
@@ -26,6 +27,14 @@ function MyApp({ Component, pageProps }) {
           isLoading: false,
           tokenValidated: true,
           loginData: isTokenInCookie.data,
+          totalData: {
+            totalTransactions: 46289,
+            totalUsers: 22544,
+            totalGroups: 46298,
+            completedPools: 33289,
+            activeUsers: 46289,
+            loggedOutUsers: 33289,
+          },
         };
       });
     } else {
@@ -37,7 +46,6 @@ function MyApp({ Component, pageProps }) {
 
   const widthListenerFunc = () => {
     const size = window.outerWidth;
-    // console.log("Heqy!!", size);
     if (size < 600)
       setGlobal((prevState) => {
         return { ...prevState, isSidebarOpen: false };
@@ -67,6 +75,12 @@ function MyApp({ Component, pageProps }) {
     });
   };
 
+  const setTotal = (key, num) => {
+    setGlobal((prevState) => {
+      return { ...prevState, totalData: { ...totalData, [key]: num } };
+    });
+  };
+
   if (global.isLoading) {
     return <Loading />;
   } else {
@@ -76,6 +90,7 @@ function MyApp({ Component, pageProps }) {
           state: global,
           changeGlobal: changeGlobal,
           setLoginData: setLoginData,
+          setTotal: setTotal,
         }}
       >
         <Component {...pageProps} />

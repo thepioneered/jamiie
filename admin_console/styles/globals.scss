@@ -49,3 +49,13 @@ main {
       "Sidebar Sidebar";
   }
 }
+
+// ------------
+// loading Container
+// ------------
+
+.loading__container {
+  position: relative;
+  height: 10em;
+  overflow: hidden;
+}
