@@ -120,7 +120,10 @@ function Users() {
     );
   };
 
-  console.log(from);
+  const search = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Layout>
       <div className={styles.User}>
@@ -144,19 +147,20 @@ function Users() {
         <div className={cn(styles.container, "hover")}>
           <div className={styles.heading}>
             <div className={styles.heading__title}>Users</div>
-            <div className={styles.searchbar}>
+            <form className={styles.searchbar} onSubmit={search} method="POST">
               <input
                 type="text"
                 className={styles.input}
-                placeholder="Search"
+                placeholder="Search by User ID"
+                required={true}
                 // onFocus={addSearchContent}
                 // onBlur={removeSearchContent}
                 // onChange={(event) => filterSearch(event)}
               />
-              <span className={`material-icons ${styles.search__icon}`}>
-                search
-              </span>
-            </div>
+              <button className={styles.search__button}>
+                <span className={"material-icons"}>search</span>
+              </button>
+            </form>
           </div>
           <div
             className={cn(styles.table__container, {

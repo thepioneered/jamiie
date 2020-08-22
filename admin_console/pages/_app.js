@@ -50,6 +50,10 @@ function MyApp({ Component, pageProps }) {
       setGlobal((prevState) => {
         return { ...prevState, isSidebarOpen: false };
       });
+    if (size < 1000)
+      setGlobal((prevState) => {
+        return { ...prevState, isSidebarOpen: false };
+      });
   };
 
   useEffect(() => {
