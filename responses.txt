@@ -1,6 +1,6 @@
 Phone Verification:
 
-endpoint: /api/phone
+endpoint: /userauth/phone
 Request Type: 'POST'
 data:
 {
@@ -16,7 +16,7 @@ Response : status code = 200
 
 OTP Verfication:
 
-endpoint: /api/phoneverication
+endpoint: /userauth/phoneverication
 Request Type: 'POST'
 data:
 {
@@ -34,7 +34,7 @@ response: status = 401
 
 Resend OTP:
 
-endpoint: /api/resendotp
+endpoint: /userauth/resendotp
 Request Type: 'POST'
 data:
 {
@@ -50,7 +50,7 @@ Response: status = 302
 
 Register:
 
-endpoint: /api/register
+endpoint: /userauth/register
 Request Type: 'POST'
 data:
 {
@@ -59,7 +59,8 @@ data:
 "email":"nitishrkt@gmail.com",
 "name":"Nitish Sharma",
 "state":"Himachal Pradesh",
-"city":"Raja ka talab"
+"city":"Raja ka talab",
+"securityNumber":"last 4 digit"
 }
 
 If everything is right then
@@ -71,7 +72,7 @@ Response: status = 401
 
 Login:
 
-endpoint: /api/login
+endpoint: /userauth/login
 Request Type: 'POST'
 data:
 {
@@ -87,7 +88,7 @@ Response:status = 401
 
 Forgot Password:
 
-endpoint: /api/forgotpassword
+endpoint: /userauth/forgotpassword
 Request Type: 'POST'
 data:
 {
@@ -99,7 +100,7 @@ Response: status = 200
 
 after otp verification for create new password
 
-endpoint: /api/forgotpassword/<phone no.>/
+endpoint: /userauth/forgotpassword/<phone no.>/
 Request Type: 'PUT'
 data:
 {
@@ -110,7 +111,7 @@ Response: status = 200
 
 Logout:
 
-endpoint: /api/logout
+endpoint: /userauth/logout
 
 Request Type: 'POST'
 data:
@@ -128,7 +129,7 @@ ADMIN SECTION:
 
 Login:
 
-endpoint : /api/adminlogin
+endpoint : /userauth/adminlogin
 
 Request Type: 'POST'
 data:
@@ -142,7 +143,7 @@ Token will be sent to the cookies
 
 
 Logout:
-endpoint : /api/adminlogout
+endpoint : /userauth/adminlogout
 
 Request Type: 'POST'
 data:
@@ -155,15 +156,15 @@ Token and cookies will get deleted
 
 RiskScore :
 
-endpoint: /api/riskscore
+endpoint: /userauth/riskscore
 Request Type: 'POST'
 data:
 {
     "phone":"9816456565",
-    "jobage":"select options",
+    "jobAge":"select options",
     "family":"select options",
     "age":"select options",
-    "savingmoney":"select options",
+    "savingMoney":"select options",
     "loans":"select options",
     "living":"select options"
 }
@@ -185,13 +186,12 @@ endpoint: pool/createpool
 Request Type: "POST"
 data:
 {
-    "poolowner":"+919816456565",
-    "poolname":"PoolName",
-    "poolamount":"1000000",
+    "poolOwner":"+919816456565",
+    "poolName":"PoolName",
+    "contributionAmount":"1000000",
     "deadline":"2000-08-04",
-    "pooltype":"Monthly",
-    "minmember":"4",
-    "maxmember":"10"
+    "poolType":"Monthly",
+    "totalMember":"10"
 }
 
 Response: status = 200
@@ -203,8 +203,8 @@ endpoint: /pool/joinpool
 Request Type: "POST"
 data:
 {
-    "poolid":"8digit pool id",
-    "memberid":"+919816456565"
+    "poolId":"8digit pool id",
+    "memberId":"+919816456565"
 }
 
 Response:
@@ -224,17 +224,17 @@ status: 401
  Request Type:"Post"
  data:
  {
-     "poolid":"8 digit string"
+     "poolId":"8 digit string"
  }
 
 Response:
 if pool exist:
 {
-    "poolid": "f3fe3f60",
-    "poolname": "bsbs",
-    "poolowner": "+917071006000",
-    "poolamount": 4994.0,
-    "maxmember": 24,
+    "poolId": "f3fe3f60",
+    "poolName": "bsbs",
+    "poolOwner": "+917071006000",
+    "poolAmount": 4994.0,
+    "totalMember": 24,
     "joinedmember": 0,
     "deadline": "2020-08-28"
 }
@@ -243,7 +243,6 @@ status=200
 
 
 
-
-
 Personal Notes:
+
 django.db.backends.postgresql_psycopg2
