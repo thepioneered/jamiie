@@ -19,6 +19,9 @@ function Layout({ children }) {
 
   console.log("LayoutLoader:", state);
 
+  if (!state.tokenValidated) {
+    return null;
+  }
   return (
     <div className="App">
       <Head>

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useRouter, Router } from "next/router";
-import Loading from "../src/components/Loading";
+import { Loading } from "../src/components";
 import checkToken from "../src/utils/checkToken";
 import "../styles/globals.scss";
 
@@ -85,9 +85,7 @@ function MyApp({ Component, pageProps }) {
     });
   };
 
-  if (global.isLoading) {
-    return <Loading />;
-  } else {
+  if (!global.isLoading) {
     return (
       <LoaderContext.Provider
         value={{
@@ -101,6 +99,8 @@ function MyApp({ Component, pageProps }) {
       </LoaderContext.Provider>
     );
   }
+
+  return <Loading />;
 }
 
 export default MyApp;
