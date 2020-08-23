@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'jamiieapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': os.getenv('ENGINE'),
         'NAME': os.getenv('NAME'),
         'HOST': os.getenv('HOST'),
         'USER': os.getenv('USER'),

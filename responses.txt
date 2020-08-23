@@ -240,3 +240,10 @@ if pool exist:
 }
 status=200
 
+
+
+
+
+
+Personal Notes:
+django.db.backends.postgresql_psycopg2

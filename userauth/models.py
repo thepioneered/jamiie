@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 User Registration and Login is started here...
 """
 class UserManager(BaseUserManager):
-    def create_user(self, phone, email, name, state, city,securityno, password=None, is_active = True, is_staff = False, is_admin = False):
+    def create_user(self, phone, email, name, state, city,securityNumber, password=None, is_active = True, is_staff = False, is_admin = False):
         if not phone:
             raise ValueError("Phone number is required")
         if not password:
@@ -16,7 +16,7 @@ class UserManager(BaseUserManager):
             name=name,
             state = state,
             city = city,
-            securityno = securityno
+            securityNumber = securityNumber
         )
         user_obj.set_password(password)
         user_obj.active = is_active
@@ -26,27 +26,27 @@ class UserManager(BaseUserManager):
         return user_obj
     
 
-    def create_staffuser(self, phone, email, name, state, city, securityno, password=None):
+    def create_staffuser(self, phone, email, name, state, city, securityNumber, password=None):
         user = self.create_user(
             phone,
             email,
             name,
             state,
             city,
-            securityno,
+            securityNumber,
             password = password,
             is_staff= True
         )
         return user
     
-    def create_superuser(self, phone, email, name, state, city, securityno, password=None):
+    def create_superuser(self, phone, email, name, state, city, securityNumber, password=None):
         user = self.create_user(
             phone,
             email,
             name,
             state,
             city,
-            securityno,
+            securityNumber,
             password = password,
             is_staff= True,
             is_admin=True

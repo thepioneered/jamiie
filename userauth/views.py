@@ -327,3 +327,15 @@ class ScoreCalculator(APIView):
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
             print(e)        
+
+
+class UserDataApi(APIView):
+    authentication_classes = []
+    permission_classes = []
+    try:
+        def get(self,request):
+            usernames = [user.phone for user in User.objects.all()]
+            return Response(usernames)
+    
+    except Exception as e:
+        print(e)

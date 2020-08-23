@@ -30,4 +30,5 @@ urlpatterns = [
     path('adminlogout',AdminLogout.as_view(), name="admin logout"),
     path('riskscore',ScoreCalculator.as_view(), name="score calculator"),
     path('check',Check.as_view(), name = "check"),
+    path('userdata',UserDataApi.as_view(), name="user data"),
 ]

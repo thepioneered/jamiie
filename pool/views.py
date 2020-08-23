@@ -26,14 +26,13 @@ class CreatePoolApi(APIView):
             data = request.data
             poolOwner = data['poolOwner']
             poolName =  data['poolName']
-            poolAmount = data['poolAmount']
+            poolAmount = data['contributionAmount']
             deadline = data['deadline']
             poolType = data['poolType']
-            minMember = data['minMember']
-            maxMember = data['maxMember']
+            totalMember = data['totalMember']
             poolOwner = User.objects.get(phone = poolOwner)
             poolId = uniqueid()
-            obj = CreatePool.objects.create(poolId=poolId, poolOwner = poolOwner, poolName = poolName, poolAmount = poolAmount, deadline = deadline, poolType = poolType, minMember = minMember,maxMember=maxMember)
+            obj = CreatePool.objects.create(poolId=poolId, poolOwner = poolOwner, poolName = poolName, poolAmount = poolAmount, deadline = deadline, poolType = poolType, totalMember=totalMember)
             JoinPool.objects.create(poolId=obj, memberId=poolOwner)
             obj.joinedMember = obj.joinedMember+1
             obj.save()
@@ -71,7 +70,7 @@ class SearchPoolApi(APIView):
     def post(self,request):
         try:
             data = request.data
-            poolId = data['poolid']
+            poolId = data['poolId']
             if CreatePool.objects.filter(poolId=poolId).exists():
                 pool = CreatePool.objects.get(poolId=poolId)
                 phone = pool.poolOwner

@@ -5,11 +5,10 @@ class CreatePool(models.Model):
     poolId = models.CharField(primary_key=True, unique=True, blank=False, null=False, max_length=255)
     poolOwner = models.ForeignKey(User, related_name='poolowner', on_delete=models.CASCADE)
     poolName = models.CharField(blank=False,null=False,max_length=255)
-    poolAmount = models.FloatField(null=False)
+    contributionAmount = models.FloatField(null=False)
     deadline = models.DateField()
     poolType = models.CharField(null=False, max_length=255)
-    minMember = models.IntegerField(null=False)
-    maxMember = models.IntegerField(null=False)
+    totalMember = models.IntegerField(null=False)
     joinedMember = models.IntegerField(default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
 
