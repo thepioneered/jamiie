@@ -37,9 +37,9 @@ function Header({ toggleSidebar, loginData }) {
 
   return (
     <div className={styles.Header}>
-      <div className={styles.hamburger} onClick={toggleSidebar}>
+      <button className={styles.hamburger} onClick={toggleSidebar}>
         <span className="material-icons">menu</span>
-      </div>
+      </button>
       {/* <div className={styles.searchbar}>
         <input
           type="text"
@@ -85,7 +85,7 @@ function Header({ toggleSidebar, loginData }) {
         <div>Admin</div>
       </div>
       <div className={styles.avatar} onClick={toggleAvatarMenu}>
-        {loginData && loginData.name[0]}
+        {loginData && loginData.name}
       </div>
       {avatarMenuState ? (
         <AvatarMenu

@@ -1,5 +1,5 @@
 export default {
-  LOGIN_ADMIN: "/api/adminlogin",
-  LOGOUT_ADMIN: "/api/adminlogout",
-  TOKEN_CHECK: "/api/check",
+  LOGIN_ADMIN: "/userauth/adminlogin",
+  LOGOUT_ADMIN: "/userauth/adminlogout",
+  TOKEN_CHECK: "/userauth/check",
 };
