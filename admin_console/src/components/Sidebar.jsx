@@ -11,7 +11,7 @@ export default function Sidebar({ isSidebarOpen }) {
       { name: "Dashboard", icon: "dashboard" },
       { name: "ServerStats", icon: "dns" },
       { name: "Transactions", icon: "timeline" },
-      { name: "Groups", icon: "group" },
+      { name: "Pools", icon: "group" },
       { name: "Users", icon: "person_outline" },
     ];
 

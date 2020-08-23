@@ -101,20 +101,20 @@ function Users() {
         <td>{date}</td>
         <td>{status}</td>
         <td className={styles.action}>
-          <span
-            className={cn("material-icons-outlined", styles.settings)}
+          <button
+            className={styles.settings}
             onClick={openModal}
             title="User Settings"
           >
-            settings
-          </span>
-          <span
-            className={cn("material-icons", styles.delete)}
+            <span className="material-icons-outlined">settings</span>
+          </button>
+          <button
+            className={styles.delete}
             onClick={deleteUser}
             title="Block User"
           >
-            remove_circle_outline
-          </span>
+            <span className="material-icons">remove_circle_outline</span>
+          </button>
         </td>
       </tr>
     );
@@ -177,7 +177,7 @@ function Users() {
                       <td>#</td>
                       <td>Name</td>
                       <td>Date Created</td>
-                      <td>Created On</td>
+                      <td>Last Login</td>
                       <td>Action</td>
                     </tr>
                   </thead>
