@@ -16,7 +16,7 @@ export default function Sidebar({ isSidebarOpen }) {
     ];
 
     const router = useRouter();
-    const path = router.pathname.slice(7);
+    const path = router.pathname.split("/")[2];
 
     return index.map((item) => {
       let li_class = cn(styles.not__active, {

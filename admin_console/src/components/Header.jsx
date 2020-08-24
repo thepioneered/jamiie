@@ -21,7 +21,7 @@ function Header({ toggleSidebar, loginData }) {
         <div>Admin</div>
       </div>
       <div className={styles.avatar} onClick={toggleAvatarMenu}>
-        {loginData && loginData.name}
+        {loginData && loginData.name && loginData.name[0]}
       </div>
       {avatarMenuState ? (
         <AvatarMenu

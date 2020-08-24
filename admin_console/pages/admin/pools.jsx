@@ -4,7 +4,7 @@ import { Layout } from "../../src/components";
 function Groups() {
   return (
     <Layout>
-      <div>Groups...</div>
+      <div>Pools...</div>
     </Layout>
   );
 }

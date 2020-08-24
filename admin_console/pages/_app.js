@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useRouter, Router } from "next/router";
+import { useRouter } from "next/router";
 import { Loading } from "../src/components";
 import checkToken from "../src/utils/checkToken";
 import "../styles/globals.scss";
@@ -7,6 +7,7 @@ import "../styles/globals.scss";
 export const LoaderContext = createContext();
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [global, setGlobal] = useState({
     isLoading: true,
     tokenValidated: false,
@@ -16,32 +17,51 @@ function MyApp({ Component, pageProps }) {
     totalData: {},
   });
 
-  const router = useRouter();
   const setToken = async () => {
-    const isTokenInCookie = await checkToken();
-    console.log("isToken:", isTokenInCookie);
-    if (isTokenInCookie) {
-      setGlobal((prevState) => {
-        return {
-          ...prevState,
-          isLoading: false,
-          tokenValidated: true,
-          loginData: isTokenInCookie.data,
-          totalData: {
-            totalTransactions: 46289,
-            totalUsers: 22544,
-            totalGroups: 46298,
-            completedPools: 33289,
-            activeUsers: 46289,
-            loggedOutUsers: 33289,
-          },
-        };
-      });
-    } else {
-      setGlobal((prevState) => {
-        return { ...prevState, isLoading: false, tokenValidated: false };
-      });
-    }
+    setGlobal((prevState) => {
+      return {
+        ...prevState,
+        isLoading: false,
+        tokenValidated: true,
+        loginData: {
+          name: "Nitish Sharma",
+          email: "nitishrkt@gmail.com",
+          phone: "1234567891",
+        },
+        totalData: {
+          totalTransactions: 46289,
+          totalUsers: 22544,
+          totalGroups: 46298,
+          completedPools: 33289,
+          activeUsers: 46289,
+          loggedOutUsers: 33289,
+        },
+      };
+    });
+    // const isTokenInCookie = await checkToken();
+    // console.log("isToken:", isTokenInCookie);
+    // if (isTokenInCookie) {
+    //   setGlobal((prevState) => {
+    //     return {
+    //       ...prevState,
+    //       isLoading: false,
+    //       tokenValidated: true,
+    //       loginData: isTokenInCookie.data,
+    //       totalData: {
+    //         totalTransactions: 46289,
+    //         totalUsers: 22544,
+    //         totalGroups: 46298,
+    //         completedPools: 33289,
+    //         activeUsers: 46289,
+    //         loggedOutUsers: 33289,
+    //       },
+    //     };
+    //   });
+    // } else {
+    //   setGlobal((prevState) => {
+    //     return { ...prevState, isLoading: false, tokenValidated: false };
+    //   });
+    // }
   };
 
   const widthListenerFunc = () => {

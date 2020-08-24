@@ -4,6 +4,7 @@ import { LoaderContext } from "../_app";
 import { Layout, TotalCard, Modal, GlobalLoader } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
+import Link from "next/link";
 
 function Users() {
   const { state } = useContext(LoaderContext);
@@ -101,13 +102,16 @@ function Users() {
         <td>{date}</td>
         <td>{status}</td>
         <td className={styles.action}>
-          <button
-            className={styles.settings}
-            onClick={openModal}
-            title="User Settings"
-          >
-            <span className="material-icons-outlined">settings</span>
-          </button>
+          <Link href="/admin/users/[user]" as={`/admin/users/${no}`}>
+            <button
+              className={styles.settings}
+              // onClick={openModal}
+              title="User Settings"
+            >
+              <span className="material-icons-outlined">settings</span>
+            </button>
+          </Link>
+
           <button
             className={styles.delete}
             onClick={deleteUser}
