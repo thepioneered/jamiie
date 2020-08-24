@@ -1,24 +1,19 @@
-.vscode/
-.idea/
-venv/
-flask_next/
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-admin_console/node_modules
-admin_console/.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-admin_console/coverage
+/coverage
 
 # next.js
 /.next/
 /out/
 
 # production
-admin_console/build
+/build
 
 # misc
 .DS_Store
