@@ -25,26 +25,6 @@ function MyApp({ Component, pageProps }) {
   });
 
   const setToken = async () => {
-    // setGlobal((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     isLoading: false,
-    //     tokenValidated: true,
-    //     loginData: {
-    //       name: "Nitish Sharma",
-    //       email: "nitishrkt@gmail.com",
-    //       phone: "1234567891",
-    //     },
-    //     totalData: {
-    //       totalTransactions: 46289,
-    //       totalUsers: 22544,
-    //       totalGroups: 46298,
-    //       completedPools: 33289,
-    //       activeUsers: 46289,
-    //       loggedOutUsers: 33289,
-    //     },
-    //   };
-    // });
     const isTokenInCookie = await checkToken();
     console.log("isToken:", isTokenInCookie);
     if (isTokenInCookie) {
