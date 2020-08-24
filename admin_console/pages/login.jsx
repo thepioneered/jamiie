@@ -72,9 +72,7 @@ export default function Login() {
       >
         <div>
           <div className={styles.heading}>Admin</div>
-          <div className={styles.subheading}>
-            Login To Access Your Dashboard
-          </div>
+          <div className={styles.subheading}>Login To Access our Dashboard</div>
         </div>
 
         <div className={wrongDivClassName}>
