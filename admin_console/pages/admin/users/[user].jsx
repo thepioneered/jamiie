@@ -12,28 +12,21 @@ function User() {
     <Layout>
       <div className={styles.outer__container}>
         <div className={styles.container}>
-          <h1 className={styles.heading}>User Id: {user}</h1>
-          {/* <div className={styles.actions}>
-            <span></span>
-            
-          </div> */}
+          <div className={styles.heading__container}>
+            <button
+              className={styles.back__button}
+              onClick={(_e) => router.back()}
+            >
+              <span className="material-icons">keyboard_backspace</span>
+            </button>
+            <h2 className={styles.heading}>User Id: {user}</h2>
+          </div>
           <div className={cn(styles.card, "hover")}>
             <div className={styles.picture}>
               <img src="/images/user.jpg" alt="user" />
             </div>
             <div className={styles.table__container}>
               <table className={styles.table}>
-                {/* <Row heading="Name:" data="Paritosh Batish" />
-            <Row heading="Email:" data="batishparitosh2@gmail.com" />
-            <Row heading="Mobile:" data="8146990621" />
-            <Row heading="State:" data="Punjab" />
-            <Row heading="City:" data="Chandigarh" />
-            <Row heading="Date Created:" data="Paritosh Batish" />
-            <Row heading="Last Login:" data="Paritosh Batish" />
-            <Row heading="asdf:" data="Paritosh Batish" />
-            <Row heading="Name:" data="Paritosh Batish" />
-            <Row heading="Name:" data="Paritosh Batish" />
-            <Row heading="Name:" data="Paritosh Batish" /> */}
                 <tr>
                   <th>Name:</th>
                   <td>Paritosh Batish</td>
@@ -110,15 +103,6 @@ function User() {
         </div>
       </div>
     </Layout>
-  );
-}
-
-function Row({ heading, data }) {
-  return (
-    <div className={styles.row}>
-      <div className={styles.table__heading}>{heading}</div>
-      <div className={styles.data}>{data}</div>
-    </div>
   );
 }
 
