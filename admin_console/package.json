@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "export HTTPS=true&&PORT=3000 next dev",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },

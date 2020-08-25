@@ -109,11 +109,7 @@ export default function Login() {
           </label>
         </div>
 
-        <button
-          type="button"
-          className={styles.forgot}
-          onClick={(e) => setLoading((prevState) => !prevState)}
-        >
+        <button type="button" className={styles.forgot}>
           Forgot Password?
         </button>
 

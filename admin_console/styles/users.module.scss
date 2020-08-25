@@ -4,8 +4,16 @@
 // User, container
 // ------------
 
+.user__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .User {
   padding: 0.5em;
+  width: 100%;
+  // max-width: 80rem;
 }
 
 .container {
@@ -231,7 +239,6 @@
   border: 2px solid $primary-blue;
   // position: relative;
   padding: 0.5em 1em;
-  outline: none;
   color: white;
   background-color: $primary-blue;
   font-size: 1em;
@@ -242,11 +249,6 @@
 
 .button:hover {
   background-color: white;
-  color: $primary-blue;
-}
-
-.button:focus {
-  background-color: $hover-blue;
   color: $primary-blue;
 }
 

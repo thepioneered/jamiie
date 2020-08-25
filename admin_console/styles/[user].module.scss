@@ -1,0 +1,128 @@
+@import "./variables.module.scss";
+
+// ------------
+// container
+// ------------
+
+.outer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  padding: 1em;
+  width: 100%;
+  max-width: 70rem;
+}
+
+// ------------
+// heading
+// ------------
+
+.heading {
+  color: $primary-gray;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+// ------------
+// actions
+// ------------
+
+.actions {
+  margin-left: 0.5em;
+  margin-top: 2em;
+
+  display: flex;
+  align-items: center;
+}
+
+.actions span {
+  color: $secondary-gray;
+  font-size: 1.8em;
+}
+
+// ------------
+// block user
+// ------------
+
+.block__user {
+  border: 2px solid $primary-red;
+  margin-left: 0.5rem;
+  padding: 0.5em 1em;
+  color: white;
+  background-color: $primary-red;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
+}
+
+.block__user:hover {
+  background-color: white;
+  color: $primary-red;
+}
+
+.block__user:active {
+  background-color: $primary-red;
+  color: white;
+}
+
+// ------------
+// card
+// ------------
+
+.card {
+  background-color: white;
+  padding: 1em;
+  max-width: 70rem;
+  border-radius: 10px;
+  margin-top: 0.5em;
+
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap-reverse;
+}
+
+@media (max-width: 600px) {
+  .card {
+    justify-content: center;
+  }
+}
+
+// ------------
+// picture
+// ------------
+
+.picture {
+  order: 2;
+}
+
+.picture img {
+  max-width: 250px;
+}
+
+// ------------
+// table container
+// ------------
+
+.table__container {
+  overflow: auto;
+}
+
+// ------------
+// table
+// ------------
+
+.table {
+  th,
+  td {
+    padding: 0.5em;
+  }
+
+  th {
+    text-align: start;
+  }
+}

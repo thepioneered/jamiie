@@ -8,69 +8,69 @@ import Link from "next/link";
 
 function Users() {
   const { state } = useContext(LoaderContext);
-
   const [data, changeData] = useState([
     {
-      no: "1.",
+      no: "8146990621",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "2.",
+      no: "8146990622",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "3.",
+      no: "8146990623",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "4.",
+      no: "8146990624",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "5.",
+      no: "8146990625",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "6.",
+      no: "8146990626",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "7.",
+      no: "8146990627",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "8.",
+      no: "8146990628",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "9.",
+      no: "8146990629",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
     {
-      no: "10.",
+      no: "8146990630",
       name: "Paritosh",
       date: "24th August 2020",
-      status: "Active",
+      status: "21st Sept. 2020",
     },
   ]);
+
   const [showModal, toggleModal] = useState(false);
   const [modalHeader, setModalHeader] = useState("User Info");
   const [from, setFrom] = useState(0);
@@ -130,88 +130,94 @@ function Users() {
 
   return (
     <Layout>
-      <div className={styles.User}>
-        <div className={card.container}>
-          <TotalCard
-            name="Total Users"
-            number={state.totalData.totalUsers}
-            percentage="0.4"
-          />
-          <TotalCard
-            name="Active Users"
-            number={state.totalData.activeUsers}
-            percentage="-1.4"
-          />
-          <TotalCard
-            name="Logged Out Users"
-            number={state.totalData.loggedOutUsers}
-            percentage="0"
-          />
-        </div>
-        <div className={cn(styles.container, "hover")}>
-          <div className={styles.heading}>
-            <div className={styles.heading__title}>Users</div>
-            <form className={styles.searchbar} onSubmit={search} method="POST">
-              <input
-                type="text"
-                className={styles.input}
-                placeholder="Search by User ID"
-                required={true}
-                // onFocus={addSearchContent}
-                // onBlur={removeSearchContent}
-                // onChange={(event) => filterSearch(event)}
-              />
-              <button className={styles.search__button}>
-                <span className={"material-icons"}>search</span>
-              </button>
-            </form>
+      <div className={styles.user__container}>
+        <div className={styles.User}>
+          <div className={card.container}>
+            <TotalCard
+              name="Total Users"
+              number={state.totalData.totalUsers}
+              percentage="0.4"
+            />
+            <TotalCard
+              name="Active Users"
+              number={state.totalData.activeUsers}
+              percentage="-1.4"
+            />
+            <TotalCard
+              name="Logged Out Users"
+              number={state.totalData.loggedOutUsers}
+              percentage="0"
+            />
           </div>
-          <div
-            className={cn(styles.table__container, {
-              loading__container: isLoading,
-            })}
-          >
-            {isLoading ? (
-              <GlobalLoader />
-            ) : (
-              <>
-                <table className={styles.table} cellSpacing="0">
-                  <thead>
-                    <tr className={styles.theading}>
-                      <td>#</td>
-                      <td>Name</td>
-                      <td>Date Created</td>
-                      <td>Last Login</td>
-                      <td>Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>{getRows(data)}</tbody>
-                </table>
+          <div className={cn(styles.container, "hover")}>
+            <div className={styles.heading}>
+              <div className={styles.heading__title}>Users</div>
+              <form
+                className={styles.searchbar}
+                onSubmit={search}
+                method="POST"
+              >
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Search by User ID"
+                  required={true}
+                  // onFocus={addSearchContent}
+                  // onBlur={removeSearchContent}
+                  // onChange={(event) => filterSearch(event)}
+                />
+                <button className={styles.search__button}>
+                  <span className={"material-icons"}>search</span>
+                </button>
+              </form>
+            </div>
+            <div
+              className={cn(styles.table__container, {
+                loading__container: isLoading,
+              })}
+            >
+              {isLoading ? (
+                <GlobalLoader />
+              ) : (
+                <>
+                  <table className={styles.table} cellSpacing="0">
+                    <thead>
+                      <tr className={styles.theading}>
+                        <td>Phone No.</td>
+                        <td>Name</td>
+                        <td>Date Created</td>
+                        <td>Last Login</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>{getRows(data)}</tbody>
+                  </table>
 
-                <div className={styles.next__prev__container}>
-                  <button
-                    className={cn(styles.prev, styles.button, {
-                      [styles.disabled]: from === 0,
-                    })}
-                    disabled={from === 0}
-                    onClick={(_e) => setFrom((prev) => prev - 10)}
-                  >
-                    Previous
-                  </button>
-                  <button
-                    className={cn(styles.next, styles.button)}
-                    onClick={(_e) => setFrom((prev) => prev + 10)}
-                  >
-                    Next
-                  </button>
-                </div>
-              </>
-            )}
+                  <div className={styles.next__prev__container}>
+                    <button
+                      className={cn(styles.prev, styles.button, {
+                        [styles.disabled]: from === 0,
+                      })}
+                      disabled={from === 0}
+                      onClick={(_e) => setFrom((prev) => prev - 10)}
+                    >
+                      Previous
+                    </button>
+                    <button
+                      className={cn(styles.next, styles.button)}
+                      onClick={(_e) => setFrom((prev) => prev + 10)}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
+          <Modal show={showModal} onClose={closeModal} header={modalHeader}>
+            ......Modal......
+          </Modal>
         </div>
-        <Modal show={showModal} onClose={closeModal} header={modalHeader}>
-          ......Modal......
-        </Modal>
       </div>
     </Layout>
   );
