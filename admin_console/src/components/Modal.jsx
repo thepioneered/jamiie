@@ -14,9 +14,9 @@ export default function Modal(props) {
       <div className={styles.modal} id="modal">
         <div className={styles.header__container}>
           <span>{props.header}</span>
-          <span className={styles.close__icon} onClick={onClose}>
-            x
-          </span>
+          <button className={styles.close__button} onClick={onClose}>
+            <span className="material-icons">close</span>
+          </button>
         </div>
         <div className={styles.content}>{props.children}</div>
       </div>

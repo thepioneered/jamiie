@@ -72,7 +72,6 @@ function Users() {
   ]);
 
   const [showModal, toggleModal] = useState(false);
-  const [modalHeader, setModalHeader] = useState("User Info");
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
@@ -81,12 +80,6 @@ function Users() {
   };
 
   const deleteUser = () => {
-    setModalHeader("Are You Sure?");
-    toggleModal(true);
-  };
-
-  const openModal = () => {
-    setModalHeader("User Info");
     toggleModal(true);
   };
 
@@ -214,8 +207,17 @@ function Users() {
               )}
             </div>
           </div>
-          <Modal show={showModal} onClose={closeModal} header={modalHeader}>
-            ......Modal......
+          <Modal
+            show={showModal}
+            onClose={closeModal}
+            header={"Are you sure that you want to block this user?"}
+          >
+            <div className={styles.note}>
+              <b>Note:</b> The user cannot be blocked if he/she has already
+              joined pool that has started.
+            </div>
+            <button className={styles.block__user}>Block User</button>
+            <button className={styles.cancel}>Cancel</button>
           </Modal>
         </div>
       </div>

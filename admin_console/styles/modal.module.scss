@@ -1,41 +1,109 @@
+@import "./variables.module.scss";
+
+// ------------
+// modal
+// ------------
+
 .modal {
-  width: 300px;
+  width: 100%;
+  max-width: 30em;
   background: white;
   border: 1px solid #ccc;
-  transition: 1.1s ease-out;
   position: fixed;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  transform: translateX(-50%) translateY(-50%);
+  left: 40vw;
+  top: 20vh;
+
+  z-index: 3;
+  // color: $primary-gray;
+  animation: pulldown 250ms ease;
 }
+
+@keyframes pulldown {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 20vh;
+  }
+}
+
+// ------------
+// backdrop
+// ------------
+
 .backdrop {
   width: 100%;
   height: 100%;
-  opacity: 0.3;
-  background: grey;
+  background-color: rgb(128, 128, 128, 0.4);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: all;
 }
+
+// ------------
+// header__container
+// ------------
+
 .header__container {
   border-bottom: 1px solid #ccc;
   padding: 1rem;
   margin: 0;
+  // color: $primary-gray;
+
+  font-size: 1.4em;
+  font-family: "Poppins", sans-serif;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px;
 }
-.modal .content {
+
+// ------------
+// content
+// ------------
+
+.content {
   padding: 1rem;
-  height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
-.close__icon {
-  cursor: pointer;
+
+// ------------
+// close__button
+// ------------
+
+.close__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary-gray;
+  margin-left: 0.5em;
+  align-self: flex-start;
+
+  $size: 2.6em;
+  width: $size;
+  height: $size;
   position: relative;
-  top: -1px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.close__button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $hover-background;
+  border-radius: 50%;
+  transform: scaleX(0) scaleY(0);
+  transition: transform 150ms ease-in;
+}
+
+.close__button:hover::before,
+.close__button:active::before {
+  transform: scaleX(1) scaleY(1);
 }

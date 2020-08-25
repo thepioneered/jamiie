@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Layout } from "../../../src/components";
+import { Layout, Modal } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
+import userStyles from "../../../styles/users.module.scss";
 
 function User() {
   const router = useRouter();
   const { user } = router.query;
+
+  const [showModal, toggleModal] = useState(false);
+  const deleteUser = () => {
+    toggleModal(true);
+  };
+
+  const closeModal = () => {
+    toggleModal(false);
+  };
 
   return (
     <Layout>
@@ -94,7 +104,9 @@ function User() {
                 <tr>
                   <th>Block User:</th>
                   <td>
-                    <button className={styles.block__user}>Block User</button>
+                    <button className={styles.block__user} onClick={deleteUser}>
+                      Block User
+                    </button>
                   </td>
                 </tr>
               </table>
@@ -102,6 +114,18 @@ function User() {
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onClose={closeModal}
+        header={"Are you sure that you want to block this user?"}
+      >
+        <div className={userStyles.note}>
+          <b>Note:</b> The user cannot be blocked if he/she has already joined
+          pool that has started.
+        </div>
+        <button className={userStyles.block__user}>Block User</button>
+        <button className={userStyles.cancel}>Cancel</button>
+      </Modal>
     </Layout>
   );
 }
