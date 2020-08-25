@@ -41,7 +41,7 @@
 
 .actions span {
   color: $secondary-gray;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 // ------------
@@ -49,15 +49,14 @@
 // ------------
 
 .block__user {
-  border: 2px solid $primary-red;
-  margin-left: 0.5rem;
-  padding: 0.5em 1em;
+  border: 1px solid $primary-red;
+  padding: 0.5em;
   color: white;
   background-color: $primary-red;
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
 .block__user:hover {

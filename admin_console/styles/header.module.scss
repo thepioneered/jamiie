@@ -32,7 +32,6 @@ $menu-size: 2.6em;
   height: $menu-size;
   position: relative;
   cursor: pointer;
-  outline: none;
   border: none;
   background-color: transparent;
 }
@@ -51,7 +50,6 @@ $menu-size: 2.6em;
 }
 
 .hamburger:hover::before,
-.hamburger:focus::before,
 .hamburger:active::before {
   transform: scaleX(1) scaleY(1);
 }

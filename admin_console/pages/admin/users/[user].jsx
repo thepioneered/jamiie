@@ -13,10 +13,10 @@ function User() {
       <div className={styles.outer__container}>
         <div className={styles.container}>
           <h1 className={styles.heading}>User Id: {user}</h1>
-          <div className={styles.actions}>
-            <span>Actions:</span>
-            <button className={styles.block__user}>Block User</button>
-          </div>
+          {/* <div className={styles.actions}>
+            <span></span>
+            
+          </div> */}
           <div className={cn(styles.card, "hover")}>
             <div className={styles.picture}>
               <img src="/images/user.jpg" alt="user" />
@@ -97,6 +97,12 @@ function User() {
                 <tr>
                   <th>Living:</th>
                   <td>3</td>
+                </tr>
+                <tr>
+                  <th>Block User:</th>
+                  <td>
+                    <button className={styles.block__user}>Block User</button>
+                  </td>
                 </tr>
               </table>
             </div>
