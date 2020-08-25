@@ -1,33 +1,6 @@
 @import "./variables.module.scss";
 
 // ------------
-// modal
-// ------------
-
-.modal {
-  width: 100%;
-  max-width: 30em;
-  background: white;
-  border: 1px solid #ccc;
-  position: fixed;
-  left: 40vw;
-  top: 20vh;
-
-  z-index: 3;
-  // color: $primary-gray;
-  animation: pulldown 250ms ease;
-}
-
-@keyframes pulldown {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 20vh;
-  }
-}
-
-// ------------
 // backdrop
 // ------------
 
@@ -40,6 +13,44 @@
   left: 0;
   z-index: 2;
   pointer-events: all;
+}
+
+// ------------
+// modal
+// ------------
+
+.modal {
+  // width: 100%;
+  // max-width: 30em;
+  background: white;
+  border: 1px solid #ccc;
+  width: 75%;
+  position: fixed;
+  left: 50%;
+  top: 20vh;
+  margin-left: -37.5%;
+
+  z-index: 3;
+  // color: $primary-gray;
+  animation: pulldown 250ms ease;
+}
+
+@media (max-width: 600px) {
+  .modal {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    top: 10vh;
+  }
+}
+
+@keyframes pulldown {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 20vh;
+  }
 }
 
 // ------------
