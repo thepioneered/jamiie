@@ -85,18 +85,8 @@ function Users() {
       members: 12,
     },
   ]);
-
-  const [showModal, toggleModal] = useState(false);
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
-
-  const deleteUser = () => {
-    toggleModal(true);
-  };
-
-  const closeModal = () => {
-    toggleModal(false);
-  };
 
   const search = (e) => {
     e.preventDefault();
@@ -150,27 +140,10 @@ function Users() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <PoolTable
-                  data={data}
-                  deleteUser={deleteUser}
-                  setFrom={setFrom}
-                  from={from}
-                />
+                <PoolTable data={data} setFrom={setFrom} from={from} />
               )}
             </div>
           </div>
-          <Modal
-            show={showModal}
-            onClose={closeModal}
-            header={"Are you sure that you want to block this user?"}
-          >
-            <div className={styles.note}>
-              <b>Note:</b> The user cannot be blocked if he/she has already
-              joined pool that has started.
-            </div>
-            <button className={styles.block__user}>Block User</button>
-            <button className={styles.cancel}>Cancel</button>
-          </Modal>
         </div>
       </div>
     </Layout>

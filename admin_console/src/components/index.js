@@ -9,3 +9,4 @@ export { default as Loading } from "./Loading";
 export { default as GlobalLoader } from "./GlobalLoader";
 export { default as UserTable } from "./UserTable";
 export { default as PoolTable } from "./PoolTable";
+export { default as TransactionTable } from "./TransactionTable";

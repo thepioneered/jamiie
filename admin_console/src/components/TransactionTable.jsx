@@ -3,7 +3,7 @@ import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
 
-export default function UserTable({ data, setFrom, from }) {
+function TransactionTable({ data, setFrom, from }) {
   const row = ({ no, name, date, status, members }) => {
     return (
       <tr key={no}>
@@ -13,7 +13,10 @@ export default function UserTable({ data, setFrom, from }) {
         <td>{members}</td>
         <td>{status}</td>
         <td>
-          <Link href="/admin/groups/[group]" as={`/admin/groups/${no}`}>
+          <Link
+            href="/admin/transactions/[transaction]"
+            as={`/admin/transactions/${no}`}
+          >
             <button className={styles.settings} title="User Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
@@ -32,7 +35,7 @@ export default function UserTable({ data, setFrom, from }) {
       <table className={styles.table} cellSpacing="0">
         <thead>
           <tr className={styles.theading}>
-            <td>Group Id</td>
+            <td>Transaction Id</td>
             <td>Name</td>
             <td>Date Created</td>
             <td>No of members</td>
@@ -63,3 +66,5 @@ export default function UserTable({ data, setFrom, from }) {
     </>
   );
 }
+
+export default TransactionTable;

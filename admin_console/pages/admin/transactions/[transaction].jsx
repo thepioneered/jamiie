@@ -7,7 +7,7 @@ import userStyles from "../../../styles/users.module.scss";
 
 function Transaction() {
   const router = useRouter();
-  const { group } = router.query;
+  const { transaction } = router.query;
 
   const [showModal, toggleModal] = useState(false);
   const deleteUser = () => {
@@ -29,7 +29,7 @@ function Transaction() {
             >
               <span className="material-icons">keyboard_backspace</span>
             </button>
-            <h2 className={styles.heading}>Group Id: {group}</h2>
+            <h2 className={styles.heading}>Transaction Id: {transaction}</h2>
           </div>
           <div className={cn(styles.card, "hover")}>
             <div className={styles.picture}>

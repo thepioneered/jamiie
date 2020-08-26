@@ -1,10 +1,131 @@
-import React from "react";
-import { Layout } from "../../src/components";
+import React, { useState, useContext } from "react";
+import cn from "classnames";
+import { LoaderContext } from "../_app";
+import {
+  Layout,
+  TotalCard,
+  Modal,
+  GlobalLoader,
+  TransactionTable,
+} from "../../src/components";
+import card from "../../styles/totalCard.module.scss";
+import styles from "../../styles/users.module.scss";
 
 function Transactions() {
+  const { state } = useContext(LoaderContext);
+  const [data, changeData] = useState([
+    {
+      no: "8146990621",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990622",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990623",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990624",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990625",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990626",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990627",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990628",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990629",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+    {
+      no: "8146990630",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "21st Sept. 2020",
+    },
+  ]);
+  const [from, setFrom] = useState(0);
+  const [isLoading, setLoading] = useState(false);
+
+  const search = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Layout>
-      <div>Transactions...</div>
+      <div className={styles.user__container}>
+        <div className={styles.User}>
+          <div className={card.container}>
+            <TotalCard
+              name="Total Transactions"
+              number={state.totalData.totalUsers}
+              percentage="0.4"
+            />
+          </div>
+          <div className={cn(styles.container, "hover")}>
+            <div className={styles.heading}>
+              <div className={styles.heading__title}>Transaction</div>
+              <form
+                className={styles.searchbar}
+                onSubmit={search}
+                method="POST"
+              >
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Search by Transaction ID"
+                  required={true}
+                />
+                <button className={styles.search__button}>
+                  <span className={"material-icons"}>search</span>
+                </button>
+              </form>
+            </div>
+            <div
+              className={cn(styles.table__container, {
+                loading__container: isLoading,
+              })}
+            >
+              {isLoading ? (
+                <GlobalLoader />
+              ) : (
+                <TransactionTable data={data} setFrom={setFrom} from={from} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }
