@@ -1,5 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+def upload_image_to(instance, filename):
+    import os
+    from django.utils.timezone import now
+    filename_base, filename_ext = os.path.splitext(filename)
+    return 'ProfileImages/%s' % (
+        instance.phone
+    )
+
 # Create your models here.
 """
 User Registration and Login is started here...
@@ -57,14 +66,22 @@ class User(AbstractBaseUser):
     phone = models.CharField( primary_key = True, max_length=255,unique=True, null=False, blank= False)
     email = models.EmailField(unique=True, null=False, blank = False)
     name = models.CharField(max_length=255, blank=False, null = False)
+    street = models.CharField(max_length=255, blank=False, null = False)
     state = models.CharField(max_length=255, blank=False, null = False)
     city = models.CharField(max_length=255, blank=False, null = False)
+    zipCode = models.CharField(max_length=20, blank=False, null = False)
+    addressAge = models.CharField(max_length=6, blank=False, null = False)
+    DOB = models.DateField(blank=True, null = True)
+    employerName = models.CharField(max_length=255, blank=False, null = False)
+    employerAge = models.CharField(max_length=6, blank=False, null = False)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     lastLogin = models.DateTimeField(auto_now=True)
     securityNumber = models.CharField(unique=True,max_length=4, null=False, blank=False)
+    completeProfile = models.BooleanField(default=False)
+    image = models.ImageField(upload_to=upload_image_to, editable=True, null=False, blank=False)
     
     objects = UserManager()
     USERNAME_FIELD = 'phone'

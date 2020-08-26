@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'userauth.apps.UserAuthConfig',
     'corsheaders',
-    'pool.apps.PoolConfig'
+    'pool.apps.PoolConfig',
+    'storages',
 ]
 
 AUTH_USER_MODEL = 'userauth.User'
@@ -149,3 +150,14 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
        'http://127.0.0.1:3000',
 )
+
+
+
+#Configuration of S3 bucket
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+
+AWS_S3_ACCESS_KEY_ID = os.getenv('S3_ACCESS_KEY')     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = os.getenv('S3_SECRET_ACCESS_KEY') # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = os.getenv('S3_Bucket_Name') 

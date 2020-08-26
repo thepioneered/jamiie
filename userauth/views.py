@@ -152,8 +152,10 @@ class Login(APIView):
                     real_password = user.password
                     if password == real_password:
                         token, created = Token.objects.get_or_create(user=user)
-                        firstlogin = UserInfo.objects.filter(phone=phone).exists()
-                        return Response({'token': token.key,'firstlogin':firstlogin},status=status.HTTP_200_OK)
+                        user.save()
+                        completeProfile = User.objects.get(phone=phone).completeProfile
+                        riskCalculator = UserInfo.objects.filter(phone=phone).exists()
+                        return Response({'token': token.key,'completeProfile':completeProfile,'riskCalculator':riskCalculator},status=status.HTTP_200_OK)
                     else:
                         return Response({'response':'Wrong Credentials'},status=status.HTTP_401_UNAUTHORIZED)
                 else:
@@ -162,6 +164,31 @@ class Login(APIView):
                 return Response({'response':'User does not exists'},status=status.HTTP_403_FORBIDDEN)
         except Exception as e:
             print(e)
+
+class CompleteProfileApi(APIView):
+    authentication_classes = []
+    permission_classes=[]
+    try:
+        def post(self,request):
+            data = request.data
+            phone = data['phone']
+            user = User.objects.get(phone=phone)
+            user.image = data['image']
+            user.street = data['street']
+            user.city = data['city']
+            user.state = data['state']
+            user.zipCode = data['zipCode']
+            user.addressAge = data['addressAge']
+            user.DOB = data['DOB']
+            user.securityNumber = data['securityNumber']
+            user.employerName = data['employerName']
+            user.employerAge = data['employerAge']
+            user.completeProfile = True
+            user.save()
+            return Response(status = status.HTTP_201_CREATED)
+
+    except Exception as e:
+        print(e)
 
 class ForgotPassword(APIView):
     authentication_classes = []
@@ -327,7 +354,6 @@ class ScoreCalculator(APIView):
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
             print(e)        
-
 
 class UserDataApi(APIView):
     authentication_classes = []
