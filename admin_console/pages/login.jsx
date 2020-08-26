@@ -28,8 +28,8 @@ export default function Login() {
     setLoading(true);
 
     const payload = {
-      phone: username,
-      password: password,
+      phone: username.trim(),
+      password: password.trim(),
     };
 
     try {

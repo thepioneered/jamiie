@@ -126,9 +126,6 @@ function Users() {
                   className={styles.input}
                   placeholder="Search by User ID"
                   required={true}
-                  // onFocus={addSearchContent}
-                  // onBlur={removeSearchContent}
-                  // onChange={(event) => filterSearch(event)}
                 />
                 <button className={styles.search__button}>
                   <span className={"material-icons"}>search</span>
