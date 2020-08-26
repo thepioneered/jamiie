@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/loginResponse.dart';
 import 'package:Jamiie/src/models/pageModel.dart';
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,6 @@ class LoginProvider extends ChangeNotifier {
   }
   Widget loginButton({@required Function onTap, @required bool loader}) {
     return AppButton.loginButton(
-     
       loader: loader,
       onTap: onTap,
       title: "Login",
@@ -57,24 +57,42 @@ class LoginProvider extends ChangeNotifier {
           endPoint: EndPoints.userLogin,
           afterRequest: () {},
           body: login.toJson());
+      print(body["body"]);
       if (body["status"]) {
-        Navigator.pop(loginScaffoldKey.currentContext);
-        print(body["body"]);
+        final loginResponse = LoginResponse.fromJson(body["body"]);
+
         await LocalStorage.setTokenMobileFirstLogin(
-            body["body"]["token"], login.mobile, body["body"]["firstlogin"]);
-        pageModel.onceClicked = false;
+          loginResponse.token,
+          login.mobile,
+          loginResponse.profileCompleted,
+          loginResponse.riskCalculated,
+        );
+        // pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
-        print(body["body"]["token"]);
+        // print(body["body"]["token"]);
         loginFormKey.currentState.reset();
+        Navigator.pop(loginScaffoldKey.currentContext);
         loginScaffoldKey.currentState.showSnackBar(
           AppSnackBar.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
-        if (body["body"]["firstlogin"]) {
+        if (loginResponse.profileCompleted == true &&
+            loginResponse.riskCalculated == true) {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/NavBar");
+          });
+        } else if (!loginResponse.profileCompleted) {
+          Future.delayed(Duration(milliseconds: 1300), () {
+            Navigator.pushReplacementNamed(
+                loginScaffoldKey.currentContext, "/CompleteProfilePage");
+          });
+        } else if (loginResponse.profileCompleted &&
+            !loginResponse.riskCalculated) {
+          Future.delayed(Duration(milliseconds: 1300), () {
+            Navigator.pushReplacementNamed(
+                loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
         } else {
           Future.delayed(Duration(milliseconds: 1300), () {
@@ -83,6 +101,7 @@ class LoginProvider extends ChangeNotifier {
           });
         }
       } else {
+        
         pageModel.onceClicked = false;
         notifyListeners();
       }

@@ -1,9 +1,12 @@
 import 'package:Jamiie/src/providers/auth/completeProfileProvider.dart';
 import 'package:Jamiie/src/styles/base.dart';
 import 'package:Jamiie/src/styles/colors.dart';
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/utils/validationRegex.dart';
+import 'package:Jamiie/src/widgets/AfterLoginForm/formwidget.dart';
 import 'package:Jamiie/src/widgets/appBar.dart';
 import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
+import 'package:Jamiie/src/widgets/appTextFields/inputDeoration.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +36,10 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   FocusNode employerNode;
   FocusNode howLongNode;
   FocusNode addressNode;
+  List<String> _dropdownValues = [
+    "Month","Year"
+
+  ];
 
   @override
   void initState() {
@@ -61,59 +68,61 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   @override
   Widget build(BuildContext context) {
     var completeProfileProvider = Provider.of<CompleteProfileProvider>(context);
-    double height = MediaQuery.of(context).size.height - 75.0;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      key: completeProfileProvider.completeProfileScaffoldKey,
       backgroundColor: AppColors.white,
-      appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
+     
       body: SingleChildScrollView(
         child: Container(
-          // height: height,
-          padding: EdgeInsets.only(left: 15.0, right: 15.0),
-          child: Column(
-            children: [
-              ChangeNotifierProvider(
-                create: (context) => ImageProviderCompleteProfile(),
-                child: Consumer<ImageProviderCompleteProfile>(
-                  builder: (_, imageProviderSignup, child) {
-                    return Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 30.0),
-                      height: 160.0,
-                      width: (MediaQuery.of(context).size.width - 30.0) / 2,
-                      child: imageProviderSignup.image == null
-                          ? InkWell(
-                              onTap: imageProviderSignup.getImage,
-                              child: Container(
-                                alignment: Alignment.center,
-                                // height: 120.0,/
-                                decoration: BoxDecoration(
-                                  color: AppColors.primaryColorPurple,
-                                  shape: BoxShape.circle,
+          alignment: Alignment.center,
+          height: height,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 35.0),
+          child: Form(
+            key: completeProfileProvider.completeProfileFormKey,
+            autovalidate: completeProfileProvider.pageModel.onceFormSubmitted,
+            child: Column(
+              children: [
+                ChangeNotifierProvider(
+                  create: (context) => ImageProviderCompleteProfile(),
+                  child: Consumer<ImageProviderCompleteProfile>(
+                    builder: (_, imageProviderSignup, child) {
+                      return Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(bottom: 30.0),
+                        height: 160.0,
+                        width: (MediaQuery.of(context).size.width - 30.0) / 2,
+                        child: imageProviderSignup.image == null
+                            ? InkWell(
+                                onTap: imageProviderSignup.getImage,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  // height: 120.0,/
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryColorPurple,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(FontAwesomeIcons.camera,
+                                      color: AppColors.white),
                                 ),
-                                child: Icon(FontAwesomeIcons.camera,
-                                    color: AppColors.white),
+                              )
+                            : Container(
+                                alignment: Alignment.center,
+                                height: 80.0,
+                                width: 80.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image:
+                                          FileImage(imageProviderSignup.image),
+                                      fit: BoxFit.fill),
+                                ),
                               ),
-                            )
-                          : Container(
-                              alignment: Alignment.center,
-                              height: 80.0,
-                              width: 80.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: FileImage(imageProviderSignup.image),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
-              Form(
-                key: completeProfileProvider.completeProfileFormKey,
-                autovalidate:
-                    completeProfileProvider.pageModel.onceFormSubmitted,
-                child: Column(
+                Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,11 +131,14 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                           width: (MediaQuery.of(context).size.width - 50.0) / 2,
                           child: AppTextField.screenTextField(
                               hintText: "Street",
-                              validator: null,
+                              validator: (e) =>
+                                  TextFieldValidation.stateCityValidation(
+                                      e, "Street"),
                               onEdittingComplete: () =>
                                   stateNode.requestFocus(),
                               autoValidate: false,
-                              onSaved: null,
+                              onSaved: (e) => completeProfileProvider
+                                  .completeProfileModel.street = e,
                               prefixIcon: null),
                         ),
                         Container(
@@ -135,110 +147,201 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                               hintText: "State",
                               focusNode: stateNode,
                               onEdittingComplete: () => cityNode.requestFocus(),
-                              validator: null,
+                              validator: (e) =>
+                                  TextFieldValidation.stateCityValidation(
+                                      e, "State"),
                               autoValidate: false,
-                              onSaved: null,
+                              onSaved: (e) {
+                                print(e);
+                                completeProfileProvider
+                                    .completeProfileModel.state = e;
+                              },
                               prefixIcon: null),
                         ),
                       ],
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                    child: AppTextField.screenTextField(
-                        hintText: "City",
-                        focusNode: cityNode,
-                        onEdittingComplete: () => zipcodeNode.requestFocus(),
-                        validator: null,
-                        autoValidate: false,
-                        onSaved: null,
-                        prefixIcon: null),
-                  ),
-                  Container(
-                    width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                    child: AppTextField.screenTextField(
-                        hintText: "Zipcode",
-                        focusNode: zipcodeNode,
-                        onEdittingComplete: () => addressNode.requestFocus(),
-                        validator: null,
-                        autoValidate: false,
-                        onSaved: null,
-                        prefixIcon: null),
-                  ),
-                ],
-              ),
-              AppTextField.screenTextField(
-                  hintText: "How long at this address?",
-                  focusNode: addressNode,
-                  validator: (e) {},
-                  autoValidate: false,
-                  onSaved: (e) {},
-                  prefixIcon: null),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: AbsorbPointer(
-                        child: AppTextField.screenTextField(
-                            hintText: "DOB",
-                            validator: null,
-                            onEdittingComplete: () => ssnNode.requestFocus(),
-                            autoValidate: false,
-                            onSaved: null,
-                            prefixIcon: null),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      child: AppTextField.screenTextField(
+                          hintText: "City",
+                          focusNode: cityNode,
+                          onEdittingComplete: () => zipcodeNode.requestFocus(),
+                          validator: (e) =>
+                              TextFieldValidation.stateCityValidation(
+                                  e, "City"),
+                          autoValidate: false,
+                          onSaved: (e) => completeProfileProvider
+                              .completeProfileModel.city = e,
+                          prefixIcon: null),
+                    ),
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      child: AppTextField.screenTextField(
+                          hintText: "Zipcode",
+                          maxLength: 5,
+                          focusNode: zipcodeNode,
+                          onEdittingComplete: () => addressNode.requestFocus(),
+                          validator: TextFieldValidation.zipCode,
+                          autoValidate: false,
+                          onSaved: (e) => completeProfileProvider
+                              .completeProfileModel.zipcode = e,
+                          prefixIcon: null),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
+                      child: AppTextField.screenTextField(
+                          textInputType: TextInputType.number,
+                          hintText: "How long at this address?",
+                          focusNode: addressNode,
+                          validator: TextFieldValidation.numberValidation,
+                          autoValidate: false,
+                          onSaved: (e) => completeProfileProvider
+                              .completeProfileModel.howLongatAddress = e,
+                          prefixIcon: null),
+                    ),
+                    Expanded(
+                      child: Container(
+                          // color: Colors.blueAccent,
+                          height: 50.0,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Months",
+                            style: AppTextStyle.hintText,
+                          )),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          completeProfileProvider.selectDate(context);
+                        },
+                        child: AbsorbPointer(
+                          child: AppTextField.screenTextField(
+                              controller: completeProfileProvider.date,
+                              textInputType: TextInputType.datetime,
+                              hintText: "DOB",
+                              validator: (value) {
+                                if (value.isEmpty) return "Select Date!";
+                                return null;
+                              },
+                              onEdittingComplete: () => ssnNode.requestFocus(),
+                              autoValidate: false,
+                              onSaved: (value) => completeProfileProvider
+                                  .completeProfileModel.date = value,
+                              prefixIcon: null),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                    child: AppTextField.screenTextField(
-                      hintText: "Last 4 digit of SSN",
-                      focusNode: ssnNode,
-                      onEdittingComplete: () => employerNode.requestFocus(),
-                      validator: null,
-                      autoValidate: false,
-                      onSaved: null,
-                      edge: EdgeInsets.only(left: 20.0),
-                      prefixIcon: null,
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      child: AppTextField.screenTextField(
+                        hintText: "Last 4 digit of SSN",
+                        maxLength: 4,
+                        focusNode: ssnNode,
+                        onEdittingComplete: () => employerNode.requestFocus(),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Enter SSN";
+                          } else if (value.contains(" ")) {
+                            return "Blank Spaces not allowed";
+                          }
+                          if (value.length != 4) {
+                            return "Please enter valid SSN";
+                          }
+                          return null;
+                        },
+                        autoValidate: false,
+                        onSaved: (e) => completeProfileProvider
+                            .completeProfileModel.ssn = e,
+                        edge: EdgeInsets.only(left: 20.0),
+                        prefixIcon: null,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              AppTextField.screenTextField(
-                  hintText: "Employer Name",
-                  onEdittingComplete: () => howLongNode.requestFocus(),
-                  focusNode: employerNode,
-                  validator: (e) {},
-                  autoValidate: false,
-                  onSaved: (e) {},
-                  prefixIcon: null),
-              AppTextField.screenTextField(
-                toolbarOptions: ToolbarOptions(
-                    copy: false, paste: false, cut: false, selectAll: false),
-                prefixIcon: null,
-                textInputType: TextInputType.number,
-                // maxLength: 4,
-                onSaved: (String e) {},
-                hintText: "How long with this employer?",
-                focusNode: howLongNode,
-                autoValidate: false,
-                autofocus: false,
-                validator: TextFieldValidation.socialNumber,
-              ),
-              Container(
-                height: height * 0.07,
-                child: AppButton.loginButton(
-                    loader: false, onTap: () {}, title: "Submit"),
-              )
-            ],
+                  ],
+                ),
+                AppTextField.screenTextField(
+                    hintText: "Employer Name",
+                    onEdittingComplete: () => howLongNode.requestFocus(),
+                    focusNode: employerNode,
+                    validator: TextFieldValidation.nameValidation,
+                    autoValidate: false,
+                    onSaved: (e) => completeProfileProvider
+                        .completeProfileModel.employerName = e,
+                    prefixIcon: null),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: (MediaQuery.of(context).size.width - 30.0) * 0.50,
+                      child: AppTextField.screenTextField(
+                          textInputType: TextInputType.number,
+                          
+                          hintText: "How long with this employer?",
+                          focusNode: howLongNode,
+                          validator: TextFieldValidation.numberValidation,
+                          autoValidate: false,
+                          onSaved: (e) => completeProfileProvider
+                              .completeProfileModel.howLongwithEmployer = e,
+                          prefixIcon: null),
+                    ),
+                    // Expanded(
+                    //   child: Container(
+                    //       // color: Colors.blueAccent,
+                    //       height: 50.0,
+                    //       alignment: Alignment.center,
+                    //       child:  DropdownButtonFormField<String>(
+                    //         onSaved: null ,//(e) =>
+                    //             // createPoolProvider.createPool.poolType = e,
+                    //         decoration: AppInputDecoration.dropdownDecoration(),
+                    //         autovalidate: false,
+                    //         hint: Text(
+                    //           'Pool Type',
+                    //           style: AppTextStyle.hintText,
+                    //         ),
+                    //         validator: (value) => value == null
+                    //             ? 'Please select Pool type'
+                    //             : null,
+                    //         onChanged: (e) {},
+                    //         items: _dropdownValues
+                    //             .map((value) => DropdownMenuItem<String>(
+                    //                   child: Text(
+                    //                     value,
+                    //                     style: AppTextStyle.inputText,
+                    //                   ),
+                    //                   value: value,
+                    //                 ))
+                    //             .toList(),
+                    //       ),
+                    // ),
+                    // )
+                  ],
+                ),
+                Container(
+                  height: height * 0.07,
+                  child: AppButton.loginButton(
+                      loader: false,
+                      onTap: () {
+                        completeProfileProvider.completeProfileLogic();
+                      },
+                      title: "Submit"),
+                )
+              ],
+            ),
           ),
         ),
       ),

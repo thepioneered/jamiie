@@ -34,8 +34,8 @@ class AfterLoginFormProvider extends ChangeNotifier {
   void onPressed() async {
     //todo
     // autoValidate = true;
-    // pageModel.onceFormSubmitted = true;
-    // notifyListeners();
+    pageModel.onceFormSubmitted = true;
+    notifyListeners();
     // if (formKey.currentState.validate()) {
     //   formKey.currentState.save();
     //   // pageModel.onceClicked = true;
@@ -65,9 +65,9 @@ class AfterLoginFormProvider extends ChangeNotifier {
     //     formKey.currentState.reset();
     //     Navigator.pop(scaffoldKey.currentContext);
     //     await LocalStorage.setFirstLogin();
-        Future.delayed(Duration(milliseconds: 500), () {
-          Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
-        });
+        // Future.delayed(Duration(milliseconds: 500), () {
+        //   Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
+        // });
       // } else {
       //   print("Data Not posted");
       // }

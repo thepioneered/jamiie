@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/screens/auth/completeProfilePage.dart';
+
 import '../screens/adminPool/creatPool.dart';
 import '../screens/adminPool/poolDataPage.dart';
 import '../screens/userJoinedPools/searchPoolPage.dart';
@@ -31,6 +33,10 @@ class AppRoutes {
       case "/DashboardPage":
         return MaterialPageRoute(
           builder: (context) => DashboardPage(),
+        );
+      case "/CompleteProfilePage":
+        return MaterialPageRoute(
+          builder: (context) => CompleteProfilePage(),
         );
       case "/LoginPage":
         return MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
+import 'package:Jamiie/src/screens/auth/completeProfilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,6 +33,9 @@ class AppProvider extends ChangeNotifier {
         case PageType.AppNavigationBar:
           child = AppNavigationBar();
           break;
+        case PageType.CompleteProfilePage:
+          child = CompleteProfilePage();
+          break;
         default:
           child = LoginPage();
           break;
@@ -42,13 +46,18 @@ class AppProvider extends ChangeNotifier {
 
   Future<PageType> checkSession() async {
     String value = await LocalStorage.getToken();
-    bool status = await LocalStorage.getFirstLogin();
     print("+++++++++++++++++$value++++++++++++++++++++");
     if (value != null) {
-      if (status == false) {
-        return PageType.AfterLoginForm;
-      } else {
+      bool isProfileComplete = await LocalStorage.isProfileComplete();
+      bool isRiskCalculated = await LocalStorage.isRiskCalculated();
+      if (isProfileComplete && isRiskCalculated) {
         return PageType.AppNavigationBar;
+      } else if (isProfileComplete && !isRiskCalculated) {
+        return PageType.AfterLoginForm;
+      } else if (!isProfileComplete && !isRiskCalculated) {
+        return PageType.CompleteProfilePage;
+      } else {
+        return PageType.LoginPage;
       }
     } else {
       return PageType.LoginPage;
@@ -56,4 +65,9 @@ class AppProvider extends ChangeNotifier {
   }
 }
 
-enum PageType {LoginPage, AppNavigationBar,AfterLoginForm}
+enum PageType {
+  LoginPage,
+  AppNavigationBar,
+  AfterLoginForm,
+  CompleteProfilePage
+}

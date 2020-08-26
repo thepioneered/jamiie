@@ -10,12 +10,13 @@ class LocalStorage {
     }
   }
 
-  static Future<Null> setTokenMobileFirstLogin(
-      String _token, String _mobile, bool _status) async {
+  static Future<Null> setTokenMobileFirstLogin(String _token, String _mobile,
+      bool _profileCompleted, bool _riskCalculated) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', _token);
-      prefs.setBool('firstlogin', _status);
+      prefs.setBool('profileCompleted', _profileCompleted);
+      prefs.setBool('riskCalculated', _riskCalculated);
       prefs.setString('mobile', _mobile);
     } catch (e) {
       throw Exception(e);
@@ -60,19 +61,58 @@ class LocalStorage {
     }
   }
 
-  static Future<Null> setFirstLogin() async {
+  // static Future<Null> setFirstLogin() async {
+  //   try {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.setBool('firstlogin', true);
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
+  // }
+
+  // static Future<bool> getFirstLogin() async {
+  //   try {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     bool status = prefs.getBool('firstlogin');
+  //     return status;
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
+  // }
+  static Future<bool> isProfileComplete() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('firstlogin', true);
+      bool status = prefs.getBool('profileCompleted');
+      return status;
     } catch (e) {
       throw Exception(e);
     }
   }
-  static Future<bool> getFirstLogin() async {
+
+  static Future<bool> isRiskCalculated() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool status = prefs.getBool('firstlogin');
+      bool status = prefs.getBool('riskCalculated');
       return status;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<Null> setisProfileComplete() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('profileCompleted', true);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<Null> setisRiskCalculated() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      prefs.setBool('riskCalculated', true);
     } catch (e) {
       throw Exception(e);
     }

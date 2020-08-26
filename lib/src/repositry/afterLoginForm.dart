@@ -1,9 +1,7 @@
 class AfterLoginDataRepo {
   static const List<String> one = [
-    'Upto 1 year',
-    'Upto 2 years',
-    'Upto 3 years',
-    'Upto 4 years'
+    'Single',
+    'Married'
   ];
 
   static const List<String> two = [
@@ -36,5 +34,6 @@ class AfterLoginDataRepo {
     '2',
     '3',
     '>3',
+    'Not a US citizen'
   ];
 }

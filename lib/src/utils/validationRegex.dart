@@ -28,6 +28,21 @@ class TextFieldValidation {
       return null;
     }
   }
+  static String zipCode(String data) {
+    if (data == "null") {
+      return "Please Enter Zipcode";
+    } else if (data.trim() == null) {
+      return "Please Enter Zipcode";
+    } else if (data.contains(" ")) {
+      return "Blank spaces not allowed";
+    } else if (data.trim() == "") {
+      return "Please Enter Zipcode";
+    } else if (data.length != 5) {
+      return "Enter valid zipcode";
+    } else {
+      return null;
+    }
+  }
 
   static String searchPoolValidation(String data) {
     if (data == "null") {
@@ -143,15 +158,30 @@ class TextFieldValidation {
     }
   }
 
-  static String stateCityValidation(String data) {
+  static String stateCityValidation(String data,String title) {
     if (data == "null") {
-      return "Please Enter your State";
+      return "Please Enter your $title";
     } else if (data.trim() == null) {
-      return "Please Enter your State";
+      return "Please Enter your $title";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
     } else if (data.trim() == "") {
-      return "Please Enter your State";
+      return "Please Enter your $title";
+    } else {
+      return null;
+    }
+  }
+  static String numberValidation(String data) {
+    if (data == "null") {
+      return "Please Enter months";
+    } else if (data.trim() == null) {
+      return "Please Enter valid months";
+    } else if (data.contains("-") || data.contains(",") || data.contains(".")) {
+      return "Please Enter valid months";
+    } else if (data.contains(" ")) {
+      return "Blank spaces not allowed";
+    } else if (data.trim() == "") {
+      return "Please Enter valid months";
     } else {
       return null;
     }

@@ -1,4 +1,8 @@
 import 'package:Jamiie/src/repositry/afterLoginForm.dart';
+import 'package:Jamiie/src/utils/icons.dart';
+import 'package:Jamiie/src/utils/validationRegex.dart';
+import 'package:Jamiie/src/widgets/appBar.dart';
+import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
 import '../../providers/AfterLoginForm/afterLoginFormProvider.dart';
@@ -46,7 +50,8 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Job Age :', style: AppTextStyle.subheadingTextForm),
+                      Text('Marital Status :',
+                          style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.one,
                         onchanged: (e) {
@@ -57,52 +62,71 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         validator: formProvider.validator,
                         autoValidate: false,
                       ),
-                      Text('Family :', style: AppTextStyle.subheadingTextForm),
-                      OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.two,
-                        onchanged: (e) {
-                          formProvider.listModel.data2 = e;
-                          formProvider.callListners();
-                        },
-                        value: formProvider.listModel.data2,
-                        validator: formProvider.validator,
-                        autoValidate: false,
+                      Text(
+                        'How many times you have pooled money ?',
+                        style: AppTextStyle.subheadingTextForm,
                       ),
-                      Text('Age :', style: AppTextStyle.subheadingTextForm),
-                      OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.three,
-                        onchanged: (e) {
-                          formProvider.listModel.data3 = e;
-                          formProvider.callListners();
-                        },
-                        value: formProvider.listModel.data3,
-                        validator: formProvider.validator,
-                        autoValidate: false,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                      Text('Saving Money since how many Years :',
+                      AppTextField.screenTextField(
+                        toolbarOptions: ToolbarOptions(paste: false),
+                        textInputType: TextInputType.number,
+                        hintText: "",
+                        validator: TextFieldValidation.numberValidation,
+                        autoValidate: false,
+                        onSaved: (value) {},
+                        prefixIcon: null,
+                      ),
+                      Text('Total Debt ?',
                           style: AppTextStyle.subheadingTextForm),
-                      OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.four,
-                        onchanged: (e) {
-                          formProvider.listModel.data4 = e;
-                          formProvider.callListners();
-                        },
-                        value: formProvider.listModel.data4,
-                        validator: formProvider.validator,
-                        autoValidate: false,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                      Text('How Many loans you have :',
-                          style: AppTextStyle.subheadingTextForm),
-                      OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.five,
-                        onchanged: (e) {
-                          formProvider.listModel.data5 = e;
-                          formProvider.callListners();
-                        },
-                        value: formProvider.listModel.data5,
-                        validator: formProvider.validator,
+                      AppTextField.screenTextField(
+                        toolbarOptions: ToolbarOptions(paste: false),
+                        textInputType: TextInputType.number,
+                        hintText: "",
+                        validator: TextFieldValidation.numberValidation,
                         autoValidate: false,
+                        onSaved: null,
+                        prefixIcon: AppIcons.dollarIcon,
                       ),
+                      // Text('Age :', style: AppTextStyle.subheadingTextForm),
+                      // OurDropdown.dropdown(
+                      //   items: AfterLoginDataRepo.three,
+                      //   onchanged: (e) {
+                      //     formProvider.listModel.data3 = e;
+                      //     formProvider.callListners();
+                      //   },
+                      //   value: formProvider.listModel.data3,
+                      //   validator: formProvider.validator,
+                      //   autoValidate: false,
+                      // ),
+                      // Text('Saving Money since how many Years :',
+                      //     style: AppTextStyle.subheadingTextForm),
+                      // OurDropdown.dropdown(
+                      //   items: AfterLoginDataRepo.four,
+                      //   onchanged: (e) {
+                      //     formProvider.listModel.data4 = e;
+                      //     formProvider.callListners();
+                      //   },
+                      //   value: formProvider.listModel.data4,
+                      //   validator: formProvider.validator,
+                      //   autoValidate: false,
+                      // ),
+                      // Text('How Many loans you have :',
+                      //     style: AppTextStyle.subheadingTextForm),
+                      // OurDropdown.dropdown(
+                      //   items: AfterLoginDataRepo.five,
+                      //   onchanged: (e) {
+                      //     formProvider.listModel.data5 = e;
+                      //     formProvider.callListners();
+                      //   },
+                      //   value: formProvider.listModel.data5,
+                      //   validator: formProvider.validator,
+                      //   autoValidate: false,
+                      // ),
                       Text('Living in USA since :',
                           style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(

@@ -4,6 +4,7 @@ import 'package:Jamiie/src/screens/auth/singup/mobilePage.dart';
 import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
 import 'package:Jamiie/src/screens/navbar.dart';
+import 'package:Jamiie/src/utils/roughWork.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,7 +69,7 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: CompleteProfilePage(),
+        home: Rough(),
         // home: Consumer<AppProvider>(
         //   builder: (_, appProvider, child) {
         //     return appProvider.child;
