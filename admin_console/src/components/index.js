@@ -7,3 +7,4 @@ export { default as LayoutLoader } from "./LayoutLoader";
 export { default as Modal } from "./Modal";
 export { default as Loading } from "./Loading";
 export { default as GlobalLoader } from "./GlobalLoader";
+export { default as UserTable } from "./UserTable";

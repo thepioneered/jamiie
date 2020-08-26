@@ -1,10 +1,15 @@
 import React, { useState, useContext } from "react";
 import cn from "classnames";
 import { LoaderContext } from "../_app";
-import { Layout, TotalCard, Modal, GlobalLoader } from "../../src/components";
+import {
+  Layout,
+  TotalCard,
+  Modal,
+  GlobalLoader,
+  UserTable,
+} from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import Link from "next/link";
 
 function Users() {
   const { state } = useContext(LoaderContext);
@@ -75,46 +80,12 @@ function Users() {
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
-  const getRows = (arr) => {
-    return arr.map((item) => row(item));
-  };
-
   const deleteUser = () => {
     toggleModal(true);
   };
 
   const closeModal = () => {
     toggleModal(false);
-  };
-
-  const row = ({ no, name, date, status }) => {
-    return (
-      <tr key={no}>
-        <td>{no}</td>
-        <td>{name}</td>
-        <td>{date}</td>
-        <td>{status}</td>
-        <td className={styles.action}>
-          <Link href="/admin/users/[user]" as={`/admin/users/${no}`}>
-            <button
-              className={styles.settings}
-              // onClick={openModal}
-              title="User Settings"
-            >
-              <span className="material-icons-outlined">settings</span>
-            </button>
-          </Link>
-
-          <button
-            className={styles.delete}
-            onClick={deleteUser}
-            title="Block User"
-          >
-            <span className="material-icons">remove_circle_outline</span>
-          </button>
-        </td>
-      </tr>
-    );
   };
 
   const search = (e) => {
@@ -172,38 +143,12 @@ function Users() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <>
-                  <table className={styles.table} cellSpacing="0">
-                    <thead>
-                      <tr className={styles.theading}>
-                        <td>Phone No.</td>
-                        <td>Name</td>
-                        <td>Date Created</td>
-                        <td>Last Login</td>
-                        <td>Action</td>
-                      </tr>
-                    </thead>
-                    <tbody>{getRows(data)}</tbody>
-                  </table>
-
-                  <div className={styles.next__prev__container}>
-                    <button
-                      className={cn(styles.prev, styles.button, {
-                        [styles.disabled]: from === 0,
-                      })}
-                      disabled={from === 0}
-                      onClick={(_e) => setFrom((prev) => prev - 10)}
-                    >
-                      Previous
-                    </button>
-                    <button
-                      className={cn(styles.next, styles.button)}
-                      onClick={(_e) => setFrom((prev) => prev + 10)}
-                    >
-                      Next
-                    </button>
-                  </div>
-                </>
+                <UserTable
+                  data={data}
+                  deleteUser={deleteUser}
+                  setFrom={setFrom}
+                  from={from}
+                />
               )}
             </div>
           </div>
