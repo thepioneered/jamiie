@@ -148,9 +148,9 @@ class Login(APIView):
             password = value["password"]
             if User.objects.filter(phone = phone).exists():
                 user = User.objects.get(phone = phone)
-                if user is not None:
-                    real_password = user.password
-                    if password == real_password:
+                if user is not None:    
+                    valid_password = check_password(password,user.password)
+                    if valid_password==True:
                         token, created = Token.objects.get_or_create(user=user)
                         user.save()
                         completeProfile = User.objects.get(phone=phone).completeProfile
@@ -224,7 +224,7 @@ class ForgotPassword(APIView):
             phone = "+"+str(id)
             password = data["password"]
             user = User.objects.get(phone=phone)
-            user.password=password
+            user.set_password(password)
             user.save()
             return Response(status=status.HTTP_201_CREATED)
         except Exception as e:
@@ -258,6 +258,7 @@ class AdminLogin(APIView):
                 if valid_password==True:
                     token, created = Token.objects.get_or_create(user=user)
                     return_data = {'name':user.name,'phone':user.phone,'email':user.email}
+                    user.save()
                     response = HttpResponse(json.dumps(return_data),status=status.HTTP_200_OK)
                     response.set_cookie(phone, value = token, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True, samesite='none')
                     return response
@@ -362,6 +363,20 @@ class UserDataApi(APIView):
         def get(self,request):
             usernames = [user.phone for user in User.objects.all()]
             return Response(usernames)
+    
+    except Exception as e:
+        print(e)
+
+class GetUserDetailApi(APIView):
+    authentication_classes = []
+    permission_classes = []
+    try:
+        def get(self,request,id):
+            phone = "+"+str(id)
+            image = "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/"+str(id)+".jpg"
+            user = User.objects.get(phone=phone)
+            return_response={'phone':user.phone,'name':user.name,'image':image,'email':user.email,'state':user.state,'city':user.city,'createdAt':user.createdAt,'lastLogin':user.lastLogin,'DOB':user.DOB}
+            return Response(return_response)
     
     except Exception as e:
         print(e)

@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('register',Register.as_view(), name = "register"),
@@ -32,5 +34,5 @@ urlpatterns = [
     path('check',Check.as_view(), name = "check"),
     path('userdata',UserDataApi.as_view(), name="user data"),
     path('completeprofile',CompleteProfileApi.as_view(), name="complete profile"),
-    
+    path('getuserdetail/<int:id>/',GetUserDetailApi.as_view(), name = "get user api"),
 ]
