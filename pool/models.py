@@ -13,7 +13,7 @@ class CreatePool(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        poolid = self.poolid
+        poolid = self.poolId
         return str(poolid)
 
 class JoinPool(models.Model):
