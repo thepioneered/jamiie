@@ -75,7 +75,7 @@ class SearchPoolApi(APIView):
                 pool = CreatePool.objects.get(poolId=poolId)
                 phone = pool.poolOwner
                 poolOwner = User.objects.get(phone=phone)
-                return_response = {'poolId':pool.poolId,'poolName':pool.poolName,'poolOwner':poolOwner.phone,'contributionAmount':pool.contributionAmount,'maxMember':pool.maxMember,'joinedMember':pool.joinedMember,'deadline':pool.deadline}
+                return_response = {'poolId':pool.poolId,'poolName':pool.poolName,'poolOwner':poolOwner.phone,'contributionAmount':pool.contributionAmount,'totalMember':pool.totalMember,'joinedMember':pool.joinedMember,'deadline':pool.deadline}
                 return Response(return_response, status=status.HTTP_200_OK)
             else:
                 return Response({'response':'Pool does not exists'},status=status.HTTP_404_NOT_FOUND)
