@@ -1,11 +1,6 @@
-import 'package:Jamiie/src/models/pageModel.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/utils/snackBar.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import 'package:Jamiie/src/models/base/pageModel.dart';
 import 'package:flutter/material.dart';
-import '../../models/afterLoginform.dart';
+import '../../models/auth/afterLoginform.dart';
 
 class AfterLoginFormProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -66,7 +61,7 @@ class AfterLoginFormProvider extends ChangeNotifier {
     //     Navigator.pop(scaffoldKey.currentContext);
     //     await LocalStorage.setFirstLogin();
         // Future.delayed(Duration(milliseconds: 500), () {
-        //   Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
+          Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
         // });
       // } else {
       //   print("Data Not posted");

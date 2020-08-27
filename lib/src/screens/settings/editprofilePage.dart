@@ -10,6 +10,7 @@ import '../../widgets/appBar.dart';
 class EditprofilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
       create: (_) => EditProfileProvider(),
       child: Consumer<EditProfileProvider>(
@@ -30,6 +31,7 @@ class EditprofilePage extends StatelessWidget {
               child: Column(
                 children: [
                   PageHeading.topHeading(
+                    height: height,
                     title: "Edit Details",
                     subTitle: "Edit your details",
                   ),

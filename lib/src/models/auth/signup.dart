@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
 
 class Signup {
   String firstName;
@@ -13,9 +11,7 @@ class Signup {
       this.email,
       this.password,});
 
-  void setPassword(String _password) {
-    this.password = sha256.convert(utf8.encode(_password)).toString();
-  }
+ 
 
   Map<String, dynamic> toJson(String _mobile) => {
         "phone": _mobile,

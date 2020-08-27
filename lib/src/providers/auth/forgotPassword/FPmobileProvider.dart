@@ -1,8 +1,8 @@
-import 'package:Jamiie/src/repositry/textConst.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../../repositry/textConst.dart';
+import '../../../widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
-import '../../../models/mobileModel.dart';
-import '../../../models/pageModel.dart';
+import '../../../models/auth/mobileModel.dart';
+import '../../../models/base/pageModel.dart';
 import '../../../utils/sharedPref.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
@@ -21,9 +21,9 @@ class ForgotPasswordProvider extends ChangeNotifier {
     mobileModel = MobileModel();
   }
 
-  Widget sendOtpButton({@required Function onTap, @required bool loader}) {
+  Widget sendOtpButton({@required Function onTap}) {
     return AppButton.loginButton(
-      loader: loader,
+      
       onTap: onTap,
       title: ForgotPasswordFlowText.mobilePageButton,
     );
@@ -34,10 +34,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
     notifyListeners();
     if (forgotPasswordFormKey.currentState.validate()) {
       forgotPasswordFormKey.currentState.save();
-      // pageModel.onceClicked = true;
-      // notifyListeners();
-      print(mobileModel.mobile);
-      print(mobileModel.toJson());
       try {
         LoaderDialog.loaderDialog(forgotPasswordScaffoldKey.currentContext);
       } catch (e) {
@@ -52,16 +48,12 @@ class ForgotPasswordProvider extends ChangeNotifier {
 
       if (body["status"]) {
         await LocalStorage.setMobile(mobileModel.mobile);
-        pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
-        Navigator.pop(forgotPasswordScaffoldKey.currentContext);
         forgotPasswordFormKey.currentState.reset();
+        Navigator.pop(forgotPasswordScaffoldKey.currentContext);
         Navigator.pushReplacementNamed(
             forgotPasswordScaffoldKey.currentContext, "/FPOtpPage");
-      } else {
-        pageModel.onceClicked = false;
-        notifyListeners();
       }
     }
   }

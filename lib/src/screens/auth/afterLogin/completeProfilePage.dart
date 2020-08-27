@@ -1,14 +1,9 @@
 import 'package:Jamiie/src/providers/auth/completeProfileProvider.dart';
-import 'package:Jamiie/src/styles/base.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/utils/validationRegex.dart';
-import 'package:Jamiie/src/widgets/AfterLoginForm/formwidget.dart';
-import 'package:Jamiie/src/widgets/appBar.dart';
 import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
-import 'package:Jamiie/src/widgets/appTextFields/inputDeoration.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
-import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -36,10 +31,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   FocusNode employerNode;
   FocusNode howLongNode;
   FocusNode addressNode;
-  List<String> _dropdownValues = [
-    "Month","Year"
-
-  ];
+  // List<String> _dropdownValues = ["Month", "Year"];
 
   @override
   void initState() {
@@ -72,12 +64,11 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
     return Scaffold(
       key: completeProfileProvider.completeProfileScaffoldKey,
       backgroundColor: AppColors.white,
-     
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
           height: height,
-          padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 35.0),
+          padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 35.0),
           child: Form(
             key: completeProfileProvider.completeProfileFormKey,
             autovalidate: completeProfileProvider.pageModel.onceFormSubmitted,
@@ -93,7 +84,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         height: 160.0,
                         width: (MediaQuery.of(context).size.width - 30.0) / 2,
                         child: imageProviderSignup.image == null
-                            ? InkWell(
+                            ? GestureDetector(
                                 onTap: imageProviderSignup.getImage,
                                 child: Container(
                                   alignment: Alignment.center,
@@ -187,6 +178,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                           focusNode: zipcodeNode,
                           onEdittingComplete: () => addressNode.requestFocus(),
                           validator: TextFieldValidation.zipCode,
+                          textInputType: TextInputType.number,
                           autoValidate: false,
                           onSaved: (e) => completeProfileProvider
                               .completeProfileModel.zipcode = e,
@@ -201,6 +193,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                       width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
                       child: AppTextField.screenTextField(
                           textInputType: TextInputType.number,
+                          maxLength: 2,
                           hintText: "How long at this address?",
                           focusNode: addressNode,
                           validator: TextFieldValidation.numberValidation,
@@ -253,6 +246,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         hintText: "Last 4 digit of SSN",
                         maxLength: 4,
                         focusNode: ssnNode,
+                        textInputType: TextInputType.number,
                         onEdittingComplete: () => employerNode.requestFocus(),
                         validator: (value) {
                           if (value.isEmpty) {
@@ -289,8 +283,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     Container(
                       width: (MediaQuery.of(context).size.width - 30.0) * 0.50,
                       child: AppTextField.screenTextField(
+                          maxLength: 2,
                           textInputType: TextInputType.number,
-                          
                           hintText: "How long with this employer?",
                           focusNode: howLongNode,
                           validator: TextFieldValidation.numberValidation,
@@ -334,7 +328,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                 Container(
                   height: height * 0.07,
                   child: AppButton.loginButton(
-                      loader: false,
                       onTap: () {
                         completeProfileProvider.completeProfileLogic();
                       },

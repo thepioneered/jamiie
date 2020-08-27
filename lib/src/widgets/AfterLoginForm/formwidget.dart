@@ -1,6 +1,5 @@
-import 'package:Jamiie/src/widgets/appTextFields/inputDeoration.dart';
+import '../../widgets/appTextFields/inputDeoration.dart';
 import 'package:flutter/material.dart';
-import '../../styles/colors.dart';
 import '../../styles/text.dart';
 
 class OurDropdown {
@@ -13,7 +12,6 @@ class OurDropdown {
   }) {
     return SizedBox(
       height: 75.0,
-      // padding: EdgeInsets.symmetric(vertical: 15),
       child: DropdownButtonFormField<String>(
         decoration: AppInputDecoration.dropdownDecoration(),
         hint: Text('Choose option'),

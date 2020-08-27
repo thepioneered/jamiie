@@ -4,10 +4,8 @@ class AppRegularExpression {
   static RegExp searchPoolRegExp = RegExp('[a-zA-Z0-9]');
   static RegExp mobileRegExp = RegExp(
       '[0-9]{10}'); //TODO:Mobile number needs to be edited accordingly(conutry)
-  static RegExp amountRegExp = RegExp(
-      '[0-9]'); //TODO:Mobile number needs to be edited accordingly(conutry)
-  static RegExp socialRegExp = RegExp(
-      '[0-9]{4}'); //TODO:Mobile number needs to be edited accordingly(conutry)
+  static RegExp amountRegExp = RegExp('[0-9]');
+  static RegExp socialRegExp = RegExp('[0-9]{4}');
   static RegExp emailRegExp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 }
@@ -28,6 +26,7 @@ class TextFieldValidation {
       return null;
     }
   }
+
   static String zipCode(String data) {
     if (data == "null") {
       return "Please Enter Zipcode";
@@ -85,7 +84,6 @@ class TextFieldValidation {
   }
 
   static String memberValidation(String data) {
-   
     if (data == "null") {
       return "Please Enter Members";
     } else if (data.trim() == null) {
@@ -100,12 +98,12 @@ class TextFieldValidation {
       return "Members can not be more than 35 or less than 5";
     } else if (!AppRegularExpression.memberRegExp.hasMatch(data.toString())) {
       return "Enter valid Members";
-    } 
-    
+    }
+
     // else if (data[1] == "0" ) {
     //   return "Members can not 0";
-    // } 
-    
+    // }
+
     else {
       return null;
     }
@@ -158,7 +156,7 @@ class TextFieldValidation {
     }
   }
 
-  static String stateCityValidation(String data,String title) {
+  static String stateCityValidation(String data, String title) {
     if (data == "null") {
       return "Please Enter your $title";
     } else if (data.trim() == null) {
@@ -171,6 +169,7 @@ class TextFieldValidation {
       return null;
     }
   }
+
   static String numberValidation(String data) {
     if (data == "null") {
       return "Please Enter months";

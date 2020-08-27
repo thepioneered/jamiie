@@ -63,11 +63,8 @@ class MobilePageWidget extends StatelessWidget {
                   //8 percent of total space
                   Container(
                     height: height * 0.07,
-                    child: mobileProvider.pageModel.onceClicked
-                        ? mobileProvider.sendOtpButton(
-                            loader: true, onTap: () {})
-                        : mobileProvider.sendOtpButton(
-                            loader: false,
+                    child: mobileProvider.sendOtpButton(
+                          
                             onTap: () {
                               FocusScope.of(context).unfocus();
                               mobileProvider.mobileNumberCheck();

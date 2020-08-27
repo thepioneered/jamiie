@@ -29,14 +29,12 @@ class LogoutProvider extends ChangeNotifier {
             authRequest: true,
             afterRequest: () {},
             body: {"phone": await LocalStorage.getMobile()});
-        Navigator.pop(settingScaffoldKey.currentContext);
 
         if (body["status"]) {
           await LocalStorage.deleteData();
+          Navigator.pop(settingScaffoldKey.currentContext);
           Navigator.pushNamedAndRemoveUntil(settingScaffoldKey.currentContext,
               "/LoginPage", (route) => false);
-        } else {
-          Navigator.pop(settingScaffoldKey.currentContext);
         }
       },
     );

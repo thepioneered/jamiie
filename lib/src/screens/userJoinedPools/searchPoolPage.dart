@@ -55,7 +55,6 @@ class SearchPoolPageWidget extends StatelessWidget {
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
-                        loader: false,
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           searchPoolProvider.searchPoolLogic();

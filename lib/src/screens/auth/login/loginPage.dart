@@ -43,8 +43,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("+++++LOGIN PAGE REBUILD+++++");
-
     double height = MediaQuery.of(context).size.height;
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(

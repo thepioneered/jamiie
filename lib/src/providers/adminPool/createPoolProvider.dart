@@ -2,7 +2,7 @@ import 'package:Jamiie/src/widgets/loaderDialog.dart';
 
 import '../../widgets/sucessCreatePool.dart';
 import '../../models/createPoolModels/poolidModel.dart';
-import '../../models/pageModel.dart';
+import '../../models/base/pageModel.dart';
 import '../../server/endpoint.dart';
 import '../../server/networkCalls.dart';
 import '../../styles/colors.dart';
@@ -44,8 +44,6 @@ class CreatePoolProvider with ChangeNotifier {
     notifyListeners();
     if (createPoolFormKey.currentState.validate()) {
       createPoolFormKey.currentState.save();
-      // pageModel.onceClicked = true;
-      // notifyListeners();
       try {
         LoaderDialog.loaderDialog(createPoolScaffoldKey.currentContext);
       } catch (e) {
@@ -68,7 +66,6 @@ class CreatePoolProvider with ChangeNotifier {
       );
       if (body["status"]) {
         Navigator.pop(createPoolScaffoldKey.currentContext);
-        pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         date.clear();
         createPoolFormKey.currentState.reset();
@@ -78,8 +75,6 @@ class CreatePoolProvider with ChangeNotifier {
         AppBottomModalSheet.bottomSheetSucess(
             createPoolScaffoldKey.currentContext, poolId.poolId);
       } else {
-        pageModel.onceClicked = false;
-        notifyListeners();
         AppSnackBar.snackBar(
             title: "Pool not Created", backgroundColor: AppColors.red);
       }

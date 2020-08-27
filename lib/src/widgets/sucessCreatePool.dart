@@ -100,10 +100,12 @@ class AppBottomModalSheet {
                       Expanded(
                         child: Container(),
                       ),
-                      AppButton.loginButton(
-                        loader: false,
-                        onTap: onTap,
-                        title: "Join Pool",
+                      Container(
+                        height: MediaQuery.of(ctx).size.height * 0.07,
+                        child: AppButton.loginButton(
+                          onTap: onTap,
+                          title: "Join Pool",
+                        ),
                       )
                     ],
                   ),
@@ -138,7 +140,7 @@ class AppBottomModalSheet {
   static void bottomSheetSucess(BuildContext ctx, String _poolId) {
     showModalBottomSheet(
         context: ctx,
-        builder: (ctx) {
+        builder: (ctxx) {
           return SizedBox(
             width: double.infinity,
             child: Stack(
@@ -179,11 +181,11 @@ class AppBottomModalSheet {
                       Expanded(
                         child: Container(),
                       ),
-                      Padding(
+                      Container(
+                        height: MediaQuery.of(ctx).size.height * 0.07,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 15.0),
                         child: AppButton.loginButton(
-                          loader: false,
                           onTap: () {
                             Share.share(
                               AppConstString.sharePoolId(

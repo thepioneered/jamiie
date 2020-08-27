@@ -1,7 +1,7 @@
-import 'package:Jamiie/src/models/mobileModel.dart';
-import 'package:Jamiie/src/repositry/textConst.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
-import '../../../models/pageModel.dart';
+import '../../../models/auth/mobileModel.dart';
+import '../../../repositry/textConst.dart';
+import '../../../widgets/loaderDialog.dart';
+import '../../../models/base/pageModel.dart';
 import '../../../utils/sharedPref.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +20,8 @@ class MobileProvider extends ChangeNotifier {
     mobileModel = MobileModel();
   }
 
-  Widget sendOtpButton({@required Function onTap, @required bool loader}) {
+  Widget sendOtpButton({@required Function onTap}) {
     return AppButton.loginButton(
-      loader: loader,
       onTap: onTap,
       title: SignUpFlowText.mobilePageButton,
     );
@@ -33,10 +32,6 @@ class MobileProvider extends ChangeNotifier {
     notifyListeners();
     if (mobileFormKey.currentState.validate()) {
       mobileFormKey.currentState.save();
-      // pageModel.onceClicked = true;
-      // notifyListeners();
-      print(mobileModel.mobile);
-      print(mobileModel.toJson());
       try {
         LoaderDialog.loaderDialog(mobileScaffoldKey.currentContext);
       } catch (e) {
@@ -54,16 +49,12 @@ class MobileProvider extends ChangeNotifier {
       if (body["status"]) {
         Navigator.pop(mobileScaffoldKey.currentContext);
         await LocalStorage.setMobile(mobileModel.mobile);
-        pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
         mobileFormKey.currentState.reset();
         Navigator.pushReplacementNamed(
             mobileScaffoldKey.currentContext, "/OtpPage");
-      } else {
-        pageModel.onceClicked = false;
-        notifyListeners();
-      }
+      } 
     }
   }
 }

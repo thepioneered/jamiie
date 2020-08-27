@@ -180,11 +180,8 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     ),
                     Container(
                       height: height * 0.07,
-                      child: createPoolProvider.pageModel.onceClicked
-                          ? AppButton.loginButton(
-                              loader: true, onTap: () {}, title: "Create Pool")
-                          : AppButton.loginButton(
-                              loader: false,
+                      child: AppButton.loginButton(
+                        
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 createPoolProvider.createPoolLogic();

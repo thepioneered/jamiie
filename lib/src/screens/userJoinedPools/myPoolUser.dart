@@ -1,4 +1,4 @@
-import 'package:Jamiie/src/screens/userJoinedPools/searchPoolPage.dart';
+
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:flutter/material.dart';
 import '../../styles/base.dart';

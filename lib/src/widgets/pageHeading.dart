@@ -1,4 +1,3 @@
-import 'package:Jamiie/src/styles/colors.dart';
 import 'package:flutter/material.dart';
 import '.././styles/text.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -12,7 +11,6 @@ class PageHeading {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            // padding: const EdgeInsets.only(bottom: 10.0),
             height: height * 0.10,
             alignment: Alignment.topLeft,
             child: AutoSizeText(

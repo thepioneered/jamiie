@@ -1,8 +1,7 @@
-import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
-import 'package:Jamiie/src/screens/auth/completeProfilePage.dart';
+import '../../screens/auth/afterLogin/form.dart';
+import '../../screens/auth/afterLogin/completeProfilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../screens/navbar.dart';
 import '../../screens/auth/login/loginPage.dart';
 import '../../utils/sharedPref.dart';

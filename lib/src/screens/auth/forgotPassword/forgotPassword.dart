@@ -59,7 +59,7 @@ class ForgotPasswordPage extends StatelessWidget {
                                   FocusScope.of(context).unfocus();
                                   forgotPasswordProvider.forgotPassword();
                                 },
-                                loader: false),
+                          ),
                           ),
                         ],
                       ),

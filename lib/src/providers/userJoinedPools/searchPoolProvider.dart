@@ -1,14 +1,14 @@
-import 'package:Jamiie/src/models/pageModel.dart';
-import 'package:Jamiie/src/models/userJoinedPools/joinPoolModel.dart';
-import 'package:Jamiie/src/models/userJoinedPools/poolModel.dart';
-import 'package:Jamiie/src/models/userJoinedPools/searchPoolModel.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/utils/snackBar.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
-import 'package:Jamiie/src/widgets/sucessCreatePool.dart';
+import '../../models/base/pageModel.dart';
+import '../../models/userJoinedPools/joinPoolModel.dart';
+import '../../models/userJoinedPools/poolModel.dart';
+import '../../models/userJoinedPools/searchPoolModel.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/snackBar.dart';
+import '../../widgets/loaderDialog.dart';
+import '../../widgets/sucessCreatePool.dart';
 import 'package:flutter/material.dart';
 
 class SearchPoolProvider with ChangeNotifier {
@@ -28,7 +28,7 @@ class SearchPoolProvider with ChangeNotifier {
     notifyListeners();
     if (searchPoolPageFormKey.currentState.validate()) {
       searchPoolPageFormKey.currentState.save();
-      print(poolIdModel.toJson());
+
       try {
         LoaderDialog.loaderDialog(searchPoolPageScaffoldKey.currentContext);
       } catch (e) {
@@ -85,9 +85,6 @@ class SearchPoolProvider with ChangeNotifier {
             }
           },
         );
-      } else {
-        pageModel.onceFormSubmitted = false;
-        notifyListeners();
       }
     }
   }

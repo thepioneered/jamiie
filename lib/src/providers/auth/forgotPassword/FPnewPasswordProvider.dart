@@ -1,7 +1,7 @@
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../../widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
-import '../../../models/newPasswordModel.dart';
-import '../../../models/pageModel.dart';
+import '../../../models/auth/newPasswordModel.dart';
+import '../../../models/base/pageModel.dart';
 import '../../../utils/sharedPref.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
@@ -21,17 +21,15 @@ class NewPasswordProvider extends ChangeNotifier {
     newPasswordModel = NewPasswordModel();
   }
 
-  Widget updatePasswordButton(bool loader, Function onTap) {
+  Widget updatePasswordButton( Function onTap) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: "Update Password");
+        onTap: onTap, title: "Update Password");
   }
 
   void updateNewPassword() async {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (newpassFormKey.currentState.validate()) {
-      // pageModel.onceClicked = true;
-      // notifyListeners();
       newpassFormKey.currentState.save();
       String a = await LocalStorage.getMobile();
       a = a.substring(1, a.length);
@@ -48,13 +46,12 @@ class NewPasswordProvider extends ChangeNotifier {
       );
 
       if (body["status"]) {
-        pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
+        newpassFormKey.currentState.reset();
         password.clear();
         await LocalStorage.deleteData();
         notifyListeners();
         Navigator.pop(newpassScaffoldKey.currentContext);
-        newpassFormKey.currentState.reset();
         Future.delayed(Duration(milliseconds: 1300), () {
           Navigator.pushNamedAndRemoveUntil(newpassScaffoldKey.currentContext,
               "/LoginPage", (route) => false);
@@ -66,8 +63,6 @@ class NewPasswordProvider extends ChangeNotifier {
           ),
         );
       } else {
-        pageModel.onceClicked = false;
-        notifyListeners();
         newpassScaffoldKey.currentState.showSnackBar(
           AppSnackBar.snackBar(
             title: "Password Not Changed.",

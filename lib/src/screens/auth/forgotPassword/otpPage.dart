@@ -103,14 +103,12 @@ class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
             //8% percent of total height is given to button.
             Container(
               height: height * 0.08,
-              child: otpProvider.pageModel.onceClicked
-                  ? otpProvider.verifyOTP(onTap: () {}, loader: true)
-                  : otpProvider.verifyOTP(
+              child: otpProvider.verifyOTP(
                       onTap: () {
                         otpProvider.otpModel.otp = text;
                         otpProvider.checkOtp();
                       },
-                      loader: false),
+                    ),
             ),
             NumericKeyboard(
               onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,

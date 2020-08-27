@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:http_parser/http_parser.dart';
 import 'endpoint.dart';
 import 'statusCode.dart';
 import '../styles/colors.dart';
@@ -15,8 +17,8 @@ class NetworkCalls {
       @required Function afterRequest,
       bool authRequest = false,
       @required Object body}) async {
-        print(body);
-        print(EndPoints.ipAddress + endPoint);
+    print(body);
+    print(EndPoints.ipAddress + endPoint);
     if (await DataConnectionChecker().hasConnection) {
       try {
         var request = await http
@@ -70,7 +72,7 @@ class NetworkCalls {
     } else if (request.statusCode == 201) {
       return {"status": true};
     } else {
-      Map<String,dynamic> q = json.decode(request.body);
+      Map<String, dynamic> q = json.decode(request.body);
       Navigator.pop(key.currentContext);
       StatusCodeCheck.checkStatusCode(
         request.statusCode,
@@ -101,6 +103,50 @@ class NetworkCalls {
               Duration(seconds: 10),
             );
         return dataHandler(request, key);
+      } catch (e) {
+        return serverError(e, key);
+      }
+    } else {
+      return noInternetHandler(key);
+    }
+  }
+
+  static Future<Map<String, dynamic>> multiPartRequest(
+      {@required GlobalKey<ScaffoldState> key,
+      @required String endPoint,
+      @required Object body,
+      @required File savedImage}) async {
+    if (await DataConnectionChecker().hasConnection) {
+      try {
+        Uri postUri = Uri.parse(EndPoints.ipAddress + endPoint);
+        var request = http.MultipartRequest("POST", postUri);
+        request.headers.addAll(
+          EndPoints.authHeader(await LocalStorage.getToken()),
+        );
+        request.fields.addAll(body);
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'image',
+            savedImage.path,
+            contentType: MediaType('image', 'jpeg'),
+          ),
+        );
+
+        var response = await request.send();
+       if (response.statusCode == 201) {
+          return {"status": true};
+        } else {
+          Map<String, dynamic> q = {"error":"Error occured",};
+          Navigator.pop(key.currentContext);
+          StatusCodeCheck.checkStatusCode(
+            response.statusCode,
+            key,
+            q["response"] == null
+                ? "Error in ${response.statusCode}"
+                : q["response"],
+          );
+          return {"status": false};
+        }
       } catch (e) {
         return serverError(e, key);
       }

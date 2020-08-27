@@ -7,7 +7,6 @@ class AppConstString {
 }
 
 class SignUpFlowText {
-  //TODO
   static String get otpPageTitle => "Enter Authorization Code";
   static String get otpPageSubTitle =>
       "Please enter authorization code sent to your mobile number.";
@@ -19,7 +18,7 @@ class SignUpFlowText {
 }
 
 class ForgotPasswordFlowText {
-  static String get otpPageTitle => " ";
+  static String get otpPageTitle => "Enter Authorization Code";
   static String get otpPageSubTitle =>
       "Please enter authorization code sent to your mobile number.";
   static String get otpPageButton => "Verify";

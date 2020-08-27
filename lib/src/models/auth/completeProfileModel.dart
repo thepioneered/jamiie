@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 
 class CompleteProfileModel {
   String street;
@@ -24,10 +22,8 @@ class CompleteProfileModel {
       this.street,
       this.zipcode});
 
-  Map<String, dynamic> toJson(String _mobile, File image) {
-    print(image.path);
+  Map<String, String> toJson(String _mobile) {
     return {
-      "image": base64Encode(image.readAsBytesSync()),
       "phone": _mobile,
       "street": street,
       "city": city,

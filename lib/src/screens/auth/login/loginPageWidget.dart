@@ -1,6 +1,3 @@
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +59,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       showPassword: passwordStatus.showPassword,
                       validator: TextFieldValidation.passwordValidation,
                       autoValidate: loginProvider.pageModel.onceFormSubmitted,
-                      onSaved: (String e) => loginProvider.login.setPassword(e),
+                      onSaved: (String e) => loginProvider.login.password = e,
                       onEyeClick: GestureDetector(
                         onTap: passwordStatus.setStatus,
                         child: Icon(passwordStatus.showPassword
@@ -79,13 +76,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
               Container(
                 height: height * 0.07,
                 child: loginProvider.loginButton(
-                        
-                        loader: false,
-                        onTap: () {
-                          FocusScope.of(context).unfocus();
-                          loginProvider.validateLoginForm();
-                        },
-                      ),
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                    loginProvider.validateLoginForm();
+                  },
+                ),
               ),
             ],
           ),

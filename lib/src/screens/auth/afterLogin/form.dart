@@ -1,14 +1,13 @@
 import 'package:Jamiie/src/repositry/afterLoginForm.dart';
 import 'package:Jamiie/src/utils/icons.dart';
 import 'package:Jamiie/src/utils/validationRegex.dart';
-import 'package:Jamiie/src/widgets/appBar.dart';
 import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
-import '../../providers/AfterLoginForm/afterLoginFormProvider.dart';
-import '../../styles/text.dart';
-import '../../widgets/AfterLoginForm/formwidget.dart';
-import '../../widgets/button/appButton.dart';
+import '../../../providers/auth/afterLoginFormProvider.dart';
+import '../../../styles/text.dart';
+import '../../../widgets/AfterLoginForm/formwidget.dart';
+import '../../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 
 class AfterLoginFormPage extends StatelessWidget {
@@ -78,6 +77,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         onSaved: (value) {},
                         prefixIcon: null,
                       ),
+                      
                       Text('Total Debt ?',
                           style: AppTextStyle.subheadingTextForm),
                       SizedBox(
@@ -154,13 +154,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       // ),
                       Container(
                         height: height * 0.08,
-                        child: formProvider.pageModel.onceClicked
-                            ? AppButton.loginButton(
-                                loader: true,
-                                onTap: () => {},
-                              )
-                            : AppButton.loginButton(
-                                loader: false,
+                        child: AppButton.loginButton(
                                 title: 'Submit',
                                 onTap: () => formProvider.onPressed(),
                               ),

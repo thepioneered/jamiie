@@ -5,11 +5,8 @@ import '../../styles/colors.dart';
 import '../../styles/text.dart';
 
 class AppButton {
-  static Widget loginButton({bool loader, Function onTap, String title}) {
-    return loader
-        ? SizedBox(
-            height: 50.0, child: Center(child: CupertinoActivityIndicator()))
-        : RaisedButton(
+  static Widget loginButton({Function onTap, String title}) {
+    return  RaisedButton(
             onPressed: onTap,
             color: AppColors.primaryColorPurple,
             shape: RoundedRectangleBorder(

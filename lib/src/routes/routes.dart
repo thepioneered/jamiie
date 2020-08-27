@@ -1,4 +1,4 @@
-import 'package:Jamiie/src/screens/auth/completeProfilePage.dart';
+import '../screens/auth/afterLogin/completeProfilePage.dart';
 
 import '../screens/adminPool/creatPool.dart';
 import '../screens/adminPool/poolDataPage.dart';
@@ -6,7 +6,7 @@ import '../screens/userJoinedPools/searchPoolPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../screens/AfterLoginForm/form.dart';
+import '../screens/auth/afterLogin/form.dart';
 import '../screens/auth/forgotPassword/forgotPassword.dart';
 import '../screens/auth/forgotPassword/FPnewpassPage.dart';
 import '../screens/auth/forgotPassword/otpPage.dart';

@@ -1,11 +1,11 @@
-import 'package:Jamiie/src/models/loginResponse.dart';
-import 'package:Jamiie/src/models/pageModel.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../models/auth/loginResponse.dart';
+import '../../../models/base/pageModel.dart';
+import '../../../widgets/loaderDialog.dart';
 import '../../../widgets/button/appButton.dart';
 import '../../../utils/snackBar.dart';
-import '../../../models/login.dart';
+import '../../../models/auth/login.dart';
 import '../../../server/endpoint.dart';
 import '../../../server/networkCalls.dart';
 import '../../../styles/colors.dart';
@@ -29,9 +29,8 @@ class LoginProvider extends ChangeNotifier {
     showPassword = false;
     login = Login();
   }
-  Widget loginButton({@required Function onTap, @required bool loader}) {
+  Widget loginButton({@required Function onTap}) {
     return AppButton.loginButton(
-      loader: loader,
       onTap: onTap,
       title: "Login",
     );
@@ -42,8 +41,6 @@ class LoginProvider extends ChangeNotifier {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (loginFormKey.currentState.validate()) {
-      // pageModel.onceClicked = true;
-      // notifyListeners();
       try {
         LoaderDialog.loaderDialog(loginScaffoldKey.currentContext);
       } catch (e) {
@@ -51,13 +48,13 @@ class LoginProvider extends ChangeNotifier {
         throw Exception(e);
       }
       loginFormKey.currentState.save();
-      print(login.toJson());
+
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: loginScaffoldKey,
           endPoint: EndPoints.userLogin,
           afterRequest: () {},
           body: login.toJson());
-      print(body["body"]);
+
       if (body["status"]) {
         final loginResponse = LoginResponse.fromJson(body["body"]);
 
@@ -67,10 +64,8 @@ class LoginProvider extends ChangeNotifier {
           loginResponse.profileCompleted,
           loginResponse.riskCalculated,
         );
-        // pageModel.onceClicked = false;
         pageModel.onceFormSubmitted = false;
         notifyListeners();
-        // print(body["body"]["token"]);
         loginFormKey.currentState.reset();
         Navigator.pop(loginScaffoldKey.currentContext);
         loginScaffoldKey.currentState.showSnackBar(
@@ -100,11 +95,7 @@ class LoginProvider extends ChangeNotifier {
                 loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
         }
-      } else {
-        
-        pageModel.onceClicked = false;
-        notifyListeners();
-      }
+      } 
     }
   }
 }

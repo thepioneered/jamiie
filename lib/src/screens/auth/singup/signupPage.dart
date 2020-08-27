@@ -4,7 +4,6 @@ import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../utils/validationRegex.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/appTextFields/appTextField.dart';
@@ -141,7 +140,7 @@ class _SignupPageState extends State<SignupPage> {
                               showPassword: false,
                               controller: signupProvider.password,
                               onSaved: (String e) {
-                                signupProvider.signup.setPassword(e);
+                                signupProvider.signup.password = e;
                               },
                               onEdittingComplete: () =>
                                   confirmPasswordNode.requestFocus(),
@@ -242,7 +241,7 @@ class _SignupPageState extends State<SignupPage> {
                             Container(
                               height: height * 0.07,
                               child: signupProvider.signupButtonCreateAccount(
-                                loader: false,
+                               
                                 onTap: () {
                                   FocusScope.of(context).unfocus();
                                   signupProvider.validateForm(context);

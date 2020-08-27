@@ -1,8 +1,7 @@
-import 'package:Jamiie/src/models/otpModel.dart';
-import 'package:Jamiie/src/models/pageModel.dart';
-import 'package:Jamiie/src/repositry/textConst.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../../models/auth/otpModel.dart';
+import '../../../repositry/textConst.dart';
+import '../../../utils/sharedPref.dart';
+import '../../../widgets/loaderDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/snackBar.dart';
@@ -14,15 +13,13 @@ import '../../../styles/colors.dart';
 class ForgotPasswordOtpProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> otpScaffoldKey = GlobalKey<ScaffoldState>();
   OtpModel otpModel;
-  PageModel pageModel;
 
   ForgotPasswordOtpProvider() {
-    pageModel = PageModel();
     otpModel = OtpModel();
   }
-  Widget verifyOTP({@required Function onTap, @required bool loader}) {
+  Widget verifyOTP({@required Function onTap}) {
     return AppButton.loginButton(
-        loader: loader, onTap: onTap, title: ForgotPasswordFlowText.otpPageButton);
+       onTap: onTap, title: ForgotPasswordFlowText.otpPageButton);
   }
 
   void checkOtp() async {
@@ -32,9 +29,6 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
             backgroundColor: AppColors.red, title: "Please enter OTP"),
       );
     } else if (otpModel.otp.length == 5) {
-      // pageModel.onceClicked = true;
-      // notifyListeners();
-      // print(otpModel.toJson(await LocalStorage.getMobile()));
       try {
         LoaderDialog.loaderDialog(otpScaffoldKey.currentContext);
       } catch (e) {
@@ -48,15 +42,10 @@ class ForgotPasswordOtpProvider extends ChangeNotifier {
           body: otpModel.toJson(await LocalStorage.getMobile()));
 
       if (body["status"]) {
-        // pageModel.onceClicked = false;
-        // notifyListeners();
         Navigator.pop(otpScaffoldKey.currentContext);
         Navigator.pushReplacementNamed(
             otpScaffoldKey.currentContext, "/FPNewPassword");
-      } else {
-        pageModel.onceClicked = false;
-        notifyListeners();
-      }
+      } 
     }
   }
 }

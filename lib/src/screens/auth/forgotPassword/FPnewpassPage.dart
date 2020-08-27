@@ -30,6 +30,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
       create: (context) => NewPasswordProvider(),
       child: Consumer<NewPasswordProvider>(
@@ -44,6 +45,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                 child: Column(
                   children: <Widget>[
                     PageHeading.topHeading(
+                      height: height,
                         title: "New Password",
                         subTitle: "Enter your new password."),
                     Form(
@@ -71,17 +73,16 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                   newPasswordProvider.confirmPasswordValidation,
                               autoValidate: false,
                               onSaved: (e) => newPasswordProvider
-                                  .newPasswordModel
-                                  .setPassword(e),
+                                  .newPasswordModel.password = e,
                               prefixIcon: Icons.lock),
-                          newPasswordProvider.pageModel.onceClicked
-                              ? newPasswordProvider.updatePasswordButton(
-                                  true, () {})
-                              : newPasswordProvider.updatePasswordButton(false,
-                                  () {
-                                  FocusScope.of(context).unfocus();
-                                  newPasswordProvider.updateNewPassword();
-                                }),
+                          Container(
+                            height: height*0.07,
+                            child: newPasswordProvider.updatePasswordButton(
+                                    () {
+                                    FocusScope.of(context).unfocus();
+                                    newPasswordProvider.updateNewPassword();
+                                  }),
+                          ),
                         ],
                       ),
                     )

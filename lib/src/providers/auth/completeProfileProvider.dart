@@ -1,16 +1,16 @@
 import 'dart:io';
-import 'package:Jamiie/src/models/completeProfileModel.dart';
-import 'package:Jamiie/src/models/pageModel.dart';
-import 'package:Jamiie/src/screens/AfterLoginForm/form.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../models/auth/completeProfileModel.dart';
+import '../../models/base/pageModel.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/snackBar.dart';
+import '../../widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as justPath;
 import 'package:path_provider/path_provider.dart' as path;
-import 'package:http/http.dart' as http;
 
 class CompleteProfileProvider extends ChangeNotifier {
   final completeProfileScaffoldKey = GlobalKey<ScaffoldState>();
@@ -30,9 +30,9 @@ class CompleteProfileProvider extends ChangeNotifier {
   Future<void> selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2101),
+      initialDate: DateTime(2000),
+      firstDate: DateTime(1960),
+      lastDate: DateTime.now(),
     );
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
@@ -45,66 +45,36 @@ class CompleteProfileProvider extends ChangeNotifier {
     pageModel.onceFormSubmitted = true;
     notifyListeners();
 
-    if (completeProfileFormKey.currentState.validate()) {
+    if (completeProfileFormKey.currentState.validate() && savedImage != null) {
       completeProfileFormKey.currentState.save();
-      // try {
-      //   LoaderDialog.loaderDialog(completeProfileScaffoldKey.currentContext);
-      // } catch (e) {
-      //   print("Error At Login Provider in Loader Dialog!");
-      //   throw Exception(e);
-      // }
-      print(completeProfileModel.date);
-      // Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-      //   key: completeProfileScaffoldKey,
-      //   endPoint: EndPoints.completeProfile,
-      //   afterRequest: () {},
-      //   authRequest: true,
-      //   body: completeProfileModel.toJson(
-      //       await LocalStorage.getMobile(), savedImage),
-      // );
-      print(savedImage.path);
+      try {
+        LoaderDialog.loaderDialog(completeProfileScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Login Provider in Loader Dialog!");
+        throw Exception(e);
+      }
 
-      var postUri = Uri.parse(EndPoints.ipAddress);
-      var request = http.MultipartRequest("POST", postUri);
-      request.fields['user'] = 'blah';
-      request.fields["phone"] = "+917071006000";
-      request.fields["street"] = "a";
-      request.fields["city"] = "A";
-      request.fields["state"] = "a";
-      request.fields["DOB"] = "2020-08-29";
-      request.fields["zipCode"] = "2442";
-      request.fields["addressAge"] = "424";
-      request.fields["securityNumber"] = "2442";
-      request.fields["employerName"] = "t";
-      request.fields["employerAge"] = "3";
-      request.files.add(await http.MultipartFile.fromPath(
-        'images',
-        savedImage.path,
-        // contentType: MediaType('application', 'jpg'),
-      ));
-
-      var respose = await request.send();
-      print(respose.statusCode);
-      // request.send().then((response) {
-      //   if (response.statusCode == 200) print("Uploaded!");
-      // });
-
-      // if (body["status"]) {
-      //   pageModel.onceClicked = false;
-      //   notifyListeners();
-      //   await LocalStorage.setisProfileComplete();
-      //   Navigator.pop(completeProfileScaffoldKey.currentContext);
-      //   Navigator.pushReplacementNamed(
-      //       completeProfileScaffoldKey.currentContext, "/AfterLoginFormPage");
-      // } else {
-      //   pageModel.onceClicked = false;
-      //   notifyListeners();
-      // }
-
-      // completeProfileModel.toJson("+917071006000")
-
-      // Navigator.push(completeProfileScaffoldKey.currentContext,
-      //     MaterialPageRoute(builder: (_) => AfterLoginFormPage()));
+      Map<String, dynamic> body = await NetworkCalls.multiPartRequest(
+          key: completeProfileScaffoldKey,
+          endPoint: EndPoints.completeProfile,
+          body: completeProfileModel.toJson(await LocalStorage.getMobile()),
+          savedImage: savedImage);
+      if (body["status"]) {
+        pageModel.onceFormSubmitted = false;
+        notifyListeners();
+        await LocalStorage.setisProfileComplete();
+        completeProfileFormKey.currentState.reset();
+        Navigator.pop(completeProfileScaffoldKey.currentContext);
+        Navigator.pushReplacementNamed(
+            completeProfileScaffoldKey.currentContext, "/AfterLoginFormPage");
+      }
+    } else {
+      if (savedImage == null) {
+        completeProfileScaffoldKey.currentState.showSnackBar(
+          AppSnackBar.snackBar(
+              title: "Please select image", backgroundColor: AppColors.red),
+        );
+      }
     }
   }
 }

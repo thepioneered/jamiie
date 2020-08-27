@@ -87,7 +87,6 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
               ),
               //This takes total 20% space of the page without app bar
               Container(
-                color: Colors.teal,
                 height: height * 0.2,
                 width: double.infinity,
                 child: Row(
@@ -105,19 +104,15 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
               //8% percent of total height is given to button.
               Container(
                 height: height * 0.07,
-                child: otpProvider.pageModel.onceClicked
-                    ? otpProvider.verifyOTP(onTap: () {}, loader: true)
-                    : otpProvider.verifyOTP(
+                child: otpProvider.verifyOTP(
                         onTap: () {
                           otpProvider.otpModel.otp = text;
                           otpProvider.checkOtp();
-                        },
-                        loader: false),
+                        },),
               ),
 
               ///
               Container(
-                color: Colors.yellowAccent,
                 child: NumericKeyboard(
                   onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
                   textColor: AppColors.black,

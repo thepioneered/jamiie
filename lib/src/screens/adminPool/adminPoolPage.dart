@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/widgets/appImage.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'poolDataPage.dart';
@@ -40,6 +39,16 @@ class _AdminPoolState extends State<AdminPool> {
                 _data(),
                 _data(),
                 _data(),
+                // Container(
+                //   child: ListWheelScrollView(
+                //     children: [
+                //       _data(),
+                //       _data(),
+                //       _data(),
+                //     ],
+                //     itemExtent: 2.0,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -48,7 +57,7 @@ class _AdminPoolState extends State<AdminPool> {
 
   Widget _data() {
     return Container(
-      margin: EdgeInsets.only(top: 15.0),
+      margin: EdgeInsets.only(bottom: 15.0),
       alignment: Alignment.center,
       child: GestureDetector(
         onTap: () {
