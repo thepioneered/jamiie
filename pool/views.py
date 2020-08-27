@@ -52,9 +52,9 @@ class JoinPoolApi(APIView):
                 pool = CreatePool.objects.get(poolId=poolId)
                 member = User.objects.get(phone=memberId)
                 if JoinPool.objects.filter(poolId=pool, memberId=member):
-                    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+                    return Response({'response':'User already joined'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
                 elif pool.maxMember == pool.joinedMember:
-                    return Response({'error':'pool filled'},status=status.HTTP_401_UNAUTHORIZED)   
+                    return Response({'response':'pool filled'},status=status.HTTP_401_UNAUTHORIZED)   
                 else:
                     create_member = JoinPool.objects.create(poolId=pool, memberId=member)
                     pool.joinedMember = pool.joinedMember + 1 
