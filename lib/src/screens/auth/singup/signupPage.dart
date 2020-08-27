@@ -1,6 +1,6 @@
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/utils/onWillPopScope.dart';
-import 'package:Jamiie/src/widgets/pageHeading.dart';
+import '../../../styles/text.dart';
+import '../../../utils/onWillPopScope.dart';
+import '../../../widgets/pageHeading.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -117,7 +117,6 @@ class _SignupPageState extends State<SignupPage> {
                                         TextFieldValidation.nameValidation,
                                   ),
                                 ),
-                               
                               ],
                             ),
                             AppTextField.screenTextField(
@@ -160,53 +159,6 @@ class _SignupPageState extends State<SignupPage> {
                               validator: signupProvider
                                   .signupPageConfirmPasswordValidation,
                             ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     Container(
-                            //       width: (MediaQuery.of(context).size.width -
-                            //               50.0) /
-                            //           2,
-                            //       child: AppTextField.screenTextField(
-                            //         prefixIcon: null,
-                            //         onSaved: (String e) {
-                            //           signupProvider.signup.state = e;
-                            //         },
-                            //         hintText: "State",
-                            //         onEdittingComplete: () {
-                            //           cityNode.requestFocus();
-                            //         },
-                            //         focusNode: stateNode,
-                            //         autoValidate: signupProvider
-                            //             .pageModel.onceFormSubmitted,
-                            //         validator:
-                            //             TextFieldValidation.stateCityValidation,
-                            //       ),
-                            //     ),
-                            //     Container(
-                            //       width: (MediaQuery.of(context).size.width -
-                            //               50.0) /
-                            //           2,
-                            //       child: AppTextField.screenTextField(
-                            //         prefixIcon: null,
-                            //         onSaved: (String e) {
-                            //           signupProvider.signup.city = e;
-                            //         },
-                            //         onEdittingComplete: () {
-                            //           socialNumber.requestFocus();
-                            //         },
-                            //         hintText: "City",
-                            //         focusNode: cityNode,
-                            //         autoValidate: signupProvider
-                            //             .pageModel.onceFormSubmitted,
-                            //         validator:
-                            //             TextFieldValidation.stateCityValidation,
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-                          
-
                             Container(
                                 height: height * 0.1,
                                 // color: Colors.blueAccent,
@@ -241,7 +193,6 @@ class _SignupPageState extends State<SignupPage> {
                             Container(
                               height: height * 0.07,
                               child: signupProvider.signupButtonCreateAccount(
-                               
                                 onTap: () {
                                   FocusScope.of(context).unfocus();
                                   signupProvider.validateForm(context);
