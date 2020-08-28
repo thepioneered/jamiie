@@ -2,6 +2,7 @@
 .idea/
 venv/
 flask_next/
+admin_console/todo.txt
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
@@ -14,8 +15,8 @@ admin_console/.pnp
 admin_console/coverage
 
 # next.js
-/.next/
-/out/
+admin_console/.next/
+admin_console/out/
 
 # production
 admin_console/build

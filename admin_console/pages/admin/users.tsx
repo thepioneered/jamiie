@@ -6,14 +6,15 @@ import {
   TotalCard,
   Modal,
   GlobalLoader,
-  TransactionTable,
+  UserTable,
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
+import { User } from "../../src/interfaces/tables";
 
-function Transactions() {
+function Users() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState([
+  const [data, changeData] = useState<User[]>([
     {
       no: "8146990621",
       name: "Paritosh",
@@ -75,10 +76,20 @@ function Transactions() {
       status: "21st Sept. 2020",
     },
   ]);
+
+  const [showModal, toggleModal] = useState(false);
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
-  const search = (e) => {
+  const deleteUser = () => {
+    toggleModal(true);
+  };
+
+  const closeModal = () => {
+    toggleModal(false);
+  };
+
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -88,14 +99,24 @@ function Transactions() {
         <div className={styles.User}>
           <div className={card.container}>
             <TotalCard
-              name="Total Transactions"
+              name="Total Users"
               number={state.totalData.totalUsers}
-              percentage="0.4"
+              percentage={0.4}
+            />
+            <TotalCard
+              name="Active Users"
+              number={state.totalData.activeUsers}
+              percentage={-1.4}
+            />
+            <TotalCard
+              name="Logged Out Users"
+              number={state.totalData.loggedOutUsers}
+              percentage={0}
             />
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>
-              <div className={styles.heading__title}>Transaction</div>
+              <div className={styles.heading__title}>Users</div>
               <form
                 className={styles.searchbar}
                 onSubmit={search}
@@ -104,7 +125,7 @@ function Transactions() {
                 <input
                   type="text"
                   className={styles.input}
-                  placeholder="Search by Transaction ID"
+                  placeholder="Search by User ID"
                   required={true}
                 />
                 <button className={styles.search__button}>
@@ -120,14 +141,31 @@ function Transactions() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <TransactionTable data={data} setFrom={setFrom} from={from} />
+                <UserTable
+                  data={data}
+                  deleteUser={deleteUser}
+                  setFrom={setFrom}
+                  from={from}
+                />
               )}
             </div>
           </div>
+          <Modal
+            show={showModal}
+            onClose={closeModal}
+            header="Are you sure that you want to block this user?"
+          >
+            <div className={styles.note}>
+              <b>Note:</b> The user cannot be blocked if he/she has already
+              joined pool that has started.
+            </div>
+            <button className={styles.block__user}>Block User</button>
+            <button className={styles.cancel}>Cancel</button>
+          </Modal>
         </div>
       </div>
     </Layout>
   );
 }
 
-export default Transactions;
+export default Users;

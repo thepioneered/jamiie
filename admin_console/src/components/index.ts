@@ -1,8 +1,8 @@
-export { default as TotalCard } from "./TotalCard.jsx";
-export { default as Layout } from "./Layout.jsx";
-export { default as Header } from "./Header.jsx";
-export { default as Sidebar } from "./Sidebar.jsx";
-export { default as AvatarMenu } from "./AvatarMenu.jsx";
+export { default as TotalCard } from "./TotalCard";
+export { default as Layout } from "./Layout";
+export { default as Header } from "./Header";
+export { default as Sidebar } from "./Sidebar";
+export { default as AvatarMenu } from "./AvatarMenu";
 export { default as LayoutLoader } from "./LayoutLoader";
 export { default as Modal } from "./Modal";
 export { default as Loading } from "./Loading";

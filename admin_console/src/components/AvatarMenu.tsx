@@ -5,10 +5,18 @@ import styles from "../../styles/avatarMenu.module.scss";
 import { postDataWithXcsrf } from "../services/apiServices";
 import { useRouter } from "next/router";
 import { LoaderContext } from "../../pages/_app";
+import { LoginData } from "../interfaces/global";
 
-// TODO useEffect dependency ?
-export default function AvatarMenu({ toggle_avatar_menu, loginData }) {
-  const { state, changeGlobal } = useContext(LoaderContext);
+interface Props {
+  toggleAvatarMenu: () => void;
+  loginData: LoginData;
+}
+
+export default function AvatarMenu({
+  toggleAvatarMenu: toggle_avatar_menu,
+  loginData,
+}: Props) {
+  const { setGlobal, changeGlobal } = useContext(LoaderContext);
   const router = useRouter();
 
   function onClose() {
@@ -18,15 +26,15 @@ export default function AvatarMenu({ toggle_avatar_menu, loginData }) {
   const logoutReq = async () => {
     console.log("check");
     try {
-      changeGlobal("layoutLoader");
+      changeGlobal("layoutLoader", setGlobal!);
       await postDataWithXcsrf("LOGOUT_ADMIN", {});
-      changeGlobal("tokenValidated");
-      changeGlobal("layoutLoader");
+      changeGlobal("tokenValidated", setGlobal!);
+      changeGlobal("layoutLoader", setGlobal!);
       router.push("/login");
     } catch (e) {
       console.log("Logout Err", e);
-      changeGlobal("tokenValidated");
-      changeGlobal("layoutLoader");
+      changeGlobal("tokenValidated", setGlobal!);
+      changeGlobal("layoutLoader", setGlobal!);
       router.push("/login");
     }
   };

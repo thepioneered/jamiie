@@ -2,9 +2,17 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
+import { User } from "../interfaces/tables";
 
-export default function UserTable({ data, setFrom, deleteUser, from }) {
-  const row = ({ no, name, date, status }) => {
+interface Props {
+  data: User[];
+  setFrom: React.Dispatch<React.SetStateAction<number>>;
+  deleteUser: () => void;
+  from: number;
+}
+
+export default function UserTable({ data, setFrom, deleteUser, from }: Props) {
+  const row = ({ no, name, date, status }: User) => {
     return (
       <tr key={no}>
         <td>{no}</td>
@@ -30,7 +38,7 @@ export default function UserTable({ data, setFrom, deleteUser, from }) {
     );
   };
 
-  const getRows = (arr) => {
+  const getRows = (arr: User[]) => {
     return arr.map((item) => row(item));
   };
 

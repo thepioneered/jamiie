@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { LoaderContext } from "./_app";
-import Loading from "../src/components/Loading";
 import { useRouter } from "next/router";
+import Loading from "../src/components/Loading";
+import { globalContext } from "../src/interfaces/global";
 
-export default function App() {
-  const { state, globalState } = useContext(LoaderContext);
+function App() {
+  const { state } = useContext<globalContext>(LoaderContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -14,3 +15,5 @@ export default function App() {
 
   return <Loading />;
 }
+
+export default App;

@@ -1,19 +1,38 @@
 {
-  "name": "nextapp",
-  "version": "0.1.0",
-  "private": true,
+  "name": "jamiie",
+  "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "classnames": "^2.2.6",
-    "next": "9.5.1",
+    "next": "latest",
     "next-react-svg": "^1.1.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "sass": "^1.26.10"
-  }
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "typescript": "3.9.7"
+  },
+  "license": "ISC",
+  "description": "This is a really simple project that shows the usage of Next.js with TypeScript.",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paritosh-34/jamiie.git"
+  },
+  "author": "Paritosh",
+  "bugs": {
+    "url": "https://github.com/paritosh-34/jamiie/issues"
+  },
+  "homepage": "https://github.com/paritosh-34/jamiie#readme"
 }

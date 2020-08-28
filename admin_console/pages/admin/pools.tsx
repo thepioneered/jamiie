@@ -4,16 +4,16 @@ import { LoaderContext } from "../_app";
 import {
   Layout,
   TotalCard,
-  Modal,
   GlobalLoader,
   PoolTable,
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
+import { Pool } from "../../src/interfaces/tables";
 
 function Users() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState([
+  const [data, changeData] = useState<Pool[]>([
     {
       no: "8be74eg1",
       name: "Paritosh",
@@ -88,7 +88,7 @@ function Users() {
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
-  const search = (e) => {
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -100,17 +100,17 @@ function Users() {
             <TotalCard
               name="Total Pools"
               number={state.totalData.totalUsers}
-              percentage="0.4"
+              percentage={0.4}
             />
             <TotalCard
               name="Active Pools"
               number={state.totalData.activeUsers}
-              percentage="-1.4"
+              percentage={-1.4}
             />
             <TotalCard
               name="Completed Pools"
               number={state.totalData.loggedOutUsers}
-              percentage="0"
+              percentage={0}
             />
           </div>
           <div className={cn(styles.container, "hover")}>

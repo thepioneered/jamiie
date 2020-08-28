@@ -1,11 +1,15 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, ReactNode } from "react";
 import Head from "next/head";
 import { Header, Sidebar, LayoutLoader } from "./index";
 import { LoaderContext } from "../../pages/_app";
 import { useRouter } from "next/router";
 
-function Layout({ children }) {
-  const { state, changeGlobal } = useContext(LoaderContext);
+interface Props {
+  children: ReactNode;
+}
+
+function Layout({ children }: Props) {
+  const { state, setGlobal, changeGlobal } = useContext(LoaderContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -14,7 +18,7 @@ function Layout({ children }) {
   }, []);
 
   const toggleSidebar = () => {
-    changeGlobal("isSidebarOpen");
+    changeGlobal("isSidebarOpen", setGlobal!);
   };
 
   console.log("LayoutLoader:", state);

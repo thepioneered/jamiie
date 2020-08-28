@@ -2,7 +2,13 @@ import React from "react";
 import cn from "classnames";
 import styles from "../../styles/totalCard.module.scss";
 
-function totalCard({ name, number, percentage }) {
+interface Props {
+  name: string;
+  number: number;
+  percentage: number;
+}
+
+function totalCard({ name, number, percentage }: Props) {
   const addCommasToNumber = number
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");

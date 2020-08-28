@@ -4,91 +4,91 @@ import { LoaderContext } from "../_app";
 import {
   Layout,
   TotalCard,
-  Modal,
   GlobalLoader,
-  UserTable,
+  TransactionTable,
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
+import { Transaction } from "../../src/interfaces/tables";
 
-function Users() {
+function Transactions() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState([
+  const [data, changeData] = useState<Transaction[]>([
     {
       no: "8146990621",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990622",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990623",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990624",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990625",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990626",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990627",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990628",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990629",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
     {
       no: "8146990630",
       name: "Paritosh",
       date: "24th August 2020",
       status: "21st Sept. 2020",
+      members: "12",
     },
   ]);
-
-  const [showModal, toggleModal] = useState(false);
   const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
-  const deleteUser = () => {
-    toggleModal(true);
-  };
-
-  const closeModal = () => {
-    toggleModal(false);
-  };
-
-  const search = (e) => {
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -98,24 +98,14 @@ function Users() {
         <div className={styles.User}>
           <div className={card.container}>
             <TotalCard
-              name="Total Users"
+              name="Total Transactions"
               number={state.totalData.totalUsers}
-              percentage="0.4"
-            />
-            <TotalCard
-              name="Active Users"
-              number={state.totalData.activeUsers}
-              percentage="-1.4"
-            />
-            <TotalCard
-              name="Logged Out Users"
-              number={state.totalData.loggedOutUsers}
-              percentage="0"
+              percentage={0.4}
             />
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>
-              <div className={styles.heading__title}>Users</div>
+              <div className={styles.heading__title}>Transaction</div>
               <form
                 className={styles.searchbar}
                 onSubmit={search}
@@ -124,7 +114,7 @@ function Users() {
                 <input
                   type="text"
                   className={styles.input}
-                  placeholder="Search by User ID"
+                  placeholder="Search by Transaction ID"
                   required={true}
                 />
                 <button className={styles.search__button}>
@@ -140,31 +130,14 @@ function Users() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <UserTable
-                  data={data}
-                  deleteUser={deleteUser}
-                  setFrom={setFrom}
-                  from={from}
-                />
+                <TransactionTable data={data} setFrom={setFrom} from={from} />
               )}
             </div>
           </div>
-          <Modal
-            show={showModal}
-            onClose={closeModal}
-            header={"Are you sure that you want to block this user?"}
-          >
-            <div className={styles.note}>
-              <b>Note:</b> The user cannot be blocked if he/she has already
-              joined pool that has started.
-            </div>
-            <button className={styles.block__user}>Block User</button>
-            <button className={styles.cancel}>Cancel</button>
-          </Modal>
         </div>
       </div>
     </Layout>
   );
 }
 
-export default Users;
+export default Transactions;

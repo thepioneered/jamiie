@@ -1,28 +1,46 @@
-import React, { createContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { Loading } from "../src/components";
+import React, { useState, createContext, useEffect } from "react";
+import type { AppProps } from "next/app";
+import Loading from "../src/components/Loading";
 import checkToken from "../src/utils/checkToken";
+import { useRouter } from "next/dist/client/router";
 import "../styles/globals.scss";
+import { globalState, globalContext } from "../src/interfaces/global";
+import {
+  changeGlobal,
+  setLoginData,
+  setTotal,
+} from "../src/utils/globalFunctions";
 
-export const LoaderContext = createContext();
+const initialState = {
+  isLoading: true,
+  tokenValidated: false,
+  isSidebarOpen: true,
+  layoutLoader: false,
+  loginData: {
+    name: "admin",
+    phone: "1234567890",
+    email: "admin@email.com",
+  },
+  totalData: {
+    totalTransactions: 46289,
+    totalUsers: 22544,
+    totalGroups: 46298,
+    completedPools: 33289,
+    activeUsers: 46289,
+    loggedOutUsers: 33289,
+  },
+};
 
-function MyApp({ Component, pageProps }) {
+export const LoaderContext = createContext<globalContext>({
+  state: initialState,
+  changeGlobal,
+  setLoginData,
+  setTotal,
+});
+
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [global, setGlobal] = useState({
-    isLoading: true,
-    tokenValidated: false,
-    isSidebarOpen: true,
-    layoutLoader: false,
-    loginData: {},
-    totalData: {
-      totalTransactions: 46289,
-      totalUsers: 22544,
-      totalGroups: 46298,
-      completedPools: 33289,
-      activeUsers: 46289,
-      loggedOutUsers: 33289,
-    },
-  });
+  const [global, setGlobal] = useState<globalState>(initialState);
 
   const setToken = async () => {
     const isTokenInCookie = await checkToken();
@@ -66,39 +84,21 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
-  const changeGlobal = (item) => {
-    setGlobal((prevState) => {
-      return { ...prevState, [item]: !prevState[item] };
-    });
-  };
-
-  const setLoginData = (data) => {
-    setGlobal((prevState) => {
-      return { ...prevState, loginData: data };
-    });
-  };
-
-  const setTotal = (key, num) => {
-    setGlobal((prevState) => {
-      return { ...prevState, totalData: { ...totalData, [key]: num } };
-    });
-  };
-
   if (!global.isLoading) {
     return (
       <LoaderContext.Provider
         value={{
           state: global,
-          changeGlobal: changeGlobal,
-          setLoginData: setLoginData,
-          setTotal: setTotal,
+          setGlobal,
+          changeGlobal,
+          setLoginData,
+          setTotal,
         }}
       >
         <Component {...pageProps} />
       </LoaderContext.Provider>
     );
   }
-
   return <Loading />;
 }
 

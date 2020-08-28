@@ -2,9 +2,17 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
+import { Transaction } from "../interfaces/tables";
 
-function TransactionTable({ data, setFrom, from }) {
-  const row = ({ no, name, date, status, members }) => {
+interface Props {
+  data: Transaction[];
+  setFrom: React.Dispatch<React.SetStateAction<number>>;
+  deleteUser: () => void;
+  from: number;
+}
+
+function TransactionTable({ data, setFrom, from }: Props) {
+  const row = ({ no, name, date, status, members }: Transaction) => {
     return (
       <tr key={no}>
         <td>{no}</td>
@@ -26,7 +34,7 @@ function TransactionTable({ data, setFrom, from }) {
     );
   };
 
-  const getRows = (arr) => {
+  const getRows = (arr: Transaction[]) => {
     return arr.map((item) => row(item));
   };
 

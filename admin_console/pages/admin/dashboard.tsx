@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { LoaderContext } from "../_app";
-import { TotalCard, Layout } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/dashboard.module.scss";
+import { Layout, TotalCard } from "../../src/components";
 
-export default function Dashboard() {
+function Dashboard() {
   const { state } = useContext(LoaderContext);
 
   return (
@@ -14,22 +14,22 @@ export default function Dashboard() {
           <TotalCard
             name="Total Transactions"
             number={state.totalData.totalTransactions}
-            percentage="2.4"
+            percentage={2.4}
           />
           <TotalCard
             name="Total Users"
             number={state.totalData.totalUsers}
-            percentage="0.4"
+            percentage={0.4}
           />
           <TotalCard
             name="Total Groups"
             number={state.totalData.totalGroups}
-            percentage="-1.4"
+            percentage={-1.4}
           />
           <TotalCard
             name="Completed Pools"
             number={state.totalData.completedPools}
-            percentage="0"
+            percentage={0}
           />
         </div>
         <div>
@@ -153,3 +153,5 @@ export default function Dashboard() {
     </Layout>
   );
 }
+
+export default Dashboard;

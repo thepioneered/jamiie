@@ -2,9 +2,16 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
+import { Pool } from "../interfaces/tables";
 
-export default function UserTable({ data, setFrom, from }) {
-  const row = ({ no, name, date, status, members }) => {
+interface Props {
+  data: Pool[];
+  setFrom: React.Dispatch<React.SetStateAction<number>>;
+  from: number;
+}
+
+export default function UserTable({ data, setFrom, from }: Props) {
+  const row = ({ no, name, date, status, members }: Pool) => {
     return (
       <tr key={no}>
         <td>{no}</td>
@@ -13,7 +20,7 @@ export default function UserTable({ data, setFrom, from }) {
         <td>{members}</td>
         <td>{status}</td>
         <td>
-          <Link href="/admin/groups/[group]" as={`/admin/groups/${no}`}>
+          <Link href="/admin/pools/[pool]" as={`/admin/pools/${no}`}>
             <button className={styles.settings} title="User Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
@@ -23,7 +30,7 @@ export default function UserTable({ data, setFrom, from }) {
     );
   };
 
-  const getRows = (arr) => {
+  const getRows = (arr: Pool[]) => {
     return arr.map((item) => row(item));
   };
 

@@ -5,7 +5,11 @@ import cn from "classnames";
 import styles from "../../styles/sidebar.module.scss";
 import Logo from "../../public/images/svg/NewLogo.svg";
 
-export default function Sidebar({ isSidebarOpen }) {
+interface Props {
+  isSidebarOpen: boolean;
+}
+
+export default function Sidebar({ isSidebarOpen }: Props) {
   function sendList() {
     const index = [
       { name: "Dashboard", icon: "dashboard" },

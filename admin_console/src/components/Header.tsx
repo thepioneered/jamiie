@@ -2,8 +2,14 @@ import React from "react";
 import { AvatarMenu } from "./index";
 import styles from "../../styles/header.module.scss";
 import { useState } from "react";
+import { LoginData } from "../interfaces/global";
 
-function Header({ toggleSidebar, loginData }) {
+interface Props {
+  toggleSidebar: () => void;
+  loginData: LoginData;
+}
+
+function Header({ toggleSidebar, loginData }: Props) {
   const [avatarMenuState, avatarMenuToggle] = useState(false);
 
   const toggleAvatarMenu = () => {
@@ -24,10 +30,7 @@ function Header({ toggleSidebar, loginData }) {
         {loginData && loginData.name && loginData.name[0]}
       </button>
       {avatarMenuState ? (
-        <AvatarMenu
-          toggle_avatar_menu={toggleAvatarMenu}
-          loginData={loginData}
-        />
+        <AvatarMenu toggleAvatarMenu={toggleAvatarMenu} loginData={loginData} />
       ) : null}
     </div>
   );

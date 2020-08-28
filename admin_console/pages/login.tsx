@@ -8,9 +8,10 @@ import styles from "../styles/login.module.scss";
 import { useRouter } from "next/router";
 
 export default function Login() {
-  const usernameInput = useRef();
-
-  const { state, changeGlobal, setLoginData } = useContext(LoaderContext);
+  const usernameInput = useRef<HTMLInputElement>(null);
+  const { state, setGlobal, changeGlobal, setLoginData } = useContext(
+    LoaderContext
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [wrongDivClassName, setWrongDivClassName] = useState(styles.wrong);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
@@ -35,8 +36,8 @@ export default function Login() {
     try {
       const r = await postDataWithXcsrf("LOGIN_ADMIN", payload);
       console.log(r);
-      setLoginData(r.data);
-      changeGlobal("tokenValidated");
+      setLoginData(r.data, setGlobal!);
+      changeGlobal("tokenValidated", setGlobal!);
       router.push("/admin/dashboard");
     } catch (e) {
       if (wrongLogin > 0) {
@@ -53,7 +54,7 @@ export default function Login() {
         setWrongLogin((prevState) => prevState + 1);
       }
       setLoading(false);
-      usernameInput.current.focus();
+      usernameInput.current?.focus();
     }
   };
 
@@ -66,10 +67,7 @@ export default function Login() {
         <Logo />
       </div>
 
-      <form
-        className={cn(styles.card, "hover")}
-        onSubmit={(event) => handleSubmit(event)}
-      >
+      <form className={cn(styles.card, "hover")} onSubmit={handleSubmit}>
         <div>
           <div className={styles.heading}>Admin</div>
           <div className={styles.subheading}>Login To Access our Dashboard</div>
