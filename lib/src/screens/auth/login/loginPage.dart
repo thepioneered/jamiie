@@ -10,6 +10,16 @@ import '../../../styles/base.dart';
 import '../socialMediaButton.dart';
 import '../../../styles/colors.dart';
 
+// class LoginPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider(
+//       create: (context) => LoginProvider(),
+//       child: LoginPageWidget(),
+//     );
+//   }
+// }
+
 class LoginPage extends StatefulWidget {
 //   @override
 //   _LoginPageState createState() => _LoginPageState();
