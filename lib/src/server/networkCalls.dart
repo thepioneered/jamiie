@@ -17,8 +17,6 @@ class NetworkCalls {
       @required Function afterRequest,
       bool authRequest = false,
       @required Object body}) async {
-    print(body);
-    print(EndPoints.ipAddress + endPoint);
     if (await DataConnectionChecker().hasConnection) {
       try {
         var request = await http

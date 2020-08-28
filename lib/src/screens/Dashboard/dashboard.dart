@@ -6,26 +6,36 @@ import 'package:provider/provider.dart';
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => DashboardProvider(),
+      child: DashboardPageWidget(),
+    );
+  }
+}
+
+class DashboardPageWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
         body: FutureBuilder(
-          future: dashboardProvider.getDashboardData(),
-          builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text("Error! Please Try later"),
-            );
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CupertinoActivityIndicator(),
-            );
-          } else {
-            return Center(
-              child: Text("CHec"),
-            );
-          }
-        }),
+            future: dashboardProvider.getDashboardData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text("Error! Please Try later"),
+                );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CupertinoActivityIndicator(),
+                );
+              } else {
+                return Center(
+                  child: Text("CHec"),
+                );
+              }
+            }),
       );
     });
   }

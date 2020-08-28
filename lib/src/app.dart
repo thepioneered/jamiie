@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
+import 'package:Jamiie/src/screens/auth/moneyGoalPage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,9 +52,6 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => DashboardProvider(),
-        ),
       ],
       child: MaterialApp(
         title: "Jamiie",
@@ -60,12 +59,12 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home: AppNavigationBar(),
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+        home: GoalSavingPage(),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvider, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );
