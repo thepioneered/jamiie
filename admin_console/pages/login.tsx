@@ -2,10 +2,10 @@ import React, { useState, useRef, useContext, useEffect } from "react";
 import Head from "next/head";
 import cn from "classnames";
 import { LoaderContext } from "./_app";
-import { postDataWithXcsrf } from "../src/services/apiServices";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
 import { useRouter } from "next/router";
+import { login } from "../src/utils/apiCalls";
 
 export default function Login() {
   const usernameInput = useRef<HTMLInputElement>(null);
@@ -32,14 +32,13 @@ export default function Login() {
       phone: username.trim(),
       password: password.trim(),
     };
+    const r = await login(payload);
 
-    try {
-      const r = await postDataWithXcsrf("LOGIN_ADMIN", payload);
-      console.log(r);
-      setLoginData(r.data, setGlobal!);
+    if (r) {
+      setLoginData(r!.data, setGlobal!);
       changeGlobal("tokenValidated", setGlobal!);
       router.push("/admin/dashboard");
-    } catch (e) {
+    } else {
       if (wrongLogin > 0) {
         setWrongLogin((prevState) => prevState + 1);
         setWrongDivClassName(

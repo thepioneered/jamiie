@@ -3,7 +3,7 @@ import axios from "axios";
 export function httpHandler() {
   const config = {
     withCredentials: false,
-    credentials: "include",
+    // credentials: "include",
     timeout: 10000,
   };
   return axios.create(config);
@@ -12,7 +12,7 @@ export function httpHandler() {
 export function httpXcsrfHandler() {
   const config = {
     withCredentials: true,
-    credentials: "include",
+    // credentials: "include",
     timeout: 10000,
   };
   return axios.create(config);

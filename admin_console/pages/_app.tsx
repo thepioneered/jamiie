@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import type { AppProps } from "next/app";
 import Loading from "../src/components/Loading";
-import checkToken from "../src/utils/checkToken";
+import { checkToken } from "../src/utils/apiCalls";
 import { useRouter } from "next/dist/client/router";
 import "../styles/globals.scss";
 import { globalState, globalContext } from "../src/interfaces/global";
