@@ -9,7 +9,7 @@ interface Props {
 }
 
 function Layout({ children }: Props) {
-  const { state, setGlobal, changeGlobal } = useContext(LoaderContext);
+  const { state, dispatch } = useContext(LoaderContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function Layout({ children }: Props) {
   }, []);
 
   const toggleSidebar = () => {
-    changeGlobal("isSidebarOpen", setGlobal!);
+    dispatch!({ type: "changeGlobal", item: "isSidebarOpen" });
   };
 
   console.log("LayoutLoader:", state);

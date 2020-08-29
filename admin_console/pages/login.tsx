@@ -5,13 +5,11 @@ import { LoaderContext } from "./_app";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
 import { useRouter } from "next/router";
-import { login } from "../src/utils/apiCalls";
+import { loginAPI } from "../src/utils/apiCalls";
 
 export default function Login() {
   const usernameInput = useRef<HTMLInputElement>(null);
-  const { state, setGlobal, changeGlobal, setLoginData } = useContext(
-    LoaderContext
-  );
+  const { state, dispatch } = useContext(LoaderContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,11 +30,11 @@ export default function Login() {
       phone: username.trim(),
       password: password.trim(),
     };
-    const r = await login(payload);
+    const r = await loginAPI(payload);
 
     if (r) {
-      setLoginData(r!.data, setGlobal!);
-      changeGlobal("tokenValidated", setGlobal!);
+      dispatch!({ type: "setLoginData", data: r.data });
+      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
       router.push("/admin/dashboard");
     } else {
       if (wrongLogin > 0) {

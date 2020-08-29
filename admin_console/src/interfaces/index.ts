@@ -6,7 +6,7 @@
 
 export type endpoints = "LOGIN_ADMIN" | "LOGOUT_ADMIN" | "TOKEN_CHECK";
 
-export type loginData = {
+export type login = {
   data: { name: string; phone: string; email: string };
 };
 

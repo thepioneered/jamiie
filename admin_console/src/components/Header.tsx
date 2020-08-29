@@ -2,11 +2,11 @@ import React from "react";
 import { AvatarMenu } from "./index";
 import styles from "../../styles/header.module.scss";
 import { useState } from "react";
-import { LoginData } from "../interfaces/global";
+import { loginData } from "../interfaces/global";
 
 interface Props {
   toggleSidebar: () => void;
-  loginData: LoginData;
+  loginData: loginData;
 }
 
 function Header({ toggleSidebar, loginData }: Props) {

@@ -2,21 +2,23 @@ import React from "react";
 import cn from "classnames";
 import { useContext } from "react";
 import styles from "../../styles/avatarMenu.module.scss";
-import { postDataWithXcsrf } from "../services/apiServices";
 import { useRouter } from "next/router";
 import { LoaderContext } from "../../pages/_app";
-import { LoginData } from "../interfaces/global";
+import { loginData } from "../interfaces/global";
+import { logout } from "../utils/apiCalls";
 
 interface Props {
   toggleAvatarMenu: () => void;
-  loginData: LoginData;
+  loginData: loginData;
 }
+
+// FIXME IF LOGOUT FAILS?
 
 export default function AvatarMenu({
   toggleAvatarMenu: toggle_avatar_menu,
   loginData,
 }: Props) {
-  const { setGlobal, changeGlobal } = useContext(LoaderContext);
+  const { dispatch } = useContext(LoaderContext);
   const router = useRouter();
 
   function onClose() {
@@ -24,17 +26,16 @@ export default function AvatarMenu({
   }
 
   const logoutReq = async () => {
-    console.log("check");
-    try {
-      changeGlobal("layoutLoader", setGlobal!);
-      await postDataWithXcsrf("LOGOUT_ADMIN", {});
-      changeGlobal("tokenValidated", setGlobal!);
-      changeGlobal("layoutLoader", setGlobal!);
+    dispatch!({ type: "changeGlobal", item: "layoutLoader" });
+    const r = await logout();
+
+    if (r) {
+      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
+      dispatch!({ type: "changeGlobal", item: "layoutLoader" });
       router.push("/login");
-    } catch (e) {
-      console.log("Logout Err", e);
-      changeGlobal("tokenValidated", setGlobal!);
-      changeGlobal("layoutLoader", setGlobal!);
+    } else {
+      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
+      dispatch!({ type: "changeGlobal", item: "layoutLoader" });
       router.push("/login");
     }
   };

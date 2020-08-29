@@ -1,5 +1,5 @@
 import {
-  LoginData,
+  loginData,
   globalState,
   globalStateProperties,
   totalDataProperties,
@@ -15,7 +15,7 @@ export const changeGlobal = (
 };
 
 export const setLoginData = (
-  data: LoginData,
+  data: loginData,
   setGlobal: React.Dispatch<React.SetStateAction<globalState>>
 ) => {
   setGlobal((prevState) => {

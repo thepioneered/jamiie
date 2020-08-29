@@ -1,15 +1,11 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import type { AppProps } from "next/app";
 import Loading from "../src/components/Loading";
 import { checkToken } from "../src/utils/apiCalls";
 import { useRouter } from "next/dist/client/router";
 import "../styles/globals.scss";
-import { globalState, globalContext } from "../src/interfaces/global";
-import {
-  changeGlobal,
-  setLoginData,
-  setTotal,
-} from "../src/utils/globalFunctions";
+import { globalContext } from "../src/interfaces/global";
+import { globalReducer } from "../src/utils/globalReducer";
 
 const initialState = {
   isLoading: true,
@@ -33,44 +29,23 @@ const initialState = {
 
 export const LoaderContext = createContext<globalContext>({
   state: initialState,
-  changeGlobal,
-  setLoginData,
-  setTotal,
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [global, setGlobal] = useState<globalState>(initialState);
+  const [state, dispatch] = useReducer(globalReducer, initialState);
 
   const setToken = async () => {
     const isTokenInCookie = await checkToken();
-    console.log("isToken:", isTokenInCookie);
-    if (isTokenInCookie) {
-      setGlobal((prevState) => {
-        return {
-          ...prevState,
-          isLoading: false,
-          tokenValidated: true,
-          loginData: isTokenInCookie.data,
-        };
-      });
-    } else {
-      setGlobal((prevState) => {
-        return { ...prevState, isLoading: false, tokenValidated: false };
-      });
-    }
+    if (isTokenInCookie)
+      dispatch({ type: "checkSuccess", data: isTokenInCookie.data });
+    else dispatch({ type: "checkFail" });
   };
 
   const widthListenerFunc = () => {
     const size = window.outerWidth;
-    if (size < 600)
-      setGlobal((prevState) => {
-        return { ...prevState, isSidebarOpen: false };
-      });
-    if (size < 1000)
-      setGlobal((prevState) => {
-        return { ...prevState, isSidebarOpen: false };
-      });
+    if (size < 600) dispatch({ type: "closeSidebar" });
+    if (size < 1000) dispatch({ type: "closeSidebar" });
   };
 
   useEffect(() => {
@@ -84,15 +59,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, []);
 
-  if (!global.isLoading) {
+  if (!state.isLoading) {
     return (
       <LoaderContext.Provider
         value={{
-          state: global,
-          setGlobal,
-          changeGlobal,
-          setLoginData,
-          setTotal,
+          state,
+          dispatch,
         }}
       >
         <Component {...pageProps} />
