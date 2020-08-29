@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.generics import ListAPIView
 from rest_framework import status
 from .models import *
 import hashlib
@@ -26,13 +27,13 @@ class CreatePoolApi(APIView):
             data = request.data
             poolOwner = data['poolOwner']
             poolName =  data['poolName']
-            poolAmount = data['contributionAmount']
+            contributionAmount = data['contributionAmount']
             deadline = data['deadline']
             poolType = data['poolType']
             totalMember = data['totalMember']
             poolOwner = User.objects.get(phone = poolOwner)
             poolId = uniqueid()
-            obj = CreatePool.objects.create(poolId=poolId, poolOwner = poolOwner, poolName = poolName, poolAmount = poolAmount, deadline = deadline, poolType = poolType, totalMember=totalMember)
+            obj = CreatePool.objects.create(poolId=poolId, poolOwner = poolOwner, poolName = poolName, contributionAmount = contributionAmount, deadline = deadline, poolType = poolType, totalMember=totalMember)
             JoinPool.objects.create(poolId=obj, memberId=poolOwner)
             obj.joinedMember = obj.joinedMember+1
             obj.save()
@@ -81,3 +82,14 @@ class SearchPoolApi(APIView):
                 return Response({'response':'Pool does not exists'},status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             print(e)
+
+
+class CreatePoolDetailApi(APIView):
+    authentication_classes=[TokenAuthentication]
+    permission_classes=[IsAuthenticated]
+    def get(self,request,id):
+        poolOwner = "+"+str(id)
+        poolDetail = CreatePool.objects.filter(poolOwner=poolOwner)
+        serializer = CreatePoolDetailSerializer(poolDetail, many=True)
+        response = serializer.data
+        return Response({'poolDetails':response},status=status.HTTP_200_OK)

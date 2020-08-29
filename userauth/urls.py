@@ -35,4 +35,5 @@ urlpatterns = [
     path('userdata',UserDataApi.as_view(), name="user data"),
     path('completeprofile',CompleteProfileApi.as_view(), name="complete profile"),
     path('getuserdetail/<int:id>/',GetUserDetailApi.as_view(), name = "get user api"),
+    path('usersdetail',UsersDetailApi.as_view(), name = 'users detail'),
 ]

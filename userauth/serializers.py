@@ -20,3 +20,8 @@ class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
         fields = ('phone','jobAge','family','age','savingMoney','loans','living')
+
+class UsersDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

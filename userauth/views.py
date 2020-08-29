@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.generics import ListAPIView
 from .serializers import *
 import random
 import boto3
@@ -380,3 +382,10 @@ class GetUserDetailApi(APIView):
     
     except Exception as e:
         print(e)
+
+class UsersDetailApi(ListAPIView):
+    queryset = User.objects.all()
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = UsersDetailSerializer
+    pagination_class = PageNumberPagination
