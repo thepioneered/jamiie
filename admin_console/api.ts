@@ -1,3 +1,4 @@
+// userArray for userTable
 export const userArray = {
   users: [
     {
@@ -19,6 +20,7 @@ export const userArray = {
   ],
 };
 
+// user json for single user
 export const user = {
   name: "Paritosh Batish",
   email: "batishparitosh2@gmail.com",
@@ -35,4 +37,35 @@ export const user = {
   savingMoney: "2-3",
   loans: "1 on no loan",
   living: "3",
+};
+
+// pool array for pool table
+export const poolArray = {
+  pools: [
+    {
+      no: "8be74eg1",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "started",
+      members: 12,
+    },
+    {
+      no: "8be74eg2",
+      name: "Paritosh",
+      date: "24th August 2020",
+      status: "not started",
+      members: 12,
+    },
+  ],
+};
+
+// pool - single pool info
+export const pool = {
+  poolName: "Paritosh's Pool",
+  poolOwner: "8146990621",
+  pontributionAmount: "580",
+  deadline: "3/1/2020, 12:00:00 AM",
+  poolType: "Weekly",
+  members: "2 / 5",
+  status: "Not Started",
 };

@@ -4,15 +4,13 @@ import { useRouter } from "next/router";
 import { Layout, Modal } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
 import userStyles from "../../../styles/users.module.scss";
+import Link from "next/link";
 
 function Transaction() {
   const router = useRouter();
-  const { group } = router.query;
+  const { pool } = router.query;
 
   const [showModal, toggleModal] = useState(false);
-  const deleteUser = () => {
-    toggleModal(true);
-  };
 
   const closeModal = () => {
     toggleModal(false);
@@ -29,89 +27,46 @@ function Transaction() {
             >
               <span className="material-icons">keyboard_backspace</span>
             </button>
-            <h2 className={styles.heading}>Group Id: {group}</h2>
+            <h2 className={styles.heading}>Pool Id: {pool}</h2>
           </div>
           <div className={cn(styles.card, "hover")}>
-            <div className={styles.picture}>
-              <img src="/images/user.jpg" alt="user" />
-            </div>
             <div className={styles.table__container}>
               <table className={styles.table}>
                 <tbody>
                   <tr>
-                    <th>Name:</th>
-                    <td>Paritosh Batish</td>
+                    <th>Pool Name:</th>
+                    <td>Paritosh's Pool</td>
                   </tr>
                   <tr>
-                    <th>Email:</th>
-                    <td>batishparitosh2@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th>Mobile:</th>
-                    <td>8146990621</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Score:</th>
-                    <td>54</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Band:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Moderate</td>
-                  </tr>
-                  <tr>
-                    <th>City:</th>
-                    <td>Chandigarh</td>
-                  </tr>
-                  <tr>
-                    <th>Date Created:</th>
-                    <td>20th Aug 2020</td>
-                  </tr>
-                  <tr>
-                    <th>Last Login:</th>
-                    <td>6th Sept. 2020 4:40pm</td>
-                  </tr>
-                  <tr>
-                    <th>Job Age:</th>
-                    <td>Upto 4 years</td>
-                  </tr>
-                  <tr>
-                    <th>Family:</th>
-                    <td>Single with Children</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>Age:</th>
-                    <td>{"<25 Years"}</td>
-                  </tr>
-                  <tr>
-                    <th>Saving Money:</th>
-                    <td>2-3</td>
-                  </tr>
-                  <tr>
-                    <th>Loans:</th>
-                    <td>1 on no loan</td>
-                  </tr>
-                  <tr>
-                    <th>Living:</th>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <th>Block Group:</th>
+                    <th>Pool Owner:</th>
                     <td>
-                      <button
-                        className={styles.block__user}
-                        onClick={deleteUser}
+                      <Link
+                        href="/admin/users/[user]"
+                        as={`/admin/users/8146990621`}
                       >
-                        Block Group
-                      </button>
+                        <a>8146990621</a>
+                      </Link>
                     </td>
+                  </tr>
+                  <tr>
+                    <th>Contribution Amount:</th>
+                    <td>580</td>
+                  </tr>
+                  <tr>
+                    <th>Deadline:</th>
+                    <td>{new Date("01 Mar 2020").toLocaleString("en-US")}</td>
+                  </tr>
+                  <tr>
+                    <th>Pool Type:</th>
+                    <td>Weekly</td>
+                  </tr>
+                  <tr>
+                    <th>Members:</th>
+                    <td>2 / 5</td>
+                  </tr>
+                  <tr>
+                    <th>Status:</th>
+                    <td>Not Started</td>
                   </tr>
                 </tbody>
               </table>
