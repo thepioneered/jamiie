@@ -5,6 +5,9 @@ import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';
 
 class PoolDataPage extends StatelessWidget {
+  final String poolId;
+
+  PoolDataPage({this.poolId});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

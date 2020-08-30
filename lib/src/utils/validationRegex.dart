@@ -32,6 +32,8 @@ class TextFieldValidation {
       return "Please Enter Zipcode";
     } else if (data.trim() == null) {
       return "Please Enter Zipcode";
+    } else if (data.contains("-") || data.contains(",") || data.contains(".")) {
+      return "Not valid";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
     } else if (data.trim() == "") {

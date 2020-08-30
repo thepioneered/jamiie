@@ -13,6 +13,7 @@ class EndPoints {
   static const String joinPool = "/pool/joinpool";
   static const String searchPool = "/pool/searchpool";
   static const String completeProfile = "/userauth/completeprofile";
+  static const String createdPoolsList = "/pool/createpooldetail/";
 
   //End point for new password put request
   static String setNewPassword(String _mobile) {

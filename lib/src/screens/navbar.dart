@@ -17,7 +17,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   final List<Object> _pages = <Object>[
     DashboardPage(),
     MyPool(),
-    AdminPool(),
+    AdminPoolPage(),
     SettingPage(),
   ];
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/moneyGoalPage.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,7 @@ import 'providers/app/appProvider.dart';
 import 'providers/auth/login/loginProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class App extends StatefulWidget {
   @override
@@ -16,27 +18,41 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  // @override
-  // void initState() {
-  //   final _firebaseMessanging = FirebaseMessaging();
-  //   _firebaseMessanging.requestNotificationPermissions();
-  //   _firebaseMessanging.configure(
+  void token(FirebaseMessaging _firebaseMessanging) async {
+    var q = await _firebaseMessanging.getToken();
 
-  //     onMessage: (Map<String, Object> q) {
-  //       print("$q onMessage");
-  //       return;
-  //     },
-  //     onLaunch: (Map<String, Object> q) {
-  //       print("$q onLaunch");
-  //       return;
-  //     },
-  //     onResume: (Map<String, Object> q) {
-  //       print("$q onResume");
-  //       return;
-  //     },
-  //   );
-  //   super.initState();
-  // }
+    print(q);
+  }
+
+  @override
+  void initState() {
+    final _firebaseMessanging = FirebaseMessaging();
+
+    _firebaseMessanging.requestNotificationPermissions();
+
+    token(_firebaseMessanging);
+    _firebaseMessanging.configure(
+      onMessage: (Map<String, dynamic> q) {
+        print("$q onMessage");
+        print(q["data"]["path"]);
+        Navigator.pushNamed(context, q["data"]["path"]);
+        // Map<String,dynamic>data = json.decode(q.toString());
+        // print(data);
+        // print(data["data"]);
+        return;
+      },
+      onLaunch: (Map<String, Object> q) {
+        print("$q onLaunch");
+        return;
+      },
+      onResume: (Map<String, dynamic> q) {
+        print("$q onResume");
+        
+        return;
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +75,39 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        home: GoalSavingPage(),
-        // home: Consumer<AppProvider>(
-        //   builder: (_, appProvider, child) {
-        //     return appProvider.child;
-        //   },
-        // ),
+        // home: GoalSavingPage(),
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ),
         debugShowCheckedModeBanner: true,
       ),
     );
   }
 }
+
+// {
+//   "poolName":String
+//   "poolId": String
+//   "contributionAmount":String, //Ek kisht ki amount
+//   "totalMembers":int,
+//   "joinedMembers":int,
+//   "status":bool, //true if pool started //false if pool not started
+//   "moneyRecieved":// moneyRecieved in Pool if status true else null
+//   "images":[
+//     {
+//       "url":"URL_BUCKET",
+//       "name":
+//     }
+//     {
+//       "url":"URL_BUCKET",
+//       "name":
+//     }
+//     {
+//       "url":"URL_BUCKET",
+//       "name":
+//     }
+//   ],
+//   "poolType": String
+// }

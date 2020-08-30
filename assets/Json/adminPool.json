@@ -1,0 +1,52 @@
+{
+  "poolDetails": [
+    {
+      "poolName": "Check1",
+      "poolId": "2727d27v",
+      "contributionAmount": "400",
+      "totalMembers": 10,
+      "joinedMembers": 4,
+      "images": [
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917973380750.jpg",
+          "name": "ABC"
+        },
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/919816456565.jpg",
+          "name": "ERT"
+        },
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/919816456565.jpg",
+          "name": "GHJ"
+        }
+      ],
+      "status": true,
+      "poolType": "Monthly",
+      "moneyRecieved": "100"
+    },
+    {
+      "poolName": "Check2",
+      "poolId": "33v3v3v",
+      "contributionAmount": "100",
+      "totalMembers": 5,
+      "joinedMembers": 2,
+      "images": [
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917973380750.jpg",
+          "name": "Name"
+        },
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/919816456565.jpg",
+          "name": "Name"
+        },
+        {
+          "url": "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/919816456565.jpg",
+          "name": "Name"
+        }
+      ],
+      "status": false,
+      "poolType": "Monthly",
+      "moneyRecieved": "100"
+    }
+  ]
+}

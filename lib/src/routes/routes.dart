@@ -72,7 +72,6 @@ class AppRoutes {
       case "/MobilePage":
         return MaterialPageRoute(
           builder: (context) => MobilePage(),
-          maintainState: false,
         );
       case "/OtpPage":
         return MaterialPageRoute(

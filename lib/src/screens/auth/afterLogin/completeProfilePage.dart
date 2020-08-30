@@ -251,6 +251,10 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return "Enter SSN";
+                          } else if (value.contains("-") ||
+                              value.contains(",") ||
+                              value.contains(".")) {
+                            return "Not valid";
                           } else if (value.contains(" ")) {
                             return "Blank Spaces not allowed";
                           }
