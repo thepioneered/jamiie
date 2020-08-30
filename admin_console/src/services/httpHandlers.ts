@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// TODO remove comment
+
 export function httpHandler() {
   const config = {
     withCredentials: false,

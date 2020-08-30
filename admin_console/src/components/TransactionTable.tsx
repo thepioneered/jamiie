@@ -7,7 +7,6 @@ import { Transaction } from "../interfaces/tables";
 interface Props {
   data: Transaction[];
   setFrom: React.Dispatch<React.SetStateAction<number>>;
-  deleteUser: () => void;
   from: number;
 }
 

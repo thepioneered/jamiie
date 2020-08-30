@@ -13,7 +13,7 @@ import { Pool } from "../../src/interfaces/tables";
 
 function Users() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState<Pool[]>([
+  const data: Pool[] = [
     {
       no: "8be74eg1",
       name: "Paritosh",
@@ -84,9 +84,10 @@ function Users() {
       status: "started",
       members: 12,
     },
-  ]);
+  ];
   const [from, setFrom] = useState(0);
-  const [isLoading, setLoading] = useState(false);
+  // const [isLoading, setLoading] = useState(false);
+  const isLoading = false;
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,20 +98,14 @@ function Users() {
       <div className={styles.user__container}>
         <div className={styles.User}>
           <div className={card.container}>
-            <TotalCard
-              name="Total Pools"
-              number={state.totalData.totalUsers}
-              percentage={0.4}
-            />
+            <TotalCard name="Total Pools" number={state.totalData.totalUsers} />
             <TotalCard
               name="Active Pools"
               number={state.totalData.activeUsers}
-              percentage={-1.4}
             />
             <TotalCard
               name="Completed Pools"
               number={state.totalData.loggedOutUsers}
-              percentage={0}
             />
           </div>
           <div className={cn(styles.container, "hover")}>

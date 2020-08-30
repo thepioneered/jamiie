@@ -17,7 +17,6 @@ function Users() {
   const { state } = useContext(LoaderContext);
   const [data, setData] = useState<userDetail | null>(null);
   const [showModal, toggleModal] = useState(false);
-  const [from, setFrom] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
   const getData = async (url?: string) => {
@@ -50,20 +49,14 @@ function Users() {
       <div className={styles.user__container}>
         <div className={styles.User}>
           <div className={card.container}>
-            <TotalCard
-              name="Total Users"
-              number={state.totalData.totalUsers}
-              percentage={0.4}
-            />
+            <TotalCard name="Total Users" number={state.totalData.totalUsers} />
             <TotalCard
               name="Active Users"
               number={state.totalData.activeUsers}
-              percentage={-1.4}
             />
             <TotalCard
               name="Logged Out Users"
               number={state.totalData.loggedOutUsers}
-              percentage={0}
             />
           </div>
           <div className={cn(styles.container, "hover")}>

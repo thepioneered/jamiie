@@ -14,22 +14,12 @@ function Dashboard() {
           <TotalCard
             name="Total Transactions"
             number={state.totalData.totalTransactions}
-            percentage={2.4}
           />
-          <TotalCard
-            name="Total Users"
-            number={state.totalData.totalUsers}
-            percentage={0.4}
-          />
-          <TotalCard
-            name="Total Groups"
-            number={state.totalData.totalGroups}
-            percentage={-1.4}
-          />
+          <TotalCard name="Total Users" number={state.totalData.totalUsers} />
+          <TotalCard name="Total Groups" number={state.totalData.totalGroups} />
           <TotalCard
             name="Completed Pools"
             number={state.totalData.completedPools}
-            percentage={0}
           />
         </div>
         <div>

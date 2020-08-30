@@ -13,7 +13,7 @@ import { Transaction } from "../../src/interfaces/tables";
 
 function Transactions() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState<Transaction[]>([
+  const data: Transaction[] = [
     {
       no: "8146990621",
       name: "Paritosh",
@@ -84,9 +84,10 @@ function Transactions() {
       status: "21st Sept. 2020",
       members: "12",
     },
-  ]);
+  ];
   const [from, setFrom] = useState(0);
-  const [isLoading, setLoading] = useState(false);
+  // const [isLoading, setLoading] = useState(false);
+  const isLoading = false;
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -100,7 +101,6 @@ function Transactions() {
             <TotalCard
               name="Total Transactions"
               number={state.totalData.totalUsers}
-              percentage={0.4}
             />
           </div>
           <div className={cn(styles.container, "hover")}>
