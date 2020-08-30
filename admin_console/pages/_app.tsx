@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const setToken = async () => {
     const isTokenInCookie = await checkToken();
     if (isTokenInCookie)
-      dispatch({ type: "checkSuccess", data: isTokenInCookie.data });
+      dispatch({ type: "checkSuccess", data: isTokenInCookie });
     else dispatch({ type: "checkFail" });
   };
 

@@ -1,9 +1,16 @@
-import { postDataWithXcsrf } from "../services/apiServices";
-import { login } from "../interfaces";
+import {
+  postDataWithXcsrf,
+  fetchRestDataWithXcsrf,
+} from "../services/apiServices";
+import { userDetail } from "../interfaces";
+import { endpoints, DOMAIN } from "../constants/apiEndpoints";
+import { loginData } from "../interfaces/global";
 
 export const checkToken = async () => {
   try {
-    const r: Promise<login> = await postDataWithXcsrf("TOKEN_CHECK");
+    const r: Promise<loginData> = await postDataWithXcsrf(
+      DOMAIN + endpoints.TOKEN_CHECK
+    );
     console.log("checkToken Result:", r);
     return r;
   } catch (e) {
@@ -17,7 +24,10 @@ export const loginAPI = async (payload: {
   password: string;
 }) => {
   try {
-    const r: Promise<login> = await postDataWithXcsrf("LOGIN_ADMIN", payload);
+    const r: Promise<loginData> = await postDataWithXcsrf(
+      DOMAIN + endpoints.LOGIN_ADMIN,
+      payload
+    );
     console.log("login Result:", r);
     return r;
   } catch (e) {
@@ -28,10 +38,25 @@ export const loginAPI = async (payload: {
 
 export const logout = async () => {
   try {
-    await postDataWithXcsrf("LOGOUT_ADMIN");
+    await postDataWithXcsrf(DOMAIN + endpoints.LOGOUT_ADMIN);
     return true;
   } catch (e) {
     console.log("login Error:", e);
+    return false;
+  }
+};
+
+export const getUserArray = async (url?: string) => {
+  try {
+    let r: Promise<userDetail>;
+
+    if (url) r = await fetchRestDataWithXcsrf(url);
+    else r = await fetchRestDataWithXcsrf(DOMAIN + endpoints.USER_DETAILS);
+
+    console.log("userArray Result:", r);
+    return r;
+  } catch (e) {
+    console.log("userArray Error:", e);
     return false;
   }
 };

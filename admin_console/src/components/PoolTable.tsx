@@ -39,7 +39,7 @@ export default function UserTable({ data, setFrom, from }: Props) {
       <table className={styles.table} cellSpacing="0">
         <thead>
           <tr className={styles.theading}>
-            <td>Group Id</td>
+            <td>Pool Id</td>
             <td>Name</td>
             <td>Date Created</td>
             <td>No of members</td>

@@ -2,25 +2,24 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
-import { User } from "../interfaces/tables";
+import { user, userDetail } from "../interfaces";
 
 interface Props {
-  data: User[];
-  setFrom: React.Dispatch<React.SetStateAction<number>>;
+  data: userDetail;
+  pageChange: (url?: string | undefined) => Promise<void>;
   deleteUser: () => void;
-  from: number;
 }
 
-export default function UserTable({ data, setFrom, deleteUser, from }: Props) {
-  const row = ({ no, name, date, status }: User) => {
+export default function UserTable({ data, pageChange, deleteUser }: Props) {
+  const row = ({ phone, name, createdAt, lastLogin }: user) => {
     return (
-      <tr key={no}>
-        <td>{no}</td>
+      <tr key={phone}>
+        <td>{phone}</td>
         <td>{name}</td>
-        <td>{date}</td>
-        <td>{status}</td>
+        <td>{createdAt}</td>
+        <td>{lastLogin}</td>
         <td className={styles.action}>
-          <Link href="/admin/users/[user]" as={`/admin/users/${no}`}>
+          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
             <button className={styles.settings} title="User Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
@@ -38,7 +37,7 @@ export default function UserTable({ data, setFrom, deleteUser, from }: Props) {
     );
   };
 
-  const getRows = (arr: User[]) => {
+  const getRows = (arr: user[]) => {
     return arr.map((item) => row(item));
   };
 
@@ -54,22 +53,25 @@ export default function UserTable({ data, setFrom, deleteUser, from }: Props) {
             <td>Action</td>
           </tr>
         </thead>
-        <tbody>{getRows(data)}</tbody>
+        <tbody>{getRows(data.results)}</tbody>
       </table>
 
       <div className={styles.next__prev__container}>
         <button
           className={cn(styles.prev, styles.button, {
-            [styles.disabled]: from === 0,
+            [styles.disabled]: data.previous === null,
           })}
-          disabled={from === 0}
-          onClick={(_e) => setFrom((prev) => prev - 10)}
+          disabled={data.previous === null}
+          onClick={(_e) => pageChange(data.previous!)}
         >
           Previous
         </button>
         <button
-          className={cn(styles.next, styles.button)}
-          onClick={(_e) => setFrom((prev) => prev + 10)}
+          className={cn(styles.next, styles.button, {
+            [styles.disabled]: data.next === null,
+          })}
+          disabled={data.next === null}
+          onClick={(_e) => pageChange(data.next!)}
         >
           Next
         </button>

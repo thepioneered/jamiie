@@ -1,21 +1,18 @@
 import { AxiosInstance } from "axios";
-import apiCalls from "../constants/apiEndpoints";
 import { httpHandler, httpXcsrfHandler } from "./httpHandlers";
-import { endpoints } from "../interfaces";
 
-export const API_ENDPOINT = "https://jamiieapi.herokuapp.com";
-
+// Post Function
 function postOperation(
   handler: AxiosInstance,
   apiPath: string,
-  dataContent: object,
-  domain = API_ENDPOINT
+  dataContent: object
 ): Promise<any> {
   return new Promise((resolve, reject) => {
     handler
-      .post(domain + apiPath, dataContent)
+      .post(apiPath, dataContent)
       .then((res) => {
-        resolve(res);
+        const data = res.data;
+        resolve(data);
       })
       .catch((error) => {
         reject(error.response);
@@ -23,26 +20,29 @@ function postOperation(
   });
 }
 
-// export const fetchRestDataWithXcsrf = (apiRoute:endpoints, customPath, queryParams) => {
-//   let endPointParameterised = apiCalls[apiRoute];
-//   Object.keys(customPath.params).forEach((a) => {
-//     endPointParameterised = endPointParameterised.replace(
-//       `:${a}`,
-//       customPath.params[a]
-//     );
-//   });
-//   return fetchOperation(
-//     httpXcsrfHandler(),
-//     endPointParameterised,
-//     queryParams,
-//     apiRoute
-//   );
-// };
+// Fetch Function
+function fetchOperation(handler: AxiosInstance, apiPath: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    handler
+      .get(apiPath)
+      .then((res) => {
+        const data = res.data;
+        resolve(data);
+      })
+      .catch((error) => {
+        reject(error.response);
+      });
+  });
+}
 
-export const postData = (apiRoute: endpoints, dataContent: object = {}) =>
-  postOperation(httpHandler(), apiCalls[apiRoute], dataContent);
+// Fetching with cookies
+export const fetchRestDataWithXcsrf = (apiRoute: string) =>
+  fetchOperation(httpXcsrfHandler(), apiRoute);
 
-export const postDataWithXcsrf = (
-  apiRoute: endpoints,
-  dataContent: object = {}
-) => postOperation(httpXcsrfHandler(), apiCalls[apiRoute], dataContent);
+// Post req without cookies
+export const postData = (apiRoute: string, dataContent: object = {}) =>
+  postOperation(httpHandler(), apiRoute, dataContent);
+
+// Post req with cookies
+export const postDataWithXcsrf = (apiRoute: string, dataContent: object = {}) =>
+  postOperation(httpXcsrfHandler(), apiRoute, dataContent);

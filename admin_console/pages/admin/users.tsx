@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import cn from "classnames";
 import { LoaderContext } from "../_app";
 import {
@@ -10,76 +10,28 @@ import {
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import { User } from "../../src/interfaces/tables";
+import { getUserArray } from "../../src/utils/apiCalls";
+import { userDetail } from "../../src/interfaces";
 
 function Users() {
   const { state } = useContext(LoaderContext);
-  const [data, changeData] = useState<User[]>([
-    {
-      no: "8146990621",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990622",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990623",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990624",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990625",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990626",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990627",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990628",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990629",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-    {
-      no: "8146990630",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-    },
-  ]);
-
+  const [data, setData] = useState<userDetail | null>(null);
   const [showModal, toggleModal] = useState(false);
   const [from, setFrom] = useState(0);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+
+  const getData = async (url?: string) => {
+    setLoading(true);
+    const r = await getUserArray(url);
+    if (r) {
+      setData(r);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const deleteUser = () => {
     toggleModal(true);
@@ -142,10 +94,9 @@ function Users() {
                 <GlobalLoader />
               ) : (
                 <UserTable
-                  data={data}
+                  data={data!}
                   deleteUser={deleteUser}
-                  setFrom={setFrom}
-                  from={from}
+                  pageChange={getData}
                 />
               )}
             </div>

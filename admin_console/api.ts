@@ -22,6 +22,7 @@ export const userArray = {
 
 // user json for single user
 export const user = {
+  img: "",
   name: "Paritosh Batish",
   email: "batishparitosh2@gmail.com",
   mobile: "8146990621",

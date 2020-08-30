@@ -33,7 +33,7 @@ export default function Login() {
     const r = await loginAPI(payload);
 
     if (r) {
-      dispatch!({ type: "setLoginData", data: r.data });
+      dispatch!({ type: "setLoginData", data: r });
       dispatch!({ type: "changeGlobal", item: "tokenValidated" });
       router.push("/admin/dashboard");
     } else {

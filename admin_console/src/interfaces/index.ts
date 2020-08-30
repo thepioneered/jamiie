@@ -1,25 +1,13 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import User from 'path/to/interfaces';
-
-export type endpoints = "LOGIN_ADMIN" | "LOGOUT_ADMIN" | "TOKEN_CHECK";
-
-export type login = {
-  data: { name: string; phone: string; email: string };
-};
-
-export type userArray = {
+export type user = {
   img: string;
   phone: string;
   name: string;
   email: string;
-  dateCreated: string;
-  lastLogin: string;
-}[];
+  createdAt: any;
+  lastLogin: any;
+};
 
-export type user = {
+export type userFull = {
   img: string;
   name: string;
   email: string;
@@ -36,4 +24,11 @@ export type user = {
   savingMoney: string;
   loans: string;
   living: string;
+};
+
+export type userDetail = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: user[];
 };
