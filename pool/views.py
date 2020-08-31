@@ -10,6 +10,8 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .serializers import *
 import json
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.authtoken.models import Token
 # Create your views here.
 
 def uniqueid():
@@ -19,6 +21,21 @@ def uniqueid():
     value = str(milli_sec[:8])
     return value
 
+def cookiesAuth(cookies):
+    try:
+        val = cookies
+        print("cookies",cookies)
+        count = 0
+        for i in val:
+            count=count+1
+            if (count == 2):
+                user = User.objects.get(phone = i)
+                print("user",user)
+                if Token.objects.filter(user=user).exists():
+                    if str(Token.objects.get(user=user)) == str(val[i]):
+                        return True
+    except Exception as e:
+        print(e)
 class CreatePoolApi(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes=[IsAuthenticated] 
@@ -83,7 +100,6 @@ class SearchPoolApi(APIView):
         except Exception as e:
             print(e)
 
-
 class CreatePoolDetailApi(APIView):
     authentication_classes=[TokenAuthentication]
     permission_classes=[IsAuthenticated]
@@ -93,3 +109,26 @@ class CreatePoolDetailApi(APIView):
         serializer = CreatePoolDetailSerializer(poolDetail, many=True)
         response = serializer.data
         return Response({'poolDetails':response},status=status.HTTP_200_OK)
+
+class PoolUsersDetailApi(APIView):
+    authentication_classes = []
+    permission_classes = []
+    def get(self,request,id):
+        queryset = JoinPool.objects.filter(poolId=id)
+        serializer = PoolUsersDetailSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+class PoolDetailsAdminApi(ListAPIView):
+    queryset = CreatePool.objects.all()
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = CreatePoolDetailSerializer
+    pagination_class = PageNumberPagination
+
+    def get(self, request, *args, **kwargs):
+        cookies = request.COOKIES
+        response = cookiesAuth(cookies)
+        if response:
+            return self.list(request, *args, **kwargs)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)

@@ -22,4 +22,6 @@ urlpatterns = [
     path('joinpool',JoinPoolApi.as_view(),name = 'join pool'),
     path('searchpool',SearchPoolApi.as_view(), name = 'search pool'),
     path('createpooldetail/<int:id>/',CreatePoolDetailApi.as_view(),name = 'create pool'),
+    path('poolusers/<str:id>/',PoolUsersDetailApi.as_view(), name='pool users detail'),
+    path('pooldetails',PoolDetailsAdminApi.as_view(), name = 'pool detail admin'),
 ]

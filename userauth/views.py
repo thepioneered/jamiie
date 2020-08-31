@@ -9,6 +9,7 @@ import boto3
 from twilio.rest import Client
 from rest_framework import status
 from .models import *
+from rest_framework.permissions import IsAdminUser
 #Create your views here.
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
@@ -27,6 +28,23 @@ load_dotenv(dotenv_path=env_file)
 def otpGenerator():
     otp = random.randrange(10000,100000)
     return otp
+
+def cookiesAuth(cookies):
+    try:
+        val = cookies
+        print("cookies",cookies)
+        count = 0
+        for i in val:
+            count=count+1
+            if (count == 2):
+                user = User.objects.get(phone = i)
+                print("user",user)
+                if Token.objects.filter(user=user).exists():
+                    if str(Token.objects.get(user=user)) == str(val[i]):
+                        return True
+    except Exception as e:
+        print(e)                    
+    
 
 class Phone(APIView):
     authentication_classes = []
@@ -384,8 +402,17 @@ class GetUserDetailApi(APIView):
         print(e)
 
 class UsersDetailApi(ListAPIView):
-    queryset = User.objects.all()
+    queryset = User.objects.filter(admin=False,staff=False)
     authentication_classes = []
     permission_classes = []
     serializer_class = UsersDetailSerializer
     pagination_class = PageNumberPagination
+
+
+    def get(self, request, *args, **kwargs):
+        cookies = request.COOKIES
+        response = cookiesAuth(cookies)
+        if response:
+            return self.list(request, *args, **kwargs)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)

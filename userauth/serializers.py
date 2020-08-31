@@ -24,4 +24,4 @@ class UserInfoSerializer(serializers.ModelSerializer):
 class UsersDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('image','phone','name','email','createdAt','lastLogin',)

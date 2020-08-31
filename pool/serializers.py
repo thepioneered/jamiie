@@ -6,4 +6,10 @@ from .models import *
 class CreatePoolDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreatePool
-        fields = ['poolId','poolName','contributionAmount','joinedMember','poolType','totalMember']
+        fields = ('poolId','poolName','contributionAmount','joinedMember','poolType','totalMember',)
+
+
+class PoolUsersDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JoinPool
+        fields = '__all__'
