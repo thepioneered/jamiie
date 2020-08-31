@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import cn from "classnames";
 import { LoaderContext } from "../_app";
 import {
@@ -9,85 +9,34 @@ import {
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import { Pool } from "../../src/interfaces/tables";
+import { getTableArray } from "../../src/utils/apiCalls";
+import { tableArray, pool } from "../../src/interfaces";
+import { DOMAIN, endpoints } from "../../src/constants/apiEndpoints";
 
 function Users() {
   const { state } = useContext(LoaderContext);
-  const data: Pool[] = [
-    {
-      no: "8be74eg1",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg2",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "not started",
-      members: 12,
-    },
-    {
-      no: "8be74eg3",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg4",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg5",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg6",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg7",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg8",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74eg9",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-    {
-      no: "8be74e10",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "started",
-      members: 12,
-    },
-  ];
-  const [from, setFrom] = useState(0);
-  // const [isLoading, setLoading] = useState(false);
-  const isLoading = false;
+  const [data, setData] = useState<tableArray<pool> | null>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const getData = async (url?: string) => {
+    setLoading(true);
+
+    let r: tableArray<pool> | false;
+    if (url) r = await getTableArray<tableArray<pool>>(url);
+    else
+      r = await getTableArray<tableArray<pool>>(
+        DOMAIN + endpoints.POOL_DETAILS
+      );
+
+    if (r) {
+      setData(r);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -135,7 +84,7 @@ function Users() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <PoolTable data={data} setFrom={setFrom} from={from} />
+                <PoolTable data={data!} pageChange={getData} />
               )}
             </div>
           </div>

@@ -10,18 +10,27 @@ import {
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import { getUserArray } from "../../src/utils/apiCalls";
-import { userDetail } from "../../src/interfaces";
+import { getTableArray } from "../../src/utils/apiCalls";
+import { tableArray, user } from "../../src/interfaces";
+import { endpoints, DOMAIN } from "../../src/constants/apiEndpoints";
 
+// TODO: if getData Fails?
 function Users() {
   const { state } = useContext(LoaderContext);
-  const [data, setData] = useState<userDetail | null>(null);
+  const [data, setData] = useState<tableArray<user> | null>(null);
   const [showModal, toggleModal] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
   const getData = async (url?: string) => {
     setLoading(true);
-    const r = await getUserArray(url);
+
+    let r: tableArray<user> | false;
+    if (url) r = await getTableArray<tableArray<user>>(url);
+    else
+      r = await getTableArray<tableArray<user>>(
+        DOMAIN + endpoints.USER_DETAILS
+      );
+
     if (r) {
       setData(r);
       setLoading(false);

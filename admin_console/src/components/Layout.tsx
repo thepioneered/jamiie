@@ -13,15 +13,12 @@ function Layout({ children }: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("layout.js :)");
     if (!state.tokenValidated) router.push("/login");
   }, []);
 
   const toggleSidebar = () => {
     dispatch!({ type: "changeGlobal", item: "isSidebarOpen" });
   };
-
-  console.log("LayoutLoader:", state);
 
   if (!state.tokenValidated) {
     return null;

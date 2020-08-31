@@ -2,7 +2,6 @@ import {
   postDataWithXcsrf,
   fetchRestDataWithXcsrf,
 } from "../services/apiServices";
-import { userDetail } from "../interfaces";
 import { endpoints, DOMAIN } from "../constants/apiEndpoints";
 import { loginData } from "../interfaces/global";
 
@@ -46,12 +45,10 @@ export const logout = async () => {
   }
 };
 
-export const getUserArray = async (url?: string) => {
+export const getTableArray = async <T>(url: string) => {
   try {
-    let r: Promise<userDetail>;
-
-    if (url) r = await fetchRestDataWithXcsrf(url);
-    else r = await fetchRestDataWithXcsrf(DOMAIN + endpoints.USER_DETAILS);
+    // let r: Promise<userDetail>;
+    const r: Promise<T> = await fetchRestDataWithXcsrf(url);
 
     console.log("userArray Result:", r);
     return r;

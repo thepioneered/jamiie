@@ -2,10 +2,10 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
-import { user, userDetail } from "../interfaces";
+import { user, tableArray } from "../interfaces";
 
 interface Props {
-  data: userDetail;
+  data: tableArray<user>;
   pageChange: (url?: string | undefined) => Promise<void>;
   deleteUser: () => void;
 }
@@ -16,8 +16,8 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
       <tr key={phone}>
         <td>{phone}</td>
         <td>{name}</td>
-        <td>{createdAt}</td>
-        <td>{lastLogin}</td>
+        <td>{new Date(createdAt).toLocaleString("en-US")}</td>
+        <td>{new Date(lastLogin).toLocaleString("en-US")}</td>
         <td className={styles.action}>
           <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
             <button className={styles.settings} title="User Settings">

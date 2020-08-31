@@ -1,10 +1,25 @@
+// ------------
+// table Array
+// ------------
+
+export type tableArray<t> = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: t[];
+};
+
+// ------------
+// User types
+// ------------
+
 export type user = {
   img: string;
   phone: string;
   name: string;
   email: string;
-  createdAt: any;
-  lastLogin: any;
+  createdAt: string;
+  lastLogin: string;
 };
 
 export type userFull = {
@@ -26,9 +41,25 @@ export type userFull = {
   living: string;
 };
 
-export type userDetail = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: user[];
+// ------------
+// pool types
+// ------------
+
+export type pool = {
+  poolId: string;
+  poolName: string;
+  contributionAmount: number;
+  joinedMember: number;
+  poolType: string;
+  totalMember: number;
+};
+
+export type poolFull = {
+  poolId: string;
+  poolName: string;
+  poolOwner: string;
+  contributionAmount: number;
+  joinedMember: number;
+  poolType: string;
+  totalMember: number;
 };

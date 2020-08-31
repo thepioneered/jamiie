@@ -5,4 +5,5 @@ export enum endpoints {
   LOGOUT_ADMIN = "/userauth/adminlogout",
   TOKEN_CHECK = "/userauth/check",
   USER_DETAILS = "/userauth/usersdetail",
+  POOL_DETAILS = "/pool/pooldetails",
 }

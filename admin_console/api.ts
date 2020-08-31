@@ -1,3 +1,5 @@
+// TODO: User Page - Created pools, joined pools, transactions?
+
 // userArray for userTable
 export const userArray = {
   users: [
@@ -46,16 +48,18 @@ export const poolArray = {
     {
       no: "8be74eg1",
       name: "Paritosh",
+      amount: "100",
       date: "24th August 2020",
       status: "started",
-      members: 12,
+      members: "15 / 15",
     },
     {
       no: "8be74eg2",
       name: "Paritosh",
+      amount: "100",
       date: "24th August 2020",
       status: "not started",
-      members: 12,
+      members: "12 / 15",
     },
   ],
 };

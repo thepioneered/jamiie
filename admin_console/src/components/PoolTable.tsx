@@ -2,25 +2,33 @@ import React from "react";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
-import { Pool } from "../interfaces/tables";
+import { tableArray, pool } from "../interfaces";
 
 interface Props {
-  data: Pool[];
-  setFrom: React.Dispatch<React.SetStateAction<number>>;
-  from: number;
+  data: tableArray<pool>;
+  pageChange: (url?: string | undefined) => Promise<void>;
 }
 
-export default function UserTable({ data, setFrom, from }: Props) {
-  const row = ({ no, name, date, status, members }: Pool) => {
+export default function PoolTable({ data, pageChange }: Props) {
+  const row = ({
+    poolId,
+    poolName,
+    contributionAmount,
+    joinedMember,
+    totalMember,
+    poolType,
+  }: pool) => {
     return (
-      <tr key={no}>
-        <td>{no}</td>
-        <td>{name}</td>
-        <td>{date}</td>
-        <td>{members}</td>
-        <td>{status}</td>
+      <tr key={poolId}>
+        <td>{poolId}</td>
+        <td>{poolName}</td>
+        <td>{"TODO"}</td>
+        <td>{contributionAmount}</td>
+        <td>{`${joinedMember} / ${totalMember}`}</td>
+        <td>{poolType}</td>
+        <td>{"TODO"}</td>
         <td>
-          <Link href="/admin/pools/[pool]" as={`/admin/pools/${no}`}>
+          <Link href="/admin/pools/[pool]" as={`/admin/pools/${poolId}`}>
             <button className={styles.settings} title="User Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
@@ -30,7 +38,7 @@ export default function UserTable({ data, setFrom, from }: Props) {
     );
   };
 
-  const getRows = (arr: Pool[]) => {
+  const getRows = (arr: pool[]) => {
     return arr.map((item) => row(item));
   };
 
@@ -40,29 +48,34 @@ export default function UserTable({ data, setFrom, from }: Props) {
         <thead>
           <tr className={styles.theading}>
             <td>Pool Id</td>
-            <td>Name</td>
+            <td>Pool Name</td>
             <td>Date Created</td>
+            <td>Contribution Amount</td>
             <td>No of members</td>
+            <td>Pool Type</td>
             <td>Status</td>
             <td>Action</td>
           </tr>
         </thead>
-        <tbody>{getRows(data)}</tbody>
+        <tbody>{getRows(data.results)}</tbody>
       </table>
 
       <div className={styles.next__prev__container}>
         <button
           className={cn(styles.prev, styles.button, {
-            [styles.disabled]: from === 0,
+            [styles.disabled]: data.previous === null,
           })}
-          disabled={from === 0}
-          onClick={(_e) => setFrom((prev) => prev - 10)}
+          disabled={data.previous === null}
+          onClick={(_e) => pageChange(data.previous!)}
         >
           Previous
         </button>
         <button
-          className={cn(styles.next, styles.button)}
-          onClick={(_e) => setFrom((prev) => prev + 10)}
+          className={cn(styles.next, styles.button, {
+            [styles.disabled]: data.next === null,
+          })}
+          disabled={data.next === null}
+          onClick={(_e) => pageChange(data.next!)}
         >
           Next
         </button>
