@@ -29,8 +29,8 @@ export const user = {
   email: "batishparitosh2@gmail.com",
   mobile: "8146990621",
   riskScore: "54",
-  riskBand: "Punjab",
-  state: "Moderate",
+  riskBand: "Moderate",
+  state: "PUnjab",
   city: "Chandigarh",
   dateCreated: "20th Aug 2020",
   lastLogin: "6th Sept. 2020 4:40pm",
@@ -68,9 +68,64 @@ export const poolArray = {
 export const pool = {
   poolName: "Paritosh's Pool",
   poolOwner: "8146990621",
-  pontributionAmount: "580",
-  deadline: "3/1/2020, 12:00:00 AM",
+  contributionAmount: "580",
+  dateCreated: "24th August 2020",
+  nextDeadline: "3/1/2020, 12:00:00 AM",
   poolType: "Weekly",
   members: "2 / 5",
-  status: "Not Started",
+  status: false,
 };
+
+// ------------
+// App api's
+// ------------
+
+// If status false pool not Started
+// get: {poolID: ""}
+export const pool_app = {
+  poolId: "",
+  poolName: "Paritosh's Pool",
+  contributionAmount: "580",
+  dateCreated: "24th August 2020",
+  deadline: "3/1/2020, 12:00:00 AM",
+  poolType: "Weekly",
+  totalMember: 4,
+  joinedMember: 2,
+  status: false,
+  poolMembers: [
+    {
+      img: "",
+      phone: "12934876",
+      name: "Paritosh",
+      riskScore: "54",
+      riskBand: "Moderate",
+    },
+    {
+      img: "",
+      phone: "12934876",
+      name: "Paritosh",
+      riskScore: "54",
+      riskBand: "Moderate",
+    },
+  ],
+};
+
+// post: /pool/start, {poolId: ""}
+export const pool_order = {
+  users: [
+    {
+      userID: "",
+      order: 1,
+    },
+    {
+      userID: "",
+      order: 2,
+    },
+    {
+      userID: "",
+      order: 3,
+    },
+  ],
+};
+
+export const pool_app_started = {};
