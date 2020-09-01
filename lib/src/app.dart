@@ -87,27 +87,3 @@ class _AppState extends State<App> {
   }
 }
 
-// {
-//   "poolName":String
-//   "poolId": String
-//   "contributionAmount":String, //Ek kisht ki amount
-//   "totalMembers":int,
-//   "joinedMembers":int,
-//   "status":bool, //true if pool started //false if pool not started
-//   "moneyRecieved":// moneyRecieved in Pool if status true else null
-//   "images":[
-//     {
-//       "url":"URL_BUCKET",
-//       "name":
-//     }
-//     {
-//       "url":"URL_BUCKET",
-//       "name":
-//     }
-//     {
-//       "url":"URL_BUCKET",
-//       "name":
-//     }
-//   ],
-//   "poolType": String
-// }
