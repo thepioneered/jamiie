@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/moneyGoalPage.dart';
@@ -29,8 +30,11 @@ class _AppState extends State<App> {
     final _firebaseMessanging = FirebaseMessaging();
 
     _firebaseMessanging.requestNotificationPermissions();
-
-    token(_firebaseMessanging);
+    try {
+      token(_firebaseMessanging);
+    } catch (e) {
+      print("token not found");
+    }
     _firebaseMessanging.configure(
       onMessage: (Map<String, dynamic> q) {
         print("$q onMessage");
@@ -47,7 +51,7 @@ class _AppState extends State<App> {
       },
       onResume: (Map<String, dynamic> q) {
         print("$q onResume");
-        
+
         return;
       },
     );
@@ -86,4 +90,3 @@ class _AppState extends State<App> {
     );
   }
 }
-

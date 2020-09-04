@@ -1,8 +1,12 @@
 import 'package:Jamiie/src/models/adminPoolModel/poolListModel.dart';
+import 'package:Jamiie/src/models/poolId.dart';
 import 'package:Jamiie/src/providers/adminPool/adminPoolProvider.dart';
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/widgets/appImage.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,38 +58,19 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
             return Center(
               child: CupertinoActivityIndicator(),
             );
+            //   // return
+
           } else if (!snapshot.hasError) {
-            return SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Column(
-                  children: [
-                    // SizedBox(
-                    //   height: 100.0,
-                    //   child: Column(
-                    //     children: [],
-                    //   ),
-                    // ),
-                    Container(
-                      height: 300.0 *
-                          createdPoolList.poolListModel.poolDataModel.length,
-                      child: ListView.builder(
-                        itemCount:
-                            createdPoolList.poolListModel.poolDataModel.length,
-                        itemBuilder: (context, index) {
-                          var data =
-                              createdPoolList.poolListModel.poolDataModel;
-                          return _data(
-                              poolName: data[index].poolName,
-                              poolContribution: data[index].contributionAmount);
-                        },
-                      ),
-                    ),
-                    // _data(),
-                    // _data(),
-                    // _data(),
-                  ],
-                ),
+            return Container(
+              child: ListView.builder(
+                itemCount: createdPoolList.poolListModel.poolDataModel.length,
+                itemBuilder: (context, index) {
+                  var data = createdPoolList.poolListModel.poolDataModel;
+                  return _data(
+                      poolName: data[index].poolName,
+                      poolContribution: data[index].contributionAmount,
+                      poolId: data[index].poolId);
+                },
               ),
             );
           } else {
@@ -98,14 +83,23 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
     );
   }
 
-  Widget _data({@required String poolName, @required int poolContribution}) {
+  Widget _data(
+      {@required String poolName,
+      @required int poolContribution,
+      @required String poolId}) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15.0),
+      margin: EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
       alignment: Alignment.center,
       child: GestureDetector(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (_) => PoolDataPage()));
+            context,
+            MaterialPageRoute(
+              builder: (_) => CompletePoolDataPage(
+                poolId: poolId,
+              ),
+            ),
+          );
         },
         child: Container(
           width: double.infinity,
@@ -122,7 +116,29 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                     poolName,
                     style: AppTextStyle.poolTitle,
                   ),
-                  Icon(FontAwesomeIcons.ellipsisV),
+
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 7.5, right: 7.5, top: 3.0, bottom: 3.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Text(
+                      "Pending",
+                      style: TextStyle(color: AppColors.white),
+                    ),
+                  )
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Share.share(
+                  //       AppConstString.sharePoolId(
+                  //         poolId,
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: Icon(Icons.share),
+                  // ),
                 ],
               ),
               Row(
@@ -141,52 +157,8 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                       ],
                     ),
                   ),
-                  RaisedButton(
-                    color: AppColors.primaryColorPurple,
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: AppColors.white,
-                    ),
-                  )
                 ],
               ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Pool Members",
-                      style: AppTextStyle.inputText,
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-
-                    Container(
-                      height: 50.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            height: 25.0,
-                            width: 50.0,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(60.0),
-                              child: AppImageWidget.appImageWidget(
-                                "http://via.placeholder.com/100x60",
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    )
-
-                    // })
-                  ],
-                ),
-              )
             ],
           ),
           decoration: BoxDecoration(

@@ -97,10 +97,10 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => SearchPoolPage(),
         );
-      case "/PoolDataPage":
-        return MaterialPageRoute(
-          builder: (context) => PoolDataPage(),
-        );
+      // case "/PoolDataPage":
+      //   return MaterialPageRoute(
+      //     builder: (context) => PoolDataPage(),
+      //   );
       case "/CreatePoolPage":
         return MaterialPageRoute(
           builder: (context) => CreatePoolPage(),

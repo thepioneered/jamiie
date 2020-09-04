@@ -28,23 +28,7 @@ class DashboardPageWidget extends StatelessWidget {
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
-        // body: FutureBuilder(
-        //     future: dashboardProvider.getDashboardData(),
-        //     builder: (context, snapshot) {
-        //       if (snapshot.hasError) {
-        //         return Center(
-        //           child: Text("Error! Please Try later"),
-        //         );
-        //       } else if (snapshot.connectionState == ConnectionState.waiting) {
-        //         return Center(
-        //           child: CupertinoActivityIndicator(),
-        //         );
-        //       } else {
-        //         return Center(
-        //           child: Text("CHecking"),
-        //         );
-        //       }
-        //     }),
+        
         body: SingleChildScrollView(
           child: Container(
             color: AppColors.backgroundColor,
