@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
 import 'package:Jamiie/src/models/Dashboard/transactionModel.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class DashWidget3 extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),

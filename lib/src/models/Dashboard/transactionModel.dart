@@ -1,9 +1,9 @@
-class Transaction{
-  String id;
-  String name;
-  double amount;
-  DateTime date;
+// class Transaction{
+//   String id;
+//   String name;
+//   double amount;
+//   DateTime date;
 
-  Transaction({this.amount,this.date,this.id,this.name});
+//   Transaction({this.amount,this.date,this.id,this.name});
 
-}
+// }

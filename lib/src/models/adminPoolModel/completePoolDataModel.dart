@@ -27,7 +27,7 @@ class CompletePoolDataModel {
     List<MemberModel> list = List<MemberModel>();
     List<dynamic> jsonList = json["joinedpool"];
 
-    list = jsonList.map((e) => MemberModel.formJson(e)).toList();
+    list = jsonList.map((e) => MemberModel.fromJson(e)).toList();
 
     return CompletePoolDataModel(
       poolId: json["poolId"],
@@ -51,7 +51,7 @@ class MemberModel {
 
   MemberModel({this.joinedAt, this.memberDetails, this.memberId});
 
-  factory MemberModel.formJson(Map<String, dynamic> json) {
+  factory MemberModel.fromJson(Map<String, dynamic> json) {
     MemberDetails memberDetails = MemberDetails.formJson(json['memberId']);
     return MemberModel(
       memberId: json["id"],
@@ -72,27 +72,27 @@ class MemberDetails {
         name = json["name"];
 }
 
-// var e = {
-//   "poolId": "05797de5",
-//   "poolOwner": "+917071006000",
-//   "poolName": "uffi",
-//   "contributionAmount": 68,
-//   "joinedMember": 1,
-//   "poolType": "Weekly",
-//   "totalMember": 9,
-//   "createdAt": "2020-08-29T10:03:02.105398Z",
-//   "deadline": "2020-09-09",
-//   "joinedpool": [
-//     {
-//       "id": 10,
-//       "memberId": {
-//         "image":
-//             "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
-//         "phone": "+917071006000",
-//         "name": "Nakul Garg"
-//       },
-//       "joinedAt": "2020-08-29T10:03:02.109723Z",
-//       "poolId": "05797de5"
-//     }
-//   ]
-// };
+var e = {
+  "poolId": "05797de5",
+  "poolOwner": "+917071006000",
+  "poolName": "uffi",
+  "contributionAmount": 68,
+  "joinedMember": 1,
+  "poolType": "Weekly",
+  "totalMember": 9,
+  "createdAt": "2020-08-29T10:03:02.105398Z",
+  "deadline": "2020-09-09",
+  "joinedpool": [
+    {
+      "id": 10,
+      "memberId": {
+        "image":
+            "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
+        "phone": "+917071006000",
+        "name": "Nakul Garg"
+      },
+      "joinedAt": "2020-08-29T10:03:02.109723Z",
+      "poolId": "05797de5"
+    }
+  ]
+};
