@@ -32,7 +32,7 @@ class DashboardPageWidget extends StatelessWidget {
                 );
               } else {
                 return Center(
-                  child: Text("CHec"),
+                  child: Text("CHecking"),
                 );
               }
             }),
