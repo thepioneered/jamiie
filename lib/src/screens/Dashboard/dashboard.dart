@@ -28,7 +28,6 @@ class DashboardPageWidget extends StatelessWidget {
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
-        
         body: SingleChildScrollView(
           child: Container(
             color: AppColors.backgroundColor,
@@ -39,8 +38,7 @@ class DashboardPageWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    topHeading(
-                        title: "Hello, ${dashboardProvider.userName.name}"),
+                    topHeading(title: "Hello, Name"),
                     Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: CircleAvatar(

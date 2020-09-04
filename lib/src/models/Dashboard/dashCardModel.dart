@@ -9,7 +9,7 @@ var data = {
 };
 
 class DashboardModel {
-  UserName name;
+  String name;
   int moneySaved;
   int createdPools;
   int joinedPools;
@@ -21,17 +21,15 @@ class DashboardModel {
       {this.name, this.moneySaved, this.poolNumbers, this.transaction});
 
   factory DashboardModel.fromJsom(Map<String, dynamic> json) {
+
+    List<dynamic> list = List<dynamic>();
+    
     return DashboardModel(
       name: json["name"],
       moneySaved: json["moneySaved"],
      
     );
   }
-}
-
-class UserName {
-  String name;
-  UserName({this.name = 'Mark'});
 }
 
 class PoolNumbers {

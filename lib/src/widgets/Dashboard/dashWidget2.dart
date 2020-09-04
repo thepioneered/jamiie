@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
 import 'package:Jamiie/src/models/Dashboard/transactionModel.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
