@@ -20,6 +20,7 @@ abstract class AppColors {
   static Color get linkdin => const Color(0xFF0e76a8);
   static Color get google => const Color(0xFF4285f4);
   static Color get green => Colors.green;
+  static Color get lightBlue => Color(0xffCFEEF5);
 }
 
 abstract class LogoColors {

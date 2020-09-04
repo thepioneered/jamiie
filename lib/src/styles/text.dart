@@ -1,6 +1,9 @@
+import 'package:Jamiie/src/widgets/Dashboard/dashWidget1.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './colors.dart';
+import 'colors.dart';
+
 // import 'package:auto_size_text/auto_size_text.dart';
 class AppTextStyle {
   static TextStyle settingButton(Color color) {
@@ -11,6 +14,37 @@ class AppTextStyle {
         color: color);
   }
 
+  static TextStyle dashCardText(Color color) {
+    return TextStyle(
+      fontFamily: "Poppins",
+      fontSize: 14.0,
+      color: color,
+    );
+  }
+
+  static TextStyle dashCardNumber(Color color) {
+    return TextStyle(
+      fontFamily: "Poppins",
+      fontSize: 36.0,
+      fontWeight: FontWeight.bold,
+      color: color,
+    );
+  }
+  static TextStyle get dashCardHeading => TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle get dashCardHint => TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 10.0,
+        color: Colors.grey,
+      );
+  static TextStyle get dashTransAmount => TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 18.0,
+        color: Colors.green,
+      );
   static TextStyle get hintText => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
@@ -95,7 +129,7 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         fontSize: 36.0,
       );
-  static TextStyle get dontHaveAccount =>TextStyle(
+  static TextStyle get dontHaveAccount => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w300,
         fontSize: 15.0,

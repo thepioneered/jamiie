@@ -3,6 +3,4 @@ class PoolIdModel {
 
   PoolIdModel({this.poolId});
   PoolIdModel.fromJson(Map<String, dynamic> json) : poolId = json['poolId'];
-
-  
 }
