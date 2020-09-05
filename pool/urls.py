@@ -24,4 +24,8 @@ urlpatterns = [
     path('createpooldetail/<int:id>/',CreatePoolDetailApi.as_view(),name = 'create pool'),
     path('poolusers/<str:id>/',PoolUsersDetailApi.as_view(), name='pool users detail'),
     path('pooldetails',PoolDetailsAdminApi.as_view(), name = 'pool detail admin'),
+    path('pooldetail/<str:id>/',PoolDetailApi.as_view(), name = 'pool detail'),
+    path('singlepool/<str:id>/',SinglePoolDetailApi.as_view(),name = 'single pool'),
+    path('adminsinglepool/<str:id>/',AdminSinglePoolDetailApi.as_view(),name = 'Admin single pool'),
+    path('notification',NotificationApi.as_view(), name = 'Notification'),
 ]

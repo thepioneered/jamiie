@@ -5,7 +5,7 @@ class CreatePool(models.Model):
     poolId = models.CharField(primary_key=True, unique=True, blank=False, null=False, max_length=255)
     poolOwner = models.ForeignKey(User, related_name='poolowner', on_delete=models.CASCADE)
     poolName = models.CharField(blank=False,null=False,max_length=255)
-    contributionAmount = models.FloatField(null=False)
+    contributionAmount = models.IntegerField(null=False)
     deadline = models.DateField()
     poolType = models.CharField(null=False, max_length=255)
     totalMember = models.IntegerField(null=False)

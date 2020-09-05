@@ -25,3 +25,8 @@ class UsersDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('image','phone','name','email','createdAt','lastLogin',)
+
+class UsersDetailPoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('image','phone','name',)

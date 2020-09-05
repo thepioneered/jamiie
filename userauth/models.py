@@ -150,3 +150,7 @@ class UserInfo(models.Model):
     def __str__(self):
         phone=self.phone
         return str(phone)
+
+class Notification(models.Model):
+    phone = models.ForeignKey(User, on_delete=models.CASCADE)
+    mobileId = models.CharField(max_length=255, unique=True)

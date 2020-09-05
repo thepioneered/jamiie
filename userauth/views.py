@@ -166,6 +166,7 @@ class Login(APIView):
             value = request.data
             phone  = value["phone"]
             password = value["password"]
+            mobileId = value["mobileId"]
             if User.objects.filter(phone = phone).exists():
                 user = User.objects.get(phone = phone)
                 if user is not None:    
@@ -175,7 +176,15 @@ class Login(APIView):
                         user.save()
                         completeProfile = User.objects.get(phone=phone).completeProfile
                         riskCalculator = UserInfo.objects.filter(phone=phone).exists()
-                        return Response({'token': token.key,'completeProfile':completeProfile,'riskCalculator':riskCalculator},status=status.HTTP_200_OK)
+                        if Notification.objects.filter(phone=phone).exists():
+                            if str(Notification.objects.get(phone=phone).mobileId) == str(mobileId):
+                                return Response({'token': token.key,'completeProfile':completeProfile,'riskCalculator':riskCalculator},status=status.HTTP_200_OK)
+                            else:
+                                notificationObject = Notification.objects.create(phone=user,mobileId=mobileId)
+                                return Response({'token': token.key,'completeProfile':completeProfile,'riskCalculator':riskCalculator},status=status.HTTP_200_OK)
+                        else:
+                            notificationObject = Notification.objects.create(phone=user,mobileId=mobileId)
+                            return Response({'token': token.key,'completeProfile':completeProfile,'riskCalculator':riskCalculator},status=status.HTTP_200_OK)
                     else:
                         return Response({'response':'Wrong Credentials'},status=status.HTTP_401_UNAUTHORIZED)
                 else:
@@ -416,3 +425,5 @@ class UsersDetailApi(ListAPIView):
             return self.list(request, *args, **kwargs)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+ 

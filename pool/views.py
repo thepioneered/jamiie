@@ -12,6 +12,8 @@ from .serializers import *
 import json
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.authtoken.models import Token
+import requests
+import json
 # Create your views here.
 
 def uniqueid():
@@ -36,6 +38,32 @@ def cookiesAuth(cookies):
                         return True
     except Exception as e:
         print(e)
+
+def notification(mobileId):
+    URL = "https://fcm.googleapis.com/fcm/send"
+    FIREBASE_KEY = 'AAAAfXag7NM:APA91bEogzEjU5msPgxNW8qd-Ih6DJeN6uQDpdchHfnETdGKJ6diMn2jA8pXdNuJA97Jqvv8Y-TDd5QfyWmNiXkxFLLx7PrnI6mHHLTM0BgQcqPq8sE87JHz0CqzJPo4N4RBYjJogBzw'
+    CONTENT_TYPE = 'application/json'
+    HEADERS = {
+      "Content-Type": CONTENT_TYPE,
+       "Authorization": 'key='+FIREBASE_KEY
+    }
+    PARAMS = {
+      "notification": {
+          "body": "This is send from python",
+          "title": "Notification"
+      },
+      "priority": "high",
+       "data": {
+           "click_action": "FLUTTER_NOTIFICATION_CLICK",
+           "id": "1",
+           "status": "done"
+      },
+      "to": mobileId
+    }
+    r = requests.post(URL, data=json.dumps(PARAMS), headers=HEADERS)
+    print(r)
+    return r
+
 class CreatePoolApi(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes=[IsAuthenticated] 
@@ -119,16 +147,74 @@ class PoolUsersDetailApi(APIView):
         return Response(serializer.data)
 
 class PoolDetailsAdminApi(ListAPIView):
-    queryset = CreatePool.objects.all()
+    try:
+        queryset = CreatePool.objects.all()
+        authentication_classes = []
+        permission_classes = []
+        serializer_class = CreatePoolDetailSerializer
+        pagination_class = PageNumberPagination
+
+        def get(self, request, *args, **kwargs):
+            cookies = request.COOKIES
+            response = cookiesAuth(cookies)
+            if response:
+                return self.list(request, *args, **kwargs)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    except Exception as e:
+        print(e)
+
+class PoolDetailApi(APIView):
     authentication_classes = []
     permission_classes = []
-    serializer_class = CreatePoolDetailSerializer
-    pagination_class = PageNumberPagination
+    try:
+        def get(self,request,id):
+            cookies = request.COOKIES
+            if cookiesAuth(cookies):
+                pool = CreatePool.objects.get(poolId = id)
+                serializer = CreatePoolDetailSerializer(pool)
+                return Response(serializer.data,status = status.HTTP_200_OK)
+            
+            else:
+                return Response(status = status.HTTP_401_UNAUTHORIZED)
+    
+    except Exception as e:
+        print(e)
 
-    def get(self, request, *args, **kwargs):
-        cookies = request.COOKIES
-        response = cookiesAuth(cookies)
-        if response:
-            return self.list(request, *args, **kwargs)
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+class SinglePoolDetailApi(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]  
+    try:
+        def get(self,request,id):  
+            queryset = CreatePool.objects.get(poolId=id)
+            serializer = SinglePoolDetailApiSerializer(queryset)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        print(e)
+
+class AdminSinglePoolDetailApi(APIView):
+    authentication_classes=[]
+    permission_classes=[]
+    try:
+        def get(self,request,id):
+            cookies = request.COOKIES
+            print(cookies)
+            if cookiesAuth(cookies):  
+                queryset = CreatePool.objects.get(poolId=id)
+                serializer = SinglePoolDetailApiSerializer(queryset)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+    except Exception as e:
+        print(e)
+
+class NotificationApi(APIView):
+    authentication_classes=[]
+    permission_classes = []
+    def post(self,request):
+        data = request.data
+        phone = data['phone']
+        mobileId = Notification.objects.get(phone=phone)
+        response = notification(mobileId)
+        return Response(status=status.HTTP_200_OK)
