@@ -4,8 +4,22 @@ var data = {
   "createdPools": 9,
   "joinedPools": 12,
   "completedPools": 23,
-  "transactions": [],
-  "upcomingPayments": [],
+  "transactions": [
+    {
+      "id": "1",
+      "name": "Pool1",
+      "date": "22-08-2020",
+      "amount": 1000,
+    }
+  ],
+  "upcomingPayments": [
+    {
+      "id": "1",
+      "name": "Pool1",
+      "date": "22-08-2020",
+      "amount": 1000,
+    }
+  ],
 };
 
 class DashboardModel {
@@ -14,20 +28,38 @@ class DashboardModel {
   int createdPools;
   int joinedPools;
   int completedPools;
+//  List<Transaction> transaction;
+//   List<UpcomingPayments> upcomingPayment;
 
-  PoolNumbers poolNumbers;
-  List<Transaction> transaction;
-  DashboardModel(
-      {this.name, this.moneySaved, this.poolNumbers, this.transaction});
+  DashboardModel({
+    this.name,
+    this.moneySaved,
+    this.createdPools,
+  //  this.transaction,
+    this.completedPools,
+    this.joinedPools,
+  //  this.upcomingPayment,
+  });
 
-  factory DashboardModel.fromJsom(Map<String, dynamic> json) {
+  factory DashboardModel.fromJson(Map<String, dynamic> json) {
+   print(json["upcomingPayments"]);
+    List<Transaction> transactionList = List<Transaction>();
+    // List<UpcomingPayments> upcomingPaymentList = List<UpcomingPayments>();
+    // List<dynamic> jsonUpcomingPayment = json["upcomingPayments"];
+    List<dynamic> jsonTransaction = json["transactions"];
+    // upcomingPaymentList =
+    //     jsonUpcomingPayment.map((e) => UpcomingPayments.fromJson(e)).toList();
+    transactionList =
+        jsonTransaction.map((e) => Transaction.fromJson(e)).toList();
 
-    List<dynamic> list = List<dynamic>();
-    
     return DashboardModel(
       name: json["name"],
       moneySaved: json["moneySaved"],
-     
+      createdPools: json["createdPools"],
+      completedPools: json["completesPools"],
+      joinedPools: json["joinedPools"],
+      // transaction: transactionList,
+      // upcomingPayment: upcomingPaymentList,
     );
   }
 }
@@ -50,7 +82,30 @@ class Transaction {
   String id;
   String name;
   double amount;
-  DateTime date;
+  String date;
 
-  Transaction({this.amount, this.date, this.id, this.name});
+ Transaction.fromJson(Map<String, dynamic> json) :
+    name= json["name"],
+      amount= json["amount"],
+      id= json["id"],
+      date= json["date"];
+  }
+
+
+class UpcomingPayments {
+  String id;
+  String name;
+  int amount;
+  String date;
+
+  // UpcomingPayments({this.amount, this.date, this.id, this.name});
+
+  UpcomingPayments.fromJson(Map<String, dynamic> json):
+
+    
+      name= json["name"],
+      amount= json["amount"],
+      id= json["id"],
+      date= json["date"];
+  
 }

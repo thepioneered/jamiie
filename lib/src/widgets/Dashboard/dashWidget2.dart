@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
-import 'package:Jamiie/src/models/Dashboard/transactionModel.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
@@ -69,8 +68,7 @@ class DashWidget2 extends StatelessWidget {
                               style: AppTextStyle.dashCardHint,
                             ),
                             Text(
-                              DateFormat.yMMMd()
-                                  .format(transactionList[index].date),
+                              transactionList[index].date,
                               style: AppTextStyle.dashCardHint,
                             )
                           ],

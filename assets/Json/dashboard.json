@@ -1,0 +1,72 @@
+{
+    "name": "Mark",
+    "moneySaved": 1000,
+    "createdPools": 9,
+    "joinedPools": 12,
+    "completedPools": 23,
+    "transactions": [
+      {
+        "id": "1",
+        "name": "Pool1",
+        "date": "22-08-2020",
+        "amount": 1000
+      },
+      {
+        "id": "1",
+        "name": "Pool 2",
+        "date": "22-08-2020",
+        "amount": 800
+      },
+      {
+        "id": "1",
+        "name": "Pool 3",
+        "date": "22-08-2020",
+        "amount": 500
+      },
+      {
+        "id": "1",
+        "name": "Pool 4",
+        "date": "22-08-2020",
+        "amount": 900
+      },
+      {
+        "id": "1",
+        "name": "Pool 5",
+        "date": "22-08-2020",
+        "amount": 600
+      }
+    ],
+    "upcomingPayments": [
+      {
+        "id": "1",
+        "name": "Pool 1",
+        "date": "22-08-2020",
+        "amount": 750
+      },
+      {
+        "id": "1",
+        "name": "Pool 2",
+        "date": "22-08-2020",
+        "amount": 190
+      },
+      {
+        "id": "1",
+        "name": "Pool 3",
+        "date": "22-08-2020",
+        "amount": 900
+      },
+      {
+        "id": "1",
+        "name": "Pool 4",
+        "date": "22-08-2020",
+        "amount": 850
+      },
+      {
+        "id": "1",
+        "name": "Pool 5",
+        "date": "22-08-2020",
+        "amount": 650
+      }
+    ]
+  }
+  

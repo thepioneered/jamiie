@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
-import 'package:Jamiie/src/models/Dashboard/transactionModel.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
@@ -64,7 +63,7 @@ class DashWidget3 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        DateFormat.yMMMd().format(upcomingPaymentList[index].date),
+                        upcomingPaymentList[index].date,
                         style: AppTextStyle.dashCardHint,
                       )
                     ],
