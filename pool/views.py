@@ -61,8 +61,7 @@ def notification(mobileId):
       "to": mobileId
     }
     r = requests.post(URL, data=json.dumps(PARAMS), headers=HEADERS)
-    print(r)
-    return r
+    return True
 
 class CreatePoolApi(APIView):
     authentication_classes = [TokenAuthentication]
@@ -215,6 +214,6 @@ class NotificationApi(APIView):
     def post(self,request):
         data = request.data
         phone = data['phone']
-        mobileId = Notification.objects.get(phone=phone)
+        mobileId = Notification.objects.get(phone=phone).mobileId
         response = notification(mobileId)
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_201_CREATED)
