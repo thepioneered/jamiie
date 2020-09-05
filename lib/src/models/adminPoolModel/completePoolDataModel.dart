@@ -13,7 +13,7 @@ class CompletePoolDataModel {
   CompletePoolDataModel({
     this.poolId,
     this.poolOwner,
-    this.poolName,
+    this.poolName, 
     this.contributionAmount,
     this.joinedMember,
     this.createdAt,

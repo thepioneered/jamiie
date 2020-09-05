@@ -18,7 +18,6 @@ class AdminPoolProvider extends ChangeNotifier {
   //   // return await rootBundle.loadString('assets/Json/adminPool.json');
   //   String mobile = await LocalStorage.getMobile();
   //   mobile = mobile.substring(1, mobile.length);
-  //   return await NetworkCalls.getDataFromServer(
   //       key: listOfCreatedPoolsScaffoldKey,
   //       endPoint: EndPoints.createdPoolsList + mobile,
   //       authRequest: true);
