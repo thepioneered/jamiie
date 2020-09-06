@@ -7,8 +7,9 @@ import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 
 import '../../styles/colors.dart';
-import '../../styles/colors.dart';
 import '../../widgets/topHeading.dart';
+import 'dart:convert';
+
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -28,37 +29,49 @@ class DashboardPageWidget extends StatelessWidget {
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
-        body: SingleChildScrollView(
-          child: Container(
-            color: AppColors.backgroundColor,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    topHeading(title: "Hello, Name"),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.primaryBlue,
-                        backgroundImage: NetworkImage(imgUrl),
-                      ),
-                    )
-                  ],
-                ),
-                DashWidget1(
-                  amount: dashboardProvider.poolNumbers.totalAmount,
-                  joinedPools: dashboardProvider.poolNumbers.joinedPools,
-                  createsPools: dashboardProvider.poolNumbers.createdPools,
-                  completedPools: dashboardProvider.poolNumbers.completedPools,
-                ),
-                DashWidget2(dashboardProvider.usertransaction),
-                DashWidget3(dashboardProvider.usertransaction),
-              ],
+        body: FutureBuilder<Null>(
+        //  future: DefaultAssetBundle
+        //             .of(context)
+        //             .loadString('assets/Json/dashboard.json'),
+        future: dashboardProvider.loadPageAsset(), 
+         builder: (context,snapshot){
+
+          
+           return SingleChildScrollView(
+            child: Container(
+              color: AppColors.backgroundColor,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                       topHeading(title: "Hello,"+dashboardProvider.dashboardModel.name),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.primaryBlue,
+                          backgroundImage: NetworkImage(imgUrl),
+                        ),
+                      )
+                    ],
+                  ),
+                  DashWidget1(
+                    amount: dashboardProvider.poolNumbers.totalAmount,
+                    joinedPools: dashboardProvider.poolNumbers.joinedPools,
+                    createsPools: dashboardProvider.poolNumbers.createdPools,
+                    completedPools: dashboardProvider.poolNumbers.completedPools,
+                  ),
+                  // DashWidget2(dashboardProvider.usertransaction),
+                  // DashWidget3(dashboardProvider.usertransaction),
+                ],
+              ),
             ),
-          ),
+          );
+         },
+         
+                  
         ),
       );
     });
