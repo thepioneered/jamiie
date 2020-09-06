@@ -14,29 +14,16 @@ class AdminPoolProvider extends ChangeNotifier {
 
   PoolListModel poolListModel;
 
-  // Future<Map<String, dynamic>> _loadPageAsset() async {
-  //   // return await rootBundle.loadString('assets/Json/adminPool.json');
-  //   String mobile = await LocalStorage.getMobile();
-  //   mobile = mobile.substring(1, mobile.length);
-  //   return await NetworkCalls.getDataFromServer(
-  //       key: listOfCreatedPoolsScaffoldKey,
-  //       endPoint: EndPoints.createdPoolsList + mobile,
-  //       authRequest: true);
-  // }
-
   Future<Null> loadPage() async {
-    // try {
-    //   LoaderDialog.loaderDialog(
-    //       listOfCreatedPoolsScaffoldKey.currentContext);
-    // } catch (e) {
-    //   throw Exception(e);
-    // }
     String mobile = await LocalStorage.getMobile();
     mobile = mobile.substring(1, mobile.length);
+
+    //Network Calls
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
-        key: listOfCreatedPoolsScaffoldKey,
-        endPoint: EndPoints.createdPoolsList + mobile,
-        authRequest: true);
+      key: listOfCreatedPoolsScaffoldKey,
+      endPoint: EndPoints.createdPoolsList + mobile,
+      authRequest: true,
+    );
 
     if (data["status"]) {
       print(data["body"]);

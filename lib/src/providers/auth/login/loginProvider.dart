@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../models/auth/loginResponse.dart';
@@ -22,6 +23,7 @@ class LoginProvider extends ChangeNotifier {
   Login login;
   PageModel pageModel;
   bool showPassword;
+  final _firebaseMessanging = FirebaseMessaging();
 
   //Class Constructor
   LoginProvider() {
@@ -36,6 +38,10 @@ class LoginProvider extends ChangeNotifier {
     );
   }
 
+  Future<String> token(FirebaseMessaging _firebaseMessanging) async {
+    return await _firebaseMessanging.getToken();
+  }
+
   //Form Validation Function
   void validateLoginForm() async {
     pageModel.onceFormSubmitted = true;
@@ -48,12 +54,16 @@ class LoginProvider extends ChangeNotifier {
         throw Exception(e);
       }
       loginFormKey.currentState.save();
+      String mobileToken = await token(_firebaseMessanging);
+      login.mobileToken = mobileToken;
+      print(login.toJson());
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-          key: loginScaffoldKey,
-          endPoint: EndPoints.userLogin,
-          afterRequest: () {},
-          body: login.toJson());
+        key: loginScaffoldKey,
+        endPoint: EndPoints.userLogin,
+        afterRequest: () {}, 
+        body: login.toJson(),
+      );
 
       if (body["status"]) {
         final loginResponse = LoginResponse.fromJson(body["body"]);
@@ -95,7 +105,7 @@ class LoginProvider extends ChangeNotifier {
                 loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
         }
-      } 
+      }
     }
   }
 }

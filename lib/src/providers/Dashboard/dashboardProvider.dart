@@ -1,17 +1,14 @@
-import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
-import 'package:Jamiie/src/models/Dashboard/transactionModel.dart';
+import '../../models/Dashboard/dashCardModel.dart';
+import '../../models/Dashboard/transactionModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DashboardProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> dashboardScaffoldKey = GlobalKey<ScaffoldState>();
 
-     
-    PoolNumbers poolNumbers = PoolNumbers();
+  PoolNumbers poolNumbers = PoolNumbers();
 
-
-    
-  final List<Transaction> usertransaction= [
-    
+  final List<Transaction> usertransaction = [
     Transaction(
       id: 't1',
       amount: 1000,
@@ -49,5 +46,4 @@ class DashboardProvider extends ChangeNotifier {
       name: 'Pool 6',
     ),
   ];
-    
 }

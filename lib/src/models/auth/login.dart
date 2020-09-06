@@ -2,7 +2,8 @@
 class Login {
   String mobile;
   String password;
-  Login({this.mobile, this.password});
+  String mobileToken;
+  Login({this.mobile, this.password,this.mobileToken});
 
 
   void setMobile(String _mobile) {
@@ -13,5 +14,6 @@ class Login {
   Map<String, dynamic> toJson() => {
         "phone": mobile,
         "password": "$password",
+        "mobileId":mobileToken
       };
 }
