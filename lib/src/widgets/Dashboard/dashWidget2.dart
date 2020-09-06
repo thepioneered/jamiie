@@ -1,5 +1,5 @@
-import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
-import 'package:intl/intl.dart';
+import '../../models/Dashboard/dashCardModel.dart';
+
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
 
@@ -29,58 +29,62 @@ class DashWidget2 extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 5),
             height: height * .34,
-            child: NotificationListener(
-              onNotification: (overscroll) {
-                overscroll.disallowGlow();
+            // child: NotificationListener(
+            //   onNotification: (overscroll) {
+            //     overscroll.disallowGlow();
+            //     return false;
+            //   },
+            //   child:
+
+            child: ListView.builder(
+              // reverse: true,
+              // addSemanticIndexes: true,
+              // controller: ScrollController(
+              //   initialScrollOffset: 0,
+              //   keepScrollOffset: false,
+              // ),
+              // shrinkWrap: false,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+
+              itemCount: transactionList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: height * .32 / 5,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            transactionList[index].name,
+                            style: AppTextStyle.dashCardText(Colors.black),
+                          ),
+                          Text(
+                            '+\$${transactionList[index].amount}',
+                            style: AppTextStyle.dashTransAmount,
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Sent',
+                            style: AppTextStyle.dashCardHint,
+                          ),
+                          Text(
+                            transactionList[index].date,
+                            style: AppTextStyle.dashCardHint,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                );
               },
-              child: ListView.builder(
-                reverse: true,
-                addSemanticIndexes: true,
-                controller: ScrollController(
-                  initialScrollOffset: 0,
-                  keepScrollOffset: false,
-                ),
-                shrinkWrap: false,
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: height * .32 / 5,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              transactionList[index].name,
-                              style: AppTextStyle.dashCardText(Colors.black),
-                            ),
-                            Text(
-                              '+\$${transactionList[index].amount}',
-                              style: AppTextStyle.dashTransAmount,
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Sent',
-                              style: AppTextStyle.dashCardHint,
-                            ),
-                            Text(
-                              transactionList[index].date,
-                              style: AppTextStyle.dashCardHint,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                itemCount: 5,
-              ),
             ),
-          )
+          ),
+          // )
         ],
       ),
     );
