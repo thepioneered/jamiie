@@ -49,7 +49,7 @@ class MembersList {
 class JoinPoolListModel{
   
   List<JoinPoolListDataModel> joinPoolListDataModel;
-
+  
   JoinPoolListModel({this.joinPoolListDataModel});
 
   factory JoinPoolListModel.fromJson(Map<String,dynamic> json){

@@ -67,7 +67,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-          height: height,
+         // height: height,
           padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 35.0),
           child: Form(
             key: completeProfileProvider.completeProfileFormKey,

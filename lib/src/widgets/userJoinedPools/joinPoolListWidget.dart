@@ -25,6 +25,8 @@ class JoinPoolListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+       margin: EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
+      alignment: Alignment.center,
       width: double.infinity,
       padding: const EdgeInsets.all(15.0),
       height: MediaQuery.of(context).size.height * .45,
