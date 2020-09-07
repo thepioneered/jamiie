@@ -366,7 +366,7 @@ class ScoreCalculator(APIView):
             savingMoney = RiskCondition.objects.get(poolingRecord=poolingRecord)
             loans = RiskCondition.objects.get(repaymentRecord = repaymentRecord)
             living = RiskCondition.objects.get(living=living)
-            riskScore =13 + jobAge.score + family.score + age.score + savingMoney.score + loans.score + living.score
+            riskScore =12 + jobAge.score + family.score + age.score + savingMoney.score + loans.score + living.score
             serializer = UserInfoSerializer(data = data)
             if serializer.is_valid():
                     serializer.save()
