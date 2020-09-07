@@ -11,6 +11,8 @@ class CreatePool(models.Model):
     totalMember = models.IntegerField(null=False)
     joinedMember = models.IntegerField(default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
+    startStatus = models.BooleanField(default=False)
+    completeStatus = models.BooleanField(default=False)
 
     def __str__(self):
         poolid = self.poolId

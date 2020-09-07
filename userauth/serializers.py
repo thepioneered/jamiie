@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
-        fields = ('phone','jobAge','family','age','savingMoney','loans','living')
+        fields = ('riskScore','riskBand',)
 
 class UsersDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,6 +27,7 @@ class UsersDetailSerializer(serializers.ModelSerializer):
         fields = ('image','phone','name','email','createdAt','lastLogin',)
 
 class UsersDetailPoolSerializer(serializers.ModelSerializer):
+    riskStatus = UserInfoSerializer()
     class Meta:
         model = User
-        fields = ('image','phone','name',)
+        fields = ('image','phone','name','riskStatus',)

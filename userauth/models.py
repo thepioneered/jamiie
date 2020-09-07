@@ -137,15 +137,15 @@ class RiskCondition(models.Model):
         return 'score = '+str(score)
 
 class UserInfo(models.Model):
-    phone = models.ForeignKey(User, related_name='phoneno', on_delete = models.CASCADE)
-    jobAge = models.CharField(max_length=255)
-    family = models.CharField(max_length=255)
-    age = models.CharField(max_length=255)
-    savingMoney = models.CharField(max_length=255)
-    loans = models.CharField(max_length=255)
-    living = models.CharField(max_length=255)
-    riskScore = models.IntegerField(blank=False, null=True)
-    riskBand = models.CharField(max_length=255)
+    phone = models.ForeignKey(User, related_name='riskStatus', on_delete = models.CASCADE)
+    # jobAge = models.CharField(max_length=255)
+    # family = models.CharField(max_length=255)
+    # age = models.CharField(max_length=255)
+    # savingMoney = models.CharField(max_length=255)
+    # loans = models.CharField(max_length=255)
+    # living = models.CharField(max_length=255)
+    riskScore = models.IntegerField(blank=False, null=True,default=56)
+    riskBand = models.CharField(max_length=255,null=True,default="Moderate")
 
     def __str__(self):
         phone=self.phone
@@ -154,3 +154,7 @@ class UserInfo(models.Model):
 class Notification(models.Model):
     phone = models.ForeignKey(User, on_delete=models.CASCADE)
     mobileId = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        phone = self.phone
+        return str(phone)

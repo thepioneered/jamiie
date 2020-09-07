@@ -182,8 +182,8 @@ class PoolDetailApi(APIView):
         print(e)
 
 class SinglePoolDetailApi(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]  
+    authentication_classes = []
+    permission_classes = []  
     try:
         def get(self,request,id):  
             queryset = CreatePool.objects.get(poolId=id)
