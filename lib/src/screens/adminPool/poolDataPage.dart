@@ -1,4 +1,6 @@
+import 'package:Jamiie/src/models/adminPoolModel/completePoolDataModel.dart';
 import 'package:Jamiie/src/providers/adminPool/completePoolDataProvider.dart';
+import 'package:Jamiie/src/providers/adminPool/roundListPage.dart';
 import 'package:Jamiie/src/repositry/testData.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
@@ -47,31 +49,61 @@ class PoolDataPageWidget extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Container(
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //           '${data.joinedMember.toString()} / ${data.totalMember.toString()}'),
+                    //     ],
+                    //   ),
+                    // ),
                     Container(
+                      height: height * 0.35,
                       child: Row(
                         children: [
-                          Text(
-                              '${data.joinedMember.toString()} / ${data.totalMember.toString()}'),
+                          Container(
+                            width:
+                                (MediaQuery.of(context).size.width - 30.0) / 2,
+                            child: Column(
+                              children: [
+                                dataContainer("Pool Name", data.poolName),
+                                dataContainer("Pool Owner", data.poolOwner),
+                                dataContainer("Pool Type", data.poolType),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width:
+                                (MediaQuery.of(context).size.width - 30.0) / 2,
+                            child: Column(
+                              children: [
+                                dataContainer("Contribution Amount",
+                                    data.contributionAmount.toString()),
+                                dataContainer("Members",
+                                    "${data.joinedMember.toString()}/${data.totalMember.toString()}"),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
+
+                    //60 percent of total height
                     Container(
-                      height: height * 0.60,
+                      height: height * 0.50,
                       child: ListView.builder(
                           controller:
                               ScrollController(initialScrollOffset: 0.0),
-                          itemCount: 10,
-                          // itemCount: data.members.length,
+                          itemCount: data.members.length,
                           itemBuilder: (context, index) {
                             return Container(
                               height: 60.0,
                               padding: EdgeInsets.all(10.0),
                               margin: EdgeInsets.only(bottom: 10.0),
-                              color: AppColors.green,
+                             
                               child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text((index + 1).toString()),
                                   SizedBox(
@@ -81,7 +113,7 @@ class PoolDataPageWidget extends StatelessWidget {
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  Text(data.members[0].memberDetails.name),
+                                  Text(data.members[index].memberDetails.name),
                                   Expanded(
                                     child: Container(),
                                   ),
@@ -91,6 +123,12 @@ class PoolDataPageWidget extends StatelessWidget {
                             );
                           }),
                     ),
+
+                    SizedBox(
+                      height: 10.0,
+                    ),
+
+                    // 7 percent of total height
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
@@ -98,7 +136,22 @@ class PoolDataPageWidget extends StatelessWidget {
                             ? () {
                                 print("Working");
                               }
-                            : null,
+                            : () {
+                                List<MemberModel> a = data.members;
+                                a.shuffle();
+                                print(a[0].memberDetails.name);
+                                print(a[1].memberDetails.name);
+
+                                //TODO: Edit is required here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => ReorderableListDemo(
+                                      memberModel: a,
+                                    ),
+                                  ),
+                                );
+                              },
                         title: "Start Pool",
                       ),
                     )
@@ -107,6 +160,32 @@ class PoolDataPageWidget extends StatelessWidget {
               );
             }
           }),
+    );
+  }
+
+  static Widget dataContainer(String title, String data) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 5.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$title :',
+            style: AppTextStyle.joinPoolHeading,
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 15.0,
+              ),
+              Text(data, style: AppTextStyle.joinPoolSubHeading),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

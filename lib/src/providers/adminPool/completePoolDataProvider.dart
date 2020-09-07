@@ -19,10 +19,11 @@ class CompletePoolDataProvider with ChangeNotifier {
     print(data);
 
     if (data['status']) {
-      print(data["body"]);
+      // print(data["body"]);
       completePoolDataModel = CompletePoolDataModel.formJson(data["body"]);
-      print(completePoolDataModel.deadline);
-      print(completePoolDataModel.members[0].memberDetails.imageURL);
+      print(data["body"]);
+      // print(completePoolDataModel.deadline);
+      // print(completePoolDataModel.members[0].memberDetails.imageURL);
     }
   }
 }

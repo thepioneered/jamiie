@@ -67,7 +67,7 @@ class DashboardPageWidget extends StatelessWidget {
                             dashboardProvider.dashboardModel.completedPools,
                       ),
                       DashWidget2(dashboardProvider.dashboardModel.transaction),
-                      // DashWidget3(dashboardProvider.dashboardModel.transaction),
+                      DashWidget3(dashboardProvider.dashboardModel.transaction),
                     ],
                   ),
                 ),

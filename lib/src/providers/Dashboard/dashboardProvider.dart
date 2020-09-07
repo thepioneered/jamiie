@@ -11,7 +11,6 @@ class DashboardProvider extends ChangeNotifier {
     await loadJson().then((value) {
       Map<String, dynamic> val = json.decode(value);
       dashboardModel = DashboardModel.fromJson(val);
-
       return null;
     });
   }
