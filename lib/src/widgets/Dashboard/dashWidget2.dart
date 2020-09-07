@@ -2,6 +2,7 @@ import '../../models/Dashboard/dashCardModel.dart';
 
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class DashWidget2 extends StatelessWidget {
   DashWidget2(this.transactionList);
@@ -28,7 +29,8 @@ class DashWidget2 extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(top: 5),
-            height: height * .34,
+
+            constraints: BoxConstraints(maxHeight: height * .34),
             // child: NotificationListener(
             //   onNotification: (overscroll) {
             //     overscroll.disallowGlow();
@@ -55,11 +57,12 @@ class DashWidget2 extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             transactionList[index].name,
+                            maxLines: 1,
                             style: AppTextStyle.dashCardText(Colors.black),
                           ),
-                          Text(
+                          AutoSizeText(
                             '+\$${transactionList[index].amount}',
                             style: AppTextStyle.dashTransAmount,
                           )
@@ -68,12 +71,14 @@ class DashWidget2 extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             'Sent',
+                            minFontSize: 9,
                             style: AppTextStyle.dashCardHint,
                           ),
-                          Text(
+                          AutoSizeText(
                             transactionList[index].date,
+                            minFontSize: 9,
                             style: AppTextStyle.dashCardHint,
                           )
                         ],

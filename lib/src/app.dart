@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:Jamiie/src/screens/Dashboard/dashboard.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/moneyGoalPage.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,9 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
+
         // home: ReorderableListDemo(),
+
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;
