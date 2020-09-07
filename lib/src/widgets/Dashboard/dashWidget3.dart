@@ -1,12 +1,12 @@
 import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
-import 'package:intl/intl.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
 
 class DashWidget3 extends StatelessWidget {
 
   DashWidget3(this.upcomingPaymentList);
-  final List<Transaction> upcomingPaymentList; 
+  final List<UpcomingPayments> upcomingPaymentList; 
   
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,11 @@ class DashWidget3 extends StatelessWidget {
             style: AppTextStyle.dashCardHeading,
           ),
           Container(
+            constraints: BoxConstraints(
+              maxHeight:height * .34 
+            ),
       padding: EdgeInsets.only(top: 5),
-      height: height * .34,
+      
       child: NotificationListener(
         onNotification: (overscroll) {
           overscroll.disallowGlow();
@@ -39,7 +42,7 @@ class DashWidget3 extends StatelessWidget {
             initialScrollOffset: 0,
             keepScrollOffset: false,
           ),
-          shrinkWrap: false,
+          shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 5),
           itemBuilder: (context, index) {
             return Container(
@@ -49,11 +52,11 @@ class DashWidget3 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      AutoSizeText(
                         upcomingPaymentList[index].name,
                         style: AppTextStyle.dashCardText(Colors.black),
                       ),
-                      Text(
+                      AutoSizeText(
                         '+\$${upcomingPaymentList[index].amount}',
                         style: AppTextStyle.dashTransAmount,
                       )
@@ -72,7 +75,7 @@ class DashWidget3 extends StatelessWidget {
               ),
             );
           },
-          itemCount: 5,
+          itemCount: upcomingPaymentList.length,
         ),
       ),
     ),

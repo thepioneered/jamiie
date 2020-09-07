@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../styles/colors.dart';
 import '../../styles/text.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 class DashWidget1 extends StatelessWidget {
   DashWidget1({
     @required this.amount,
@@ -34,8 +34,9 @@ class DashWidget1 extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                AutoSizeText(
                   'Money saved with us',
+                  maxLines: 2,
                   style: AppTextStyle.dashCardText(AppColors.lightBlue),
                 ),
                 Container(
@@ -47,47 +48,48 @@ class DashWidget1 extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                      Text(
+                      AutoSizeText(
                         amount.toString(),
+                        maxLines: 2,
                         style: AppTextStyle.dashCardNumber(AppColors.white),
                       )
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.lightBlue,
-                          borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .11,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.lightBlue,
-                          borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .19,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.lightBlue,
-                          borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .14,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.lightBlue,
-                          borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .1,
-                    ),
-                  ],
-                )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //   crossAxisAlignment: CrossAxisAlignment.end,
+                //   children: [
+                //     Container(
+                //       decoration: BoxDecoration(
+                //           color: AppColors.lightBlue,
+                //           borderRadius: BorderRadius.circular(20)),
+                //       width: (width / 2 - 30) / 8,
+                //       height: height * .11,
+                //     ),
+                //     Container(
+                //       decoration: BoxDecoration(
+                //           color: AppColors.lightBlue,
+                //           borderRadius: BorderRadius.circular(20)),
+                //       width: (width / 2 - 30) / 8,
+                //       height: height * .19,
+                //     ),
+                //     Container(
+                //       decoration: BoxDecoration(
+                //           color: AppColors.lightBlue,
+                //           borderRadius: BorderRadius.circular(20)),
+                //       width: (width / 2 - 30) / 8,
+                //       height: height * .14,
+                //     ),
+                //     Container(
+                //       decoration: BoxDecoration(
+                //           color: AppColors.lightBlue,
+                //           borderRadius: BorderRadius.circular(20)),
+                //       width: (width / 2 - 30) / 8,
+                //       height: height * .1,
+                //     ),
+                //   ],
+                // )
               ],
             ),
           ),
@@ -109,13 +111,15 @@ class DashWidget1 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      AutoSizeText(
                         'Created Pools',
+                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
                             AppColors.primaryColorPurple),
                       ),
-                      Text(
+                      AutoSizeText(
                         createsPools.toString(),
+                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
                             AppColors.primaryColorPurple),
                       ),
@@ -130,13 +134,15 @@ class DashWidget1 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      AutoSizeText(
                         'Joined Pools',
+                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
                             AppColors.primaryColorPurple),
                       ),
-                      Text(
+                      AutoSizeText(
                         joinedPools.toString(),
+                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
                             AppColors.primaryColorPurple),
                       ),
@@ -151,13 +157,15 @@ class DashWidget1 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      AutoSizeText(
                         'Completed',
+                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
                             AppColors.primaryColorPurple),
                       ),
-                      Text(
+                      AutoSizeText(
                         completedPools.toString(),
+                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
                             AppColors.primaryColorPurple),
                       ),

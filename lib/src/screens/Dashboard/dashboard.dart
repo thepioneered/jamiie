@@ -5,10 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
-
 import '../../styles/colors.dart';
 import '../../widgets/topHeading.dart';
-import 'dart:convert';
+
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -67,7 +66,7 @@ class DashboardPageWidget extends StatelessWidget {
                             dashboardProvider.dashboardModel.completedPools,
                       ),
                       DashWidget2(dashboardProvider.dashboardModel.transaction),
-                      // DashWidget3(dashboardProvider.dashboardModel.transaction),
+                      DashWidget3(dashboardProvider.dashboardModel.upcomingPayment),
                     ],
                   ),
                 ),
