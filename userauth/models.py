@@ -125,11 +125,12 @@ class OTP(models.Model):
         return self.phone
 
 class RiskCondition(models.Model):
+
     jobAge = models.CharField(max_length=255)
     family = models.CharField(max_length=255)
     age = models.CharField(max_length=255)
-    savingMoney = models.CharField(max_length=255)
-    loans = models.CharField(max_length=255)
+    poolingRecord = models.CharField(max_length=255)
+    repaymentRecord = models.CharField(max_length=255)
     living = models.CharField(max_length=255)
     score = models.IntegerField(blank=False, null=False)
     def __str__(self):
@@ -137,15 +138,16 @@ class RiskCondition(models.Model):
         return 'score = '+str(score)
 
 class UserInfo(models.Model):
+
     phone = models.ForeignKey(User, related_name='riskStatus', on_delete = models.CASCADE)
-    # jobAge = models.CharField(max_length=255)
-    # family = models.CharField(max_length=255)
-    # age = models.CharField(max_length=255)
-    # savingMoney = models.CharField(max_length=255)
-    # loans = models.CharField(max_length=255)
-    # living = models.CharField(max_length=255)
-    riskScore = models.IntegerField(blank=False, null=True,default=56)
-    riskBand = models.CharField(max_length=255,null=True,default="Moderate")
+    jobAge = models.CharField(max_length=255)
+    family = models.CharField(max_length=255)
+    age = models.CharField(max_length=255)
+    poolingRecord = models.CharField(max_length=255)
+    repaymentRecord = models.CharField(max_length=255)
+    living = models.CharField(max_length=255)
+    riskScore = models.IntegerField(blank=False, null=True)
+    riskBand = models.CharField(max_length=255,null=True)
 
     def __str__(self):
         phone=self.phone

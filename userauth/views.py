@@ -357,22 +357,22 @@ class ScoreCalculator(APIView):
             jobAge = data['jobAge']
             family = data['family']
             age = data['age']
-            savingMoney = data['savingMoney']
-            loans  = data['loans']
+            poolingRecord = data['poolingRecord']
+            repaymentRecord  = data['repaymentRecord']
             living = data['living']
-            jobAge = RiskCondition.objects.get(jobage=jobAge)
+            jobAge = RiskCondition.objects.get(jobAge=jobAge)
             family = RiskCondition.objects.get(family=family)
             age = RiskCondition.objects.get(age=age)
-            savingMoney = RiskCondition.objects.get(savingmoney=savingMoney)
-            loans = RiskCondition.objects.get(loans=loans)
+            savingMoney = RiskCondition.objects.get(poolingRecord=poolingRecord)
+            loans = RiskCondition.objects.get(repaymentRecord = repaymentRecord)
             living = RiskCondition.objects.get(living=living)
-            riskScore = jobAge.score + family.score + age.score + savingMoney.score + loans.score + living.score
+            riskScore =13 + jobAge.score + family.score + age.score + savingMoney.score + loans.score + living.score
             serializer = UserInfoSerializer(data = data)
             if serializer.is_valid():
                     serializer.save()
                     user = UserInfo.objects.get(phone=phone)
                     user.riskScore = riskScore
-                    if riskScore >=24 and riskScore<=50:
+                    if riskScore >=21 and riskScore<=50:
                         user.riskBand = 'Risky'
                     elif riskScore >=51 and riskScore<=70:
                         user.riskBand = 'Moderate'
