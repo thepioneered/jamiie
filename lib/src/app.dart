@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:Jamiie/src/screens/Dashboard/dashboard.dart';
+import 'package:Jamiie/src/screens/auth/afterLogin/completeProfilePage.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/moneyGoalPage.dart';
+import 'package:Jamiie/src/screens/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,13 +84,13 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        // home: ReorderableListDemo(),
+        home: AppNavigationBar(),
 
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvi  der, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );

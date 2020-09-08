@@ -1,16 +1,10 @@
-import 'package:Jamiie/src/models/adminPoolModel/poolListModel.dart';
-import 'package:Jamiie/src/models/poolId.dart';
-import 'package:Jamiie/src/providers/adminPool/adminPoolProvider.dart';
-import 'package:Jamiie/src/repositry/textConst.dart';
-import 'package:Jamiie/src/widgets/appImage.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:share/share.dart';
-
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../models/adminPoolModel/poolListModel.dart';
+import '../../providers/adminPool/adminPoolProvider.dart';
+import 'package:provider/provider.dart';
 import '../../styles/text.dart';
 import '../../styles/colors.dart';
 
@@ -58,8 +52,6 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
             return Center(
               child: CupertinoActivityIndicator(),
             );
-            //   // return
-
           } else if (!snapshot.hasError) {
             return Container(
               child: ListView.builder(
@@ -84,10 +76,11 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
     );
   }
 
-  Widget _data(
-      {@required String poolName,
-      @required int poolContribution,
-      @required String poolId}) {
+  Widget _data({
+    @required String poolName,
+    @required int poolContribution,
+    @required String poolId,
+  }) {
     return Container(
       margin: EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
       alignment: Alignment.center,

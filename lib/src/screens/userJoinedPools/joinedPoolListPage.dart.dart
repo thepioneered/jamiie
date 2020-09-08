@@ -1,8 +1,8 @@
-import 'package:Jamiie/src/models/createPoolModels/poolidModel.dart';
-import 'package:Jamiie/src/models/userJoinedPools/joinPoolListModel.dart';
-import 'package:Jamiie/src/providers/userJoinedPools/joinPoolProvider.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
+import '../../models/createPoolModels/poolidModel.dart';
+import '../../models/userJoinedPools/joinPoolListModel.dart';
+import '../../providers/userJoinedPools/joinPoolProvider.dart';
+import '../../styles/colors.dart';
+import '../../widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../styles/base.dart';

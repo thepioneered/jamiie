@@ -67,7 +67,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-          height: height,
+          // height: height,
           padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 35.0),
           child: Form(
             key: completeProfileProvider.completeProfileFormKey,
@@ -297,46 +297,17 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                               .completeProfileModel.howLongwithEmployer = e,
                           prefixIcon: null),
                     ),
-                    // Expanded(
-                    //   child: Container(
-                    //       // color: Colors.blueAccent,
-                    //       height: 50.0,
-                    //       alignment: Alignment.center,
-                    //       child:  DropdownButtonFormField<String>(
-                    //         onSaved: null ,//(e) =>
-                    //             // createPoolProvider.createPool.poolType = e,
-                    //         decoration: AppInputDecoration.dropdownDecoration(),
-                    //         autovalidate: false,
-                    //         hint: Text(
-                    //           'Pool Type',
-                    //           style: AppTextStyle.hintText,
-                    //         ),
-                    //         validator: (value) => value == null
-                    //             ? 'Please select Pool type'
-                    //             : null,
-                    //         onChanged: (e) {},
-                    //         items: _dropdownValues
-                    //             .map((value) => DropdownMenuItem<String>(
-                    //                   child: Text(
-                    //                     value,
-                    //                     style: AppTextStyle.inputText,
-                    //                   ),
-                    //                   value: value,
-                    //                 ))
-                    //             .toList(),
-                    //       ),
-                    // ),
-                    // )
                   ],
                 ),
                 Container(
+                  margin: EdgeInsets.only(bottom:10.0),
                   height: height * 0.07,
                   child: AppButton.loginButton(
                       onTap: () {
                         completeProfileProvider.completeProfileLogic();
                       },
                       title: "Submit"),
-                )
+                ),
               ],
             ),
           ),

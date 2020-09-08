@@ -1,3 +1,22 @@
+class JoinPoolListModel {
+  List<JoinPoolListDataModel> joinPoolListDataModel;
+
+  JoinPoolListModel({this.joinPoolListDataModel});
+
+  factory JoinPoolListModel.fromJson(Map<String, dynamic> json) {
+    List<JoinPoolListDataModel> list = List<JoinPoolListDataModel>();
+    List<dynamic> jsonList = json["joinPoolListDataModel"];
+    list = jsonList.map((e) => JoinPoolListDataModel.fromJson(e)).toList();
+
+
+    return JoinPoolListModel(
+      joinPoolListDataModel: list,
+    );
+  
+  
+  }
+}
+
 class JoinPoolListDataModel {
   int poolAmount;
   int monthlyTotalAmount;
@@ -8,16 +27,15 @@ class JoinPoolListDataModel {
   String poolType;
   List<MembersList> membersList;
 
-  JoinPoolListDataModel({
-    this.amountSaved,
-    this.membersList,
-    this.monthlyTotalAmount,
-    this.poolAmount,
-    this.poolName,
-    this.poolProfile,
-    this.poolId,
-    this.poolType
-  });
+  JoinPoolListDataModel(
+      {this.amountSaved,
+      this.membersList,
+      this.monthlyTotalAmount,
+      this.poolAmount,
+      this.poolName,
+      this.poolProfile,
+      this.poolId,
+      this.poolType});
 
   factory JoinPoolListDataModel.fromJson(Map<String, dynamic> json) {
     List<MembersList> list = List<MembersList>();
@@ -40,24 +58,8 @@ class JoinPoolListDataModel {
 class MembersList {
   String url;
   String name;
-  MembersList({this.url,this.name});
+  MembersList({this.url, this.name});
   MembersList.fromJson(Map<String, dynamic> json)
       : url = json["url"],
         name = json["name"];
-}
-
-class JoinPoolListModel{
-  
-  List<JoinPoolListDataModel> joinPoolListDataModel;
-
-  JoinPoolListModel({this.joinPoolListDataModel});
-
-  factory JoinPoolListModel.fromJson(Map<String,dynamic> json){
-    List<JoinPoolListDataModel> list = List<JoinPoolListDataModel>();
-    List<dynamic> jsonList = json["joinPoolListDataModel"];
-    list = jsonList.map((e) => JoinPoolListDataModel.fromJson(e)).toList();
-    return JoinPoolListModel(
-      joinPoolListDataModel: list,
-    );
-  }
 }
