@@ -21,8 +21,6 @@ class DashboardPage extends StatelessWidget {
 class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String imgUrl =
-        "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb";
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
@@ -52,7 +50,8 @@ class DashboardPageWidget extends StatelessWidget {
                             padding: EdgeInsets.only(right: 20),
                             child: CircleAvatar(
                               backgroundColor: AppColors.primaryBlue,
-                              backgroundImage: NetworkImage(imgUrl),
+                              backgroundImage: NetworkImage(
+                                  dashboardProvider.dashboardModel.imgUrl),
                             ),
                           )
                         ],

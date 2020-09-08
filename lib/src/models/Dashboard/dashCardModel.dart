@@ -4,6 +4,7 @@ class DashboardModel {
   int createdPools;
   int joinedPools;
   int completedPools;
+  String imgUrl;
   List<Transaction> transaction;
   List<UpcomingPayments> upcomingPayment;
 
@@ -15,6 +16,7 @@ class DashboardModel {
     this.completedPools,
     this.joinedPools,
     this.upcomingPayment,
+    this.imgUrl,
   });
 
   factory DashboardModel.fromJson(Map<String, dynamic> json) {
@@ -33,6 +35,7 @@ class DashboardModel {
       createdPools: json["createdPools"],
       completedPools: json["completedPools"],
       joinedPools: json["joinedPools"],
+      imgUrl: json["imgUrl"],
       transaction: transactionList,
       upcomingPayment: upcomingPaymentList,
     );

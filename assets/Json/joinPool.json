@@ -1,13 +1,14 @@
 {
   "joinPoolListDataModel": [
     {
-      "poolName": "ABC",
+      "poolName": "Pool 1",
       "poolId": "abcs184g",
       "poolProfile": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
       "poolAmount": 300,
       "monthlyTotalAmount": 3000,
       "anountSaved": 600,
       "poolType": "Monthly",
+      "status": true,
       "membersList": [
         {
           "url": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
@@ -24,13 +25,14 @@
       ]
     },
     {
-      "poolName": "ABC",
+      "poolName": "Pool 2",
       "poolId": "abcs184g",
       "poolProfile": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
       "poolAmount": 500,
       "monthlyTotalAmount": 5000,
       "anountSaved": 1000,
       "poolType": "Weekly",
+      "status": false,
       "membersList": [
         {
           "url": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",

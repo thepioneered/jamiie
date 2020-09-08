@@ -8,12 +8,9 @@ class JoinPoolListModel {
     List<dynamic> jsonList = json["joinPoolListDataModel"];
     list = jsonList.map((e) => JoinPoolListDataModel.fromJson(e)).toList();
 
-
     return JoinPoolListModel(
       joinPoolListDataModel: list,
     );
-  
-  
   }
 }
 
@@ -25,6 +22,7 @@ class JoinPoolListDataModel {
   String poolName;
   String poolProfile;
   String poolType;
+  bool status;
   List<MembersList> membersList;
 
   JoinPoolListDataModel(
@@ -35,7 +33,9 @@ class JoinPoolListDataModel {
       this.poolName,
       this.poolProfile,
       this.poolId,
-      this.poolType});
+      this.poolType,
+      this.status,
+      });
 
   factory JoinPoolListDataModel.fromJson(Map<String, dynamic> json) {
     List<MembersList> list = List<MembersList>();
@@ -50,6 +50,7 @@ class JoinPoolListDataModel {
       poolName: json["poolName"],
       poolProfile: json["poolProfile"],
       poolType: json["poolType"],
+      status: json["status"],
       membersList: list,
     );
   }
@@ -65,9 +66,9 @@ class MembersList {
 }
 
 // class JoinPoolListModel{
-  
+
 //   List<JoinPoolListDataModel> joinPoolListDataModel;
-  
+
 //   JoinPoolListModel({this.joinPoolListDataModel});
 
 //   factory JoinPoolListModel.fromJson(Map<String,dynamic> json){

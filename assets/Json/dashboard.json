@@ -1,55 +1,55 @@
 {
-    "name": "Mark",
-    "moneySaved": 1000,
-    "createdPools": 9,
-    "joinedPools": 12,
-    "completedPools": 23,
-    "transactions": [
-      {
-        "id": "1",
-        "name": "Pool 1",
-        "date": "22-08-2020",
-        "amount": 1000
-      },
-      {
-        "id": "1",
-        "name": "Pool 2",
-        "date": "22-08-2020",
-        "amount": 1000
-      },
-      {
-        "id": "1",
-        "name": "Pool 3",
-        "date": "22-08-2020",
-        "amount": 1000
-      },
-      {
-        "id": "1",
-        "name": "Pool 4",
-        "date": "22-08-2020",
-        "amount": 1000
-      },
-      {
-        "id": "1",
-        "name": "Pool 4",
-        "date": "22-08-2020",
-        "amount": 1000
-      },
-      {
-        "id": "1",
-        "name": "Pool 5",
-        "date": "22-08-2020",
-        "amount": 1000
-      }
-    ],
-    "upcomingPayments": [
-      {
-        "id": "1",
-        "name": "Pool 1",
-        "date": "22-08-2020",
-        "amount": 750
-      }
-      
-    ]
-  }
-  
+  "name": "Mark",
+  "moneySaved": 1000,
+  "createdPools": 9,
+  "joinedPools": 12,
+  "completedPools": 23,
+  "imgUrl": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
+
+  "transactions": [
+    {
+      "id": "1",
+      "name": "Pool 1",
+      "date": "22-08-2020",
+      "amount": 1000
+    },
+    {
+      "id": "1",
+      "name": "Pool 2",
+      "date": "22-08-2020",
+      "amount": 1000
+    },
+    {
+      "id": "1",
+      "name": "Pool 3",
+      "date": "22-08-2020",
+      "amount": 1000
+    },
+    {
+      "id": "1",
+      "name": "Pool 4",
+      "date": "22-08-2020",
+      "amount": 1000
+    },
+    {
+      "id": "1",
+      "name": "Pool 4",
+      "date": "22-08-2020",
+      "amount": 1000
+    },
+    {
+      "id": "1",
+      "name": "Pool 5",
+      "date": "22-08-2020",
+      "amount": 1000
+    }
+  ],
+  "upcomingPayments": [
+    {
+      "id": "1",
+      "name": "Pool 1",
+      "date": "22-08-2020",
+      "amount": 750
+    }
+  ]
+}

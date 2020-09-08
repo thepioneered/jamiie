@@ -40,42 +40,28 @@ class MyPoolWidget extends StatelessWidget {
             );
           } else if (!snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
-            // return Container(
-            //   width: double.infinity,
-            //   padding: EdgeInsets.only(top: BaseStyles.topPadding),
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       topHeading(title: "My Pool's"),
             return Container(
-              height: MediaQuery.of(context).size.height * 2,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              //height: MediaQuery.of(context).size.height * 2,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  var data = joinPoolProvider.joinPoolListModel;
+                  var data = joinPoolProvider
+                      .joinPoolListModel.joinPoolListDataModel[index];
                   return JoinPoolListWidget(
-                    data.joinPoolListDataModel[index].poolProfile,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].poolName,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].poolAmount,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].poolType,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].monthlyTotalAmount,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].amountSaved,
-                    joinPoolProvider.joinPoolListModel
-                        .joinPoolListDataModel[index].membersList,
+                    status: data.status,
+                    imgUrl: data.poolProfile,
+                    amountSaved: data.amountSaved,
+                    membersList: data.membersList,
+                    monthlyTotalAmount: data.monthlyTotalAmount,
+                    poolAmount: data.poolAmount,
+                    poolName: data.poolName,
+                    poolType: data.poolType,
                   );
                 },
                 itemCount: joinPoolProvider
                     .joinPoolListModel.joinPoolListDataModel.length,
               ),
             );
-            //       ),
-            //     ],
-            //   ),
-            // );
           } else {
             return Center(
               child: Text(snapshot.error),
