@@ -87,7 +87,7 @@ class _AppState extends State<App> {
         home: AppNavigationBar(),
 
         // home: Consumer<AppProvider>(
-        //   builder: (_, appProvi  der, child) {
+        //   builder: (_, appProvider, child) {
         //     return appProvider.child;
         //   },
         // ),

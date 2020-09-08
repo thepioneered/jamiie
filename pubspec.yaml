@@ -46,6 +46,7 @@ flutter:
     - assets/fonts/
     - assets/Json/adminPool.json
     - assets/Json/dashboard.json
+    - assets/Json/joinPool.json
 
   fonts:
     - family: Poppins
