@@ -63,22 +63,19 @@ class MembersList {
       : url = json["url"],
         name = json["name"];
 }
-<<<<<<< HEAD
-=======
 
-class JoinPoolListModel{
+// class JoinPoolListModel{
   
-  List<JoinPoolListDataModel> joinPoolListDataModel;
+//   List<JoinPoolListDataModel> joinPoolListDataModel;
   
-  JoinPoolListModel({this.joinPoolListDataModel});
+//   JoinPoolListModel({this.joinPoolListDataModel});
 
-  factory JoinPoolListModel.fromJson(Map<String,dynamic> json){
-    List<JoinPoolListDataModel> list = List<JoinPoolListDataModel>();
-    List<dynamic> jsonList = json["joinPoolListDataModel"];
-    list = jsonList.map((e) => JoinPoolListDataModel.fromJson(e)).toList();
-    return JoinPoolListModel(
-      joinPoolListDataModel: list,
-    );
-  }
-}
->>>>>>> 2dba7c093da86a139a280412daf5199ada3135c5
+//   factory JoinPoolListModel.fromJson(Map<String,dynamic> json){
+//     List<JoinPoolListDataModel> list = List<JoinPoolListDataModel>();
+//     List<dynamic> jsonList = json["joinPoolListDataModel"];
+//     list = jsonList.map((e) => JoinPoolListDataModel.fromJson(e)).toList();
+//     return JoinPoolListModel(
+//       joinPoolListDataModel: list,
+//     );
+//   }
+// }
