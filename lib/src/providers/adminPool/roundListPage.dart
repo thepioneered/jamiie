@@ -1,6 +1,5 @@
-import 'package:Jamiie/src/models/adminPoolModel/completePoolDataModel.dart';
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/widgets/pageHeading.dart';
+import '../../models/adminPoolModel/completePoolDataModel.dart';
+import '../../widgets/pageHeading.dart';
 
 import '../../widgets/appBar.dart';
 import '../../widgets/button/appButton.dart';

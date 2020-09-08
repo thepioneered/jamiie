@@ -1,6 +1,5 @@
-import 'package:Jamiie/src/styles/base.dart';
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/widgets/pageHeading.dart';
+import '../../styles/base.dart';
+import '../../widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
 
 class GroupModel {

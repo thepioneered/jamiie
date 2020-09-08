@@ -35,6 +35,7 @@ class DashWidget3 extends StatelessWidget {
       child: NotificationListener(
         onNotification: (overscroll) {
           overscroll.disallowGlow();
+          return false;
         },
         child: ListView.builder(
           controller: ScrollController(

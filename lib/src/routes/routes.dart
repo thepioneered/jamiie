@@ -1,7 +1,6 @@
 import '../screens/auth/afterLogin/completeProfilePage.dart';
 
 import '../screens/adminPool/creatPool.dart';
-import '../screens/adminPool/poolDataPage.dart';
 import '../screens/userJoinedPools/searchPoolPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -115,8 +114,8 @@ class AppRoutes {
 
 //If pool not started
 var q = {
-  "poolAmount":"Amount",
-  "totalMembers":10,
+  "poolAmount": "Amount",
+  "totalMembers": 10,
   "poolDetails": [
     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"},
     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"}

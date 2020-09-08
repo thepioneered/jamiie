@@ -1,15 +1,12 @@
-import 'package:Jamiie/src/models/createPoolModels/poolidModel.dart';
-import 'package:Jamiie/src/models/userJoinedPools/joinPoolListModel.dart';
-import 'package:Jamiie/src/providers/userJoinedPools/joinPoolProvider.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
+import '../../providers/userJoinedPools/joinPoolProvider.dart';
+import '../../styles/colors.dart';
+import '../../widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../styles/base.dart';
 import '../../utils/icons.dart';
 import '../../widgets/topHeading.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyPool extends StatelessWidget {
   @override
@@ -43,48 +40,42 @@ class MyPoolWidget extends StatelessWidget {
             );
           } else if (!snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
-            return SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(top: BaseStyles.topPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    topHeading(title: "My Pool's"),
-                    SingleChildScrollView(
-                      child: Container(
-                     //   color: Colors.red,
-                        height: MediaQuery.of(context).size.height * 2,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return JoinPoolListWidget(
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].poolProfile,
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].poolName,
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].poolAmount,
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].poolType,
-                              joinPoolProvider
-                                  .joinPoolListModel
-                                  .joinPoolListDataModel[index]
-                                  .monthlyTotalAmount,
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].amountSaved,
-                              joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel[index].membersList,
-                            );
-                          },
-                          itemCount: joinPoolProvider
-                              .joinPoolListModel.joinPoolListDataModel.length,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            // return Container(
+            //   width: double.infinity,
+            //   padding: EdgeInsets.only(top: BaseStyles.topPadding),
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       topHeading(title: "My Pool's"),
+            return Container(
+              height: MediaQuery.of(context).size.height * 2,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  var data = joinPoolProvider.joinPoolListModel;
+                  return JoinPoolListWidget(
+                    data.joinPoolListDataModel[index].poolProfile,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].poolName,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].poolAmount,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].poolType,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].monthlyTotalAmount,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].amountSaved,
+                    joinPoolProvider.joinPoolListModel
+                        .joinPoolListDataModel[index].membersList,
+                  );
+                },
+                itemCount: joinPoolProvider
+                    .joinPoolListModel.joinPoolListDataModel.length,
               ),
             );
+            //       ),
+            //     ],
+            //   ),
+            // );
           } else {
             return Center(
               child: Text(snapshot.error),

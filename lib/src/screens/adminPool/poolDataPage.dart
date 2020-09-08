@@ -1,9 +1,8 @@
-import 'package:Jamiie/src/models/adminPoolModel/completePoolDataModel.dart';
-import 'package:Jamiie/src/providers/adminPool/completePoolDataProvider.dart';
-import 'package:Jamiie/src/providers/adminPool/roundListPage.dart';
-import 'package:Jamiie/src/repositry/testData.dart';
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/widgets/button/appButton.dart';
+import '../../models/adminPoolModel/completePoolDataModel.dart';
+import '../../providers/adminPool/completePoolDataProvider.dart';
+import '../../providers/adminPool/roundListPage.dart';
+import '../../styles/text.dart';
+import '../../widgets/button/appButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

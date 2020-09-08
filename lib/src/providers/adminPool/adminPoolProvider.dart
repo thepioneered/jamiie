@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'package:Jamiie/src/models/adminPoolModel/poolDataModel.dart';
+
 import 'package:Jamiie/src/models/adminPoolModel/poolListModel.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AdminPoolProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> listOfCreatedPoolsScaffoldKey =

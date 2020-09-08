@@ -1,4 +1,3 @@
-import 'package:Jamiie/src/widgets/Dashboard/dashWidget1.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './colors.dart';
@@ -30,6 +29,7 @@ class AppTextStyle {
       color: color,
     );
   }
+
   static TextStyle get dashCardHeading => TextStyle(
         fontFamily: "Poppins",
         fontSize: 18.0,
