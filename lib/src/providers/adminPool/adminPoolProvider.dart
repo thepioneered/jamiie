@@ -1,4 +1,3 @@
-
 import 'package:Jamiie/src/models/adminPoolModel/poolListModel.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
@@ -28,10 +27,15 @@ class AdminPoolProvider extends ChangeNotifier {
       endPoint: EndPoints.createdPoolsList + mobile,
       authRequest: true,
     );
+    print(data);
 
     if (data["status"]) {
-      print(data["body"]);
-      poolListModel = PoolListModel.fromJson(data["body"]["poolDetails"]);
+      var q = data["body"]["poolDetails"] as List;
+      if (q.isEmpty) {
+        return Future.error(404);
+      } else {
+        poolListModel = PoolListModel.fromJson(data["body"]["poolDetails"]);
+      }
     }
   }
 }

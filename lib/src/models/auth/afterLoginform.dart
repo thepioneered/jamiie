@@ -1,31 +1,19 @@
 class AfterLoginFormModel {
-  String mobile;
-  String data1;
-  String data2;
-  String data3;
-  String data4;
-  String data5;
-  String data6;
-  String data7;
+  String jobAge;
+  String faimlyStatus;
+  String howManyTimesPooledMoney;
 
   AfterLoginFormModel({
-    this.mobile,
-    this.data1,
-    this.data2,
-    this.data3,
-    this.data4,
-    this.data5,
-    this.data6,
-    this.data7,
+    this.jobAge,
+    this.faimlyStatus,
+    this.howManyTimesPooledMoney,
   });
 
-  Map<String, dynamic> toJson() => {
-        "phone": mobile,
-        "jobage": data1,
-        "family": data2,
-        "age": data3,
-        "savingmoney": data4,
-        "loans": data5,
-        "living": data6
+  Map<String, dynamic> toJson(String _mobile) => {
+        "phone": _mobile,
+        "jobAge": jobAge,
+        "family":faimlyStatus,
+        "poolingRecord":howManyTimesPooledMoney
+
       };
 }

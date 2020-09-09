@@ -66,6 +66,10 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                 },
               ),
             );
+          } else if (snapshot.error == 404) {
+            return Center(
+              child: Text("No pools created"),
+            );
           } else {
             return Center(
               child: CupertinoActivityIndicator(),

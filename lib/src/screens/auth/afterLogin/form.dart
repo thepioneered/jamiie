@@ -49,49 +49,74 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Marital Status :',
+                      //Final
+                      Text('Job Age:',
                           style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.one,
+                        items: AfterLoginDataRepo.jobAge,
                         onchanged: (e) {
-                          formProvider.listModel.data1 = e;
+                          formProvider.listModel.jobAge = e;
                           formProvider.callListners();
                         },
-                        value: formProvider.listModel.data1,
+                        value: formProvider.listModel.jobAge,
                         validator: formProvider.validator,
                         autoValidate: false,
                       ),
-                      Text(
-                        'How many times you have pooled money ?',
-                        style: AppTextStyle.subheadingTextForm,
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      AppTextField.screenTextField(
-                        toolbarOptions: ToolbarOptions(paste: false),
-                        textInputType: TextInputType.number,
-                        hintText: "",
-                        validator: TextFieldValidation.numberValidation,
-                        autoValidate: false,
-                        onSaved: (value) {},
-                        prefixIcon: null,
-                      ),
-                      
-                      Text('Total Debt ?',
+                      Text('Family :',
                           style: AppTextStyle.subheadingTextForm),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      AppTextField.screenTextField(
-                        toolbarOptions: ToolbarOptions(paste: false),
-                        textInputType: TextInputType.number,
-                        hintText: "",
-                        validator: TextFieldValidation.numberValidation,
+                      OurDropdown.dropdown(
+                        items: AfterLoginDataRepo.faimlyStatus,
+                        onchanged: (e) {
+                          formProvider.listModel.faimlyStatus = e;
+                          formProvider.callListners();
+                        },
+                        value: formProvider.listModel.faimlyStatus,
+                        validator: formProvider.validator,
                         autoValidate: false,
-                        onSaved: null,
-                        prefixIcon: AppIcons.dollarIcon,
                       ),
+                      Text('How many times pooled money :',
+                          style: AppTextStyle.subheadingTextForm),
+                      OurDropdown.dropdown(
+                        items: AfterLoginDataRepo.howManyTimesPooledMoney,
+                        onchanged: (e) {
+                          formProvider.listModel.howManyTimesPooledMoney = e;
+                          formProvider.callListners();
+                        },
+                        value: formProvider.listModel.howManyTimesPooledMoney,
+                        validator: formProvider.validator,
+                        autoValidate: false,
+                      ),
+                      // Text(
+                      //   'How many times you have pooled money ?',
+                      //   style: AppTextStyle.subheadingTextForm,
+                      // ),
+                      // SizedBox(
+                      //   height: 5.0,
+                      // ),
+                      // AppTextField.screenTextField(
+                      //   toolbarOptions: ToolbarOptions(paste: false),
+                      //   textInputType: TextInputType.number,
+                      //   hintText: "",
+                      //   validator: TextFieldValidation.numberValidation,
+                      //   autoValidate: false,
+                      //   onSaved: (value) {},
+                      //   prefixIcon: null,
+                      // ),
+                      
+                      // Text('Total Debt ?',
+                      //     style: AppTextStyle.subheadingTextForm),
+                      // SizedBox(
+                      //   height: 5.0,
+                      // ),
+                      // AppTextField.screenTextField(
+                      //   toolbarOptions: ToolbarOptions(paste: false),
+                      //   textInputType: TextInputType.number,
+                      //   hintText: "",
+                      //   validator: TextFieldValidation.numberValidation,
+                      //   autoValidate: false,
+                      //   onSaved: null,
+                      //   prefixIcon: AppIcons.dollarIcon,
+                      // ),
                       // Text('Age :', style: AppTextStyle.subheadingTextForm),
                       // OurDropdown.dropdown(
                       //   items: AfterLoginDataRepo.three,
@@ -127,18 +152,18 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       //   validator: formProvider.validator,
                       //   autoValidate: false,
                       // ),
-                      Text('Living in USA since :',
-                          style: AppTextStyle.subheadingTextForm),
-                      OurDropdown.dropdown(
-                        items: AfterLoginDataRepo.six,
-                        onchanged: (e) {
-                          formProvider.listModel.data6 = e;
-                          formProvider.callListners();
-                        },
-                        value: formProvider.listModel.data6,
-                        validator: formProvider.validator,
-                        autoValidate: false,
-                      ),
+                      // Text('Living in USA since :',
+                      //     style: AppTextStyle.subheadingTextForm),
+                      // OurDropdown.dropdown(
+                      //   items: AfterLoginDataRepo.six,
+                      //   onchanged: (e) {
+                      //     formProvider.listModel.data6 = e;
+                      //     formProvider.callListners();
+                      //   },
+                      //   value: formProvider.listModel.data6,
+                      //   validator: formProvider.validator,
+                      //   autoValidate: false,
+                      // ),
                       // Text(
                       //     "How many accounts linked(google, fb, twitter, linkdn) :",
                       //     style: AppTextStyle.subheadingTextForm),
