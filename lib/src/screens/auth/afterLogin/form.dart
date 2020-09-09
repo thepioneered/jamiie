@@ -1,7 +1,4 @@
 import 'package:Jamiie/src/repositry/afterLoginForm.dart';
-import 'package:Jamiie/src/utils/icons.dart';
-import 'package:Jamiie/src/utils/validationRegex.dart';
-import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
 import '../../../providers/auth/afterLoginFormProvider.dart';
@@ -86,6 +83,19 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         validator: formProvider.validator,
                         autoValidate: false,
                       ),
+                      Text('Money Saving Goal :',
+                          style: AppTextStyle.subheadingTextForm),
+                      OurDropdown.dropdown(
+                        items: AfterLoginDataRepo.moneySavingGoal,
+                        onchanged: (e) {
+                          formProvider.listModel.moneySavingGoal= e;
+                          formProvider.callListners();
+                        },
+                        value: formProvider.listModel.moneySavingGoal,
+                        validator: formProvider.validator,
+                        autoValidate: false,
+                      ),
+                      
                       // Text(
                       //   'How many times you have pooled money ?',
                       //   style: AppTextStyle.subheadingTextForm,
@@ -178,7 +188,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       //   autoValidate: formProvider.autoValidate,
                       // ),
                       Container(
-                        height: height * 0.08,
+                        height: height * 0.07,
                         child: AppButton.loginButton(
                                 title: 'Submit',
                                 onTap: () => formProvider.onPressed(),

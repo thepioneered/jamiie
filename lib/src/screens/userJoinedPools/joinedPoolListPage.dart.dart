@@ -4,9 +4,7 @@ import '../../widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../styles/base.dart';
 import '../../utils/icons.dart';
-import '../../widgets/topHeading.dart';
 
 class MyPool extends StatelessWidget {
   @override
