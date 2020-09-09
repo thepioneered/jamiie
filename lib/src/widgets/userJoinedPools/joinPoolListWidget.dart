@@ -1,6 +1,7 @@
 import 'package:Jamiie/src/models/userJoinedPools/joinPoolListModel.dart';
 import 'package:Jamiie/src/screens/userJoinedPools/poolScreen.dart';
 import 'package:Jamiie/src/styles/colors.dart';
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -43,11 +44,7 @@ class JoinPoolListWidget extends StatelessWidget {
               children: [
                 Text(
                   poolName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 30.0,
-                    color: Colors.black,
-                  ),
+                  style: AppTextStyle.poolTitle,
                 ),
                 Container(
                   padding: EdgeInsets.only(
@@ -58,7 +55,10 @@ class JoinPoolListWidget extends StatelessWidget {
                   ),
                   child: Text(
                     "Pending",
-                    style: TextStyle(color: AppColors.white),
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontFamily: "poppins",
+                    ),
                   ),
                 )
               ],
@@ -72,19 +72,11 @@ class JoinPoolListWidget extends StatelessWidget {
                     children: [
                       Text(
                         "\$ " + poolAmount.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30.0,
-                          color: Colors.black,
-                        ),
+                        style: AppTextStyle.amountStyle,
                       ),
                       Text(
                         poolType + " per person",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
+                        style: AppTextStyle.amountSubHeading,
                       ),
                     ],
                   ),
@@ -98,20 +90,9 @@ class JoinPoolListWidget extends StatelessWidget {
                   children: [
                     Text(
                       "\$ " + monthlyTotalAmount.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15.0,
-                        color: Colors.grey,
-                      ),
+                      style: AppTextStyle.poolMonthlyTotalAmount
                     ),
-                    Text(
-                      "Monthly Total",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.0,
-                        color: Colors.grey,
-                      ),
-                    ),
+                    Text("Monthly Total", style: AppTextStyle.amountSubHeading),
                   ],
                 ),
                 SizedBox(height: 5),
@@ -120,20 +101,10 @@ class JoinPoolListWidget extends StatelessWidget {
                   children: [
                     Text(
                       "\$ " + amountSaved.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15.0,
-                        color: Colors.green,
-                      ),
+                      style: AppTextStyle.poolAmountSaved,
+                      
                     ),
-                    Text(
-                      "Money Saved",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.0,
-                        color: Colors.grey,
-                      ),
-                    ),
+                    Text("Money Saved", style: AppTextStyle.amountSubHeading),
                   ],
                 ),
               ],
@@ -177,12 +148,12 @@ class JoinPoolListWidget extends StatelessWidget {
             // //     ],
             // //   ),
             // // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(FontAwesomeIcons.ellipsisH),
-              ],
-            )
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     Icon(FontAwesomeIcons.ellipsisH),
+            //   ],
+            // )
           ],
         ),
         decoration: BoxDecoration(
@@ -222,11 +193,7 @@ class JoinPoolListWidget extends StatelessWidget {
                   // ),
                   Text(
                     poolName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30.0,
-                      color: Colors.black,
-                    ),
+                    style: AppTextStyle.poolTitle,
                   ),
                 ],
               ),
@@ -237,22 +204,10 @@ class JoinPoolListWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "\$ " + poolAmount.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 30.0,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          poolType + " per person",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12.0,
-                            color: Colors.grey,
-                          ),
-                        ),
+                        Text("\$ " + poolAmount.toString(),
+                            style: AppTextStyle.amountStyle),
+                        Text(poolType + " per person",
+                            style: AppTextStyle.amountSubHeading),
                       ],
                     ),
                   ),
@@ -265,20 +220,10 @@ class JoinPoolListWidget extends StatelessWidget {
                     children: [
                       Text(
                         "\$ " + monthlyTotalAmount.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15.0,
-                          color: Colors.grey,
-                        ),
+                        style: AppTextStyle.poolMonthlyTotalAmount
                       ),
-                      Text(
-                        "Monthly Total",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      Text("Monthly Total",
+                          style: AppTextStyle.amountSubHeading),
                     ],
                   ),
                   SizedBox(height: 5),
@@ -287,20 +232,9 @@ class JoinPoolListWidget extends StatelessWidget {
                     children: [
                       Text(
                         "\$ " + amountSaved.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15.0,
-                          color: Colors.green,
-                        ),
+                        style: AppTextStyle.poolAmountSaved
                       ),
-                      Text(
-                        "Money Saved",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      Text("Money Saved", style: AppTextStyle.amountSubHeading),
                     ],
                   ),
                 ],
@@ -344,12 +278,12 @@ class JoinPoolListWidget extends StatelessWidget {
               //     ],
               //   ),
               // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(FontAwesomeIcons.ellipsisH),
-                ],
-              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     Icon(FontAwesomeIcons.ellipsisH),
+              //   ],
+              // )
             ],
           ),
           decoration: BoxDecoration(

@@ -39,7 +39,7 @@ class DashWidget2 extends StatelessWidget {
             //   child:
 
             child: ListView.builder(
-              // reverse: true,
+               reverse: true,
               // addSemanticIndexes: true,
               // controller: ScrollController(
               //   initialScrollOffset: 0,
