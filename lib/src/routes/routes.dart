@@ -96,10 +96,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => SearchPoolPage(),
         );
-      // case "/PoolDataPage":
-      //   return MaterialPageRoute(
-      //     builder: (context) => PoolDataPage(),
-      //   );
+
       case "/CreatePoolPage":
         return MaterialPageRoute(
           builder: (context) => CreatePoolPage(),
@@ -113,11 +110,11 @@ class AppRoutes {
 }
 
 //If pool not started
-var q = {
-  "poolAmount": "Amount",
-  "totalMembers": 10,
-  "poolDetails": [
-    {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"},
-    {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"}
-  ]
-};
+// var q = {
+//   "poolAmount": "Amount",
+//   "totalMembers": 10,
+//   "poolDetails": [
+//     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"},
+//     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"}
+//   ]
+// };

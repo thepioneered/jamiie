@@ -16,6 +16,16 @@ class AfterLoginDataRepo {
     'Upto 3 years',
     'Upto 4 years'
   ];
+  static const List<String> moneySavingGoal = [
+    'Car',
+    'House',
+    'Vacation',
+    'School/Tuition',
+    'Medical',
+    'Emergency',
+    'Funds',
+    'Bill Pay',
+  ];
 
   // static const List<String> three = [
   //   '<20 years',

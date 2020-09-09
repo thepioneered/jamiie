@@ -1,5 +1,4 @@
 
-import 'package:Jamiie/src/screens/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,13 +75,13 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        home: AppNavigationBar(),
+        // home: AfterLoginFormPage(),
 
-        // home: Consumer<AppProvider>(
-        //   builder: (_, appProvider, child) {
-        //     return appProvider.child;
-        //   },
-        // ),
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ),
         debugShowCheckedModeBanner: true,
       ),
     );

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
-import '../../widgets/topHeading.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
