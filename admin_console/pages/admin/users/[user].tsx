@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Layout, Modal } from "../../../src/components";
+import { Layout, Modal, GlobalLoader } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
 import userStyles from "../../../styles/users.module.scss";
+import { userFull } from "../../../src/interfaces";
+import { endpoints } from "../../../src/constants/apiEndpoints";
+import { fetchData } from "../../../src/utils/apiCalls";
 
 function User() {
   const router = useRouter();
   const { user } = router.query;
 
   const [showModal, toggleModal] = useState(false);
+  const [data, setData] = useState<userFull | null>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const getData = async () => {
+    setLoading(true);
+    const r = await fetchData<userFull>({
+      url: endpoints.SINGLE_USER + user + "/",
+    });
+
+    if (r) {
+      setData(r);
+      setLoading(false);
+    }
+  };
+
   const deleteUser = () => {
     toggleModal(true);
   };
-
   const closeModal = () => {
     toggleModal(false);
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <Layout>
@@ -31,91 +52,105 @@ function User() {
             </button>
             <h2 className={styles.heading}>User Id: {user}</h2>
           </div>
-          <div className={cn(styles.card, "hover")}>
-            <div className={styles.picture}>
-              <img src="/images/user.jpg" alt="user" />
-            </div>
-            <div className={styles.table__container}>
-              <table className={styles.table}>
-                <tbody>
-                  <tr>
-                    <th>Name:</th>
-                    <td>Paritosh Batish</td>
-                  </tr>
-                  <tr>
-                    <th>Email:</th>
-                    <td>batishparitosh2@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th>Mobile:</th>
-                    <td>8146990621</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Score:</th>
-                    <td>54</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Band:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Moderate</td>
-                  </tr>
-                  <tr>
-                    <th>City:</th>
-                    <td>Chandigarh</td>
-                  </tr>
-                  <tr>
-                    <th>Date Created:</th>
-                    <td>20th Aug 2020</td>
-                  </tr>
-                  <tr>
-                    <th>Last Login:</th>
-                    <td>6th Sept. 2020 4:40pm</td>
-                  </tr>
-                  <tr>
-                    <th>Job Age:</th>
-                    <td>Upto 4 years</td>
-                  </tr>
-                  <tr>
-                    <th>Family:</th>
-                    <td>Single with Children</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>Age:</th>
-                    <td>{"<25 Years"}</td>
-                  </tr>
-                  <tr>
-                    <th>Saving Money:</th>
-                    <td>2-3</td>
-                  </tr>
-                  <tr>
-                    <th>Loans:</th>
-                    <td>1 on no loan</td>
-                  </tr>
-                  <tr>
-                    <th>Living:</th>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <th>Block User:</th>
-                    <td>
-                      <button
-                        className={styles.block__user}
-                        onClick={deleteUser}
-                      >
-                        Block User
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div
+            className={cn(styles.card, "hover", {
+              loading__container: isLoading,
+            })}
+          >
+            {isLoading ? (
+              <GlobalLoader />
+            ) : (
+              <>
+                <div className={styles.picture}>
+                  <img src={data?.image} alt="Profile" />
+                </div>
+                <div className={styles.table__container}>
+                  <table className={styles.table}>
+                    <tbody>
+                      <tr>
+                        <th>Name:</th>
+                        <td>{data?.name}</td>
+                      </tr>
+                      <tr>
+                        <th>Email:</th>
+                        <td>{data?.email}</td>
+                      </tr>
+                      <tr>
+                        <th>Mobile:</th>
+                        <td>{data?.phone}</td>
+                      </tr>
+                      <tr>
+                        <th>Risk Score:</th>
+                        <td>{data?.riskScore}</td>
+                      </tr>
+                      <tr>
+                        <th>Risk Band:</th>
+                        <td>{data?.riskBand}</td>
+                      </tr>
+                      <tr>
+                        <th>State:</th>
+                        <td>{data?.state}</td>
+                      </tr>
+                      <tr>
+                        <th>City:</th>
+                        <td>{data?.city}</td>
+                      </tr>
+                      <tr>
+                        <th>Date Created:</th>
+                        <td>
+                          {new Date(data!.createdAt).toLocaleDateString(
+                            "en-US"
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Last Login:</th>
+                        <td>
+                          {new Date(data!.lastLogin).toLocaleDateString(
+                            "en-US"
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Job Age:</th>
+                        <td>{data?.jobAge}</td>
+                      </tr>
+                      <tr>
+                        <th>Family:</th>
+                        <td>{data?.family}</td>
+                      </tr>
+                      <tr>
+                        <th>Age:</th>
+                        <td>{data?.DOB}</td>
+                      </tr>
+                      <tr>
+                        <th>Saving Reason:</th>
+                        <td>{data?.savingReason} </td>
+                      </tr>
+                      <tr>
+                        <th>Pooling Record:</th>
+                        <td>{data?.poolingRecord}</td>
+                      </tr>
+                      <tr>
+                        <th>Repayment Record:</th>
+                        <td>{data?.repaymentRecord}</td>
+                      </tr>
+                      <tr>
+                        <th>Block User:</th>
+                        <td>
+                          <button
+                            className={styles.block__user}
+                            onClick={deleteUser}
+                          >
+                            Block User
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

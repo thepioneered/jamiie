@@ -18,7 +18,10 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
           <img src={image} alt="profile" className={styles.image} />
         </td>
         <td>
-          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
+          <Link
+            href="/admin/users/[user]"
+            as={`/admin/users/${phone.slice(1)}`}
+          >
             <a className={styles.page__link}>{phone}</a>
           </Link>
         </td>

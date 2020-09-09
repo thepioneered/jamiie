@@ -23,22 +23,22 @@ export type user = {
 };
 
 export type userFull = {
-  img: string;
+  phone: string;
   name: string;
+  image: string;
   email: string;
-  mobile: string;
-  riskScore: string;
-  riskBand: string;
   state: string;
   city: string;
-  dateCreated: string;
+  createdAt: string;
   lastLogin: string;
+  DOB: string;
+  riskScore: number;
   jobAge: string;
   family: string;
-  age: string;
-  savingMoney: string;
-  loans: string;
-  living: string;
+  poolingRecord: string;
+  repaymentRecord: string;
+  riskBand: string;
+  savingReason: string;
 };
 
 // ------------

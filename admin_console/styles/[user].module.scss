@@ -152,7 +152,9 @@
 }
 
 .picture img {
-  max-width: 250px;
+  $size: 250px;
+  width: $size;
+  height: $size;
 }
 
 // ------------

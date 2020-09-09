@@ -19,8 +19,6 @@ function Pool() {
 
   const getData = async () => {
     setLoading(true);
-    console.log(pool);
-    console.log(endpoints.SINGLE_POOL + pool);
     const r = await fetchData<poolFull>({
       url: endpoints.SINGLE_POOL + pool + "/",
     });
