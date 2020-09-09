@@ -74,6 +74,18 @@ class AppTextStyle {
         fontSize: 12.0,
         color: AppColors.grayInputHeading,
       );
+  static TextStyle get poolMonthlyTotalAmount => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        color: AppColors.grayInputHeading,
+      );
+  static TextStyle get poolAmountSaved => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        color: AppColors.green,
+      );
   static TextStyle get amountStyle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
