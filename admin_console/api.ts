@@ -66,14 +66,28 @@ export const poolArray = {
 
 // pool - single pool info
 export const pool = {
-  poolName: "Paritosh's Pool",
-  poolOwner: "8146990621",
-  contributionAmount: "580",
-  dateCreated: "24th August 2020",
-  nextDeadline: "3/1/2020, 12:00:00 AM",
+  poolId: "05797de5",
+  poolOwner: "+917071006000",
+  poolName: "uffi",
+  contributionAmount: 68,
+  joinedMember: 1,
   poolType: "Weekly",
-  members: "2 / 5",
-  status: false,
+  totalMember: 9,
+  createdAt: "2020-08-29T10:03:02.105398Z",
+  deadline: "2020-09-09",
+  joinedpool: [
+    {
+      id: 10,
+      memberId: {
+        image:
+          "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
+        phone: "+917071006000",
+        name: "Nakul Garg",
+      },
+      joinedAt: "2020-08-29T10:03:02.109723Z",
+      poolId: "05797de5",
+    },
+  ],
 };
 
 // ------------

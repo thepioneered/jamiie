@@ -2,58 +2,50 @@ import {
   postDataWithXcsrf,
   fetchRestDataWithXcsrf,
 } from "../services/apiServices";
-import { endpoints, DOMAIN } from "../constants/apiEndpoints";
-import { loginData } from "../interfaces/global";
+import { DOMAIN } from "../constants/apiEndpoints";
 
-export const checkToken = async () => {
+export const postData = async <T>({
+  url,
+  payload = {},
+  domain = true,
+}: {
+  url: string;
+  payload?: Object;
+  domain?: boolean;
+}): Promise<T | false> => {
+  let endpoint: string;
+
+  if (domain) endpoint = DOMAIN + url;
+  else endpoint = url;
+
   try {
-    const r: Promise<loginData> = await postDataWithXcsrf(
-      DOMAIN + endpoints.TOKEN_CHECK
-    );
-    console.log("checkToken Result:", r);
+    const r: Promise<T> = await postDataWithXcsrf(endpoint, payload);
+    console.log(`R(${url}) : `, r);
     return r;
   } catch (e) {
-    console.log("checkToken Error:", e);
+    console.log(`E(${url}) : `, e);
     return false;
   }
 };
 
-export const loginAPI = async (payload: {
-  phone: string;
-  password: string;
-}) => {
+export const fetchData = async <T>({
+  url,
+  domain = true,
+}: {
+  url: string;
+  domain?: boolean;
+}): Promise<T | false> => {
+  let endpoint: string;
+
+  if (domain) endpoint = DOMAIN + url;
+  else endpoint = url;
+
   try {
-    const r: Promise<loginData> = await postDataWithXcsrf(
-      DOMAIN + endpoints.LOGIN_ADMIN,
-      payload
-    );
-    console.log("login Result:", r);
+    const r: Promise<T> = await fetchRestDataWithXcsrf(endpoint);
+    console.log(`R(${url}) : `, r);
     return r;
   } catch (e) {
-    console.log("login Error:", e);
-    return false;
-  }
-};
-
-export const logout = async () => {
-  try {
-    await postDataWithXcsrf(DOMAIN + endpoints.LOGOUT_ADMIN);
-    return true;
-  } catch (e) {
-    console.log("login Error:", e);
-    return false;
-  }
-};
-
-export const getTableArray = async <T>(url: string) => {
-  try {
-    // let r: Promise<userDetail>;
-    const r: Promise<T> = await fetchRestDataWithXcsrf(url);
-
-    console.log("userArray Result:", r);
-    return r;
-  } catch (e) {
-    console.log("userArray Error:", e);
+    console.log(`E(${url}) : `, e);
     return false;
   }
 };

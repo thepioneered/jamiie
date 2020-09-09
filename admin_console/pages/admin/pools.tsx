@@ -9,9 +9,9 @@ import {
 } from "../../src/components";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import { getTableArray } from "../../src/utils/apiCalls";
+import { fetchData } from "../../src/utils/apiCalls";
 import { tableArray, pool } from "../../src/interfaces";
-import { DOMAIN, endpoints } from "../../src/constants/apiEndpoints";
+import { endpoints } from "../../src/constants/apiEndpoints";
 
 function Users() {
   const { state } = useContext(LoaderContext);
@@ -22,11 +22,8 @@ function Users() {
     setLoading(true);
 
     let r: tableArray<pool> | false;
-    if (url) r = await getTableArray<tableArray<pool>>(url);
-    else
-      r = await getTableArray<tableArray<pool>>(
-        DOMAIN + endpoints.POOL_DETAILS
-      );
+    if (url) r = await fetchData<tableArray<pool>>({ url, domain: false });
+    else r = await fetchData<tableArray<pool>>({ url: endpoints.POOL_DETAILS });
 
     if (r) {
       setData(r);

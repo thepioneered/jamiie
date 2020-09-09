@@ -11,19 +11,26 @@ interface Props {
 }
 
 export default function UserTable({ data, pageChange, deleteUser }: Props) {
-  const row = ({ phone, name, createdAt, lastLogin }: user) => {
+  const row = ({ phone, name, createdAt, lastLogin, image }: user) => {
     return (
       <tr key={phone}>
-        <td>{phone}</td>
+        <td>
+          <img src={image} alt="profile" className={styles.image} />
+        </td>
+        <td>
+          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
+            <a className={styles.page__link}>{phone}</a>
+          </Link>
+        </td>
         <td>{name}</td>
         <td>{new Date(createdAt).toLocaleString("en-US")}</td>
         <td>{new Date(lastLogin).toLocaleString("en-US")}</td>
         <td className={styles.action}>
-          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
+          {/* <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
             <button className={styles.settings} title="User Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
-          </Link>
+          </Link> */}
 
           <button
             className={styles.delete}
@@ -46,6 +53,7 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
       <table className={styles.table} cellSpacing="0">
         <thead>
           <tr className={styles.theading}>
+            <td></td>
             <td>Phone No.</td>
             <td>Name</td>
             <td>Date Created</td>

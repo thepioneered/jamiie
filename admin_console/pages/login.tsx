@@ -5,7 +5,9 @@ import { LoaderContext } from "./_app";
 import Logo from "../public/images/svg/NewLogo.svg";
 import styles from "../styles/login.module.scss";
 import { useRouter } from "next/router";
-import { loginAPI } from "../src/utils/apiCalls";
+import { postData } from "../src/utils/apiCalls";
+import { loginData } from "../src/interfaces/global";
+import { endpoints } from "../src/constants/apiEndpoints";
 
 export default function Login() {
   const usernameInput = useRef<HTMLInputElement>(null);
@@ -30,7 +32,10 @@ export default function Login() {
       phone: username.trim(),
       password: password.trim(),
     };
-    const r = await loginAPI(payload);
+    const r = await postData<loginData>({
+      url: endpoints.LOGIN_ADMIN,
+      payload,
+    });
 
     if (r) {
       dispatch!({ type: "setLoginData", data: r });

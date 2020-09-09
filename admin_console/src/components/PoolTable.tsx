@@ -20,7 +20,11 @@ export default function PoolTable({ data, pageChange }: Props) {
   }: pool) => {
     return (
       <tr key={poolId}>
-        <td>{poolId}</td>
+        <td>
+          <Link href="/admin/pools/[pool]" as={`/admin/pools/${poolId}`}>
+            <a className={styles.page__link}>{poolId}</a>
+          </Link>
+        </td>
         <td>{poolName}</td>
         <td>{"TODO"}</td>
         <td>{contributionAmount}</td>
@@ -29,7 +33,7 @@ export default function PoolTable({ data, pageChange }: Props) {
         <td>{"TODO"}</td>
         <td>
           <Link href="/admin/pools/[pool]" as={`/admin/pools/${poolId}`}>
-            <button className={styles.settings} title="User Settings">
+            <button className={styles.settings} title="Pool Settings">
               <span className="material-icons-outlined">settings</span>
             </button>
           </Link>

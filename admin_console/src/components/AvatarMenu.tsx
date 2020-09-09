@@ -5,7 +5,8 @@ import styles from "../../styles/avatarMenu.module.scss";
 import { useRouter } from "next/router";
 import { LoaderContext } from "../../pages/_app";
 import { loginData } from "../interfaces/global";
-import { logout } from "../utils/apiCalls";
+import { postData } from "../utils/apiCalls";
+import { endpoints } from "../constants/apiEndpoints";
 
 interface Props {
   toggleAvatarMenu: () => void;
@@ -27,7 +28,7 @@ export default function AvatarMenu({
 
   const logoutReq = async () => {
     dispatch!({ type: "changeGlobal", item: "layoutLoader" });
-    const r = await logout();
+    const r = await postData({ url: endpoints.LOGOUT_ADMIN });
 
     if (r) {
       dispatch!({ type: "changeGlobal", item: "tokenValidated" });

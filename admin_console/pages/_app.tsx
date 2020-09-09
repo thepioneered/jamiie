@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import type { AppProps } from "next/app";
 import Loading from "../src/components/Loading";
-import { checkToken } from "../src/utils/apiCalls";
+import { postData } from "../src/utils/apiCalls";
 import { useRouter } from "next/dist/client/router";
 import "../styles/globals.scss";
-import { globalContext } from "../src/interfaces/global";
+import { globalContext, loginData } from "../src/interfaces/global";
 import { globalReducer } from "../src/utils/globalReducer";
+import { endpoints } from "../src/constants/apiEndpoints";
 
 const initialState = {
   isLoading: true,
@@ -36,7 +37,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
   const setToken = async () => {
-    const isTokenInCookie = await checkToken();
+    const isTokenInCookie = await postData<loginData>({
+      url: endpoints.TOKEN_CHECK,
+    });
     if (isTokenInCookie)
       dispatch({ type: "checkSuccess", data: isTokenInCookie });
     else dispatch({ type: "checkFail" });

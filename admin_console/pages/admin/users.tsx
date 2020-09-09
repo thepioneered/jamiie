@@ -1,18 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
 import cn from "classnames";
-import { LoaderContext } from "../_app";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  Layout,
-  TotalCard,
-  Modal,
   GlobalLoader,
+  Layout,
+  Modal,
+  TotalCard,
   UserTable,
 } from "../../src/components";
+import { endpoints } from "../../src/constants/apiEndpoints";
+import { tableArray, user } from "../../src/interfaces";
+import { fetchData } from "../../src/utils/apiCalls";
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
-import { getTableArray } from "../../src/utils/apiCalls";
-import { tableArray, user } from "../../src/interfaces";
-import { endpoints, DOMAIN } from "../../src/constants/apiEndpoints";
+import { LoaderContext } from "../_app";
 
 // TODO: if getData Fails?
 function Users() {
@@ -25,11 +25,8 @@ function Users() {
     setLoading(true);
 
     let r: tableArray<user> | false;
-    if (url) r = await getTableArray<tableArray<user>>(url);
-    else
-      r = await getTableArray<tableArray<user>>(
-        DOMAIN + endpoints.USER_DETAILS
-      );
+    if (url) r = await fetchData<tableArray<user>>({ url, domain: false });
+    else r = await fetchData<tableArray<user>>({ url: endpoints.USER_DETAILS });
 
     if (r) {
       setData(r);

@@ -6,4 +6,5 @@ export enum endpoints {
   TOKEN_CHECK = "/userauth/check",
   USER_DETAILS = "/userauth/usersdetail",
   POOL_DETAILS = "/pool/pooldetails",
+  SINGLE_POOL = "/pool/adminsinglepool/",
 }

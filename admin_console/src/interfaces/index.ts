@@ -14,7 +14,7 @@ export type tableArray<t> = {
 // ------------
 
 export type user = {
-  img: string;
+  image: string;
   phone: string;
   name: string;
   email: string;
@@ -54,12 +54,26 @@ export type pool = {
   totalMember: number;
 };
 
+export type joinedMembers = {
+  id: number;
+  memberId: {
+    image: string;
+    phone: string;
+    name: string;
+  };
+  joinedAt: string;
+  poolId: string;
+};
+
 export type poolFull = {
   poolId: string;
-  poolName: string;
   poolOwner: string;
+  poolName: string;
   contributionAmount: number;
   joinedMember: number;
   poolType: string;
   totalMember: number;
+  createdAt: string;
+  deadline: string;
+  joinedpool: joinedMembers[];
 };
