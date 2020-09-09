@@ -33,41 +33,44 @@ class DashboardPageWidget extends StatelessWidget {
               );
             } else if (!snapshot.hasData &&
                 snapshot.connectionState == ConnectionState.done) {
+              var data = dashboardProvider.dashboardModel;
               return SingleChildScrollView(
                 child: Container(
                   color: AppColors.backgroundColor,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.only(top:24),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          topHeading(
-                              title: "Hello," +
-                                  dashboardProvider.dashboardModel.name),
-                          Padding(
-                            padding: EdgeInsets.only(right: 20),
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.primaryBlue,
-                              backgroundImage: NetworkImage(
-                                  dashboardProvider.dashboardModel.imgUrl),
-                            ),
-                          )
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text( "Hello," + data.name,style: TextStyle(
+                              fontSize: 36,
+                              //TODO: size editor
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "poppins"
+                            ),),
+                            Padding(
+                              padding: EdgeInsets.only(right: 20),
+                              child: CircleAvatar(
+                                backgroundColor: AppColors.primaryBlue,
+                                backgroundImage: NetworkImage(data.imgUrl),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       DashWidget1(
-                        amount: dashboardProvider.dashboardModel.moneySaved,
-                        joinedPools:
-                            dashboardProvider.dashboardModel.joinedPools,
-                        createsPools:
-                            dashboardProvider.dashboardModel.createdPools,
-                        completedPools:
-                            dashboardProvider.dashboardModel.completedPools,
+                        amount: data.moneySaved,
+                        joinedPools: data.joinedPools,
+                        createsPools: data.createdPools,
+                        completedPools: data.completedPools,
                       ),
-                      DashWidget2(dashboardProvider.dashboardModel.transaction),
-                      DashWidget3(
-                          dashboardProvider.dashboardModel.upcomingPayment),
+                      DashWidget2(data.transaction),
+                      DashWidget3(data.upcomingPayment),
                     ],
                   ),
                 ),
