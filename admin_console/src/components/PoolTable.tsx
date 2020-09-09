@@ -17,6 +17,8 @@ export default function PoolTable({ data, pageChange }: Props) {
     joinedMember,
     totalMember,
     poolType,
+    createdAt,
+    startStatus,
   }: pool) => {
     return (
       <tr key={poolId}>
@@ -26,11 +28,11 @@ export default function PoolTable({ data, pageChange }: Props) {
           </Link>
         </td>
         <td>{poolName}</td>
-        <td>{"TODO"}</td>
+        <td>{new Date(createdAt).toLocaleString("en-US")}</td>
         <td>{contributionAmount}</td>
         <td>{`${joinedMember} / ${totalMember}`}</td>
         <td>{poolType}</td>
-        <td>{"TODO"}</td>
+        <td>{startStatus ? "Pool Started" : "Not Started"}</td>
         <td>
           <Link href="/admin/pools/[pool]" as={`/admin/pools/${poolId}`}>
             <button className={styles.settings} title="Pool Settings">

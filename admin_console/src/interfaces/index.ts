@@ -45,12 +45,25 @@ export type userFull = {
 // pool types
 // ------------
 
+const asdf = {
+  contributionAmount: 200,
+  createdAt: "2020-09-09T06:14:15.251333Z",
+  joinedMember: 2,
+  poolId: "0ced5009",
+  poolName: "abc",
+  poolType: "Monthly",
+  startStatus: false,
+  totalMember: 12,
+};
+
 export type pool = {
+  contributionAmount: number;
+  createdAt: string;
+  joinedMember: number;
   poolId: string;
   poolName: string;
-  contributionAmount: number;
-  joinedMember: number;
   poolType: string;
+  startStatus: boolean;
   totalMember: number;
 };
 
@@ -60,6 +73,17 @@ export type joinedMembers = {
     image: string;
     phone: string;
     name: string;
+    riskStatus: [
+      {
+        phone: string;
+        jobAge: string;
+        family: string;
+        poolingRecord: string;
+        savingReason: string;
+        riskScore: number;
+        riskBand: string;
+      }
+    ];
   };
   joinedAt: string;
   poolId: string;
@@ -76,4 +100,6 @@ export type poolFull = {
   createdAt: string;
   deadline: string;
   joinedpool: joinedMembers[];
+  startStatus: boolean;
+  completeStatus: boolean;
 };

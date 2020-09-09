@@ -24,6 +24,8 @@ export default function JoinedTable({ data }: Props) {
         </td>
         <td>{memberId.name}</td>
         <td>{new Date(joinedAt).toLocaleString("en-US")}</td>
+        <td>{memberId.riskStatus[0].riskScore}</td>
+        <td>{memberId.riskStatus[0].riskBand}</td>
       </tr>
     );
   };
@@ -41,6 +43,8 @@ export default function JoinedTable({ data }: Props) {
             <td>Phone No.</td>
             <td>Name</td>
             <td>Joined At</td>
+            <td>Risk Score</td>
+            <td>Risk Band</td>
           </tr>
         </thead>
         <tbody>{getRows(data)}</tbody>

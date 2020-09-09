@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Layout, Modal, GlobalLoader } from "../../../src/components";
+import { Layout, GlobalLoader } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
 import userStyles from "../../../styles/users.module.scss";
 import Link from "next/link";
@@ -104,7 +104,9 @@ function Pool() {
                     </tr>
                     <tr>
                       <th>Status:</th>
-                      <td>TODO</td>
+                      <td>
+                        {data?.startStatus ? "Pool Started" : "Not Started"}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
