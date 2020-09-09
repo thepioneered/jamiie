@@ -42,26 +42,40 @@ class MyPoolWidget extends StatelessWidget {
               margin:EdgeInsets.only(top:24.0),
               
               //height: MediaQuery.of(context).size.height * 2,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  var data = joinPoolProvider
-                      .joinPoolListModel.joinPoolListDataModel[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: JoinPoolListWidget(
-                      status: data.status,
-                      imgUrl: data.poolProfile,
-                      amountSaved: data.amountSaved,
-                      membersList: data.membersList,
-                      monthlyTotalAmount: data.monthlyTotalAmount,
-                      poolAmount: data.poolAmount,
-                      poolName: data.poolName,
-                      poolType: data.poolType,
+              child: Column(
+                children: [
+                  Text(
+                    'Joined Pools',
+                    style: TextStyle(
+                        fontFamily: 'poppins',
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height*.8,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        var data = joinPoolProvider
+                            .joinPoolListModel.joinPoolListDataModel[index];
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: JoinPoolListWidget(
+                            status: data.status,
+                            imgUrl: data.poolProfile,
+                            amountSaved: data.amountSaved,
+                            membersList: data.membersList,
+                            monthlyTotalAmount: data.monthlyTotalAmount,
+                            poolAmount: data.poolAmount,
+                            poolName: data.poolName,
+                            poolType: data.poolType,
+                          ),
+                        );
+                      },
+                      itemCount: joinPoolProvider
+                          .joinPoolListModel.joinPoolListDataModel.length,
                     ),
-                  );
-                },
-                itemCount: joinPoolProvider
-                    .joinPoolListModel.joinPoolListDataModel.length,
+                  ),
+                ],
               ),
             );
           } else {

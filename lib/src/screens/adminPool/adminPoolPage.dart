@@ -54,16 +54,32 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
             );
           } else if (!snapshot.hasError) {
             return Container(
-              child: ListView.builder(
-                reverse: true,
-                itemCount: createdPoolList.poolListModel.poolDataModel.length,
-                itemBuilder: (context, index) {
-                  var data = createdPoolList.poolListModel.poolDataModel;
-                  return _data(
-                      poolName: data[index].poolName,
-                      poolContribution: data[index].contributionAmount,
-                      poolId: data[index].poolId);
-                },
+              padding: EdgeInsets.only(top: 24),
+              child: Column(
+                children: [
+                  Text(
+                    'Created Pools',
+                    style: TextStyle(
+                        fontFamily: 'poppins',
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * .8,
+                    child: ListView.builder(
+                     // reverse: true,
+                      itemCount:
+                          createdPoolList.poolListModel.poolDataModel.length,
+                      itemBuilder: (context, index) {
+                        var data = createdPoolList.poolListModel.poolDataModel;
+                        return _data(
+                            poolName: data[index].poolName,
+                            poolContribution: data[index].contributionAmount,
+                            poolId: data[index].poolId);
+                      },
+                    ),
+                  ),
+                ],
               ),
             );
           } else if (snapshot.error == 404) {
@@ -119,7 +135,7 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                     padding: EdgeInsets.only(
                         left: 7.5, right: 7.5, top: 3.0, bottom: 3.0),
                     decoration: BoxDecoration(
-                      color: AppColors.green,
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Text(
