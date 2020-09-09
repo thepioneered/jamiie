@@ -178,11 +178,10 @@ class AppBottomModalSheet {
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Container(),
-                      ),
+                      Expanded(child: Container()),
                       Container(
-                        height: MediaQuery.of(ctx).size.height * 0.07,
+                        // height: MediaQuery.of(ctxx).size.height * 0.07,
+                        height: 70.0,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 15.0),
                         child: AppButton.loginButton(

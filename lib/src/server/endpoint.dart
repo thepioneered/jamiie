@@ -8,7 +8,7 @@ class EndPoints {
   static const String userLogin = "/userauth/login";
   static const String userlogout = "/userauth/logout";
   static const String forgotPassword = "/userauth/forgotpassword";
-  static const String riskScore = "/api/riskscore";
+  static const String riskScore = "/userauth/riskscore";
   static const String createPool = "/pool/createpool";
   static const String joinPool = "/pool/joinpool";
   static const String searchPool = "/pool/searchpool";

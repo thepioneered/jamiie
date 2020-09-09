@@ -76,13 +76,13 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        // home: AppNavigationBar(),
+        home: AppNavigationBar(),
 
-        home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ),
+        // home: Consumer<AppProvider>(
+        //   builder: (_, appProvider, child) {
+        //     return appProvider.child;
+        //   },
+        // ),
         debugShowCheckedModeBanner: true,
       ),
     );
