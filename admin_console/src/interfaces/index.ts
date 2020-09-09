@@ -45,17 +45,6 @@ export type userFull = {
 // pool types
 // ------------
 
-const asdf = {
-  contributionAmount: 200,
-  createdAt: "2020-09-09T06:14:15.251333Z",
-  joinedMember: 2,
-  poolId: "0ced5009",
-  poolName: "abc",
-  poolType: "Monthly",
-  startStatus: false,
-  totalMember: 12,
-};
-
 export type pool = {
   contributionAmount: number;
   createdAt: string;
