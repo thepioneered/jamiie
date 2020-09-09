@@ -33,7 +33,7 @@ class CompleteProfileModel {
       "addressAge": howLongatAddress,
       "securityNumber": ssn,
       "employerName": employerName,
-      "employerAge": howLongatAddress
+      "employerAge": howLongwithEmployer
     };
   }
 }

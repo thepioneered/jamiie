@@ -41,21 +41,25 @@ class MyPoolWidget extends StatelessWidget {
           } else if (!snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              margin:EdgeInsets.only(top:24.0),
+              
               //height: MediaQuery.of(context).size.height * 2,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   var data = joinPoolProvider
                       .joinPoolListModel.joinPoolListDataModel[index];
-                  return JoinPoolListWidget(
-                    status: data.status,
-                    imgUrl: data.poolProfile,
-                    amountSaved: data.amountSaved,
-                    membersList: data.membersList,
-                    monthlyTotalAmount: data.monthlyTotalAmount,
-                    poolAmount: data.poolAmount,
-                    poolName: data.poolName,
-                    poolType: data.poolType,
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: JoinPoolListWidget(
+                      status: data.status,
+                      imgUrl: data.poolProfile,
+                      amountSaved: data.amountSaved,
+                      membersList: data.membersList,
+                      monthlyTotalAmount: data.monthlyTotalAmount,
+                      poolAmount: data.poolAmount,
+                      poolName: data.poolName,
+                      poolType: data.poolType,
+                    ),
                   );
                 },
                 itemCount: joinPoolProvider
