@@ -1,6 +1,6 @@
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
-import '../../providers/adminPool/roundListPage.dart';
+import 'roundListPage.dart';
 import '../../styles/text.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +43,8 @@ class PoolDataPageWidget extends StatelessWidget {
               return Center(
                 child: CupertinoActivityIndicator(),
               );
-            } else {
+            } else if (snapshot.connectionState == ConnectionState.done &&
+                !snapshot.hasError) {
               var data = completePoolDataProvider.completePoolDataModel;
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -101,7 +102,6 @@ class PoolDataPageWidget extends StatelessWidget {
                               height: 60.0,
                               padding: EdgeInsets.all(10.0),
                               margin: EdgeInsets.only(bottom: 10.0),
-                             
                               child: Row(
                                 children: [
                                   Text((index + 1).toString()),
@@ -156,6 +156,11 @@ class PoolDataPageWidget extends StatelessWidget {
                     )
                   ],
                 ),
+              );
+            } else {
+              print(snapshot.error);
+              return Center(
+                child: Text("Checl"),
               );
             }
           }),
