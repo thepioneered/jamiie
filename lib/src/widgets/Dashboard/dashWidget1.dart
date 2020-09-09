@@ -56,40 +56,40 @@ class DashWidget1 extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //   crossAxisAlignment: CrossAxisAlignment.end,
-                //   children: [
-                //     Container(
-                //       decoration: BoxDecoration(
-                //           color: AppColors.lightBlue,
-                //           borderRadius: BorderRadius.circular(20)),
-                //       width: (width / 2 - 30) / 8,
-                //       height: height * .11,
-                //     ),
-                //     Container(
-                //       decoration: BoxDecoration(
-                //           color: AppColors.lightBlue,
-                //           borderRadius: BorderRadius.circular(20)),
-                //       width: (width / 2 - 30) / 8,
-                //       height: height * .19,
-                //     ),
-                //     Container(
-                //       decoration: BoxDecoration(
-                //           color: AppColors.lightBlue,
-                //           borderRadius: BorderRadius.circular(20)),
-                //       width: (width / 2 - 30) / 8,
-                //       height: height * .14,
-                //     ),
-                //     Container(
-                //       decoration: BoxDecoration(
-                //           color: AppColors.lightBlue,
-                //           borderRadius: BorderRadius.circular(20)),
-                //       width: (width / 2 - 30) / 8,
-                //       height: height * .1,
-                //     ),
-                //   ],
-                // )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightBlue,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: (width / 2 - 30) / 8,
+                      height: height * .11,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightBlue,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: (width / 2 - 30) / 8,
+                      height: height * .19,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightBlue,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: (width / 2 - 30) / 8,
+                      height: height * .14,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightBlue,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: (width / 2 - 30) / 8,
+                      height: height * .1,
+                    ),
+                  ],
+                )
               ],
             ),
           ),
