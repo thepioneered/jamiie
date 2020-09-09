@@ -1,5 +1,5 @@
 import 'package:Jamiie/src/models/userJoinedPools/joinPoolListModel.dart';
-import 'package:Jamiie/src/screens/userJoinedPools/poolScreen.dart';
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class JoinPoolListWidget extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: 7.5, right: 7.5, top: 3.0, bottom: 3.0),
                   decoration: BoxDecoration(
-                    color: AppColors.green,
+                    color: Colors.red,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text(
