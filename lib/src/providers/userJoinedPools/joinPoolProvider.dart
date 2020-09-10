@@ -13,6 +13,7 @@ class JoinPoolProvider extends ChangeNotifier{
       Map<String, dynamic> val = json.decode(value);
      // print(val);
       joinPoolListModel = JoinPoolListModel.fromJson(val);
+      //print(joinPoolListModel.joinPoolListDataModel[0].poolName);
       return null;
       
     });

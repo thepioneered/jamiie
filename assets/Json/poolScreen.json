@@ -5,46 +5,47 @@
   "contributionAmount" : 500,
   "joinedMember" : 4,
   "totalMember" : 10,
+  "poolType" : "Weekly",
   "membersList": [
     {
       "id":9056336015,
-      "memberId": [
+      "memberId": 
         {
           "image": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
           "phone": "+919056336015",
           "name": "Akash Maurya"
         }
-      ]
+      
     },
     {
       "id":7071006000,
-      "memberId": [
+      "memberId": 
         {
           "image": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
           "phone": "+917071006000",
           "name": "Nakul Garg"
         }
-      ]
+      
     },
     {
       "id":8146990621,
-      "memberId": [
+      "memberId": 
         {
           "image": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
           "phone": "+918146990621",
           "name": "Paritosh Batish"
         }
-      ]
+      
     },
     {
       "id":9816456565,
-      "memberId": [
+      "memberId": 
         {
           "image": "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
           "phone": "+919816456565",
           "name": "Nitish Sharma"
         }
-      ]
+      
     }
   ]
 

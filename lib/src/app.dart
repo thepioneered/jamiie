@@ -1,4 +1,5 @@
 
+import 'package:Jamiie/src/screens/auth/afterLogin/form.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -75,7 +76,7 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        // home: AfterLoginFormPage(),
+        //  home: AfterLoginFormPage(),
 
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {

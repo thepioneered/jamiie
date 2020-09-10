@@ -4,13 +4,15 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 
 class JoinPoolScreenProvider extends ChangeNotifier {
-  GlobalKey<ScaffoldState> poolScreenScaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> joinPoolScreenScaffoldKey = GlobalKey<ScaffoldState>();
   JoinPoolScreenModel joinPoolScreenModel;
 
   Future<Null> loadPageAsset() async {
     await loadJson().then((value) {
       Map<String, dynamic> val = json.decode(value);
+    //  print(val);
       joinPoolScreenModel = JoinPoolScreenModel.formJson(val);
+      //print(joinPoolScreenModel.poolName);
       return null;
     });
   }
