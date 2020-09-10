@@ -12,7 +12,7 @@ import '../../widgets/appBar.dart';
 class CompletePoolDataPage extends StatelessWidget {
   final String poolId;
 
-  const CompletePoolDataPage({Key key, this.poolId}) : super(key: key);
+  const CompletePoolDataPage({@required this.poolId});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -108,7 +108,10 @@ class PoolDataPageWidget extends StatelessWidget {
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  CircleAvatar(),
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage(data
+                                        .members[index].memberDetails.imageURL),
+                                  ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
@@ -116,7 +119,9 @@ class PoolDataPageWidget extends StatelessWidget {
                                   Expanded(
                                     child: Container(),
                                   ),
-                                  Text("20")
+                                  Text(data
+                                      .members[index].memberDetails.riskScore
+                                      .toString())
                                 ],
                               ),
                             );
@@ -136,17 +141,12 @@ class PoolDataPageWidget extends StatelessWidget {
                                 print("Working");
                               }
                             : () {
-                                List<MemberModel> a = data.members;
-                                a.shuffle();
-                                print(a[0].memberDetails.name);
-                                print(a[1].memberDetails.name);
-
                                 //TODO: Edit is required here
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => ReorderableListDemo(
-                                      memberModel: a,
+                                    builder: (_) => ChooseRoundPage(
+                                      memberModel: data.members,
                                     ),
                                   ),
                                 );

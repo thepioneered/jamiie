@@ -1,3 +1,6 @@
+import 'package:Jamiie/src/providers/adminPool/chooseRoundProvider.dart';
+import 'package:provider/provider.dart';
+
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../widgets/pageHeading.dart';
 
@@ -5,22 +8,37 @@ import '../../widgets/appBar.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/material.dart';
 
-class ReorderableListDemo extends StatefulWidget {
+class ChooseRoundPage extends StatelessWidget {
   final List<MemberModel> memberModel;
 
-  const ReorderableListDemo({Key key, this.memberModel}) : super(key: key);
+  const ChooseRoundPage({this.memberModel});
   @override
-  _ReorderableListDemo createState() => _ReorderableListDemo(memberModel);
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ChooseRoundProvider(),
+      child: ReorderableListWidget(
+        memberModel: memberModel,
+      ),
+    );
+  }
 }
 
-class _ReorderableListDemo extends State<ReorderableListDemo> {
+class ReorderableListWidget extends StatefulWidget {
   final List<MemberModel> memberModel;
 
-  _ReorderableListDemo(this.memberModel);
+  const ReorderableListWidget({this.memberModel});
+  @override
+  _ReorderableListWidget createState() => _ReorderableListWidget(memberModel);
+}
+
+class _ReorderableListWidget extends State<ReorderableListWidget> {
+  final List<MemberModel> memberModel;
+
+  _ReorderableListWidget(this.memberModel);
 
   @override
   Widget build(BuildContext context) {
-    print(memberModel);
+    var chooseRoundPage = Provider.of<ChooseRoundProvider>(context);
     double height = MediaQuery.of(context).size.height - 75.0;
     return Scaffold(
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
@@ -64,6 +82,7 @@ class _ReorderableListDemo extends State<ReorderableListDemo> {
                     memberModel.forEach((element) {
                       print(element.memberDetails.name);
                     });
+                    chooseRoundPage.startPoolButton(memberModel);
                   },
                   title: "Confirm Rounds"),
             ),

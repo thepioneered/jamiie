@@ -13,7 +13,7 @@ class CompletePoolDataModel {
   CompletePoolDataModel({
     this.poolId,
     this.poolOwner,
-    this.poolName, 
+    this.poolName,
     this.contributionAmount,
     this.joinedMember,
     this.createdAt,
@@ -65,11 +65,23 @@ class MemberDetails {
   String imageURL;
   String phone;
   String name;
+  int riskScore;
 
-  MemberDetails.formJson(Map<String, dynamic> json)
-      : imageURL = json["image"],
-        phone = json["phone"],
-        name = json["name"];
+  MemberDetails({this.imageURL, this.name, this.phone, this.riskScore});
+
+  factory MemberDetails.formJson(Map<String, dynamic> json) {
+    List a  =json["riskStatus"] as List;
+    print("+++++++++++++++++++++++++++++++++++$a+++++++++++++++++++++++");
+
+    print(a[0]);
+
+    return MemberDetails(
+      name: json["name"],
+      imageURL: json["image"],
+      phone: json["phone"],
+      riskScore: json["riskStatus"][0]["riskScore"],
+    );
+  }
 }
 
 var e = {
