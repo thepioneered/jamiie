@@ -1,8 +1,7 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/Dashboard/dashCardModel.dart';
-
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 class DashWidget2 extends StatelessWidget {
   DashWidget2(this.transactionList);
@@ -10,83 +9,84 @@ class DashWidget2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    Color color;
+    String sign;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      width: width,
+      width: 1.wp,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Transactions',
-            style: AppTextStyle.dashCardHeading,
+            style: AppTextStyle.dashCardHeading(size: 18.sp),
           ),
           Container(
-            padding: EdgeInsets.only(top: 5),
-
-            constraints: BoxConstraints(maxHeight: height * .34),
-            // child: NotificationListener(
-            //   onNotification: (overscroll) {
-            //     overscroll.disallowGlow();
-            //     return false;
-            //   },
-            //   child:
-
-            child: ListView.builder(
-               reverse: true,
-              // addSemanticIndexes: true,
-              // controller: ScrollController(
-              //   initialScrollOffset: 0,
-              //   keepScrollOffset: false,
-              // ),
-              // shrinkWrap: false,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-
-              itemCount: transactionList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: height * .32 / 5,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AutoSizeText(
-                            transactionList[index].name,
-                            maxLines: 1,
-                            style: AppTextStyle.dashCardText(Colors.black),
-                          ),
-                          AutoSizeText(
-                            '+\$${transactionList[index].amount}',
-                            style: AppTextStyle.dashTransAmount,
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AutoSizeText(
-                            'Sent',
-                            minFontSize: 9,
-                            style: AppTextStyle.dashCardHint,
-                          ),
-                          AutoSizeText(
-                            transactionList[index].date,
-                            minFontSize: 9,
-                            style: AppTextStyle.dashCardHint,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
+            padding: EdgeInsets.only(top: 5.h),
+            constraints: BoxConstraints(maxHeight: .34.hp),
+            child: ScrollConfiguration(
+              behavior: new ScrollBehavior()
+                ..buildViewportChrome(context, null, AxisDirection.down),
+              child: ListView.builder(
+                reverse: true,
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 5.h),
+                itemCount: transactionList.length,
+                itemBuilder: (context, index) {
+                  if (transactionList[index].transactionType == "Received") {
+                    color = Colors.green;
+                    sign = '+';
+                  } else {
+                    color = Colors.red;
+                    sign = '-';
+                  }
+                  return Container(
+                    height: 45.h,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              transactionList[index].name,
+                              style: AppTextStyle.dashCardText(
+                                color: Colors.black,
+                                size: 14.sp,
+                              ),
+                            ),
+                            Text(
+                              sign +
+                                  '\$' +
+                                  transactionList[index].amount.toString(),
+                              style: AppTextStyle.dashTransAmount(
+                                  size: 18.sp, color: color),
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              transactionList[index].transactionType,
+                              style: AppTextStyle.dashCardHint(size: 10.sp),
+                            ),
+                            Text(
+                              transactionList[index].date,
+                              style: AppTextStyle.dashCardHint(size: 10.sp),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           // )

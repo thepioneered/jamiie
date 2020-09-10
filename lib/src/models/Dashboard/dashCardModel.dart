@@ -47,12 +47,15 @@ class Transaction {
   String name;
   int amount;
   String date;
+  String transactionType;
 
   Transaction.fromJson(Map<String, dynamic> json)
       : name = json["name"],
         amount = json["amount"],
         id = json["id"],
-        date = json["date"];
+        date = json["date"],
+        transactionType = json["transactionType"];
+        
 }
 
 class UpcomingPayments {

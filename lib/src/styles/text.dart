@@ -13,37 +13,38 @@ class AppTextStyle {
         color: color);
   }
 
-  static TextStyle dashCardText(Color color) {
+  static TextStyle dashCardText({Color color, double size}) {
     return TextStyle(
       fontFamily: "Poppins",
-      fontSize: 14.0,
+      fontSize: size,
       color: color,
     );
   }
 
-  static TextStyle dashCardNumber(Color color) {
+  static TextStyle dashCardNumber({Color color, double size}) {
     return TextStyle(
       fontFamily: "Poppins",
-      fontSize: 36.0,
+      fontSize: size,
       fontWeight: FontWeight.bold,
       color: color,
     );
   }
 
-  static TextStyle get dashCardHeading => TextStyle(
+  static TextStyle dashCardHeading({double size}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 18.0,
+        fontSize: size,
         fontWeight: FontWeight.bold,
       );
-  static TextStyle get dashCardHint => TextStyle(
+
+  static TextStyle dashCardHint({double size}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 10.0,
+        fontSize: size,
         color: Colors.grey,
       );
-  static TextStyle get dashTransAmount => TextStyle(
+  static TextStyle dashTransAmount({double size,Color color}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 18.0,
-        color: Colors.green,
+        fontSize: size,
+        color: color,
       );
   static TextStyle get hintText => TextStyle(
         fontFamily: "Poppins",

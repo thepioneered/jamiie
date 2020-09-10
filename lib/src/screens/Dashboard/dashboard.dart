@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -20,6 +21,11 @@ class DashboardPage extends StatelessWidget {
 class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    // print(ScreenUtil.screenHeight);
+    // print(ScreenUtil.screenWidth);
+    // print(ScreenUtil.screenHeightPx);
+    // print(ScreenUtil.screenWidthPx);
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
@@ -36,24 +42,27 @@ class DashboardPageWidget extends StatelessWidget {
               return SingleChildScrollView(
                 child: Container(
                   color: AppColors.backgroundColor,
-                  margin: EdgeInsets.only(top:24),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  margin: EdgeInsets.only(top: 24.h),
+
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text( "Hello," + data.name,style: TextStyle(
-                              fontSize: 36,
-                              //TODO: size editor
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "poppins"
-                            ),),
+                            Text(
+                              "Hello," + data.name,
+                              style: TextStyle(
+                                  fontSize: 36.sp,
+                                  //TODO: size editor
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "poppins"),
+                            ),
                             Padding(
-                              padding: EdgeInsets.only(right: 20),
+                              padding: EdgeInsets.only(right: 20.w),
                               child: CircleAvatar(
                                 backgroundColor: AppColors.primaryBlue,
                                 backgroundImage: NetworkImage(data.imgUrl),

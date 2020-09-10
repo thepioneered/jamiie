@@ -1,6 +1,6 @@
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
-import '../../providers/adminPool/roundListPage.dart';
+import 'roundListPage.dart';
 import '../../styles/text.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +12,7 @@ import '../../widgets/appBar.dart';
 class CompletePoolDataPage extends StatelessWidget {
   final String poolId;
 
-  const CompletePoolDataPage({Key key, this.poolId}) : super(key: key);
+  const CompletePoolDataPage({@required this.poolId});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -43,7 +43,8 @@ class PoolDataPageWidget extends StatelessWidget {
               return Center(
                 child: CupertinoActivityIndicator(),
               );
-            } else {
+            } else if (snapshot.connectionState == ConnectionState.done &&
+                !snapshot.hasError) {
               var data = completePoolDataProvider.completePoolDataModel;
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -101,14 +102,16 @@ class PoolDataPageWidget extends StatelessWidget {
                               height: 60.0,
                               padding: EdgeInsets.all(10.0),
                               margin: EdgeInsets.only(bottom: 10.0),
-                             
                               child: Row(
                                 children: [
                                   Text((index + 1).toString()),
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  CircleAvatar(),
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage(data
+                                        .members[index].memberDetails.imageURL),
+                                  ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
@@ -116,7 +119,9 @@ class PoolDataPageWidget extends StatelessWidget {
                                   Expanded(
                                     child: Container(),
                                   ),
-                                  Text("20")
+                                  Text(data
+                                      .members[index].memberDetails.riskScore
+                                      .toString())
                                 ],
                               ),
                             );
@@ -136,17 +141,12 @@ class PoolDataPageWidget extends StatelessWidget {
                                 print("Working");
                               }
                             : () {
-                                List<MemberModel> a = data.members;
-                                a.shuffle();
-                                print(a[0].memberDetails.name);
-                                print(a[1].memberDetails.name);
-
                                 //TODO: Edit is required here
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => ReorderableListDemo(
-                                      memberModel: a,
+                                    builder: (_) => ChooseRoundPage(
+                                      memberModel: data.members,
                                     ),
                                   ),
                                 );
@@ -156,6 +156,11 @@ class PoolDataPageWidget extends StatelessWidget {
                     )
                   ],
                 ),
+              );
+            } else {
+              print(snapshot.error);
+              return Center(
+                child: Text("Checl"),
               );
             }
           }),

@@ -10,45 +10,44 @@
     {
       "id": "1",
       "name": "Pool 1",
-      "date": "22-08-2020",
-      "amount": 1000
+      "date": "28-08-2020",
+      "amount": 1000,
+      "transactionType": "Received"
     },
     {
       "id": "1",
       "name": "Pool 2",
-      "date": "22-08-2020",
-      "amount": 1000
+      "date": "24-08-2020",
+      "amount": 250,
+      "transactionType": "Sent"
     },
     {
       "id": "1",
       "name": "Pool 3",
-      "date": "22-08-2020",
-      "amount": 1000
+      "date": "21-08-2020",
+      "amount": 800,
+      "transactionType": "Received"
     },
     {
       "id": "1",
       "name": "Pool 4",
-      "date": "22-08-2020",
-      "amount": 1000
-    },
-    {
-      "id": "1",
-      "name": "Pool 4",
-      "date": "22-08-2020",
-      "amount": 1000
+      "date": "18-08-2020",
+      "amount": 200,
+      "transactionType": "Sent"
     },
     {
       "id": "1",
       "name": "Pool 5",
-      "date": "22-08-2020",
-      "amount": 1000
+      "date": "15-08-2020",
+      "amount": 100,
+      "transactionType": "Sent"
     }
   ],
   "upcomingPayments": [
     {
       "id": "1",
       "name": "Pool 1",
-      "date": "22-08-2020",
+      "date": "25-08-2020",
       "amount": 750
     }
   ]

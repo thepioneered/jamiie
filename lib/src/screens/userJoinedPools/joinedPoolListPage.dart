@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
+
 import '../../providers/userJoinedPools/joinPoolProvider.dart';
 import '../../styles/colors.dart';
 import '../../widgets/userJoinedPools/joinPoolListWidget.dart';
@@ -39,8 +41,8 @@ class MyPoolWidget extends StatelessWidget {
           } else if (!snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
             return Container(
-              margin:EdgeInsets.only(top:24.0),
-              
+              margin: EdgeInsets.only(top: 24.0),
+
               //height: MediaQuery.of(context).size.height * 2,
               child: Column(
                 children: [
@@ -52,7 +54,7 @@ class MyPoolWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height*.8,
+                    height: MediaQuery.of(context).size.height * .8,
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         var data = joinPoolProvider
@@ -61,13 +63,14 @@ class MyPoolWidget extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 15),
                           child: JoinPoolListWidget(
                             status: data.status,
-                            imgUrl: data.poolProfile,
+
                             amountSaved: data.amountSaved,
-                            membersList: data.membersList,
+                            // membersList: data.membersList,
                             monthlyTotalAmount: data.monthlyTotalAmount,
                             poolAmount: data.poolAmount,
                             poolName: data.poolName,
                             poolType: data.poolType,
+                            nextScreen: JoinPoolScreen(),
                           ),
                         );
                       },

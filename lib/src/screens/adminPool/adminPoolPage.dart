@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:share/share.dart';
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,15 +68,28 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                   Container(
                     height: MediaQuery.of(context).size.height * .8,
                     child: ListView.builder(
-                     // reverse: true,
+                      // reverse: true,
                       itemCount:
                           createdPoolList.poolListModel.poolDataModel.length,
                       itemBuilder: (context, index) {
                         var data = createdPoolList.poolListModel.poolDataModel;
-                        return _data(
+                        // return _data(
+                        //     poolName: data[index].poolName,
+                        //     poolContribution: data[index].contributionAmount,
+                        //     poolId: data[index].poolId);
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          child: JoinPoolListWidget(
                             poolName: data[index].poolName,
-                            poolContribution: data[index].contributionAmount,
-                            poolId: data[index].poolId);
+                            poolAmount: data[index].contributionAmount,
+                            amountSaved: 100,
+                            status: true,
+                            poolType: data[index].poolType,
+                            nextScreen: CompletePoolDataPage(
+                                poolId: data[index].poolId),
+                            monthlyTotalAmount: 100,
+                          ),
+                        );
                       },
                     ),
                   ),
