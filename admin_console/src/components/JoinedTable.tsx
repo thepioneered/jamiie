@@ -5,10 +5,14 @@ import { joinedMembers } from "../interfaces";
 
 interface Props {
   data: joinedMembers[];
+  owner: string;
 }
 
-export default function JoinedTable({ data }: Props) {
-  const row = ({ memberId, joinedAt }: joinedMembers) => {
+export default function JoinedTable({ data, owner }: Props) {
+  const row = ({ memberId, joinedAt }: joinedMembers, owner: string) => {
+    let isOwner = false;
+    if (memberId.phone === owner) isOwner = true;
+
     return (
       <tr key={memberId.phone}>
         <td>
@@ -22,7 +26,15 @@ export default function JoinedTable({ data }: Props) {
             <a className={styles.page__link}>{memberId.phone}</a>
           </Link>
         </td>
-        <td>{memberId.name}</td>
+        <td>
+          {
+            <>
+              {memberId.name}
+              {isOwner && <br />}
+              {isOwner && <b>(Admin)</b>}
+            </>
+          }
+        </td>
         <td>{new Date(joinedAt).toLocaleString("en-US")}</td>
         <td>{memberId.riskStatus[0].riskScore}</td>
         <td>{memberId.riskStatus[0].riskBand}</td>
@@ -30,8 +42,8 @@ export default function JoinedTable({ data }: Props) {
     );
   };
 
-  const getRows = (arr: joinedMembers[]) => {
-    return arr.map((item) => row(item));
+  const getRows = (arr: joinedMembers[], owner: string) => {
+    return arr.map((item) => row(item, owner));
   };
 
   return (
@@ -47,7 +59,7 @@ export default function JoinedTable({ data }: Props) {
             <td>Risk Band</td>
           </tr>
         </thead>
-        <tbody>{getRows(data)}</tbody>
+        <tbody>{getRows(data, owner)}</tbody>
       </table>
     </>
   );

@@ -141,7 +141,7 @@ function Pool() {
               {isLoading ? (
                 <GlobalLoader />
               ) : (
-                <JoinedTable data={data!.joinedpool} />
+                <JoinedTable data={data!.joinedpool} owner={data!.poolOwner} />
               )}
             </div>
           </div>
