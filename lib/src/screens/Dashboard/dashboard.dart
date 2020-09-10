@@ -22,10 +22,6 @@ class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    // print(ScreenUtil.screenHeight);
-    // print(ScreenUtil.screenWidth);
-    // print(ScreenUtil.screenHeightPx);
-    // print(ScreenUtil.screenWidthPx);
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
@@ -43,7 +39,6 @@ class DashboardPageWidget extends StatelessWidget {
                 child: Container(
                   color: AppColors.backgroundColor,
                   margin: EdgeInsets.only(top: 24.h),
-
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: Column(
                     children: [

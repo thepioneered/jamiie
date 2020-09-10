@@ -1,6 +1,5 @@
 import 'package:Jamiie/src/models/Dashboard/dashCardModel.dart';
 import 'package:Jamiie/src/styles/colors.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../styles/text.dart';
@@ -44,16 +43,17 @@ class DashWidget3 extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AutoSizeText(
+                            Text(
                               upcomingPaymentList[index].name,
                               style: AppTextStyle.dashCardText(
                                 color: Colors.black,
                                 size: 14.sp,
                               ),
                             ),
-                            AutoSizeText(
+                            Text(
                               '\$${upcomingPaymentList[index].amount}',
-                              style: AppTextStyle.dashTransAmount(size: 18.sp,color: AppColors.green),
+                              style: AppTextStyle.dashTransAmount(
+                                  size: 18.sp, color: AppColors.green),
                             )
                           ],
                         ),
