@@ -56,14 +56,6 @@ function Users() {
         <div className={styles.User}>
           <div className={card.container}>
             <TotalCard name="Total Users" number={state.totalData.totalUsers} />
-            <TotalCard
-              name="Active Users"
-              number={state.totalData.activeUsers}
-            />
-            <TotalCard
-              name="Logged Out Users"
-              number={state.totalData.loggedOutUsers}
-            />
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>

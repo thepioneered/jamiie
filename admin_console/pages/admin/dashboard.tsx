@@ -16,7 +16,7 @@ function Dashboard() {
             number={state.totalData.totalTransactions}
           />
           <TotalCard name="Total Users" number={state.totalData.totalUsers} />
-          <TotalCard name="Total Groups" number={state.totalData.totalGroups} />
+          <TotalCard name="Total Groups" number={state.totalData.totalPools} />
           <TotalCard
             name="Completed Pools"
             number={state.totalData.completedPools}

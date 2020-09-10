@@ -9,10 +9,8 @@ export type loginData = {
 export type totalData = {
   totalTransactions: number;
   totalUsers: number;
-  totalGroups: number;
+  totalPools: number;
   completedPools: number;
-  activeUsers: number;
-  loggedOutUsers: number;
 };
 
 export type globalStateProperties =

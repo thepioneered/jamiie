@@ -4,11 +4,15 @@ import Loading from "../src/components/Loading";
 import { postData } from "../src/utils/apiCalls";
 import { useRouter } from "next/dist/client/router";
 import "../styles/globals.scss";
-import { globalContext, loginData } from "../src/interfaces/global";
+import {
+  globalContext,
+  loginData,
+  globalState,
+} from "../src/interfaces/global";
 import { globalReducer } from "../src/utils/globalReducer";
 import { endpoints } from "../src/constants/apiEndpoints";
 
-const initialState = {
+const initialState: globalState = {
   isLoading: true,
   tokenValidated: false,
   isSidebarOpen: true,
@@ -21,10 +25,8 @@ const initialState = {
   totalData: {
     totalTransactions: 46289,
     totalUsers: 22544,
-    totalGroups: 46298,
+    totalPools: 46298,
     completedPools: 33289,
-    activeUsers: 46289,
-    loggedOutUsers: 33289,
   },
 };
 
