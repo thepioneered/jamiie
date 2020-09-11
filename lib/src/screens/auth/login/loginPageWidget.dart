@@ -41,27 +41,27 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               AppTextField.screenTextField(
-                  height: 78.h,
+                  height: 75.h,
                   prefixIcon: Icons.phone,
                   onEdittingComplete: () => passwordNode.requestFocus(),
-                  maxLength: 10,
+                  // maxLength: 10,
                   hintText: "Mobile",
                   autofocus: false,
                   validator: TextFieldValidation.mobileValidation,
                   autoValidate: loginProvider.pageModel.onceFormSubmitted,
                   onSaved: (String e) => loginProvider.login.setMobile(e),
                   textInputType: TextInputType.number),
-                  SizedBox(height: 10.h,),
-              // ChangeNotifierProvider(
-              //   create: (_) => PasswordStatusLogin(),
-              //   child: Consumer<PasswordStatusLogin>(
-              //     builder: (_, passwordStatus, child) {
-              //       print(75.h);
-              //         ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+                  SizedBox(height: 6.h,),
+              ChangeNotifierProvider(
+                create: (_) => PasswordStatusLogin(),
+                child: Consumer<PasswordStatusLogin>(
+                  builder: (_, passwordStatus, child) {
+                    print(75.h);
+                      ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
 
-              //       return 
+                    return 
                     AppTextField.screenTextField(
-                      height: 55.h,
+                      height: 75.h,
                       autofocus: false,
                       focusNode: passwordNode,
                       prefixIcon: Icons.lock,
@@ -70,15 +70,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       validator: TextFieldValidation.passwordValidation,
                       autoValidate: loginProvider.pageModel.onceFormSubmitted,
                       onSaved: (String e) => loginProvider.login.password = e,
-                      // onEyeClick: GestureDetector(
-                      //   onTap: passwordStatus.setStatus,
-                      //   child: Icon(passwordStatus.showPassword
-                      //       ? FontAwesomeIcons.eye
-                      //       : FontAwesomeIcons.eyeSlash),
-                      // ),
-                    // );
-                  //},
-                // ),
+                      onEyeClick: GestureDetector(
+                        onTap: passwordStatus.setStatus,
+                        child: Icon(passwordStatus.showPassword
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash),
+                      ),
+                    );
+                  },
+                ),
               ),
               SizedBox(
                 height: 15.0.h,

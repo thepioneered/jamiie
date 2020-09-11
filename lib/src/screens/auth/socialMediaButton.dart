@@ -51,13 +51,12 @@ class SocialMediaButton extends StatelessWidget {
         child: Container(
           height: 50.0.h,
           width: 50.0.w,
-          decoration: BoxDecoration(
-            color: buttonColor,
-            shape: BoxShape.circle
-            // borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
-          ),
+          decoration: BoxDecoration(color: buttonColor, shape: BoxShape.circle
+              // borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
+              ),
           child: Icon(
             icon,
+            size: 25.0.sp,
             color: iconColor,
           ),
         ),
