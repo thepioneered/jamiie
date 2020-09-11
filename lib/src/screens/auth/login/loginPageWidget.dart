@@ -29,16 +29,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   Widget build(BuildContext context) {
     print("+++++LOGIN WIDGET REBUILD+++++");
+    
     // double height = MediaQuery.of(context).size.height - 75.0;
     // print(height);
     return Consumer<LoginProvider>(
       builder: (_, loginProvider, child) {
+        print("----"+75.h.toString());
         return Form(
           key: loginProvider.loginFormKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               AppTextField.screenTextField(
-                height: 75.h,
+                  height: 78.h,
                   prefixIcon: Icons.phone,
                   onEdittingComplete: () => passwordNode.requestFocus(),
                   maxLength: 10,
@@ -48,32 +51,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   autoValidate: loginProvider.pageModel.onceFormSubmitted,
                   onSaved: (String e) => loginProvider.login.setMobile(e),
                   textInputType: TextInputType.number),
-              ChangeNotifierProvider(
-                create: (context) => PasswordStatusLogin(),
-                child: Consumer<PasswordStatusLogin>(
-                  builder: (_, passwordStatus, child) {
-                    return AppTextField.screenTextField(
-                      height: 75.h,
+                  SizedBox(height: 10.h,),
+              // ChangeNotifierProvider(
+              //   create: (_) => PasswordStatusLogin(),
+              //   child: Consumer<PasswordStatusLogin>(
+              //     builder: (_, passwordStatus, child) {
+              //       print(75.h);
+              //         ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+
+              //       return 
+                    AppTextField.screenTextField(
+                      height: 55.h,
                       autofocus: false,
                       focusNode: passwordNode,
                       prefixIcon: Icons.lock,
                       hintText: "Password",
-                      showPassword: passwordStatus.showPassword,
+                     // showPassword: passwordStatus.showPassword,
                       validator: TextFieldValidation.passwordValidation,
                       autoValidate: loginProvider.pageModel.onceFormSubmitted,
                       onSaved: (String e) => loginProvider.login.password = e,
-                      onEyeClick: GestureDetector(
-                        onTap: passwordStatus.setStatus,
-                        child: Icon(passwordStatus.showPassword
-                            ? FontAwesomeIcons.eye
-                            : FontAwesomeIcons.eyeSlash),
-                      ),
-                    );
-                  },
-                ),
+                      // onEyeClick: GestureDetector(
+                      //   onTap: passwordStatus.setStatus,
+                      //   child: Icon(passwordStatus.showPassword
+                      //       ? FontAwesomeIcons.eye
+                      //       : FontAwesomeIcons.eyeSlash),
+                      // ),
+                    // );
+                  //},
+                // ),
               ),
               SizedBox(
-                height: 5.0.h,
+                height: 15.0.h,
               ),
               Container(
                 height:  0.07.hp,

@@ -200,7 +200,7 @@ class AppTextStyle {
   static TextStyle loginButtonText(Color color) {
     return TextStyle(
       fontFamily: "Poppins",
-      fontSize: 20.0,
+      fontSize: 25.0.sp,
       fontWeight: FontWeight.w600,
       color: color,
     );
