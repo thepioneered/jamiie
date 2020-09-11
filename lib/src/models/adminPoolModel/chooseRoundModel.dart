@@ -1,13 +1,12 @@
 class ChooseRoundModel {
-  // List<ChooseRoundMemberDetails> chooseRoundMemberDetails;
 
-  // ChooseRoundModel(){
-  //   chooseRoundMemberDetails =  List<ChooseRoundMemberDetails>();
-  // }
   Map<String, dynamic> toJson(
       String poolId, List<ChooseRoundMemberDetails> chooseMemberDetails) {
-    // chooseMemberDetails.forEach((element) );
-    // return {"poolId": poolId, "sequenceDetail": };
+    List<Map<String, dynamic>> list;
+    chooseMemberDetails.forEach((element) {
+      list.add(element.toJson());
+    });
+    return {"poolId": poolId, "sequenceDetail": list};
   }
 }
 
@@ -21,6 +20,9 @@ class ChooseRoundMemberDetails {
   });
 
   Map<String, dynamic> toJson() {
-    return {"phone": phone, "sequence": sequence};
+    return {
+      "phone": phone,
+      "sequence": sequence,
+    };
   }
 }

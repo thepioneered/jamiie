@@ -27,6 +27,31 @@ class CompletePoolDataModel {
     List<MemberModel> list = List<MemberModel>();
     List<dynamic> jsonList = json["joinedpool"];
 
+  //   "joinedpool": [
+  //   {
+  //     "id": 10,
+  //     "memberId": {
+  //       "image":
+  //           "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
+  //       "phone": "+917071006000",
+  //       "name": "Nakul Garg"
+  //     },
+  //     "joinedAt": "2020-08-29T10:03:02.109723Z",
+  //     "poolId": "05797de5"
+  //   },
+  //   {
+  //     "id": 10,
+  //     "memberId": {
+  //       "image":
+  //           "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
+  //       "phone": "+917071006000",
+  //       "name": "Nakul Garg"
+  //     },
+  //     "joinedAt": "2020-08-29T10:03:02.109723Z",
+  //     "poolId": "05797de5"
+  //   },
+  // ]
+
     list = jsonList.map((e) => MemberModel.fromJson(e)).toList();
 
     return CompletePoolDataModel(
@@ -84,6 +109,7 @@ class MemberDetails {
   }
 }
 
+
 var e = {
   "poolId": "05797de5",
   "poolOwner": "+917071006000",
@@ -105,6 +131,17 @@ var e = {
       },
       "joinedAt": "2020-08-29T10:03:02.109723Z",
       "poolId": "05797de5"
-    }
+    },
+    {
+      "id": 10,
+      "memberId": {
+        "image":
+            "https://jamiie-userprofile-images.s3.amazonaws.com/ProfileImages/917071006000.jpg",
+        "phone": "+917071006000",
+        "name": "Nakul Garg"
+      },
+      "joinedAt": "2020-08-29T10:03:02.109723Z",
+      "poolId": "05797de5"
+    },
   ]
 };
