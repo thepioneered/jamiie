@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../styles/colors.dart';
 import '../../styles/text.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+
 class DashWidget1 extends StatelessWidget {
   DashWidget1({
     @required this.amount,
@@ -16,12 +17,10 @@ class DashWidget1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      height: height * .43,
+      margin: EdgeInsets.symmetric(vertical: 10.w),
+      height: 0.43.hp,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,15 +28,17 @@ class DashWidget1 extends StatelessWidget {
             decoration: BoxDecoration(
                 color: AppColors.primaryColorPurple,
                 borderRadius: BorderRadius.circular(16)),
-            padding: EdgeInsets.all(20),
-            width: width / 2 - 30,
+            padding: EdgeInsets.all(20.h),
+            width: 182.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AutoSizeText(
+                Text(
                   'Money saved with us',
-                  maxLines: 2,
-                  style: AppTextStyle.dashCardText(AppColors.lightBlue),
+                  style: AppTextStyle.dashCardText(
+                    color: AppColors.lightBlue,
+                    size: 14.sp,
+                  ),
                 ),
                 Container(
                   child: Row(
@@ -48,10 +49,12 @@ class DashWidget1 extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                      AutoSizeText(
+                      Text(
                         amount.toString(),
-                        maxLines: 2,
-                        style: AppTextStyle.dashCardNumber(AppColors.white),
+                        style: AppTextStyle.dashCardNumber(
+                          color: AppColors.white,
+                          size: 36.sp,
+                        ),
                       )
                     ],
                   ),
@@ -64,29 +67,29 @@ class DashWidget1 extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: AppColors.lightBlue,
                           borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .11,
+                      width: 22.w,
+                      height: .11.hp,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           color: AppColors.lightBlue,
                           borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .19,
+                      width: 22.w,
+                      height: .19.hp,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           color: AppColors.lightBlue,
                           borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .14,
+                      width: 22.w,
+                      height: .14.hp,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           color: AppColors.lightBlue,
                           borderRadius: BorderRadius.circular(20)),
-                      width: (width / 2 - 30) / 8,
-                      height: height * .1,
+                      width: 22.w,
+                      height: .1.hp,
                     ),
                   ],
                 )
@@ -97,77 +100,83 @@ class DashWidget1 extends StatelessWidget {
             decoration: BoxDecoration(
                 color: AppColors.lightBlue,
                 borderRadius: BorderRadius.circular(16)),
-            padding: EdgeInsets.all(10),
-            width: width / 2 - 30,
+            padding: EdgeInsets.all(10.h),
+            width: 182.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  padding: EdgeInsets.fromLTRB(10.h, 10.h, 0, 0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AutoSizeText(
+                      Text(
                         'Created Pools',
-                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
-                            AppColors.primaryColorPurple),
+                          color: AppColors.primaryColorPurple,
+                          size: 14.sp,
+                        ),
                       ),
-                      AutoSizeText(
+                      Text(
                         createsPools.toString(),
-                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
-                            AppColors.primaryColorPurple),
+                          color: AppColors.primaryColorPurple,
+                          size: 36.sp,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  padding: EdgeInsets.fromLTRB(10.h, 10.h, 0, 0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AutoSizeText(
+                      Text(
                         'Joined Pools',
-                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
-                            AppColors.primaryColorPurple),
+                          color: AppColors.primaryColorPurple,
+                          size: 14.sp,
+                        ),
                       ),
-                      AutoSizeText(
+                      Text(
                         joinedPools.toString(),
-                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
-                            AppColors.primaryColorPurple),
+                          color: AppColors.primaryColorPurple,
+                          size: 36.sp,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  padding: EdgeInsets.fromLTRB(10.h, 10.h, 0, 0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AutoSizeText(
+                      Text(
                         'Completed',
-                        maxLines: 1,
                         style: AppTextStyle.dashCardText(
-                            AppColors.primaryColorPurple),
+                          size: 14.sp,
+                          color: AppColors.primaryColorPurple,
+                        ),
                       ),
-                      AutoSizeText(
+                      Text(
                         completedPools.toString(),
-                        maxLines: 1,
                         style: AppTextStyle.dashCardNumber(
-                            AppColors.primaryColorPurple),
+                          color: AppColors.primaryColorPurple,
+                          size: 36.sp,
+                        ),
                       ),
                     ],
                   ),

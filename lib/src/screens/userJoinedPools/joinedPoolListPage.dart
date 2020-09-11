@@ -70,7 +70,7 @@ class MyPoolWidget extends StatelessWidget {
                             poolAmount: data.poolAmount,
                             poolName: data.poolName,
                             poolType: data.poolType,
-                            nextScreen: PoolScreen(),
+                            nextScreen: JoinPoolScreen(),
                           ),
                         );
                       },

@@ -5,7 +5,7 @@ import '../screens/adminPool/adminPoolPage.dart';
 import '../styles/colors.dart';
 import 'Dashboard/dashboard.dart';
 import 'settings/settingPage.dart';
-import 'userJoinedPools/joinedPoolListPage.dart.dart';
+import 'userJoinedPools/joinedPoolListPage.dart';
 
 class AppNavigationBar extends StatefulWidget {
   @override
