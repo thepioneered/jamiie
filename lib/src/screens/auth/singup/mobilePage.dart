@@ -25,9 +25,7 @@ class MobilePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<MobileProvider>(builder: (_, mobileProvider, child) {
-      // print("++++++++++++++Mobile Page Rebuild+++++++++++++++++");
-      // double height = MediaQuery.of(context).size.height - 75.0;
-      // print(height);
+      
       ScreenUtil.init(context,
           width: 411, height: 683, allowFontScaling: false);
 
@@ -45,7 +43,7 @@ class MobilePageWidget extends StatelessWidget {
                 children: <Widget>[
                   //Takes 20 percent of total space
                   PageHeading.topHeading(
-                      height: 0.18.hp,
+                      // height: 0.18.hp,
                       title: SignUpFlowText.mobilePageTitle,
                       subTitle: SignUpFlowText.mobilePageSubTitle),
                   SizedBox(

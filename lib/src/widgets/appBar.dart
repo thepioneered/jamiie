@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../styles/text.dart';
 import '../styles/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarWidget {
   static AppBar getAppBar(BuildContext ctx, String title,
@@ -10,7 +11,7 @@ class AppBarWidget {
       title: Text(title, style: AppTextStyle.appBarTitle),
       leading: IconButton(
         icon: Container(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(10.h),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             color: AppColors.primaryColorPurple.withAlpha(20),
@@ -18,7 +19,7 @@ class AppBarWidget {
           child: Icon(
             Icons.arrow_back_ios,
             color: AppColors.primaryColorPurple,
-            size: 16,
+            size: 16.sp,
           ),
         ),
         onPressed: isRegistration

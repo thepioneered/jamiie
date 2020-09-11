@@ -247,7 +247,7 @@ class AppTextStyle {
 
   static TextStyle get appBarTitle => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 18.0,
+        fontSize: 18.0.sp,
         fontWeight: FontWeight.w500,
       );
   //

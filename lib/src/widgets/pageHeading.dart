@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageHeading {
   static Widget topHeading(
-      {@required String title, @required String subTitle, @required height}) {
+      {@required String title, @required String subTitle,double height}) {
     return Container(
-      height: 0.18.hp,
+      height: 0.30.hp,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

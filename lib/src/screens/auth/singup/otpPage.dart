@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/utils/onWillPopScope.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/pageHeading.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -40,8 +41,8 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
   Widget otpNumberWidget(int position) {
     try {
       return Container(
-        height: 40,
-        width: 40,
+        height: 40.h,
+        width: 40.w,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 0),
         ),
@@ -54,8 +55,8 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
       );
     } catch (e) {
       return Container(
-        height: 40,
-        width: 40,
+        height: 40.h,
+        width: 40.w,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 0),
         ),
@@ -66,7 +67,8 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
   @override
   Widget build(BuildContext context) {
     var otpProvider = Provider.of<OtpProvider>(context);
-    double height = MediaQuery.of(context).size.height - 75.0;
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+
     return WillPopScope(
       onWillPop: () => appConfirmRemoveScreenDialog(context),
       child: Scaffold(
@@ -74,20 +76,20 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
         key: otpProvider.otpScaffoldKey,
         appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
-          height: MediaQuery.of(context).size.height - 75.0,
+          padding: EdgeInsets.symmetric(horizontal: 15.0.h),
+          // height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               //This takes total 20% space of the page without app bar
               PageHeading.topHeading(
-                height: height,
+                // height: 0.18.hp,
                 title: SignUpFlowText.otpPageTitle,
                 subTitle: SignUpFlowText.otpPageSubTitle,
               ),
               //This takes total 20% space of the page without app bar
               Container(
-                height: height * 0.2,
+                height: 0.2.hp,
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,12 +105,13 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
 
               //8% percent of total height is given to button.
               Container(
-                height: height * 0.07,
+                height: 0.07.hp,
                 child: otpProvider.verifyOTP(
-                        onTap: () {
-                          otpProvider.otpModel.otp = text;
-                          otpProvider.checkOtp();
-                        },),
+                  onTap: () {
+                    otpProvider.otpModel.otp = text;
+                    otpProvider.checkOtp();
+                  },
+                ),
               ),
 
               ///
