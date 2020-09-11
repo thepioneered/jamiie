@@ -1,7 +1,7 @@
 import '../../styles/base.dart';
 
 import '../../styles/colors.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,6 +13,8 @@ class SocialMediaButton extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+
     IconData icon;
     Color iconColor;
     Color buttonColor;
@@ -47,11 +49,12 @@ class SocialMediaButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          height: 50.0,
-          width: 50.0,
+          height: 50.0.h,
+          width: 50.0.w,
           decoration: BoxDecoration(
             color: buttonColor,
-            borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
+            shape: BoxShape.circle
+            // borderRadius: BorderRadius.circular(BaseStyles.buttonRadius),
           ),
           child: Icon(
             icon,

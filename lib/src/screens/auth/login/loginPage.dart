@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import '../../../providers/auth/login/loginProvider.dart';
 import 'loginPageWidget.dart';
+import "package:flutter_screenutil/flutter_screenutil.dart";
 import '../../../styles/base.dart';
 import '../socialMediaButton.dart';
 import '../../../styles/colors.dart';
@@ -53,7 +54,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     double height = MediaQuery.of(context).size.height;
+    print(height * 0.3);
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
       key: a.loginScaffoldKey,
@@ -69,19 +72,19 @@ class _LoginPageState extends State<LoginPage> {
                 //30 percent of total space
                 Container(
                   alignment: Alignment.center,
-                  height: height * 0.3,
-                  width: 200.0,
-                  margin: const EdgeInsets.symmetric(horizontal: 12),
-                  padding: const EdgeInsets.only(top: 3.0),
+                  // height: height * 0.3,
+                  height: 0.3.hp,
+                  width: 200.0.w,
+                  margin: EdgeInsets.symmetric(horizontal: 12.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   decoration: BoxDecoration(
                       image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    scale: 100.0,
                     image: AssetImage("assets/LOGO1.jpg"),
                   )),
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 15.0.h,
                 ),
 
                 //30 percent of total space
@@ -96,15 +99,14 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.pushNamed(context, "/ForgotPasswordPage");
                   },
                   child: Container(
-                    // color: Colors.blueAccent,
-                    height: height * 0.05,
+                    height: 0.05.hp,
                     alignment: Alignment.bottomRight,
-                    child: AutoSizeText(
+                    child: Text(
                       "Forgot Password ?",
                       style: AppTextStyle.forgotPassword(),
-                      maxFontSize: 20.0,
-                      minFontSize: 12.0,
-                      maxLines: 1,
+                      // maxFontSize: 20.0,
+                      // minFontSize: 12.0,
+                      // maxLines: 1,
                     ),
                   ),
                 ),
@@ -121,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: AppTextStyle.connectUsing(),
                         ),
                         SizedBox(
-                          height: 15.0,
+                          height: 15.0.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -149,25 +151,25 @@ class _LoginPageState extends State<LoginPage> {
 
                 Container(
                   alignment: Alignment.bottomCenter,
-                  margin: const EdgeInsets.only(bottom: 3.0),
+                  margin: EdgeInsets.only(bottom: 5.0.h),
                   child: GestureDetector(
                     // padding: EdgeInsets.zero,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(
+                       Text(
                           "Don't have an account?",
-                          maxFontSize: 16.0,
-                          minFontSize: 12.0,
-                          maxLines: 1,
+                          // maxFontSize: 16.0,
+                          // minFontSize: 12.0,
+                          // maxLines: 1,
                           style: AppTextStyle.dontHaveAccount,
                         ),
-                        AutoSizeText(
+                        Text(
                           " Sign Up",
                           style: AppTextStyle.createOne,
-                          maxFontSize: 16.0,
-                          minFontSize: 12.0,
-                          maxLines: 1,
+                          // maxFontSize: 16.0,
+                          // minFontSize: 12.0,
+                          // maxLines: 1,
                         ),
                       ],
                     ),

@@ -1,7 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/validationRegex.dart';
 import '../../../widgets/appTextFields/appTextField.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,8 +29,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   Widget build(BuildContext context) {
     print("+++++LOGIN WIDGET REBUILD+++++");
-    double height = MediaQuery.of(context).size.height - 75.0;
-    print(height);
+    // double height = MediaQuery.of(context).size.height - 75.0;
+    // print(height);
     return Consumer<LoginProvider>(
       builder: (_, loginProvider, child) {
         return Form(
@@ -38,6 +38,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           child: Column(
             children: <Widget>[
               AppTextField.screenTextField(
+                height: 75.h,
                   prefixIcon: Icons.phone,
                   onEdittingComplete: () => passwordNode.requestFocus(),
                   maxLength: 10,
@@ -52,6 +53,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 child: Consumer<PasswordStatusLogin>(
                   builder: (_, passwordStatus, child) {
                     return AppTextField.screenTextField(
+                      height: 75.h,
                       autofocus: false,
                       focusNode: passwordNode,
                       prefixIcon: Icons.lock,
@@ -71,10 +73,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 ),
               ),
               SizedBox(
-                height: 5.0,
+                height: 5.0.h,
               ),
               Container(
-                height: height * 0.07,
+                height:  0.07.hp,
                 child: loginProvider.loginButton(
                   onTap: () {
                     FocusScope.of(context).unfocus();

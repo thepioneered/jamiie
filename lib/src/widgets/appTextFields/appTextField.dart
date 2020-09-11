@@ -9,6 +9,7 @@ class AppTextField {
       @required bool autoValidate,
       @required Function(String) onSaved,
       int maxLines,
+      double height,
       ToolbarOptions toolbarOptions,
       Function onEdittingComplete,
       bool autofocus,
@@ -21,7 +22,7 @@ class AppTextField {
       EdgeInsetsGeometry edge,
       TextInputType textInputType}) {
     return Container(
-      height: 75.0,
+      height: height != null?height:75.0,
       child: TextFormField(
         toolbarOptions: toolbarOptions,
         focusNode: focusNode,
