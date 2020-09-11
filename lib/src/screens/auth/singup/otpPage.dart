@@ -79,7 +79,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
           padding: EdgeInsets.symmetric(horizontal: 15.0.h),
           // height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               //This takes total 20% space of the page without app bar
               PageHeading.topHeading(
@@ -116,6 +116,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
 
               ///
               Container(
+                height: 300.h,
                 child: NumericKeyboard(
                   onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
                   textColor: AppColors.black,

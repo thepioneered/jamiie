@@ -136,7 +136,7 @@ class AppTextStyle {
   static TextStyle get authHeading => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w700,
-        fontSize: 40.0.sp,
+        fontSize: 40.sp,
       );
   static TextStyle get dontHaveAccount => TextStyle(
         fontFamily: "Poppins",
