@@ -39,7 +39,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
         ],
       ),
       height: height,
-      width: MediaQuery.of(context).size.width,
+      width: 1.wp,
       child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -57,7 +57,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   Widget _navbarButton(int _index, String title, IconData iconData) {
     return Container(
       decoration: null,
-      width: MediaQuery.of(context).size.width / 4,
+      width: 1.wp / 4,
       child: FlatButton(
         padding: EdgeInsets.zero,
         onPressed: () {
@@ -79,7 +79,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
                 ? Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 5.0,
+                        height: 5.0.h,
                       ),
                       Text(
                         title,
@@ -96,7 +96,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
 
   Widget _navbarImageButton(int _index) {
     return Container(
-      width: MediaQuery.of(context).size.width / 4,
+      width: 1.wp / 4,
       child: FlatButton(
         onPressed: () {
           if (index != _index)
@@ -105,11 +105,11 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             });
         },
         child: Container(
-          margin: EdgeInsets.all(12.0),
+          margin: EdgeInsets.all(12.0.h),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(width: 1.0, color: AppColors.primaryColorPurple),
+            border: Border.all(width: 1.0.w, color: AppColors.primaryColorPurple),
             image: DecorationImage(
                 image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
           ),
@@ -126,7 +126,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
       
       //8 percent of total height
       bottomNavigationBar: _bottomNavigationBar(
-         0.08.hp,
+         0.08.hp+5.h,
       ),
     );
   }
