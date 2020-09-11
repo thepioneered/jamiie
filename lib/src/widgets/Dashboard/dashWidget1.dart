@@ -37,7 +37,6 @@ class DashWidget1 extends StatelessWidget {
                   'Money saved with us',
                   style: AppTextStyle.dashCardText(
                     color: AppColors.lightBlue,
-                    size: 14.sp,
                   ),
                 ),
                 Container(
@@ -53,7 +52,6 @@ class DashWidget1 extends StatelessWidget {
                         amount.toString(),
                         style: AppTextStyle.dashCardNumber(
                           color: AppColors.white,
-                          size: 36.sp,
                         ),
                       )
                     ],
@@ -118,14 +116,12 @@ class DashWidget1 extends StatelessWidget {
                         'Created Pools',
                         style: AppTextStyle.dashCardText(
                           color: AppColors.primaryColorPurple,
-                          size: 14.sp,
                         ),
                       ),
                       Text(
                         createsPools.toString(),
                         style: AppTextStyle.dashCardNumber(
                           color: AppColors.primaryColorPurple,
-                          size: 36.sp,
                         ),
                       ),
                     ],
@@ -143,14 +139,12 @@ class DashWidget1 extends StatelessWidget {
                         'Joined Pools',
                         style: AppTextStyle.dashCardText(
                           color: AppColors.primaryColorPurple,
-                          size: 14.sp,
                         ),
                       ),
                       Text(
                         joinedPools.toString(),
                         style: AppTextStyle.dashCardNumber(
                           color: AppColors.primaryColorPurple,
-                          size: 36.sp,
                         ),
                       ),
                     ],
@@ -167,7 +161,6 @@ class DashWidget1 extends StatelessWidget {
                       Text(
                         'Completed',
                         style: AppTextStyle.dashCardText(
-                          size: 14.sp,
                           color: AppColors.primaryColorPurple,
                         ),
                       ),
@@ -175,7 +168,6 @@ class DashWidget1 extends StatelessWidget {
                         completedPools.toString(),
                         style: AppTextStyle.dashCardNumber(
                           color: AppColors.primaryColorPurple,
-                          size: 36.sp,
                         ),
                       ),
                     ],

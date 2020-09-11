@@ -52,7 +52,7 @@ class DashboardPageWidget extends StatelessWidget {
                               "Hello," + data.name,
                               style: TextStyle(
                                   fontSize: 36.sp,
-                                  //TODO: size editor
+                                  //TODO: size editor pending
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "poppins"),
                             ),

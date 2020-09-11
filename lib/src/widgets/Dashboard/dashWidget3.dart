@@ -24,7 +24,7 @@ class DashWidget3 extends StatelessWidget {
         children: [
           Text(
             'Upcoming Payments',
-            style: AppTextStyle.dashCardHeading(size: 18.sp),
+            style: AppTextStyle.dashCardHeading,
           ),
           Container(
             constraints: BoxConstraints(maxHeight: .34.hp),
@@ -47,13 +47,12 @@ class DashWidget3 extends StatelessWidget {
                               upcomingPaymentList[index].name,
                               style: AppTextStyle.dashCardText(
                                 color: Colors.black,
-                                size: 14.sp,
                               ),
                             ),
                             Text(
                               '\$${upcomingPaymentList[index].amount}',
                               style: AppTextStyle.dashTransAmount(
-                                  size: 18.sp, color: AppColors.green),
+                                  color: AppColors.green,),
                             )
                           ],
                         ),
@@ -62,7 +61,7 @@ class DashWidget3 extends StatelessWidget {
                           children: [
                             Text(
                               upcomingPaymentList[index].date,
-                              style: AppTextStyle.dashCardHint(size: 10.sp),
+                              style: AppTextStyle.dashCardHint,
                             )
                           ],
                         ),
