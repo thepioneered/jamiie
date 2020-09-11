@@ -1,6 +1,7 @@
 import 'package:Jamiie/src/repositry/afterLoginForm.dart';
 import 'package:Jamiie/src/widgets/pageHeading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../providers/auth/afterLoginFormProvider.dart';
 import '../../../styles/text.dart';
 import '../../../widgets/AfterLoginForm/formwidget.dart';
@@ -27,7 +28,10 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
   Widget build(BuildContext context) {
     try {
       var formProvider = Provider.of<AfterLoginFormProvider>(context);
-      double height = MediaQuery.of(context).size.height - 75.0;
+      ScreenUtil.init(context,
+          width: 411, height: 683, allowFontScaling: false);
+
+      // double height = MediaQuery.of(context).size.height - 75.0;
       return Scaffold(
         key: formProvider.scaffoldKey,
         body: SingleChildScrollView(
@@ -36,7 +40,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
             child: Column(
               children: [
                 PageHeading.topHeading(
-                    height: height,
+                    
                     title: "Few more details",
                     subTitle:
                         "Please enter few more details and your are ready to go."),
@@ -47,8 +51,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       //Final
-                      Text('Job Age:',
-                          style: AppTextStyle.subheadingTextForm),
+                      Text('Job Age:', style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.jobAge,
                         onchanged: (e) {
@@ -59,8 +62,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         validator: formProvider.validator,
                         autoValidate: false,
                       ),
-                      Text('Family :',
-                          style: AppTextStyle.subheadingTextForm),
+                      Text('Family :', style: AppTextStyle.subheadingTextForm),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.faimlyStatus,
                         onchanged: (e) {
@@ -88,14 +90,14 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.moneySavingGoal,
                         onchanged: (e) {
-                          formProvider.listModel.moneySavingGoal= e;
+                          formProvider.listModel.moneySavingGoal = e;
                           formProvider.callListners();
                         },
                         value: formProvider.listModel.moneySavingGoal,
                         validator: formProvider.validator,
                         autoValidate: false,
                       ),
-                      
+
                       // Text(
                       //   'How many times you have pooled money ?',
                       //   style: AppTextStyle.subheadingTextForm,
@@ -112,7 +114,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       //   onSaved: (value) {},
                       //   prefixIcon: null,
                       // ),
-                      
+
                       // Text('Total Debt ?',
                       //     style: AppTextStyle.subheadingTextForm),
                       // SizedBox(
@@ -188,11 +190,11 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       //   autoValidate: formProvider.autoValidate,
                       // ),
                       Container(
-                        height: height * 0.07,
+                        // height: height * 0.07,
                         child: AppButton.loginButton(
-                                title: 'Submit',
-                                onTap: () => formProvider.onPressed(),
-                              ),
+                          title: 'Submit',
+                          onTap: () => formProvider.onPressed(),
+                        ),
                       ),
                     ],
                   ),

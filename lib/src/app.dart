@@ -82,10 +82,10 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        home: SignupPage(),
+        // home: SignupPage(),
         // home:MobilePage(),
 
-        // home: AppNavigationBar(),
+        home: AppNavigationBar(),
 
         // home: Consumer<AppProvider>(
         //   builder: (_, appProvider, child) {

@@ -29,12 +29,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   Widget build(BuildContext context) {
     print("+++++LOGIN WIDGET REBUILD+++++");
-    
+
     // double height = MediaQuery.of(context).size.height - 75.0;
     // print(height);
     return Consumer<LoginProvider>(
       builder: (_, loginProvider, child) {
-        print("----"+75.h.toString());
+        print("----" + 75.h.toString());
         return Form(
           key: loginProvider.loginFormKey,
           child: Column(
@@ -51,30 +51,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   autoValidate: loginProvider.pageModel.onceFormSubmitted,
                   onSaved: (String e) => loginProvider.login.setMobile(e),
                   textInputType: TextInputType.number),
-                  SizedBox(height: 6.h,),
+              SizedBox(
+                height: 6.h,
+              ),
               ChangeNotifierProvider(
                 create: (_) => PasswordStatusLogin(),
                 child: Consumer<PasswordStatusLogin>(
                   builder: (_, passwordStatus, child) {
                     print(75.h);
-                      ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+                    ScreenUtil.init(context,
+                        width: 411, height: 683, allowFontScaling: false);
 
-                    return 
-                    AppTextField.screenTextField(
+                    return AppTextField.screenTextField(
                       height: 75.h,
                       autofocus: false,
                       focusNode: passwordNode,
                       prefixIcon: Icons.lock,
                       hintText: "Password",
-                     // showPassword: passwordStatus.showPassword,
+                      showPassword: passwordStatus.showPassword,
                       validator: TextFieldValidation.passwordValidation,
                       autoValidate: loginProvider.pageModel.onceFormSubmitted,
                       onSaved: (String e) => loginProvider.login.password = e,
                       onEyeClick: GestureDetector(
                         onTap: passwordStatus.setStatus,
-                        child: Icon(passwordStatus.showPassword
-                            ? FontAwesomeIcons.eye
-                            : FontAwesomeIcons.eyeSlash),
+                        child: Icon(
+                          passwordStatus.showPassword
+                              ? FontAwesomeIcons.eye
+                              : FontAwesomeIcons.eyeSlash,
+                        ),
                       ),
                     );
                   },
@@ -84,7 +88,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 height: 15.0.h,
               ),
               Container(
-                height:  0.07.hp,
+                height: 0.07.hp,
                 child: loginProvider.loginButton(
                   onTap: () {
                     FocusScope.of(context).unfocus();

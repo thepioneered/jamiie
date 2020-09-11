@@ -55,8 +55,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    double height = MediaQuery.of(context).size.height;
-    print(height * 0.3);
+    // double height = MediaQuery.of(context).size.height;
+    // print(height * 0.3);
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
       key: a.loginScaffoldKey,
@@ -65,8 +65,9 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.only(top: BaseStyles.topPadding),
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height - 26.0,
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            // height: MediaQuery.of(context).size.height - 22.0,
+            height: 1.hp - 24.0,
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w),
             child: Column(
               children: <Widget>[
                 //30 percent of total space
