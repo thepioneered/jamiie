@@ -41,6 +41,7 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
     var chooseRoundPage = Provider.of<ChooseRoundProvider>(context);
     double height = MediaQuery.of(context).size.height - 75.0;
     return Scaffold(
+      key: chooseRoundPage.chooseRoundScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
       body: Container(
         child: Column(

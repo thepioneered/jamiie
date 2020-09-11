@@ -1,8 +1,8 @@
 class ChooseRoundModel {
 
+    List<Map<String, dynamic>> list = List<Map<String,dynamic>>();
   Map<String, dynamic> toJson(
       String poolId, List<ChooseRoundMemberDetails> chooseMemberDetails) {
-    List<Map<String, dynamic>> list;
     chooseMemberDetails.forEach((element) {
       list.add(element.toJson());
     });
