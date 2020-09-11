@@ -166,7 +166,7 @@ class AppTextStyle {
   static TextStyle get inputText => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
       );
   static TextStyle get poolDataText => TextStyle(
         fontFamily: "Poppins",
@@ -258,7 +258,7 @@ class AppTextStyle {
   //
   static TextStyle get errorText => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.red,
       );
