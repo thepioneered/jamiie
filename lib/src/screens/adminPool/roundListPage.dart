@@ -46,13 +46,13 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
       body: Container(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: PageHeading.topHeading(
-                  title: "Confirm round in pool",
-                  subTitle: "Drag the pool",
-                  height: height),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            //   child: PageHeading.topHeading(
+            //       title: "Confirm round in pool",
+            //       subTitle: "Drag the pool",
+            //       height: height),
+            // ),
             Container(
               height: height * 0.60,
               child: ReorderableListView(

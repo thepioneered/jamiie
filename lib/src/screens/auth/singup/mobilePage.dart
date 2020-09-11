@@ -43,7 +43,7 @@ class MobilePageWidget extends StatelessWidget {
                 children: <Widget>[
                   //Takes 20 percent of total space
                   PageHeading.topHeading(
-                      // height: 0.18.hp,
+                      height: 0.2.hp,
                       title: SignUpFlowText.mobilePageTitle,
                       subTitle: SignUpFlowText.mobilePageSubTitle),
                   SizedBox(

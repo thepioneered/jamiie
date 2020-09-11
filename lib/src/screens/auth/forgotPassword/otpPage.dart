@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/repositry/textConst.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../providers/auth/forgotPassword/FPotpProvider.dart';
 import '../../../widgets/pageHeading.dart';
@@ -68,26 +69,26 @@ class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
   @override
   Widget build(BuildContext context) {
     var otpProvider = Provider.of<ForgotPasswordOtpProvider>(context);
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
 
-    double height = MediaQuery.of(context).size.height - 75.0;
+    // double height = MediaQuery.of(context).size.height - 75.0;
     return Scaffold(
       backgroundColor: Colors.white,
       key: otpProvider.otpScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
-        height: MediaQuery.of(context).size.height - 75.0,
+        padding: EdgeInsets.symmetric(horizontal: 15.0.h),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             //This takes total 20% space of the page without app bar
             PageHeading.topHeading(
-                height: height,
+                height: 0.2.hp,
                 title: ForgotPasswordFlowText.otpPageTitle,
                 subTitle: ForgotPasswordFlowText.otpPageSubTitle),
 
             Container(
-              height: height * 0.2,
+              height: 70.h,
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,13 +103,13 @@ class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
             ),
             //8% percent of total height is given to button.
             Container(
-              height: height * 0.08,
+              height: 0.07.hp,
               child: otpProvider.verifyOTP(
-                      onTap: () {
-                        otpProvider.otpModel.otp = text;
-                        otpProvider.checkOtp();
-                      },
-                    ),
+                onTap: () {
+                  otpProvider.otpModel.otp = text;
+                  otpProvider.checkOtp();
+                },
+              ),
             ),
             NumericKeyboard(
               onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,

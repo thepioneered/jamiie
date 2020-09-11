@@ -1,9 +1,11 @@
 
 import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
+import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
+import 'package:Jamiie/src/screens/auth/forgotPassword/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/login/loginPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/mobilePage.dart';
-import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
+import 'package:Jamiie/src/screens/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -80,7 +82,10 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        home: OtpPage(),
+        home: SignupPage(),
+        // home:MobilePage(),
+
+        // home: AppNavigationBar(),
 
         // home: Consumer<AppProvider>(
         //   builder: (_, appProvider, child) {
