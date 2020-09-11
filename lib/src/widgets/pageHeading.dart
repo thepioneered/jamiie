@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 import '.././styles/text.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageHeading {
   static Widget topHeading(
       {@required String title, @required String subTitle, @required height}) {
     return Container(
-      height: height * 0.18,
+      height: 0.18.hp,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            height: height * 0.10,
+            height: 0.10.hp,
             alignment: Alignment.topLeft,
-            child: AutoSizeText(
+            child: Text(
               title,
               style: AppTextStyle.authHeading,
-              maxLines: 1,
-              minFontSize: 18.0,
+              // maxLines: 1,
+              // minFontSize: 18.0,
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: (height * 0.10) * 0.3),
+            // padding: EdgeInsets.only(bottom: (0.10.hp) * 0.3),
             alignment: Alignment.topLeft,
-            height: height * 0.08,
-            child: AutoSizeText(
+            height: 0.08.hp,
+            child: Text(
               subTitle,
               style: AppTextStyle.forgotPasswordSubTitle,
-              minFontSize: 12.0,
-              maxLines: 2,
+              // minFontSize: 12.0,
+              // maxLines: 2,
             ),
           ),
         ],

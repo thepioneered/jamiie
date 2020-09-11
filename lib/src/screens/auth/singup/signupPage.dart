@@ -10,6 +10,7 @@ import '../../../widgets/appTextFields/appTextField.dart';
 import '../../../providers/auth/signup/signupProvider.dart';
 import '../../../widgets/appBar.dart';
 import '../../../styles/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -42,6 +43,8 @@ class _SignupPageState extends State<SignupPage> {
 
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+
     print("+++++++++Signup Build+++++++++");
     return ChangeNotifierProvider(
       create: (context) => SignupProvider(),

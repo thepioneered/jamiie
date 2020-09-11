@@ -136,7 +136,7 @@ class AppTextStyle {
   static TextStyle get authHeading => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w700,
-        fontSize: 36.0,
+        fontSize: 40.0.sp,
       );
   static TextStyle get dontHaveAccount => TextStyle(
         fontFamily: "Poppins",
@@ -154,7 +154,7 @@ class AppTextStyle {
   static TextStyle get forgotPasswordSubTitle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 16.0,
+        fontSize: 18.0.sp,
         color: Colors.grey[400],
       );
   static TextStyle get minMaxPeople => TextStyle(
@@ -281,7 +281,7 @@ class AppTextStyle {
 
   static TextStyle get subheadingTextForm => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         color: AppColors.grayInputHeading,
       );
 
