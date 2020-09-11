@@ -25,7 +25,7 @@ class DashWidget2 extends StatelessWidget {
         children: [
           Text(
             'Transactions',
-            style: AppTextStyle.dashCardHeading(size: 18.sp),
+            style: AppTextStyle.dashCardHeading,
           ),
           Container(
             padding: EdgeInsets.only(top: 5.h),
@@ -57,7 +57,6 @@ class DashWidget2 extends StatelessWidget {
                               transactionList[index].name,
                               style: AppTextStyle.dashCardText(
                                 color: Colors.black,
-                                size: 14.sp,
                               ),
                             ),
                             Text(
@@ -65,7 +64,8 @@ class DashWidget2 extends StatelessWidget {
                                   '\$' +
                                   transactionList[index].amount.toString(),
                               style: AppTextStyle.dashTransAmount(
-                                  size: 18.sp, color: color),
+                                  color: color,
+                                  ),
                             )
                           ],
                         ),
@@ -74,11 +74,11 @@ class DashWidget2 extends StatelessWidget {
                           children: [
                             Text(
                               transactionList[index].transactionType,
-                              style: AppTextStyle.dashCardHint(size: 10.sp),
+                              style: AppTextStyle.dashCardHint,
                             ),
                             Text(
                               transactionList[index].date,
-                              style: AppTextStyle.dashCardHint(size: 10.sp),
+                              style: AppTextStyle.dashCardHint,
                             )
                           ],
                         ),
