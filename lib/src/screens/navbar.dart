@@ -6,13 +6,16 @@ import '../styles/colors.dart';
 import 'Dashboard/dashboard.dart';
 import 'settings/settingPage.dart';
 import 'userJoinedPools/joinedPoolListPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppNavigationBar extends StatefulWidget {
   @override
   _AppNavigationBarState createState() => _AppNavigationBarState();
+  
 }
 
 class _AppNavigationBarState extends State<AppNavigationBar> {
+  
   int index = 0;
   final List<Object> _pages = <Object>[
     DashboardPage(),
@@ -22,6 +25,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   ];
 
   Widget _bottomNavigationBar(double height) {
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
@@ -116,12 +120,13 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Scaffold(
       body: _pages.elementAt(index),
       
       //8 percent of total height
       bottomNavigationBar: _bottomNavigationBar(
-        MediaQuery.of(context).size.height * 0.08,
+         0.08.hp,
       ),
     );
   }
