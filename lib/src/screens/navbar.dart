@@ -126,7 +126,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
       
       //8 percent of total height
       bottomNavigationBar: _bottomNavigationBar(
-         0.08.hp+5.h,
+         60.h,
       ),
     );
   }

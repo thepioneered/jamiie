@@ -60,31 +60,31 @@ class AppTextStyle {
   static TextStyle get poolTitle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
-        fontSize: 30.0,
+        fontSize: 30.0.sp,
         color: Colors.black,
       );
   static TextStyle get amountSubHeading => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         color: AppColors.grayInputHeading,
       );
   static TextStyle get poolMonthlyTotalAmount => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 15.0,
+        fontSize: 15.0.sp,
         color: AppColors.grayInputHeading,
       );
   static TextStyle get poolAmountSaved => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 15.0,
+        fontSize: 15.0.sp,
         color: AppColors.green,
       );
   static TextStyle get amountStyle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
-        fontSize: 30.0,
+        fontSize: 30.0.sp,
         color: Colors.black,
       );
   static TextStyle get dropDownStyle => TextStyle(
@@ -101,7 +101,7 @@ class AppTextStyle {
   static TextStyle get dialogTitle => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 18.0,
+        fontSize: 18.0.sp,
         color: AppColors.black,
       );
   static TextStyle get joinPoolHeading => TextStyle(
@@ -120,7 +120,7 @@ class AppTextStyle {
     return TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
-        fontSize: 14.0,
+        fontSize: 14.0.sp,
         color: _color);
   }
 

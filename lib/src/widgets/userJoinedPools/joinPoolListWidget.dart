@@ -1,6 +1,7 @@
 import '../../styles/colors.dart';
 import '../../styles/text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JoinPoolListWidget extends StatelessWidget {
   JoinPoolListWidget(
@@ -32,11 +33,11 @@ class JoinPoolListWidget extends StatelessWidget {
               context, MaterialPageRoute(builder: (_) => nextScreen));
         },
         child: Container(
-          margin: EdgeInsets.only(bottom: 15.0),
+          margin: EdgeInsets.only(bottom: 15.0.h),
           alignment: Alignment.center,
           width: double.infinity,
-          padding: const EdgeInsets.all(15.0),
-          height: MediaQuery.of(context).size.height * .4,
+          padding: EdgeInsets.all(15.0.h),
+          height: 245.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,7 +79,7 @@ class JoinPoolListWidget extends StatelessWidget {
                           style: AppTextStyle.amountSubHeading),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -106,11 +107,11 @@ class JoinPoolListWidget extends StatelessWidget {
       );
     } else {
       return Container(
-        margin: EdgeInsets.only(bottom: 15.0),
+        margin: EdgeInsets.only(bottom: 15.0.sp),
         alignment: Alignment.center,
         width: double.infinity,
-        padding: const EdgeInsets.all(15.0),
-        height: MediaQuery.of(context).size.height * .4,
+        padding: EdgeInsets.all(15.0.h),
+        height: 245.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +125,7 @@ class JoinPoolListWidget extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                      left: 7.5, right: 7.5, top: 3.0, bottom: 3.0),
+                      left: 7.5.w, right: 7.5.w, top: 3.0.h, bottom: 3.0.h),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(15.0),
@@ -169,7 +170,7 @@ class JoinPoolListWidget extends StatelessWidget {
                     Text("Monthly Total", style: AppTextStyle.amountSubHeading),
                   ],
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 5.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,5 +1,5 @@
 import 'package:Jamiie/src/utils/validationRegex.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../providers/userJoinedPools/searchPoolProvider.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/appTextFields/appTextField.dart';
@@ -23,20 +23,17 @@ class SearchPoolPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var searchPoolProvider = Provider.of<SearchPoolProvider>(context);
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       key: searchPoolProvider.searchPoolPageScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15.0,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             children: [
               PageHeading.topHeading(
-                height: height,
+                  height: 100.h,
                   title: "Search Pool",
                   subTitle: "Enter pool id to get pool details."),
               Form(
@@ -45,6 +42,7 @@ class SearchPoolPageWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     AppTextField.screenTextField(
+                        height: 75.h,
                         maxLength: 8,
                         hintText: "Pool Id",
                         validator: TextFieldValidation.searchPoolValidation,
@@ -52,8 +50,11 @@ class SearchPoolPageWidget extends StatelessWidget {
                         onSaved: (e) =>
                             searchPoolProvider.poolIdModel.poolId = e,
                         prefixIcon: null),
+                    SizedBox(
+                      height: 5.h,
+                    ),
                     Container(
-                      height: height * 0.07,
+                      height: 0.07.hp,
                       child: AppButton.loginButton(
                         onTap: () {
                           FocusScope.of(context).unfocus();
