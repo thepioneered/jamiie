@@ -68,7 +68,6 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
   Widget build(BuildContext context) {
     var otpProvider = Provider.of<OtpProvider>(context);
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-
     return WillPopScope(
       onWillPop: () => appConfirmRemoveScreenDialog(context),
       child: Scaffold(
@@ -77,19 +76,18 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
         appBar: AppBarWidget.getAppBar(context, "", isRegistration: true),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 15.0.h),
-          // height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               //This takes total 20% space of the page without app bar
               PageHeading.topHeading(
-                // height: 0.18.hp,
+                height: 0.2.hp,
                 title: SignUpFlowText.otpPageTitle,
                 subTitle: SignUpFlowText.otpPageSubTitle,
               ),
               //This takes total 20% space of the page without app bar
               Container(
-                height: 0.2.hp,
+                height: 70.h,
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -105,6 +103,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
 
               //8% percent of total height is given to button.
               Container(
+                
                 height: 0.07.hp,
                 child: otpProvider.verifyOTP(
                   onTap: () {
@@ -116,6 +115,8 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
 
               ///
               Container(
+                //color: Colors.red,
+               // height: .48.hp-2.h,
                 child: NumericKeyboard(
                   onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
                   textColor: AppColors.black,
