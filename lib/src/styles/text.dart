@@ -13,31 +13,31 @@ class AppTextStyle {
 
   static TextStyle dashCardText({Color color}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 14,
+        fontSize: 14.sp,
         color: color,
       );
 
   static TextStyle dashCardNumber({Color color}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 36,
+        fontSize: 36.sp,
         fontWeight: FontWeight.bold,
         color: color,
       );
 
   static TextStyle get dashCardHeading => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.bold,
       );
 
   static TextStyle get dashCardHint => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 10,
+        fontSize: 10.sp,
         color: Colors.grey,
       );
   static TextStyle dashTransAmount({Color color}) => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 18,
+        fontSize: 18.sp,
         color: color,
       );
   static TextStyle get hintText => TextStyle(

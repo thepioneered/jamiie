@@ -17,7 +17,7 @@ class DashWidget1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    //ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.w),
       height: 0.43.hp,
