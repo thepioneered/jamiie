@@ -50,6 +50,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                     children: [
                       //Final
                       Text('Job Age:', style: AppTextStyle.subheadingTextForm),
+                      SizedBox(height: 5.h),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.jobAge,
                         onchanged: (e) {
@@ -61,6 +62,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         autoValidate: false,
                       ),
                       Text('Family :', style: AppTextStyle.subheadingTextForm),
+                      SizedBox(height: 5.h),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.faimlyStatus,
                         onchanged: (e) {
@@ -73,6 +75,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       ),
                       Text('How many times pooled money :',
                           style: AppTextStyle.subheadingTextForm),
+                      SizedBox(height: 5.h),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.howManyTimesPooledMoney,
                         onchanged: (e) {
@@ -85,6 +88,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       ),
                       Text('Money Saving Goal :',
                           style: AppTextStyle.subheadingTextForm),
+                      SizedBox(height: 5.h),
                       OurDropdown.dropdown(
                         items: AfterLoginDataRepo.moneySavingGoal,
                         onchanged: (e) {

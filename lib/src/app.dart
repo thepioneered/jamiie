@@ -87,13 +87,13 @@ class _AppState extends State<App> {
         //home: SignupPage(),
         // home:MobilePage(),
 
-        //home: CompleteProfilePage(),
+        home: AfterLoginFormPage(),
 
-       home: Consumer<AppProvider>(
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ), 
+      //  home: Consumer<AppProvider>(
+      //     builder: (_, appProvider, child) {
+      //       return appProvider.child;
+      //     },
+      //   ), 
         debugShowCheckedModeBanner: true,
       ),
     );
