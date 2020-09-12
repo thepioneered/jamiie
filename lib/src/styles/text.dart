@@ -43,7 +43,7 @@ class AppTextStyle {
   static TextStyle get hintText => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 15.0,
+        fontSize: 15.0.sp,
         color: Colors.grey[400],
       );
   static TextStyle get createPoolBottom => TextStyle(

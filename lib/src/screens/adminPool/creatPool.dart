@@ -11,6 +11,7 @@ import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/pageHeading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreatePoolPage extends StatelessWidget {
   @override
@@ -56,13 +57,13 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
       body: SingleChildScrollView(
         child: Container(
           color: AppColors.white,
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          padding: EdgeInsets.symmetric(horizontal: 15.0.h),
           height: MediaQuery.of(context).size.height - 75.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               PageHeading.topHeading(
-                  height: height,
+                  height: .2.hp,
                   title: "Create Pool",
                   subTitle: "Enter details to create your own pool"),
               Form(
@@ -83,7 +84,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     AppTextField.screenTextField(
                       toolbarOptions: ToolbarOptions(paste: false),
                       onEyeClick: Tooltip(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(10.0.h),
                         message:
                             "Data regarding what is amount \nwill be submitted here",
                         child: Icon(
@@ -116,7 +117,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 80.0,
+                          height: 80.0.h,
                           width:
                               (MediaQuery.of(context).size.width - 30.0) / 2 -
                                   15.0,
@@ -139,7 +140,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                                   Icons.date_range,
                                   null,
                                   "Deadline",
-                                  EdgeInsets.only(left: 16.0),
+                                  EdgeInsets.only(left: 16.0.w),
                                 ),
                               ),
                             ),
@@ -176,10 +177,10 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       ],
                     ),
                     SizedBox(
-                      height: 5.0,
+                      height: 5.0.h,
                     ),
                     Container(
-                      height: height * 0.07,
+                      height: 0.07.hp,
                       child: AppButton.loginButton(
                         
                               onTap: () {
@@ -200,8 +201,8 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
 
   Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
     return Container(
-        height: 49.0,
-        padding: EdgeInsets.only(left: 12.0, top: 8.0, bottom: 8.0, right: 8.0),
+        height: 49.0.h,
+        padding: EdgeInsets.only(left: 12.0.h, top: 8.0.h, bottom: 8.0.h, right: 8.0.h),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
             border: Border.all(color: borderColor, width: 1.0)),
