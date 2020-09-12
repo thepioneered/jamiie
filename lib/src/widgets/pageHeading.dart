@@ -8,7 +8,7 @@ class PageHeading {
       {@required String title, @required String subTitle, double height}) {
     return Container(
       //color: Colors.blue[100],
-      height: height,
+      height: 0.18.hp,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

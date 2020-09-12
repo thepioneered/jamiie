@@ -281,7 +281,7 @@ class AppTextStyle {
 
   static TextStyle get subheadingTextForm => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 16.0.sp,
+        fontSize: 18.0.sp,
         color: AppColors.grayInputHeading,
       );
 
