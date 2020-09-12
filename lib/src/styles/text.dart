@@ -95,7 +95,7 @@ class AppTextStyle {
   static TextStyle get dropDownStyleForm => TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w400,
-      fontSize: 17.0,
+      fontSize: 17.0.sp,
       color: AppColors.black);
 
   static TextStyle get dialogTitle => TextStyle(

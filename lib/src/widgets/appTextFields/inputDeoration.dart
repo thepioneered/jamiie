@@ -45,7 +45,7 @@ class AppInputDecoration {
   static InputDecoration dropdownDecoration() {
     return InputDecoration(
       errorStyle: AppTextStyle.errorText,
-      contentPadding: EdgeInsets.only(left: 15.0, right: 10.0),
+      contentPadding: const EdgeInsets.only(left: 15.0, right: 10.0),
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.grayInputHeading),
       ),

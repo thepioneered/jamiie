@@ -15,7 +15,10 @@ class OurDropdown {
       height: 75.h,
       child: DropdownButtonFormField<String>(
         decoration: AppInputDecoration.dropdownDecoration(),
-        hint: Text('Choose option'),
+        hint: Text(
+          'Choose option',
+          style: AppTextStyle.hintText,
+        ),
         iconSize: 40,
         style: AppTextStyle.dropDownStyleForm,
         autovalidate: autoValidate,
