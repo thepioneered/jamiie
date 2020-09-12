@@ -37,7 +37,7 @@ class AppBarWidget {
       context: context,
       builder: (ctx) {
         return AlertDialog(
-          actionsPadding: EdgeInsets.only(right: 5.0),
+          actionsPadding: EdgeInsets.only(right: 5.0.h),
           title: Text(
             "Are you sure you want to cancel Registration?",
             style: AppTextStyle.dialogTitle,

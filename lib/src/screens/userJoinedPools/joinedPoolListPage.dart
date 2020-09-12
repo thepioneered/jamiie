@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../providers/userJoinedPools/joinPoolProvider.dart';
 import '../../styles/colors.dart';
@@ -21,6 +22,7 @@ class MyPool extends StatelessWidget {
 class MyPoolWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     var joinPoolProvider = Provider.of<JoinPoolProvider>(context);
     return Scaffold(
       key: joinPoolProvider.listOfJoinedPoolScaffoldKey,
@@ -41,31 +43,27 @@ class MyPoolWidget extends StatelessWidget {
           } else if (!snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
             return Container(
-              margin: EdgeInsets.only(top: 24.0),
-
-              //height: MediaQuery.of(context).size.height * 2,
+              margin: EdgeInsets.only(top: 24.0.h),
               child: Column(
                 children: [
                   Text(
                     'Joined Pools',
                     style: TextStyle(
                         fontFamily: 'poppins',
-                        fontSize: 36,
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * .8,
+                    height: 545.h,
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         var data = joinPoolProvider
                             .joinPoolListModel.joinPoolListDataModel[index];
                         return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: JoinPoolListWidget(
                             status: data.status,
-
                             amountSaved: data.amountSaved,
-                            // membersList: data.membersList,
                             monthlyTotalAmount: data.monthlyTotalAmount,
                             poolAmount: data.poolAmount,
                             poolName: data.poolName,
