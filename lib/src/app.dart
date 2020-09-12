@@ -1,5 +1,6 @@
 
 import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
+import 'package:Jamiie/src/screens/auth/afterLogin/completeProfilePage.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/login/loginPage.dart';
@@ -85,7 +86,7 @@ class _AppState extends State<App> {
         //home: SignupPage(),
         // home:MobilePage(),
 
-        home: AppNavigationBar(),
+        home: CompleteProfilePage(),
 
         // home: Consumer<AppProvider>(
         //   builder: (_, appProvider, child) {
