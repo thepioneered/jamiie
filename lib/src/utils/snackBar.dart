@@ -7,6 +7,7 @@ class AppSnackBar {
     @required Color backgroundColor,
   }) {
     return SnackBar(
+    
       duration: Duration(milliseconds: 1200),
       behavior: SnackBarBehavior.floating,
       backgroundColor: backgroundColor,

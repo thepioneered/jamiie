@@ -5,6 +5,7 @@ import 'package:Jamiie/src/utils/validationRegex.dart';
 import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -59,16 +60,17 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     var completeProfileProvider = Provider.of<CompleteProfileProvider>(context);
-    double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     return Scaffold(
       key: completeProfileProvider.completeProfileScaffoldKey,
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: Container(
+          height: 1.hp,
           alignment: Alignment.center,
-         // height: height,
-          padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 35.0),
+          padding: EdgeInsets.only(left: 15.0.w, right: 15.0.w, top: 35.0.h),
           child: Form(
             key: completeProfileProvider.completeProfileFormKey,
             autovalidate: completeProfileProvider.pageModel.onceFormSubmitted,
@@ -80,8 +82,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     builder: (_, imageProviderSignup, child) {
                       return Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.only(bottom: 30.0),
-                        height: 160.0,
+                        padding: EdgeInsets.only(bottom: 30.0.h),
+                        height: 130.0.h,
                         width: (MediaQuery.of(context).size.width - 30.0) / 2,
                         child: imageProviderSignup.image == null
                             ? GestureDetector(
@@ -119,7 +121,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                          width: 0.45.wp,
                           child: AppTextField.screenTextField(
                               hintText: "Street",
                               validator: (e) =>
@@ -133,7 +135,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                               prefixIcon: null),
                         ),
                         Container(
-                          width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                          width: 0.45.wp,
+                          // width: (MediaQuery.of(context).size.width - 50.0) / 2,
                           child: AppTextField.screenTextField(
                               hintText: "State",
                               focusNode: stateNode,
@@ -157,7 +160,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      width: 0.45.wp,
                       child: AppTextField.screenTextField(
                           hintText: "City",
                           focusNode: cityNode,
@@ -171,7 +174,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                           prefixIcon: null),
                     ),
                     Container(
-                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      width: 0.45.wp,
                       child: AppTextField.screenTextField(
                           hintText: "Zipcode",
                           maxLength: 5,
@@ -190,7 +193,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
+                      width: 0.7.wp,
+                      // width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
                       child: AppTextField.screenTextField(
                           textInputType: TextInputType.number,
                           maxLength: 2,
@@ -204,8 +208,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     ),
                     Expanded(
                       child: Container(
-                          // color: Colors.blueAccent,
-                          height: 50.0,
+                          height: 40.h,
                           alignment: Alignment.center,
                           child: Text(
                             "Months",
@@ -218,7 +221,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      width: 0.45.wp,
                       child: GestureDetector(
                         onTap: () {
                           completeProfileProvider.selectDate(context);
@@ -241,7 +244,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                       ),
                     ),
                     Container(
-                      width: (MediaQuery.of(context).size.width - 50.0) / 2,
+                      width: 0.45.wp,
                       child: AppTextField.screenTextField(
                         hintText: "Last 4 digit of SSN",
                         maxLength: 4,
@@ -285,7 +288,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width - 30.0) * 0.50,
+                      width: 0.7.wp,
+                      // width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
                       child: AppTextField.screenTextField(
                           maxLength: 2,
                           textInputType: TextInputType.number,
@@ -297,11 +301,19 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                               .completeProfileModel.howLongwithEmployer = e,
                           prefixIcon: null),
                     ),
+                    Expanded(
+                      child: Container(
+                          height: 40.h,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Months",
+                            style: AppTextStyle.hintText,
+                          )),
+                    ),
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom:10.0),
-                  height: height * 0.07,
+                  height: 0.07.hp,
                   child: AppButton.loginButton(
                       onTap: () {
                         completeProfileProvider.completeProfileLogic();

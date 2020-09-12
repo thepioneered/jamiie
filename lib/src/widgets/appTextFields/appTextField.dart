@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../styles/text.dart';
 import '../../widgets/appTextFields/inputDeoration.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField {
   static Widget screenTextField(
@@ -22,7 +23,8 @@ class AppTextField {
       EdgeInsetsGeometry edge,
       TextInputType textInputType}) {
     return Container(
-      height: height != null?height:75.0,
+      // height: height != null?height:75.0,
+      height: 75.h,
       child: TextFormField(
         toolbarOptions: toolbarOptions,
         focusNode: focusNode,

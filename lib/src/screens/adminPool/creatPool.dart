@@ -50,7 +50,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
   @override
   Widget build(BuildContext context) {
     var createPoolProvider = Provider.of<CreatePoolProvider>(context);
-    double height = MediaQuery.of(context).size.height;
+    //double height = MediaQuery.of(context).size.height;
     return Scaffold(
       key: createPoolProvider.createPoolScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
@@ -58,7 +58,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
         child: Container(
           color: AppColors.white,
           padding: EdgeInsets.symmetric(horizontal: 15.0.h),
-          height: MediaQuery.of(context).size.height - 75.0,
+          height: 600.h   ,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -117,10 +117,8 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 80.0.h,
-                          width:
-                              (MediaQuery.of(context).size.width - 30.0) / 2 -
-                                  15.0,
+                          height: 75.0.h,
+                          width:0.45.wp,
                           child: GestureDetector(
                             onTap: () => createPoolProvider.selectDate(context),
                             child: AbsorbPointer(
@@ -147,9 +145,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                           ),
                         ),
                         Container(
-                          width:
-                              (MediaQuery.of(context).size.width - 30.0) / 2 -
-                                  15.0,
+                          width:.45.wp,
                           child: DropdownButtonFormField<String>(
                             onSaved: (e) =>
                                 createPoolProvider.createPool.poolType = e,
@@ -199,14 +195,14 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
     );
   }
 
-  Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
-    return Container(
-        height: 49.0.h,
-        padding: EdgeInsets.only(left: 12.0.h, top: 8.0.h, bottom: 8.0.h, right: 8.0.h),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
-            border: Border.all(color: borderColor, width: 1.0)),
-        width: (MediaQuery.of(context).size.width - 30.0) / 2 - 15.0,
-        child: child);
-  }
+  // Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
+  //   return Container(
+  //       height: 49.0.h,
+  //       padding: EdgeInsets.only(left: 12.0.h, top: 8.0.h, bottom: 8.0.h, right: 8.0.h),
+  //       decoration: BoxDecoration(
+  //           borderRadius: BorderRadius.circular(4.0),
+  //           border: Border.all(color: borderColor, width: 1.0)),
+  //       width: (MediaQuery.of(context).size.width - 30.0) / 2 - 15.0,
+  //       child: child);
+  // }
 }

@@ -176,7 +176,7 @@ class AppTextStyle {
   static TextStyle get snackBar => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 15.0,
+        fontSize: 15.0.sp,
       );
 
   static TextStyle connectUsing() {
