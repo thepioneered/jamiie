@@ -31,16 +31,14 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
       ScreenUtil.init(context,
           width: 411, height: 683, allowFontScaling: false);
 
-      // double height = MediaQuery.of(context).size.height - 75.0;
       return Scaffold(
         key: formProvider.scaffoldKey,
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
             child: Column(
               children: [
                 PageHeading.topHeading(
-                    
                     title: "Few more details",
                     subTitle:
                         "Please enter few more details and your are ready to go."),
@@ -190,7 +188,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       //   autoValidate: formProvider.autoValidate,
                       // ),
                       Container(
-                        // height: height * 0.07,
+                        height: 0.07.hp,
                         child: AppButton.loginButton(
                           title: 'Submit',
                           onTap: () => formProvider.onPressed(),

@@ -1,6 +1,7 @@
 
 import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
 import 'package:Jamiie/src/screens/auth/afterLogin/completeProfilePage.dart';
+import 'package:Jamiie/src/screens/auth/afterLogin/form.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/login/loginPage.dart';
