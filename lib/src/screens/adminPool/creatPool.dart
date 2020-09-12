@@ -11,6 +11,7 @@ import '../../widgets/button/appButton.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/pageHeading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreatePoolPage extends StatelessWidget {
   @override
@@ -49,20 +50,20 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
   @override
   Widget build(BuildContext context) {
     var createPoolProvider = Provider.of<CreatePoolProvider>(context);
-    double height = MediaQuery.of(context).size.height;
+    //double height = MediaQuery.of(context).size.height;
     return Scaffold(
       key: createPoolProvider.createPoolScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
       body: SingleChildScrollView(
         child: Container(
           color: AppColors.white,
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
-          height: MediaQuery.of(context).size.height - 75.0,
+          padding: EdgeInsets.symmetric(horizontal: 15.0.h),
+          height: 600.h   ,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               PageHeading.topHeading(
-                  height: height,
+                  height: .2.hp,
                   title: "Create Pool",
                   subTitle: "Enter details to create your own pool"),
               Form(
@@ -83,7 +84,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     AppTextField.screenTextField(
                       toolbarOptions: ToolbarOptions(paste: false),
                       onEyeClick: Tooltip(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(10.0.h),
                         message:
                             "Data regarding what is amount \nwill be submitted here",
                         child: Icon(
@@ -116,10 +117,8 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 80.0,
-                          width:
-                              (MediaQuery.of(context).size.width - 30.0) / 2 -
-                                  15.0,
+                          height: 75.0.h,
+                          width:0.45.wp,
                           child: GestureDetector(
                             onTap: () => createPoolProvider.selectDate(context),
                             child: AbsorbPointer(
@@ -139,16 +138,14 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                                   Icons.date_range,
                                   null,
                                   "Deadline",
-                                  EdgeInsets.only(left: 16.0),
+                                  EdgeInsets.only(left: 16.0.w),
                                 ),
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          width:
-                              (MediaQuery.of(context).size.width - 30.0) / 2 -
-                                  15.0,
+                          width:.45.wp,
                           child: DropdownButtonFormField<String>(
                             onSaved: (e) =>
                                 createPoolProvider.createPool.poolType = e,
@@ -176,10 +173,10 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       ],
                     ),
                     SizedBox(
-                      height: 5.0,
+                      height: 5.0.h,
                     ),
                     Container(
-                      height: height * 0.07,
+                      height: 0.07.hp,
                       child: AppButton.loginButton(
                         
                               onTap: () {
@@ -198,14 +195,14 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
     );
   }
 
-  Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
-    return Container(
-        height: 49.0,
-        padding: EdgeInsets.only(left: 12.0, top: 8.0, bottom: 8.0, right: 8.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
-            border: Border.all(color: borderColor, width: 1.0)),
-        width: (MediaQuery.of(context).size.width - 30.0) / 2 - 15.0,
-        child: child);
-  }
+  // Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
+  //   return Container(
+  //       height: 49.0.h,
+  //       padding: EdgeInsets.only(left: 12.0.h, top: 8.0.h, bottom: 8.0.h, right: 8.0.h),
+  //       decoration: BoxDecoration(
+  //           borderRadius: BorderRadius.circular(4.0),
+  //           border: Border.all(color: borderColor, width: 1.0)),
+  //       width: (MediaQuery.of(context).size.width - 30.0) / 2 - 15.0,
+  //       child: child);
+  // }
 }

@@ -89,11 +89,11 @@ class _AppState extends State<App> {
 
         home: AfterLoginFormPage(),
 
-        // home: Consumer<AppProvider>(
-        //   builder: (_, appProvider, child) {
-        //     return appProvider.child;
-        //   },
-        // ),
+      //  home: Consumer<AppProvider>(
+      //     builder: (_, appProvider, child) {
+      //       return appProvider.child;
+      //     },
+      //   ), 
         debugShowCheckedModeBanner: true,
       ),
     );

@@ -8,6 +8,7 @@ import '../../providers/adminPool/adminPoolProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/text.dart';
 import '../../styles/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AdminPoolPage extends StatelessWidget {
   @override
@@ -27,6 +28,8 @@ class AdminPoolWidget extends StatefulWidget {
 class _AdminPoolWidgetState extends State<AdminPoolWidget> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+
     var createdPoolList = Provider.of<AdminPoolProvider>(context);
     return Scaffold(
       key: createdPoolList.listOfCreatedPoolsScaffoldKey,
@@ -55,18 +58,18 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
             );
           } else if (!snapshot.hasError) {
             return Container(
-              padding: EdgeInsets.only(top: 24),
+              padding: EdgeInsets.only(top: 24.h),
               child: Column(
                 children: [
                   Text(
                     'Created Pools',
                     style: TextStyle(
                         fontFamily: 'poppins',
-                        fontSize: 36,
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * .8,
+                    height: 545.h,
                     child: ListView.builder(
                       // reverse: true,
                       itemCount:
