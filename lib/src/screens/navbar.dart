@@ -83,7 +83,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
                       ),
                       Text(
                         title,
-                        style: TextStyle(color: AppColors.primaryColorPurple),
+                        style: TextStyle(color: AppColors.primaryColorPurple,fontSize: 14.sp),
                       ),
                     ],
                   )

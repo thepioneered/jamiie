@@ -45,7 +45,7 @@ class SocialMediaButton extends StatelessWidget {
         icon = FontAwesomeIcons.facebookF;
     }
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: 8.0.h),
       child: InkWell(
         onTap: onTap,
         child: Container(

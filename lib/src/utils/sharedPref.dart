@@ -23,7 +23,7 @@ class LocalStorage {
     }
   }
 
-  static Future<String> getToken() async {
+  static Future<String> getToken() async {  
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String tokenValue = prefs.getString('token');
