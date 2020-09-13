@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppIcons {
   static FaIcon get barsIcon => FaIcon(FontAwesomeIcons.bars);
   static FaIcon get logoutIcon => FaIcon(
         FontAwesomeIcons.signOutAlt,
-        size: 20.0,
+        size: 20.0.sp,
       );
   static FaIcon get infoIcon => FaIcon(
         FontAwesomeIcons.infoCircle
@@ -15,15 +16,15 @@ class AppIcons {
       );
   static FaIcon get profileIcon => FaIcon(
         FontAwesomeIcons.info,
-        size: 20.0,
+        size: 20.0.sp,
       );
   static FaIcon get questionIcon => FaIcon(
         FontAwesomeIcons.questionCircle,
-        size: 20.0,
+        size: 20.0.sp,
       );
   static FaIcon get accountIcon => FaIcon(
         FontAwesomeIcons.key,
-        size: 20.0,
+        size: 20.0.sp,
       );
 
   static FaIcon get searchIcon => FaIcon(
