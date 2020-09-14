@@ -4,6 +4,8 @@ import '../../styles/text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppInputDecoration {
+  
+
   static InputDecoration textFieldDecoration(
     IconData prefixIcon,
     Widget onEyeClick,
