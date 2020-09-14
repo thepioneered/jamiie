@@ -6,6 +6,7 @@ import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
 import 'package:Jamiie/src/screens/auth/forgotPassword/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/login/loginPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/mobilePage.dart';
+import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
 import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
 import 'package:Jamiie/src/screens/navbar.dart';
 import 'package:provider/provider.dart';
@@ -87,13 +88,14 @@ class _AppState extends State<App> {
         //home: SignupPage(),
         // home:MobilePage(),
 
-        home: AfterLoginFormPage(),
+        //home: OtpPage(),
 
-      //  home: Consumer<AppProvider>(
-      //     builder: (_, appProvider, child) {
-      //       return appProvider.child;
-      //     },
-      //   ), 
+       home: Consumer<AppProvider>(
+         
+          builder: (_, appProvider, child) {
+            return appProvider.child;
+          },
+        ), 
         debugShowCheckedModeBanner: true,
       ),
     );

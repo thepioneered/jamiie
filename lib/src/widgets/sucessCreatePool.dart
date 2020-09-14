@@ -5,7 +5,7 @@ import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share/share.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'button/appButton.dart';
 
 class AppBottomModalSheet {
@@ -181,7 +181,7 @@ class AppBottomModalSheet {
                       Expanded(child: Container()),
                       Container(
                         // height: MediaQuery.of(ctxx).size.height * 0.07,
-                        height: 70.0,
+                        height: 75.h,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 15.0),
                         child: AppButton.loginButton(

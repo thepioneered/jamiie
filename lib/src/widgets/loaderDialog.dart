@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoaderDialog {
   static Future<bool> _willPopCallback() async {
@@ -16,8 +17,8 @@ class LoaderDialog {
           type: MaterialType.transparency,
           child: Center(
             child: Container(
-              width: 120.0,
-              height: 120.0,
+              width: 120.0.w,
+              height: 120.0.h,
               child: Lottie.asset("assets/loader.json"),
             ),
           ),

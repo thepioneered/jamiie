@@ -35,7 +35,7 @@ class DashboardModel {
       createdPools: json["createdPools"],
       completedPools: json["completedPools"],
       joinedPools: json["joinedPools"],
-      imgUrl: json["imgUrl"],
+      imgUrl: json["image"],
       transaction: transactionList,
       upcomingPayment: upcomingPaymentList,
     );

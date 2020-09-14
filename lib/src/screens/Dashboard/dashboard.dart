@@ -7,6 +7,7 @@ import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class DashboardPage extends StatelessWidget {
 class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    //ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
       return Scaffold(
         key: dashboardProvider.dashboardScaffoldKey,
@@ -48,17 +49,22 @@ class DashboardPageWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
-                              "Hello," + data.name,
-                              style: TextStyle(
-                                  fontSize: 36.sp,
-                                  //TODO: size editor pending
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "poppins"),
+                            Container(
+                              width: .75.wp,
+                              child: AutoSizeText(
+                                "Hello, " + data.name.substring(0,data.name.indexOf(' ')),
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontSize: 36.sp,
+                                    //TODO: size editor pending
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "poppins"),
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(right: 20.w),
                               child: CircleAvatar(
+                                
                                 backgroundColor: AppColors.primaryBlue,
                                 backgroundImage: NetworkImage(data.imgUrl),
                               ),

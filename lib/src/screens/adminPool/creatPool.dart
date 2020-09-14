@@ -103,7 +103,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     ),
                     AppTextField.screenTextField(
                       hintText: "Pool Members",
-                      maxLength: 2,
+                      //maxLength: 2,
                       textInputType: TextInputType.number,
                       validator: TextFieldValidation.memberValidation,
                       focusNode: memberNode,

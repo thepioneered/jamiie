@@ -8,10 +8,12 @@ import '../../utils/icons.dart';
 import '../../widgets/topHeading.dart';
 import '../../styles/base.dart';
 import '../../styles/text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return ChangeNotifierProvider(
       create: (_) => LogoutProvider(),
       child: Consumer<LogoutProvider>(builder: (_, logoutProvider, child) {
@@ -26,9 +28,8 @@ class SettingPage extends StatelessWidget {
               children: <Widget>[
                 topHeading(title: "Settings"),
                 Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.1),
+                  width: 1.wp,
+                  margin: EdgeInsets.only(top: 0.1.hp),
                   child: Column(
                     children: <Widget>[
                       AppSettingButtons(
@@ -100,32 +101,32 @@ class AppSettingButtons extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: 5.0),
-        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.09,
+        margin: EdgeInsets.only(bottom: 5.0.h),
+        padding: EdgeInsets.only(left: 15.0.h, right: 15.0.h),
+        width: 1.wp,
+        height: 0.09.hp,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              width: 20.0,
+              width: 20.0.w,
               child: Align(
                 alignment: Alignment.center,
                 child: icon != null ? icon : Icon(Icons.add),
               ),
             ),
             SizedBox(
-              width: 20.0,
+              width: 20.0.w,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                AutoSizeText(
+                Text(
                   title,
                   style: AppTextStyle.settingButton(AppColors.black),
                 ),
-                AutoSizeText(
+                Text(
                   subtitle,
                   style: AppTextStyle.settingButtonSubtitle(
                       AppColors.grayInputHeading),

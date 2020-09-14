@@ -7,7 +7,7 @@ class AppTextStyle {
     return TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 22.0,
+        fontSize: 22.0.sp,
         color: color);
   }
 
@@ -191,7 +191,7 @@ class AppTextStyle {
     return TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         color: color);
   }
 
