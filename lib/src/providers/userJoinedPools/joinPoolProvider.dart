@@ -20,19 +20,21 @@ class JoinPoolProvider extends ChangeNotifier {
 
     String mobile = await LocalStorage.getMobile();
     mobile = mobile.substring(1, mobile.length);
+    print(EndPoints.joinedPoolList + mobile);
 
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
       key: listOfJoinedPoolScaffoldKey,
       endPoint: EndPoints.joinedPoolList + mobile,
       shouldPagePop: false,
+      authRequest: true
     );
     print(data);
 
-    // if (data["status"]) {
-    //   joinPoolListModel = JoinPoolListModel.fromJson(data["body"]);
-    // } else {
-    //   return Future.error(404);
-    // }
+    if (data["status"]) {
+      joinPoolListModel = JoinPoolListModel.fromJson(data["body"]);
+    } else {
+      return Future.error(404);
+    }
   }
 
   // Future<String> loadJson() async {

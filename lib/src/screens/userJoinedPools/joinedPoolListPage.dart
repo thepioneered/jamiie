@@ -80,7 +80,7 @@ class MyPoolWidget extends StatelessWidget {
             );
           } else {
             return Center(
-              child: Text(snapshot.error),
+              child: Text(snapshot.error.toString()),
             );
           }
         },

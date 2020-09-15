@@ -4,22 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JoinPoolListWidget extends StatelessWidget {
-  JoinPoolListWidget(
-      {@required this.poolName,
-      @required this.poolAmount,
-      @required this.poolType,
-      @required this.monthlyTotalAmount,
-      @required this.amountSaved,
-      @required this.status,
-      @required this.nextScreen});
-
   final String poolName;
   final int poolAmount;
   final String poolType;
   final int monthlyTotalAmount;
   final int amountSaved;
   final bool status;
+
   final Object nextScreen;
+
+  JoinPoolListWidget({
+    @required this.poolName,
+    @required this.poolAmount,
+    @required this.poolType,
+    @required this.monthlyTotalAmount,
+    @required this.amountSaved,
+    @required this.status,
+    @required this.nextScreen,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class JoinPoolListWidget extends StatelessWidget {
                     children: [
                       Text("\$ " + monthlyTotalAmount.toString(),
                           style: AppTextStyle.poolMonthlyTotalAmount),
-                      Text("Monthly Total",
+                      Text("$poolType Total",
                           style: AppTextStyle.amountSubHeading),
                     ],
                   ),
@@ -167,10 +169,13 @@ class JoinPoolListWidget extends StatelessWidget {
                   children: [
                     Text("\$ " + monthlyTotalAmount.toString(),
                         style: AppTextStyle.poolMonthlyTotalAmount),
-                    Text("Monthly Total", style: AppTextStyle.amountSubHeading),
+                    Text("$poolType Total",
+                        style: AppTextStyle.amountSubHeading),
                   ],
                 ),
-                SizedBox(height: 5.h),
+                SizedBox(
+                  height: 5.h,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
