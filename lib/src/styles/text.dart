@@ -211,8 +211,8 @@ class AppTextStyle {
   static TextStyle logoutButton(Color color) {
     return TextStyle(
         fontFamily: "Poppins",
-        fontSize: 15.0,
-        fontWeight: FontWeight.w600,
+        fontSize: 15.0.sp,
+        fontWeight: FontWeight.w400,
         color: color);
   }
 
@@ -220,8 +220,8 @@ class AppTextStyle {
 
   static TextStyle get logoutTitle => TextStyle(
       fontFamily: "Poppins",
-      fontSize: 20.0,
-      fontWeight: FontWeight.w600,
+      fontSize: 20.0.sp,
+      fontWeight: FontWeight.w500,
       color: AppColors.black);
 
   ///////

@@ -55,6 +55,7 @@ class CompleteProfileProvider extends ChangeNotifier {
       }
 
       Map<String, dynamic> body = await NetworkCalls.multiPartRequest(
+        shouldPagePop: true,
           key: completeProfileScaffoldKey,
           endPoint: EndPoints.completeProfile,
           body: completeProfileModel.toJson(await LocalStorage.getMobile()),

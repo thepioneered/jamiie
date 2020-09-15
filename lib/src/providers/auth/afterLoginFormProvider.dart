@@ -53,6 +53,7 @@ class AfterLoginFormProvider extends ChangeNotifier {
       //   listModel.mobile = await LocalStorage.getMobile();
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
         key: scaffoldKey,
         endPoint: EndPoints.riskScore,
         afterRequest: () {},

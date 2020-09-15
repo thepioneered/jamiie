@@ -13,6 +13,7 @@ class CompletePoolDataProvider with ChangeNotifier {
     print("getting dataa");
     print(poolId);
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+      shouldPagePop: false,
         key: completePoolDataScaffoldKey,
         endPoint: EndPoints.completePoolData + poolId,
         authRequest: true);

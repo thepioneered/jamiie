@@ -26,6 +26,7 @@ class LogoutProvider extends ChangeNotifier {
         print(await LocalStorage.getToken());
         print(EndPoints.ipAddress + EndPoints.userlogout);
         Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+          shouldPagePop: true,
           key: settingScaffoldKey,
           endPoint: EndPoints.userlogout,
           authRequest: true,

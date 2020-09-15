@@ -30,6 +30,7 @@ class ChooseRoundProvider extends ChangeNotifier {
     print(chooseRoundModel.toJson("aaaaa", a));
 
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
+      shouldPagePop: true,
       key: chooseRoundScaffoldKey,
       endPoint: EndPoints.startPool,
       afterRequest: () {},

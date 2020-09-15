@@ -59,6 +59,7 @@ class LoginProvider extends ChangeNotifier {
       print(login.toJson());
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
         key: loginScaffoldKey,
         endPoint: EndPoints.userLogin,
         afterRequest: () {}, 

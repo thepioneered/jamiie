@@ -43,6 +43,7 @@ class SignupProvider extends ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
         key: signupScaffoldKey,
         endPoint: EndPoints.userRegistration,
         afterRequest: () {},

@@ -40,6 +40,7 @@ class NewPasswordProvider extends ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.putDataToServer(
+        shouldPagePop: true,
         key: newpassScaffoldKey,
         endPoint: EndPoints.setNewPassword(a),
         body: newPasswordModel,

@@ -56,6 +56,7 @@ class CreatePoolProvider with ChangeNotifier {
         ),
       );
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
         key: createPoolScaffoldKey,
         endPoint: EndPoints.createPool,
         authRequest: true,

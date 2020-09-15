@@ -41,6 +41,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
           key: forgotPasswordScaffoldKey,
           endPoint: EndPoints.forgotPassword,
           afterRequest: () {},

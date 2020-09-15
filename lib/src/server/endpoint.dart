@@ -17,6 +17,7 @@ class EndPoints {
   static const String completePoolData = "/pool/singlepool/";
   static const String startPool = "/pool/startpool";
   static const String dashboard = "/pool/dashboard/";
+  static const String joinedPoolList = "/pool/userjoinedpool";
 
 
   //End point for new password put request

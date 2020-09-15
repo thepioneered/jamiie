@@ -23,6 +23,7 @@ class AdminPoolProvider extends ChangeNotifier {
 
     //Network Calls
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+      shouldPagePop: false,
       key: listOfCreatedPoolsScaffoldKey,
       endPoint: EndPoints.createdPoolsList + mobile,
       authRequest: true,

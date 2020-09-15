@@ -18,6 +18,7 @@ class DashboardProvider extends ChangeNotifier {
     // print(EndPoints.dashboard + mobile);
     // print('hello');
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+      shouldPagePop: false,
       key: dashboardScaffoldKey,
       endPoint: EndPoints.dashboard + mobile,
       authRequest: true,

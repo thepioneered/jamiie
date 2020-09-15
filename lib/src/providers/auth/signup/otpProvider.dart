@@ -36,6 +36,7 @@ class OtpProvider extends ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,
           afterRequest: () {},

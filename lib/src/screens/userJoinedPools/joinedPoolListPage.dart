@@ -40,8 +40,7 @@ class MyPoolWidget extends StatelessWidget {
             return Center(
               child: CupertinoActivityIndicator(),
             );
-          } else if (!snapshot.hasData &&
-              snapshot.connectionState == ConnectionState.done) {
+          } else if (!snapshot.hasError) {
             return Container(
               margin: EdgeInsets.only(top: 24.0.h),
               child: Column(
@@ -62,12 +61,12 @@ class MyPoolWidget extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: JoinPoolListWidget(
-                            status: data.status,
-                            amountSaved: data.amountSaved,
-                            monthlyTotalAmount: data.monthlyTotalAmount,
-                            poolAmount: data.poolAmount,
-                            poolName: data.poolName,
-                            poolType: data.poolType,
+                            status: data.joinedPoolListDataSubModel.status,
+                            amountSaved: 0000,
+                            monthlyTotalAmount:0000,
+                            poolAmount: data.joinedPoolListDataSubModel.contributionAmount,
+                            poolName: data.joinedPoolListDataSubModel.poolName,
+                            poolType: data.joinedPoolListDataSubModel.poolType,
                             nextScreen: JoinPoolScreen(),
                           ),
                         );

@@ -42,6 +42,7 @@ class MobileProvider extends ChangeNotifier {
       
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
           key: mobileScaffoldKey,
+          shouldPagePop: true,
           endPoint: EndPoints.sendOtp,
           afterRequest: () {},
           body: mobileModel.toJson());

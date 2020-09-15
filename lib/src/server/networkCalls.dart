@@ -15,6 +15,7 @@ class NetworkCalls {
       {@required GlobalKey<ScaffoldState> key,
       @required String endPoint,
       @required Function afterRequest,
+      @required bool shouldPagePop,
       bool authRequest = false,
       @required Object body}) async {
     if (await DataConnectionChecker().hasConnection) {
@@ -31,19 +32,21 @@ class NetworkCalls {
               Duration(seconds: 10),
             );
 
-        return dataHandler(request, key);
+        return dataHandler(request, key, shouldPagePop);
       } catch (e) {
-        return serverError(e.toString(), key);
+        return serverError(e.toString(), key, shouldPagePop);
       }
     } else {
-      return noInternetHandler(key);
+      return noInternetHandler(key, shouldPagePop);
     }
   }
 
   static Map<String, dynamic> serverError(
-      String e, GlobalKey<ScaffoldState> key) {
+      String e, GlobalKey<ScaffoldState> key, bool pop) {
     print("Error in file Network Calls catch $e");
-    Navigator.pop(key.currentContext);
+    if (pop) {
+      Navigator.pop(key.currentContext);
+    }
     key.currentState.showSnackBar(
       AppSnackBar.snackBar(
           title: "Error occured. Server not responding.",
@@ -52,8 +55,12 @@ class NetworkCalls {
     return {"status": false};
   }
 
-  static Map<String, dynamic> noInternetHandler(GlobalKey<ScaffoldState> key) {
-    Navigator.pop(key.currentContext);
+  static Map<String, dynamic> noInternetHandler(
+      GlobalKey<ScaffoldState> key, bool pop) {
+    if (pop) {
+      Navigator.pop(key.currentContext);
+    }
+
     key.currentState.showSnackBar(
       AppSnackBar.snackBar(
         title: "No internet. Please check your connection.",
@@ -64,14 +71,16 @@ class NetworkCalls {
   }
 
   static Map<String, dynamic> dataHandler(
-      http.Response request, GlobalKey<ScaffoldState> key) {
+      http.Response request, GlobalKey<ScaffoldState> key, bool pop) {
     if (request.statusCode == 200) {
       return {"status": true, "body": json.decode(request.body)};
     } else if (request.statusCode == 201) {
       return {"status": true};
     } else {
       Map<String, dynamic> q = json.decode(request.body);
-      Navigator.pop(key.currentContext);
+      if (pop) {
+        Navigator.pop(key.currentContext);
+      }
       StatusCodeCheck.checkStatusCode(
         request.statusCode,
         key,
@@ -87,6 +96,7 @@ class NetworkCalls {
     @required GlobalKey<ScaffoldState> key,
     @required String endPoint,
     bool authRequest = false,
+    @required shouldPagePop,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
@@ -100,18 +110,19 @@ class NetworkCalls {
             .timeout(
               Duration(seconds: 10),
             );
-        return dataHandler(request, key);
+        return dataHandler(request, key, shouldPagePop);
       } catch (e) {
-        return serverError(e, key);
+        return serverError(e, key, shouldPagePop);
       }
     } else {
-      return noInternetHandler(key);
+      return noInternetHandler(key, shouldPagePop);
     }
   }
 
   static Future<Map<String, dynamic>> multiPartRequest(
       {@required GlobalKey<ScaffoldState> key,
       @required String endPoint,
+      @required shouldPagePop,
       @required Object body,
       @required File savedImage}) async {
     if (await DataConnectionChecker().hasConnection) {
@@ -131,10 +142,12 @@ class NetworkCalls {
         );
 
         var response = await request.send();
-       if (response.statusCode == 201) {
+        if (response.statusCode == 201) {
           return {"status": true};
         } else {
-          Map<String, dynamic> q = {"error":"Error occured",};
+          Map<String, dynamic> q = {
+            "error": "Error occured",
+          };
           Navigator.pop(key.currentContext);
           StatusCodeCheck.checkStatusCode(
             response.statusCode,
@@ -146,10 +159,10 @@ class NetworkCalls {
           return {"status": false};
         }
       } catch (e) {
-        return serverError(e, key);
+        return serverError(e, key, shouldPagePop);
       }
     } else {
-      return noInternetHandler(key);
+      return noInternetHandler(key, shouldPagePop);
     }
   }
 
@@ -157,6 +170,7 @@ class NetworkCalls {
     @required GlobalKey<ScaffoldState> key,
     @required String endPoint,
     @required Object body,
+    @required shouldPagePop,
     bool authRequest = false,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
@@ -173,12 +187,12 @@ class NetworkCalls {
               Duration(seconds: 10),
             );
 
-        return dataHandler(request, key);
+        return dataHandler(request, key, shouldPagePop);
       } catch (e) {
-        return serverError(e, key);
+        return serverError(e, key, shouldPagePop);
       }
     } else {
-      return noInternetHandler(key);
+      return noInternetHandler(key, shouldPagePop);
     }
   }
 }

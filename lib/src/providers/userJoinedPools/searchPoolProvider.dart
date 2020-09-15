@@ -35,6 +35,7 @@ class SearchPoolProvider with ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
         key: searchPoolPageScaffoldKey,
         endPoint: EndPoints.searchPool,
         afterRequest: () {},
@@ -68,6 +69,7 @@ class SearchPoolProvider with ChangeNotifier {
               throw Exception(e);
             }
             Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+              shouldPagePop: true,
               key: searchPoolPageScaffoldKey,
               endPoint: EndPoints.joinPool,
               afterRequest: () {},
