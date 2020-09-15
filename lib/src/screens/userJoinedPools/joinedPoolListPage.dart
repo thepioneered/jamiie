@@ -19,7 +19,12 @@ class MyPool extends StatelessWidget {
   }
 }
 
-class MyPoolWidget extends StatelessWidget {
+class MyPoolWidget extends StatefulWidget {
+  @override
+  _MyPoolWidgetState createState() => _MyPoolWidgetState();
+}
+
+class _MyPoolWidgetState extends State<MyPoolWidget> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
@@ -30,7 +35,11 @@ class MyPoolWidget extends StatelessWidget {
         backgroundColor: AppColors.primaryColorPurple,
         child: AppIcons.searchIcon,
         onPressed: () {
-          Navigator.pushNamed(context, "/SearchPoolPage");
+          Navigator.pushNamed(context, "/SearchPoolPage").then(
+            (value) => setState(
+              () {},
+            ),
+          );
         },
       ),
       body: FutureBuilder<Null>(
@@ -63,8 +72,9 @@ class MyPoolWidget extends StatelessWidget {
                           child: JoinPoolListWidget(
                             status: data.joinedPoolListDataSubModel.status,
                             amountSaved: 0000,
-                            monthlyTotalAmount:0000,
-                            poolAmount: data.joinedPoolListDataSubModel.contributionAmount,
+                            monthlyTotalAmount: 0000,
+                            poolAmount: data
+                                .joinedPoolListDataSubModel.contributionAmount,
                             poolName: data.joinedPoolListDataSubModel.poolName,
                             poolType: data.joinedPoolListDataSubModel.poolType,
                             nextScreen: JoinPoolScreen(),

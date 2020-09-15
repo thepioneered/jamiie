@@ -1,6 +1,7 @@
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget1.dart';
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget2.dart';
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget3.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../providers/Dashboard/dashboardProvider.dart';
@@ -47,12 +48,14 @@ class DashboardPageWidget extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 10.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          // crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
                               width: .75.wp,
                               child: AutoSizeText(
-                                "Hello, " + data.name.substring(0,data.name.indexOf(' ')),
+                                "Hello, " +
+                                    data.name
+                                        .substring(0, data.name.indexOf(' ')),
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontSize: 36.sp,
@@ -61,14 +64,25 @@ class DashboardPageWidget extends StatelessWidget {
                                     fontFamily: "poppins"),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 20.w),
-                              child: CircleAvatar(
-                                
-                                backgroundColor: AppColors.primaryBlue,
-                                backgroundImage: NetworkImage(data.imgUrl),
+                            // Padding(
+                            //   // padding: EdgeInsets.only(right: 20.w),
+                            //   child:
+                            Container(
+                              width: 50.w,
+                              height: 50.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
                               ),
-                            )
+                              child: CachedNetworkImage(
+                              
+                                imageUrl: data.imgUrl,
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            ),
+                            // )
                           ],
                         ),
                       ),
