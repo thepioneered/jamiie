@@ -55,7 +55,7 @@ function Users() {
       <div className={styles.user__container}>
         <div className={styles.User}>
           <div className={card.container}>
-            <TotalCard name="Total Users" number={state.totalData.totalUsers} />
+            <TotalCard name="Total Users" number={state.loginData.totalUsers} />
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>

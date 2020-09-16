@@ -44,16 +44,16 @@ function Users() {
       <div className={styles.user__container}>
         <div className={styles.User}>
           <div className={card.container}>
-            <TotalCard name="Total Pools" number={state.totalData.totalPools} />
+            <TotalCard name="Total Pools" number={state.loginData.totalPools} />
             <TotalCard
               name="Active Pools"
               number={
-                state.totalData.totalPools - state.totalData.completedPools
+                state.loginData.totalPools - state.loginData.completedPools
               }
             />
             <TotalCard
               name="Completed Pools"
-              number={state.totalData.completedPools}
+              number={state.loginData.completedPools}
             />
           </div>
           <div className={cn(styles.container, "hover")}>

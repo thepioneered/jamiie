@@ -2,7 +2,6 @@ import {
   globalState,
   globalStateProperties,
   loginData,
-  totalDataProperties,
 } from "../interfaces/global";
 
 export type Actions =
@@ -13,11 +12,6 @@ export type Actions =
   | {
       type: "setLoginData";
       data: loginData;
-    }
-  | {
-      type: "setTotalData";
-      key: totalDataProperties;
-      num: number;
     }
   | {
       type: "checkSuccess";
@@ -36,11 +30,6 @@ export const globalReducer = (state: globalState, action: Actions) => {
       return { ...state, [action.item]: !state[action.item] };
     case "setLoginData":
       return { ...state, loginData: action.data };
-    case "setTotalData":
-      return {
-        ...state,
-        totalData: { ...state.totalData, [action.key]: action.num },
-      };
     case "checkSuccess":
       return {
         ...state,

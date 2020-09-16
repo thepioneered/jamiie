@@ -13,13 +13,13 @@ function Dashboard() {
         <div className={card.container}>
           <TotalCard
             name="Total Transactions"
-            number={state.totalData.totalTransactions}
+            number={state.loginData.totalTransactions}
           />
-          <TotalCard name="Total Users" number={state.totalData.totalUsers} />
-          <TotalCard name="Total Groups" number={state.totalData.totalPools} />
+          <TotalCard name="Total Users" number={state.loginData.totalUsers} />
+          <TotalCard name="Total Groups" number={state.loginData.totalPools} />
           <TotalCard
             name="Completed Pools"
-            number={state.totalData.completedPools}
+            number={state.loginData.completedPools}
           />
         </div>
         <div>

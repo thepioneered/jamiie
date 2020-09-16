@@ -100,7 +100,7 @@ function Transactions() {
           <div className={card.container}>
             <TotalCard
               name="Total Transactions"
-              number={state.totalData.totalUsers}
+              number={state.loginData.totalUsers}
             />
           </div>
           <div className={cn(styles.container, "hover")}>

@@ -21,12 +21,10 @@ const initialState: globalState = {
     name: "admin",
     phone: "1234567890",
     email: "admin@email.com",
-  },
-  totalData: {
-    totalTransactions: 46289,
-    totalUsers: 22544,
-    totalPools: 46298,
-    completedPools: 33289,
+    totalTransactions: 0,
+    totalUsers: 0,
+    totalPools: 0,
+    completedPools: 0,
   },
 };
 

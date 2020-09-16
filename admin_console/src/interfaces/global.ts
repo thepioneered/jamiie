@@ -4,9 +4,6 @@ export type loginData = {
   name: string;
   phone: string;
   email: string;
-};
-
-export type totalData = {
   totalTransactions: number;
   totalUsers: number;
   totalPools: number;
@@ -18,7 +15,6 @@ export type globalStateProperties =
   | "tokenValidated"
   | "layoutLoader"
   | "loginData"
-  | "totalData"
   | "isSidebarOpen";
 
 export type totalDataProperties =
@@ -35,7 +31,6 @@ export type globalState = {
   isSidebarOpen: boolean;
   layoutLoader: boolean;
   loginData: loginData;
-  totalData: totalData;
 };
 
 export type globalContext = {
