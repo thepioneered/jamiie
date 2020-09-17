@@ -244,3 +244,23 @@
     font-weight: 700;
   }
 }
+
+.table__heading2 {
+  color: white;
+  font-size: 1.2em;
+
+  &::after {
+    content: " Pools";
+    font-weight: 700;
+  }
+}
+
+// ------------
+// empty table
+// ------------
+
+.empty__table {
+  font-style: italic;
+  text-align: center;
+  margin: 1.5em;
+}

@@ -7,6 +7,8 @@ import userStyles from "../../../styles/users.module.scss";
 import { userFull } from "../../../src/interfaces";
 import { endpoints } from "../../../src/constants/apiEndpoints";
 import { fetchData } from "../../../src/utils/apiCalls";
+import CreatedPools from "../../../src/components/CreatedPools";
+import JoinedPools from "../../../src/components/JoinedPools";
 
 function User() {
   const router = useRouter();
@@ -33,6 +35,9 @@ function User() {
   };
   const closeModal = () => {
     toggleModal(false);
+  };
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -151,6 +156,78 @@ function User() {
                 </div>
               </>
             )}
+          </div>
+          <div
+            className={cn(userStyles.container, "hover")}
+            style={{ margin: "2rem 0 0 0" }}
+          >
+            <div className={userStyles.heading}>
+              <div className={styles.table__heading2}>Created</div>
+              <form
+                className={userStyles.searchbar}
+                onSubmit={search}
+                method="POST"
+              >
+                <input
+                  type="text"
+                  className={userStyles.input}
+                  placeholder="Search by Pool ID"
+                  required={true}
+                />
+                <button className={userStyles.search__button}>
+                  <span className={"material-icons"}>search</span>
+                </button>
+              </form>
+            </div>
+            <div
+              className={cn(userStyles.table__container, {
+                loading__container: isLoading,
+              })}
+            >
+              {isLoading ? (
+                <GlobalLoader />
+              ) : data!.createdPool.length ? (
+                <CreatedPools data={data!.createdPool} />
+              ) : (
+                <div className={styles.empty__table}>No pools created</div>
+              )}
+            </div>
+          </div>
+          <div
+            className={cn(userStyles.container, "hover")}
+            style={{ margin: "2rem 0 0 0" }}
+          >
+            <div className={userStyles.heading}>
+              <div className={styles.table__heading2}>Joined</div>
+              <form
+                className={userStyles.searchbar}
+                onSubmit={search}
+                method="POST"
+              >
+                <input
+                  type="text"
+                  className={userStyles.input}
+                  placeholder="Search by Pool ID"
+                  required={true}
+                />
+                <button className={userStyles.search__button}>
+                  <span className={"material-icons"}>search</span>
+                </button>
+              </form>
+            </div>
+            <div
+              className={cn(userStyles.table__container, {
+                loading__container: isLoading,
+              })}
+            >
+              {isLoading ? (
+                <GlobalLoader />
+              ) : data!.joinedPool.length ? (
+                <JoinedPools data={data!.joinedPool} />
+              ) : (
+                <div className={styles.empty__table}>No pools joined</div>
+              )}
+            </div>
           </div>
         </div>
       </div>

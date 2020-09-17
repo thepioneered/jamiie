@@ -22,6 +22,7 @@ export type user = {
   lastLogin: string;
 };
 
+// TODO: UserFull - joinedPool json
 export type userFull = {
   phone: string;
   name: string;
@@ -39,6 +40,33 @@ export type userFull = {
   repaymentRecord: string;
   riskBand: string;
   savingReason: string;
+  createdPool: pool[];
+  joinedPool: {
+    id: number;
+    joinedAt: string;
+    memberId: string;
+    owner: boolean;
+    poolId: pool;
+    sequence: number;
+  }[];
+};
+
+const a = {
+  id: 1,
+  joinedAt: "2020-09-09T06:14:16.007173Z",
+  memberId: "+919056336015",
+  owner: true,
+  poolId: {
+    contributionAmount: 200,
+    createdAt: "2020-09-09T06:14:15.251333Z",
+    joinedMember: 2,
+    poolId: "0ced5009",
+    poolName: "abc",
+    poolType: "Monthly",
+    startStatus: false,
+    totalMember: 12,
+  },
+  sequence: 0,
 };
 
 // ------------
