@@ -88,14 +88,14 @@ class _AppState extends State<App> {
         //home: SignupPage(),
         // home:MobilePage(),
 
-        //home: OtpPage(),
+        home: OtpPage(),
 
-       home: Consumer<AppProvider>(
+      //  home: Consumer<AppProvider>(
          
-          builder: (_, appProvider, child) {
-            return appProvider.child;
-          },
-        ), 
+      //     builder: (_, appProvider, child) {
+      //       return appProvider.child;
+      //     },
+      //   ), 
         debugShowCheckedModeBanner: true,
       ),
     );

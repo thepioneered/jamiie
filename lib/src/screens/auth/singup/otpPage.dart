@@ -7,6 +7,7 @@ import 'package:numeric_keyboard/numeric_keyboard.dart';
 import '../../../providers/auth/signup/otpProvider.dart';
 import '../../../widgets/appBar.dart';
 import '../../../styles/colors.dart';
+import '../../../widgets/resendOtp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -110,6 +111,11 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                     otpProvider.checkOtp();
                   },
                 ),
+              ),
+              ResendOtp(
+                resendOtp: () {
+                  print('hello');
+                },
               ),
 
               ///
