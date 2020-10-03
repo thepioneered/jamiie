@@ -114,6 +114,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
               ),
               ResendOtp(
                 resendOtp: () {
+                  //Todo add resend otp function here
                   print('hello');
                 },
               ),
