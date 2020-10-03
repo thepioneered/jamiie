@@ -41,29 +41,25 @@ class _ResendOtpState extends State<ResendOtp> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Didn't receive otp?",
-                style: AppTextStyle.dontHaveAccount,
-              ),
-              GestureDetector(
-                child: Text(
-                  " Resend Otp",
-                  style: AppTextStyle.createOne,
-                ),
-                onTap: isEnabled
-                    ? () {
-                        _start = 15;
-                        startTimer();
-                        widget.resendOtp();
-                      }
-                    : null,
-              ),
-            ],
+          // Text(
+          //   "Didn't receive otp?",
+          //   style: AppTextStyle.dontHaveAccount,
+          // ),
+            FlatButton(
+            child: Text(
+              " Resend Otp",
+              style: AppTextStyle.createOne,
+            ),
+            onPressed: isEnabled
+                ? () {
+                    _start = 15;
+                    startTimer();
+                    widget.resendOtp();
+                  }
+                : null,
           ),
           if (_start != 0) Text("$_start"),
         ],
