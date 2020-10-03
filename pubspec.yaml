@@ -24,7 +24,7 @@ dependencies:
   data_connection_checker: ^0.3.4
   cached_network_image: ^2.2.0+1
   lottie: ^0.5.1
-  share: ^0.6.4+3
+  share: ^0.6.4+3Y
   auto_size_text: ^2.1.0
   path: ^1.7.0
   firebase_messaging: ^7.0.0

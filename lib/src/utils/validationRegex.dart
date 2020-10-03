@@ -189,8 +189,6 @@ class TextFieldValidation {
   }
 
   static String mobileValidation(String data) {
-
-    //TODO Mobile validation check
     if (data == "null") {
       return "Please Enter Mobile Number";
     } else if (data.trim() == null) {
@@ -199,9 +197,11 @@ class TextFieldValidation {
       return "Please Enter Mobile Number";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
+    } else if (data.length != 10) {
+      return "Mobile Number not valid";
     } else if (!AppRegularExpression.mobileRegExp
         .hasMatch(data.toString().trim())) {
-      return "Please enter a valid Mobile Number";
+      return "Mobile Number not valid";
     } else {
       return null;
     }
