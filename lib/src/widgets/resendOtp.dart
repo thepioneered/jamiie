@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../styles/text.dart';
@@ -12,7 +13,13 @@ class ResendOtp extends StatefulWidget {
 class _ResendOtpState extends State<ResendOtp> {
   bool isEnabled = true;
   Timer _timer;
-  int _start = 0;
+  int _start = 15;
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -44,14 +51,17 @@ class _ResendOtpState extends State<ResendOtp> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Text(
-          //   "Didn't receive otp?",
-          //   style: AppTextStyle.dontHaveAccount,
-          // ),
-            FlatButton(
+          if (_start != null)
+            Text(
+              "$_start" + " seconds",
+              style: AppTextStyle.dontHaveAccount,
+            ),
+          FlatButton(
+            disabledTextColor: AppColors.grayInputHeading,
+            textColor: AppColors.primaryColorPurple,
             child: Text(
               " Resend Otp",
-              style: AppTextStyle.createOne,
+              style: AppTextStyle.resendOtp,
             ),
             onPressed: isEnabled
                 ? () {
@@ -61,7 +71,6 @@ class _ResendOtpState extends State<ResendOtp> {
                   }
                 : null,
           ),
-          if (_start != 0) Text("$_start"),
         ],
       ),
     );

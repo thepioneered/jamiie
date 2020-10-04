@@ -150,6 +150,11 @@ class AppTextStyle {
         fontSize: 18.0.sp,
         color: AppColors.primaryColorPurple,
       );
+  static TextStyle get resendOtp => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w400,
+        fontSize: 18.0.sp,
+      );
 
   static TextStyle get forgotPasswordSubTitle => TextStyle(
         fontFamily: "Poppins",

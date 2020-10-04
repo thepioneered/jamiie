@@ -17,7 +17,7 @@ import 'providers/auth/login/loginProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
+import './screens/auth/forgotPassword/otpPage.dart';
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
@@ -88,7 +88,8 @@ class _AppState extends State<App> {
         //home: SignupPage(),
         // home:MobilePage(),
 
-        home: OtpPage(),
+        //home: OtpPage(),
+        home: ForgotPasswordOtpPage(),
 
       //  home: Consumer<AppProvider>(
          

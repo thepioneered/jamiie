@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../styles/colors.dart';
 import '../../../widgets/appBar.dart';
+import '../../../widgets/resendOtp.dart';
 
 class ForgotPasswordOtpPage extends StatelessWidget {
   @override
@@ -111,6 +112,12 @@ class _ForgotPasswordOtpWidgetState extends State<ForgotPasswordOtpWidget> {
                 },
               ),
             ),
+            ResendOtp(
+                resendOtp: () {
+                  //Todo add resend otp function here
+                  print('hello');
+                },
+              ),
             NumericKeyboard(
               onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,
               textColor: AppColors.black,
