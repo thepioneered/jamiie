@@ -18,6 +18,8 @@ import './styles/colors.dart';
 import './routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import './screens/auth/forgotPassword/otpPage.dart';
+import './screens/Transaction/transactionScreen.dart';
+
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
@@ -85,18 +87,17 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
 
-        //home: SignupPage(),
+        // home: AppNavigationBar(),
         // home:MobilePage(),
+        //   home: AfterLoginFormPage(),
+        // home: OtpPage(),
+        // home: ForgotPasswordOtpPage(),
+           home: Consumer<AppProvider>(         
+           builder: (_, appProvider, child) {
+             return appProvider.child;
+          },
+        ),
 
-        //home: OtpPage(),
-        home: ForgotPasswordOtpPage(),
-
-      //  home: Consumer<AppProvider>(
-         
-      //     builder: (_, appProvider, child) {
-      //       return appProvider.child;
-      //     },
-      //   ), 
         debugShowCheckedModeBanner: true,
       ),
     );

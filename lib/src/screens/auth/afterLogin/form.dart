@@ -52,6 +52,9 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       Text('Job Age:', style: AppTextStyle.subheadingTextForm),
                       SizedBox(height: 5.h),
                       OurDropdown.dropdown(
+                        hint: 'Choose option',
+                        iconSize: 40,
+                        dropdownTextStyle: AppTextStyle.dropDownStyleForm,
                         items: AfterLoginDataRepo.jobAge,
                         onchanged: (e) {
                           formProvider.listModel.jobAge = e;
@@ -64,6 +67,9 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                       Text('Family :', style: AppTextStyle.subheadingTextForm),
                       SizedBox(height: 5.h),
                       OurDropdown.dropdown(
+                        hint: 'Choose option',
+                        iconSize: 40,
+                        dropdownTextStyle: AppTextStyle.dropDownStyleForm,
                         items: AfterLoginDataRepo.faimlyStatus,
                         onchanged: (e) {
                           formProvider.listModel.faimlyStatus = e;
@@ -77,6 +83,9 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                           style: AppTextStyle.subheadingTextForm),
                       SizedBox(height: 5.h),
                       OurDropdown.dropdown(
+                        hint: 'Choose option',
+                        iconSize: 40,
+                        dropdownTextStyle: AppTextStyle.dropDownStyleForm,
                         items: AfterLoginDataRepo.howManyTimesPooledMoney,
                         onchanged: (e) {
                           formProvider.listModel.howManyTimesPooledMoney = e;
@@ -90,6 +99,9 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                           style: AppTextStyle.subheadingTextForm),
                       SizedBox(height: 5.h),
                       OurDropdown.dropdown(
+                        hint: 'Choose option',
+                        iconSize: 40,
+                        dropdownTextStyle: AppTextStyle.dropDownStyleForm,
                         items: AfterLoginDataRepo.moneySavingGoal,
                         onchanged: (e) {
                           formProvider.listModel.moneySavingGoal = e;

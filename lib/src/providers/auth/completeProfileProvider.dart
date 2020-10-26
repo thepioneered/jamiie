@@ -27,6 +27,18 @@ class CompleteProfileProvider extends ChangeNotifier {
     pageModel = PageModel();
   }
 
+  void callListners() {
+    notifyListeners();
+  }
+
+  String validator(String value) {
+    if (value == null) {
+      return "Please select an option!";
+    } else {
+      return null;
+    }
+  }
+
   Future<void> selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -106,4 +118,7 @@ class ImageProviderCompleteProfile extends ChangeNotifier {
       print("Error in image");
     }
   }
+
+  
+
 }

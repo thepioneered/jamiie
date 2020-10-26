@@ -10,17 +10,20 @@ class OurDropdown {
     @required List items,
     @required Function(String) validator,
     @required bool autoValidate,
+    @required String hint,
+    @required TextStyle dropdownTextStyle,
+    @required double iconSize,
   }) {
     return SizedBox(
       height: 75.h,
       child: DropdownButtonFormField<String>(
         decoration: AppInputDecoration.dropdownDecoration(),
         hint: Text(
-          'Choose option',
+          hint,
           style: AppTextStyle.hintText,
         ),
-        iconSize: 40,
-        style: AppTextStyle.dropDownStyleForm,
+        iconSize: iconSize,
+        style: dropdownTextStyle,
         autovalidate: autoValidate,
         validator: validator,
         isExpanded: true,

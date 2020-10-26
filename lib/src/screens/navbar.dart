@@ -7,6 +7,7 @@ import 'Dashboard/dashboard.dart';
 import 'settings/settingPage.dart';
 import 'userJoinedPools/joinedPoolListPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../screens/Transaction/transactionScreen.dart';
 
 class AppNavigationBar extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
     DashboardPage(),
     MyPool(),
     AdminPoolPage(),
+    TransactionScreen(),
     SettingPage(),
   ];
 
@@ -47,7 +49,8 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             _navbarButton(0, "Home", FontAwesomeIcons.home),
             _navbarButton(1, "My pools", FontAwesomeIcons.peopleArrows),
             _navbarButton(2, "Create Pool", FontAwesomeIcons.edit),
-            _navbarButton(3, "Settings", Icons.settings),
+            _navbarButton(3, "Transactions", Icons.attach_money),
+            _navbarButton(4, "Settings", Icons.settings),
             // _navbarImageButton(3),
           ],
         ),
@@ -58,7 +61,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   Widget _navbarButton(int _index, String title, IconData iconData) {
     return Container(
       decoration: null,
-      width: 1.wp / 4,
+      width: 1.wp / 5,
       child: FlatButton(
         padding: EdgeInsets.zero,
         onPressed: () {

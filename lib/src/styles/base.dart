@@ -16,7 +16,7 @@ class BaseStyles {
             offset: Offset(1.0, 4.0))
       ];
   static EdgeInsetsGeometry get pagePadingLogin =>
-      EdgeInsets.only(left: 30.0.w, right: 30..w, top: 30.0.h);
+      EdgeInsets.only(left: 30.0.w, right: 30.w, top: 30.0.h);
   static EdgeInsetsGeometry get pagePadingDashboard =>
       EdgeInsets.only(top: 30.0.h, bottom: 10.0.h);
 }

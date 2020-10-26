@@ -3,7 +3,7 @@ class AppRegularExpression {
   static RegExp memberRegExp = RegExp('[0-9]');
   static RegExp searchPoolRegExp = RegExp('[a-zA-Z0-9]');
   static RegExp mobileRegExp = RegExp(
-      '[0-9]{10}'); //TODO:Mobile number needs to be edited accordingly(conutry)
+      '[0-9]{10}'); //TODO:Mobile number needs to be edited accordingly(country)
   static RegExp amountRegExp = RegExp('[0-9]');
   static RegExp socialRegExp = RegExp('[0-9]{4}');
   static RegExp emailRegExp = RegExp(
@@ -18,6 +18,21 @@ class TextFieldValidation {
       return "Please Enter Name";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
+    } else if (data.trim() == "") {
+      return "Please Enter Name";
+    } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
+      return "Please enter Name";
+    } else {
+      return null;
+    }
+  }
+  static String completeProfileNameValidation(String data) {
+    if (data == "null") {
+      return "Please Enter Name";
+    } else if (data.trim() == null) {
+      return "Please Enter Name";
+    // } else if (data.contains(" ")) {
+    //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter Name";
     } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
@@ -163,8 +178,8 @@ class TextFieldValidation {
       return "Please Enter your $title";
     } else if (data.trim() == null) {
       return "Please Enter your $title";
-    } else if (data.contains(" ")) {
-      return "Blank spaces not allowed";
+    // } else if (data.contains(" ")) {
+    //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter your $title";
     } else {

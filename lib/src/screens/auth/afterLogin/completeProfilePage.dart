@@ -2,12 +2,14 @@ import 'package:Jamiie/src/providers/auth/completeProfileProvider.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/utils/validationRegex.dart';
+import 'package:Jamiie/src/widgets/AfterLoginForm/formwidget.dart';
 import 'package:Jamiie/src/widgets/appTextFields/appTextField.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import '../../../repositry/states.dart';
 
 class CompleteProfilePage extends StatelessWidget {
   @override
@@ -137,20 +139,33 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         Container(
                           width: 0.45.wp,
                           // width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                          child: AppTextField.screenTextField(
-                              hintText: "State",
-                              focusNode: stateNode,
-                              onEdittingComplete: () => cityNode.requestFocus(),
-                              validator: (e) =>
-                                  TextFieldValidation.stateCityValidation(
-                                      e, "State"),
-                              autoValidate: false,
-                              onSaved: (e) {
-                                print(e);
-                                completeProfileProvider
-                                    .completeProfileModel.state = e;
-                              },
-                              prefixIcon: null),
+                          // child: AppTextField.screenTextField(
+                          //     hintText: "State",
+                          //     focusNode: stateNode,
+                          //     onEdittingComplete: () => cityNode.requestFocus(),
+                          //     validator: (e) =>
+                          //         TextFieldValidation.stateCityValidation(
+                          //             e, "State"),
+                          //     autoValidate: false,
+                          //     onSaved: (e) {
+                          //       print(e);
+                          //       completeProfileProvider
+                          //           .completeProfileModel.state = e;
+                          //     },
+                          //     prefixIcon: null),
+                          child: OurDropdown.dropdown(
+                            hint: 'State',
+                            iconSize: 30,
+                            dropdownTextStyle: AppTextStyle.dropDownStyleStates,
+                            items: StatesRepo.states,
+                            onchanged: (e){
+                              completeProfileProvider.completeProfileModel.state=e;
+                              completeProfileProvider.callListners();
+                            },
+                            value: completeProfileProvider.completeProfileModel.state,
+                            validator: completeProfileProvider.validator,
+                            autoValidate: false,
+                          ),
                         ),
                       ],
                     ),
@@ -279,7 +294,8 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     hintText: "Employer Name",
                     onEdittingComplete: () => howLongNode.requestFocus(),
                     focusNode: employerNode,
-                    validator: TextFieldValidation.nameValidation,
+                    validator:
+                        TextFieldValidation.completeProfileNameValidation,
                     autoValidate: false,
                     onSaved: (e) => completeProfileProvider
                         .completeProfileModel.employerName = e,
