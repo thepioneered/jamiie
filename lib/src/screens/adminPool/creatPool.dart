@@ -105,7 +105,8 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       hintText: "Pool Members",
                       //maxLength: 2,
                       textInputType: TextInputType.number,
-                      validator: TextFieldValidation.memberValidation,
+                      validator: null,
+                      // validator: TextFieldValidation.memberValidation,
                       focusNode: memberNode,
                       autoValidate: false,
                       onSaved: (e) =>

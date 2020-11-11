@@ -1,6 +1,6 @@
 class EndPoints {
   //All Endpoint and IP address
-  static const String ipAddress = "https://jamiieapi.herokuapp.com";
+  static const String ipAddress = "https://jamiie.anukai.com";
   static const String sendOtp = "/userauth/phone";
   static const String verifyOtp = "/userauth/phoneverification";
   static const String resendOtp = "/userauth/resendotp";
@@ -18,7 +18,7 @@ class EndPoints {
   static const String startPool = "/pool/startpool";
   static const String dashboard = "/pool/dashboard/";
   static const String joinedPoolList = "/pool/userjoinedpool/";
-
+  static const String transaction = "/payments/transfer";
 
   //End point for new password put request
   static String setNewPassword(String _mobile) {

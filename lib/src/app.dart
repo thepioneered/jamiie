@@ -1,4 +1,4 @@
-
+import 'package:Jamiie/src/screens/Loan/loanScreen.dart';
 import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
 import 'package:Jamiie/src/screens/auth/afterLogin/completeProfilePage.dart';
 import 'package:Jamiie/src/screens/auth/afterLogin/form.dart';
@@ -18,7 +18,7 @@ import './styles/colors.dart';
 import './routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import './screens/auth/forgotPassword/otpPage.dart';
-import './screens/Transaction/transactionScreen.dart';
+import 'screens/Transaction/transactionPage.dart';
 
 class App extends StatefulWidget {
   @override
@@ -86,15 +86,14 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-
-        // home: AppNavigationBar(),
-        // home:MobilePage(),
+        
+        // home:LoanScreen(),
         //   home: AfterLoginFormPage(),
         // home: OtpPage(),
         // home: ForgotPasswordOtpPage(),
-           home: Consumer<AppProvider>(         
-           builder: (_, appProvider, child) {
-             return appProvider.child;
+        home: Consumer<AppProvider>(
+          builder: (_, appProvider, child) {
+            return appProvider.child;
           },
         ),
 

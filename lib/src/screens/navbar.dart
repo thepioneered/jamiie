@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/screens/Transaction/transactionListPage.dart';
+import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +9,7 @@ import 'Dashboard/dashboard.dart';
 import 'settings/settingPage.dart';
 import 'userJoinedPools/joinedPoolListPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../screens/Transaction/transactionScreen.dart';
+import 'Transaction/transactionPage.dart';
 
 class AppNavigationBar extends StatefulWidget {
   @override
@@ -22,7 +24,10 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
     DashboardPage(),
     MyPool(),
     AdminPoolPage(),
-    TransactionScreen(),
+    TransactionListPage(),
+    // TransactionScreen(),
+    // BankPage(),
+    
     SettingPage(),
   ];
 

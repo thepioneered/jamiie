@@ -1,3 +1,6 @@
+import 'package:Jamiie/src/screens/Transaction/transactionListPage.dart';
+import 'package:Jamiie/src/screens/Transaction/transactionPage.dart';
+
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
 import 'roundListPage.dart';
@@ -79,10 +82,13 @@ class PoolDataPageWidget extends StatelessWidget {
                                 (MediaQuery.of(context).size.width - 30.0) / 2,
                             child: Column(
                               children: [
-                                dataContainer("Contribution Amount",
+                                dataContainer("Amount",
                                     data.contributionAmount.toString()),
                                 dataContainer("Members",
                                     "${data.joinedMember.toString()}/${data.totalMember.toString()}"),
+                                
+                                dataContainer("Pool Id",
+                                    data.poolId.toString()),
                               ],
                             ),
                           ),
@@ -92,7 +98,7 @@ class PoolDataPageWidget extends StatelessWidget {
 
                     //60 percent of total height
                     Container(
-                      height: height * 0.50,
+                      height: height * 0.45,
                       child: ListView.builder(
                           controller:
                               ScrollController(initialScrollOffset: 0.0),
@@ -153,7 +159,27 @@ class PoolDataPageWidget extends StatelessWidget {
                               },
                         title: "Start Pool",
                       ),
-                    )
+                    ),
+                    SizedBox(height: 15,),
+                    Container(
+                      height: height * 0.07,
+                      child: AppButton.loginButton(
+                        onTap: data.totalMember == data.joinedMember
+                            ? () {
+                                print("Working");
+                              }
+                            : () {
+                                //TODO: Edit is required here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => Transactionpage(poolId: data.poolId,poolName: data.poolName,)
+                                  ),
+                                );
+                              },
+                        title: "Pay",
+                      ),
+                    ),
                   ],
                 ),
               );

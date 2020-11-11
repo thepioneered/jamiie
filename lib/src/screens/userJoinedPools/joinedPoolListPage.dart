@@ -50,43 +50,57 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
               child: CupertinoActivityIndicator(),
             );
           } else if (!snapshot.hasError) {
-            return Container(
-              margin: EdgeInsets.only(top: 24.0.h),
-              child: Column(
-                children: [
-                  Text(
-                    'Joined Pools',
-                    style: TextStyle(
-                        fontFamily: 'poppins',
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    height: 545.h,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        var data = joinPoolProvider
-                            .joinPoolListModel.joinPoolListDataModel[index];
-                        return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          child: JoinPoolListWidget(
-                            status: data.joinedPoolListDataSubModel.status,
-                            amountSaved: 0000,
-                            monthlyTotalAmount: 0000,
-                            poolAmount: data
-                                .joinedPoolListDataSubModel.contributionAmount,
-                            poolName: data.joinedPoolListDataSubModel.poolName,
-                            poolType: data.joinedPoolListDataSubModel.poolType,
-                            nextScreen: JoinPoolScreen(),
-                          ),
-                        );
-                      },
-                      itemCount: joinPoolProvider
-                          .joinPoolListModel.joinPoolListDataModel.length,
+            return joinPoolProvider
+                    .joinPoolListModel.joinPoolListDataModel.isEmpty
+                ? Container(
+                    child: Center(
+                      child: Text('No Pools Joined'),
                     ),
-                  ),
-                ],
-              ),
+                  )
+                : Container(
+                    padding: EdgeInsets.only(top: 24.0.h),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Joined Pools',
+                          style: TextStyle(
+                              fontFamily: 'poppins',
+                              fontSize: 36.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          height: 545.h,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              var data = joinPoolProvider.joinPoolListModel
+                                  .joinPoolListDataModel[index];
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                                child: JoinPoolListWidget(
+                                  status:
+                                      data.joinedPoolListDataSubModel.status,
+                                  amountSaved: 0000,
+                                  monthlyTotalAmount: 0000,
+                                  poolAmount: data.joinedPoolListDataSubModel
+                                      .contributionAmount,
+                                  poolName:
+                                      data.joinedPoolListDataSubModel.poolName,
+                                  poolType:
+                                      data.joinedPoolListDataSubModel.poolType,
+                                  nextScreen: JoinPoolScreen(),
+                                ),
+                              );
+                            },
+                            itemCount: joinPoolProvider
+                                .joinPoolListModel.joinPoolListDataModel.length,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+          } else if (snapshot.error == 404) {
+            return Center(
+              child: Text("No pools created"),
             );
           } else {
             return Center(

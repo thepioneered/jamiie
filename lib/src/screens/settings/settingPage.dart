@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,6 +39,15 @@ class SettingPage extends StatelessWidget {
                         icon: AppIcons.accountIcon,
                         onTap: () {
                           Navigator.pushNamed(context, "/EditprofilePage");
+                        },
+                      ),
+                      AppSettingButtons(
+                        title: "Add Bank",
+                        subtitle: "Add your Bank",
+                        icon: FaIcon(Icons.home),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => BankPage()));
                         },
                       ),
                       AppSettingButtons(
