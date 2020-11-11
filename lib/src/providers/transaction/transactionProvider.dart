@@ -5,6 +5,7 @@ import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:Jamiie/src/utils/snackBar.dart';
+import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../models/transaction/transactionModel.dart';
 
@@ -19,6 +20,11 @@ class TransactionProvider extends ChangeNotifier {
     notifyListeners();
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
+      try {
+        LoaderDialog.loaderDialog(scaffoldKey.currentContext);
+      } catch (e) {
+        throw Exception(e);
+      }
       String mobile = await LocalStorage.getMobile();
       print(transactionModel.toJson(mobile, poolId));
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
