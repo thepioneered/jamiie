@@ -1,4 +1,4 @@
-export const DOMAIN = "https://jamiieapi.herokuapp.com";
+export const DOMAIN = "https://jamiie.anukai.com/";
 
 export enum endpoints {
   LOGIN_ADMIN = "/userauth/adminlogin",
