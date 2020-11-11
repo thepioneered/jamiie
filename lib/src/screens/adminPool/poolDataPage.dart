@@ -142,17 +142,19 @@ class PoolDataPageWidget extends StatelessWidget {
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
-                        onTap: data.totalMember == data.joinedMember
+                        onTap: data.totalMember != data.joinedMember
                             ? () {
                                 print("Working");
                               }
                             : () {
+                              print(poolId);
                                 //TODO: Edit is required here
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => ChooseRoundPage(
                                       memberModel: data.members,
+                                      poolId: poolId,
                                     ),
                                   ),
                                 );
@@ -164,7 +166,7 @@ class PoolDataPageWidget extends StatelessWidget {
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
-                        onTap: data.totalMember == data.joinedMember
+                        onTap: data.totalMember != data.joinedMember
                             ? () {
                                 print("Working");
                               }

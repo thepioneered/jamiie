@@ -8,7 +8,7 @@ class ChooseRoundModel {
     return {
       "poolId": poolId,
       "sequenceDetail": list,
-      "totalMembers": 3,
+      "totalMembers": list.length,
     };
   }
 }

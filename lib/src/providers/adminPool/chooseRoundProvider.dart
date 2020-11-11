@@ -12,12 +12,12 @@ class ChooseRoundProvider extends ChangeNotifier {
   final pageModel = PageModel();
   final List<ChooseRoundMemberDetails> a = List<ChooseRoundMemberDetails>();
 
-  void startPoolButton(List<MemberModel> memberModel) async {
-    try {
-      LoaderDialog.loaderDialog(chooseRoundScaffoldKey.currentContext);
-    } catch (e) {
-      throw Exception(e);
-    }
+  void startPoolButton(List<MemberModel> memberModel,String poolId) async {
+    // try {
+    //   LoaderDialog.loaderDialog(chooseRoundScaffoldKey.currentContext);
+    // } catch (e) {
+    //   throw Exception(e);
+    // }
 
     for (int i = 0; i < memberModel.length; i++) {
       a.add(ChooseRoundMemberDetails(
@@ -27,7 +27,7 @@ class ChooseRoundProvider extends ChangeNotifier {
     }
     print(a);
 
-    print(chooseRoundModel.toJson("aaaaa", a));
+    print(chooseRoundModel.toJson(poolId, a));
 
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
       shouldPagePop: true,
@@ -35,7 +35,7 @@ class ChooseRoundProvider extends ChangeNotifier {
       endPoint: EndPoints.startPool,
       afterRequest: () {},
       authRequest: true,
-      body: chooseRoundModel.toJson("abc25721", a),
+      body: chooseRoundModel.toJson(poolId, a),
     );
 
     if (data["status"]) {}

@@ -10,14 +10,16 @@ import 'package:flutter/material.dart';
 
 class ChooseRoundPage extends StatelessWidget {
   final List<MemberModel> memberModel;
+  final String poolId;
 
-  const ChooseRoundPage({this.memberModel});
+  const ChooseRoundPage({this.memberModel, this.poolId});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ChooseRoundProvider(),
       child: ReorderableListWidget(
         memberModel: memberModel,
+        poolId: poolId,
       ),
     );
   }
@@ -25,8 +27,9 @@ class ChooseRoundPage extends StatelessWidget {
 
 class ReorderableListWidget extends StatefulWidget {
   final List<MemberModel> memberModel;
+  final String poolId;
 
-  const ReorderableListWidget({this.memberModel});
+  const ReorderableListWidget({this.memberModel, this.poolId});
   @override
   _ReorderableListWidget createState() => _ReorderableListWidget(memberModel);
 }
@@ -80,10 +83,8 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
               padding: EdgeInsets.symmetric(horizontal: 15.0),
               child: AppButton.loginButton(
                   onTap: () {
-                    memberModel.forEach((element) {
-                      print(element.memberDetails.name);
-                    });
-                    chooseRoundPage.startPoolButton(memberModel);
+                    // print(widget.poolId);
+                    chooseRoundPage.startPoolButton(memberModel,widget.poolId);
                   },
                   title: "Confirm Rounds"),
             ),

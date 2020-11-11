@@ -34,9 +34,9 @@ class TransactionPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    var transactionprovider = Provider.of<TransactionProvider>(context);
+    var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
-      key: transactionprovider.scaffoldKey,
+      key: transactionProvider.scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Payment',
@@ -50,9 +50,9 @@ class TransactionPageWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Form(
-            key: transactionprovider.formKey,
+            key: transactionProvider.formKey,
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +122,7 @@ class TransactionPageWidget extends StatelessWidget {
                             validator: TextFieldValidation.amountValidation,
                             autoValidate: false,
                             onSaved: (e) =>
-                                transactionprovider.transactionModel.amount = e,
+                                transactionProvider.transactionModel.amount = e,
                             prefixIcon: FontAwesomeIcons.dollarSign,
                           ),
                         ],
@@ -135,7 +135,11 @@ class TransactionPageWidget extends StatelessWidget {
                     // Scaffold.of(context).showSnackBar(AppSnackBar.snackBar(
                     //     title: 'Payment Successful',
                     // backgroundColor: Colors.green));
-                    transactionprovider.transactionLogic(poolId);
+                    
+
+
+                    //TODO:Kam pending hai iska
+                    transactionProvider.transactionLogic(poolId);
 
                     // Navigator.push(context,
                     //     MaterialPageRoute(builder: (_) => AppNavigationBar()));
@@ -172,7 +176,8 @@ class TransactionPageWidget extends StatelessWidget {
                   },
                   color: AppColors.primaryColorPurple,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0)),
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
                   child: Container(
                     alignment: Alignment.center,
                     width: double.infinity,
