@@ -1,4 +1,4 @@
-import 'package:Jamiie/src/screens/Transaction/transactionPage.dart';
+import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
 import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:share/share.dart';
 import 'poolDataPage.dart';

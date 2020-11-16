@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoaderDialog {
@@ -19,7 +19,8 @@ class LoaderDialog {
             child: Container(
               width: 120.0.w,
               height: 120.0.h,
-              child: Lottie.asset("assets/loader.json"),
+              // child: Lottie.asset("assets/loader.json"),
+              child: CupertinoActivityIndicator(),
             ),
           ),
         ),

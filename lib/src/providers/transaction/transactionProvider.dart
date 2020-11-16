@@ -12,56 +12,43 @@ import 'package:flutter/material.dart';
 import '../../models/transaction/transactionModel.dart';
 
 class TransactionProvider extends ChangeNotifier {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> transactionPageScaffoldKey =
+      GlobalKey<ScaffoldState>();
   TransactionModel transactionModel = TransactionModel();
   PageModel pageModel = PageModel();
+  Amount amount;
 
-  void transactionLogic(String poolId) async {
-    pageModel.onceFormSubmitted = true;
-    notifyListeners();
-    if (formKey.currentState.validate()) {
-      formKey.currentState.save();
-      try {
-        LoaderDialog.loaderDialog(scaffoldKey.currentContext);
-      } catch (e) {
-        throw Exception(e);
-      }
+  Future<Null> loadPageData(String poolId) async {
+    Map<String, dynamic> data = await NetworkCalls.postDataToServer(
+        key: transactionPageScaffoldKey,
+        endPoint: EndPoints.poolAmount,
+        afterRequest: () {},
+        authRequest: true,
+        shouldPagePop: false,
+        body: {"poolId": "$poolId"});
+    if (data["status"]) {
+      print(data);
+      amount = Amount.fromJson(data["body"]);
+      print("Check ${amount.poolAmount}");
 
-      Future.delayed(Duration(seconds: 3), () {
-        Navigator.pop(scaffoldKey.currentContext);
-        scaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
-            title: "Payment Done", backgroundColor: AppColors.green));
-        Navigator.pushReplacement(
-            scaffoldKey.currentContext,
-            MaterialPageRoute(
-              builder: (context) => AppNavigationBar()
-            ));
-      });
-      // String mobile = await LocalStorage.getMobile();
-      // print(transactionModel.toJson(mobile, poolId));
-      // Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-      //     key: scaffoldKey,
-      //     endPoint: EndPoints.transaction,
-      //     afterRequest: () {},
-      //     authRequest: true,
-      //     shouldPagePop: false,
-      //     body: transactionModel.toJson(mobile, poolId));
-
-      // print(body);
-
-      // print(body);
-      // if (body["status"]) {
-      //   Navigator.pop(scaffoldKey.currentContext);
-      //   pageModel.onceFormSubmitted = false;
-      //   formKey.currentState.reset();
-      //   notifyListeners();
-      //   AppSnackBar.snackBar(
-      //       title: "Payment Successful", backgroundColor: AppColors.green);
-      // } else {
-      //   AppSnackBar.snackBar(
-      //       title: "Payment Unsuccessful", backgroundColor: AppColors.red);
-      // }
+      // return null;
+    } else {
+      return Future.error("Error Occured");
     }
   }
+
+  void confirmPayment() async {
+    pageModel.onceFormSubmitted = true;
+    try {
+      LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+}
+
+class Amount {
+  String poolAmount;
+  Amount({this.poolAmount});
+  Amount.fromJson(Map<String, dynamic> json) : poolAmount = json["amount"];
 }

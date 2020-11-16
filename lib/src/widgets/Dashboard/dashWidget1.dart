@@ -44,7 +44,7 @@ class DashWidget1 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '\$',
+                        '\$ ',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),

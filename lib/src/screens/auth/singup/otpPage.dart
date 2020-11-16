@@ -1,5 +1,5 @@
-import 'package:Jamiie/src/repositry/textConst.dart';
-import 'package:Jamiie/src/utils/onWillPopScope.dart';
+import '../../../repositry/textConst.dart';
+import '../../../utils/onWillPopScope.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/pageHeading.dart';
@@ -114,12 +114,9 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
               ),
               ResendOtp(
                 resendOtp: () {
-                  //Todo add resend otp function here
-                  print('hello');
+                  otpProvider.resendOtp();
                 },
               ),
-
-              ///
               Container(
                 child: NumericKeyboard(
                   onKeyboardTap: complete ? (String e) {} : _onKeyboardTap,

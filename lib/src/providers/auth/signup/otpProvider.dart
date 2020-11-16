@@ -36,7 +36,7 @@ class OtpProvider extends ChangeNotifier {
         throw Exception(e);
       }
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-        shouldPagePop: true,
+          shouldPagePop: true,
           key: otpScaffoldKey,
           endPoint: EndPoints.verifyOtp,
           afterRequest: () {},
@@ -49,5 +49,24 @@ class OtpProvider extends ChangeNotifier {
       }
     }
   }
-  
+
+  void resendOtp() async {
+    final String _mobile = await LocalStorage.getMobile();
+    try {
+      LoaderDialog.loaderDialog(otpScaffoldKey.currentContext);
+    } catch (e) {
+      print("Error At Logout Provider in Loader Dialog!");
+      throw Exception(e);
+    }
+    Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+      shouldPagePop: true,
+      key: otpScaffoldKey,
+      endPoint: EndPoints.resendOtp,
+      afterRequest: () {},
+      body: ResendOtpModel().toJson(_mobile),
+    );
+    if (body["status"]) {
+      Navigator.pop(otpScaffoldKey.currentContext);
+    }
+  }
 }

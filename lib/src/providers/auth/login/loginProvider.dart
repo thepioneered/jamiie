@@ -62,13 +62,13 @@ class LoginProvider extends ChangeNotifier {
         shouldPagePop: true,
         key: loginScaffoldKey,
         endPoint: EndPoints.userLogin,
-        afterRequest: () {}, 
+        afterRequest: () {},
         body: login.toJson(),
       );
+      print(body);
 
       if (body["status"]) {
         final loginResponse = LoginResponse.fromJson(body["body"]);
-
         await LocalStorage.setTokenMobileFirstLogin(
           loginResponse.token,
           login.mobile,

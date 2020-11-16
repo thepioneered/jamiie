@@ -1,5 +1,5 @@
 import 'package:Jamiie/src/screens/Transaction/transactionListPage.dart';
-import 'package:Jamiie/src/screens/Transaction/transactionPage.dart';
+import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
 
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
@@ -86,9 +86,8 @@ class PoolDataPageWidget extends StatelessWidget {
                                     data.contributionAmount.toString()),
                                 dataContainer("Members",
                                     "${data.joinedMember.toString()}/${data.totalMember.toString()}"),
-                                
-                                dataContainer("Pool Id",
-                                    data.poolId.toString()),
+                                dataContainer(
+                                    "Pool Id", data.poolId.toString()),
                               ],
                             ),
                           ),
@@ -147,7 +146,7 @@ class PoolDataPageWidget extends StatelessWidget {
                                 print("Working");
                               }
                             : () {
-                              print(poolId);
+                                print(poolId);
                                 //TODO: Edit is required here
                                 Navigator.push(
                                   context,
@@ -162,21 +161,34 @@ class PoolDataPageWidget extends StatelessWidget {
                         title: "Start Pool",
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
                         onTap: data.totalMember != data.joinedMember
                             ? () {
+                                //TODO: Please check here
                                 print("Working");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => TransactionPage(
+                                            poolId: data.poolId,
+                                            poolName: data.poolName,
+                                          )),
+                                );
                               }
                             : () {
                                 //TODO: Edit is required here
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => Transactionpage(poolId: data.poolId,poolName: data.poolName,)
-                                  ),
+                                      builder: (_) => TransactionPage(
+                                            poolId: data.poolId,
+                                            poolName: data.poolName,
+                                          )),
                                 );
                               },
                         title: "Pay",

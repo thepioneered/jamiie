@@ -7,6 +7,7 @@ import '../../styles/text.dart';
 class AppButton {
   static Widget loginButton({Function onTap, String title}) {
     return  RaisedButton(
+      
             onPressed: onTap,
             color: AppColors.primaryColorPurple,
             shape: RoundedRectangleBorder(

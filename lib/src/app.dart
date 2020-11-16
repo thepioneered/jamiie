@@ -18,7 +18,7 @@ import './styles/colors.dart';
 import './routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import './screens/auth/forgotPassword/otpPage.dart';
-import 'screens/Transaction/transactionPage.dart';
+import 'screens/adminPool/transactionPage.dart';
 
 class App extends StatefulWidget {
   @override
@@ -87,10 +87,6 @@ class _AppState extends State<App> {
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
         
-        // home:LoanScreen(),
-        //   home: AfterLoginFormPage(),
-        // home: OtpPage(),
-        // home: ForgotPasswordOtpPage(),
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;

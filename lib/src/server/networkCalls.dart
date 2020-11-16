@@ -17,9 +17,11 @@ class NetworkCalls {
       @required Function afterRequest,
       @required bool shouldPagePop,
       bool authRequest = false,
+      bool showSnackBar = true,
       @required Object body}) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
+        print(body);
         var request = await http
             .post(
               EndPoints.ipAddress + endPoint,
@@ -31,8 +33,7 @@ class NetworkCalls {
             .timeout(
               Duration(seconds: 10),
             );
-
-        return dataHandler(request, key, shouldPagePop);
+        return dataHandler(request, key, shouldPagePop, showSnackBar);
       } catch (e) {
         return serverError(e.toString(), key, shouldPagePop);
       }
@@ -71,7 +72,10 @@ class NetworkCalls {
   }
 
   static Map<String, dynamic> dataHandler(
-      http.Response request, GlobalKey<ScaffoldState> key, bool pop) {
+      http.Response request,
+      final GlobalKey<ScaffoldState> key,
+      final bool pop,
+      final bool showSnackBar) {
     if (request.statusCode == 200) {
       return {"status": true, "body": json.decode(request.body)};
     } else if (request.statusCode == 201) {
@@ -81,14 +85,17 @@ class NetworkCalls {
       if (pop) {
         Navigator.pop(key.currentContext);
       }
-      StatusCodeCheck.checkStatusCode(
-        request.statusCode,
-        key,
-        q["response"] == null
-            ? "Error in ${request.statusCode}"
-            : q["response"],
-      );
-      return {"status": false};
+      if (showSnackBar)
+        StatusCodeCheck.checkStatusCode(
+          request.statusCode,
+          key,
+          q["response"] == null
+              ? "Error in ${request.statusCode}"
+              : q["response"],
+        );
+      return q["response"] == null
+          ? {"status": false}
+          : {"status": false, "response": q["response"]};
     }
   }
 
@@ -97,6 +104,7 @@ class NetworkCalls {
     @required String endPoint,
     bool authRequest = false,
     @required shouldPagePop,
+    bool showSnackBar = true,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
@@ -110,7 +118,7 @@ class NetworkCalls {
             .timeout(
               Duration(seconds: 10),
             );
-        return dataHandler(request, key, shouldPagePop);
+        return dataHandler(request, key, shouldPagePop, showSnackBar);
       } catch (e) {
         return serverError(e, key, shouldPagePop);
       }
@@ -172,6 +180,7 @@ class NetworkCalls {
     @required Object body,
     @required shouldPagePop,
     bool authRequest = false,
+    bool showSnackBar = true,
   }) async {
     if (await DataConnectionChecker().hasConnection) {
       try {
@@ -187,7 +196,7 @@ class NetworkCalls {
               Duration(seconds: 10),
             );
 
-        return dataHandler(request, key, shouldPagePop);
+        return dataHandler(request, key, shouldPagePop, showSnackBar);
       } catch (e) {
         return serverError(e, key, shouldPagePop);
       }

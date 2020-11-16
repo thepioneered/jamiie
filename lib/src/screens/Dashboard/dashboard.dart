@@ -24,88 +24,86 @@ class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    return Consumer<DashboardProvider>(builder: (_, dashboardProvider, child) {
-      return Scaffold(
-        key: dashboardProvider.dashboardScaffoldKey,
-        body: FutureBuilder<Null>(
-          future: dashboardProvider.loadPageAsset(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CupertinoActivityIndicator(),
-              );
-            } else if (!snapshot.hasData &&
-                snapshot.connectionState == ConnectionState.done) {
-              var data = dashboardProvider.dashboardModel;
-              return SingleChildScrollView(
-                child: Container(
-                  color: AppColors.backgroundColor,
-                  margin: EdgeInsets.only(top: 24.h),
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: .75.wp,
-                              child: AutoSizeText(
-                                "Hello, " +
-                                    data.name
-                                        .substring(0, data.name.indexOf(' ')),
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: 36.sp,
-                                    //TODO: size editor pending
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "poppins"),
+    return Consumer<DashboardProvider>(
+      builder: (_, dashboardProvider, child) {
+        return Scaffold(
+          key: dashboardProvider.dashboardScaffoldKey,
+          body: FutureBuilder<Null>(
+            future: dashboardProvider.loadPageAsset(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CupertinoActivityIndicator(),
+                );
+              } else if (snapshot.connectionState == ConnectionState.done &&
+                  !snapshot.hasError) {
+                var data = dashboardProvider.dashboardModel;
+                return SingleChildScrollView(
+                  child: Container(
+                    color: AppColors.backgroundColor,
+                    margin: EdgeInsets.only(top: 24.h),
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: .75.wp,
+                                child: AutoSizeText(
+                                  "Hello, " +
+                                      data.name
+                                          .substring(0, data.name.indexOf(' ')),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 36.sp,
+                                      //TODO: size editor pending
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "poppins"),
+                                ),
                               ),
-                            ),
-                            // Padding(
-                            //   // padding: EdgeInsets.only(right: 20.w),
-                            //   child:
-                            Container(
-                              width: 50.w,
-                              height: 50.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+
+                              Container(
+                                width: 50.w,
+                                height: 50.w,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: CachedNetworkImage(
+                                    imageUrl: data.imgUrl,
+                                    placeholder: (context, url) =>
+                                        CupertinoActivityIndicator(),
+                                    errorWidget: (context, url, error) {
+                                      return Icon(Icons.error);
+                                    }),
                               ),
-                              child: CachedNetworkImage(
-                              
-                                imageUrl: data.imgUrl,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
-                            // )
-                          ],
+                              // )
+                            ],
+                          ),
                         ),
-                      ),
-                      DashWidget1(
-                        amount: data.moneySaved,
-                        joinedPools: data.joinedPools,
-                        createsPools: data.createdPools,
-                        completedPools: data.completedPools,
-                      ),
-                      DashWidget2(data.transaction),
-                      DashWidget3(data.upcomingPayment),
-                    ],
+                        DashWidget1(
+                          amount: data.moneySaved == null ? 0 : data.moneySaved,
+                          joinedPools: data.joinedPools,
+                          createsPools: data.createdPools,
+                          completedPools: data.completedPools,
+                        ),
+                        DashWidget2(data.transaction),
+                        DashWidget3(data.upcomingPayment),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            } else {
-              return Center(
-                child: Text(snapshot.error),
-              );
-            }
-          },
-        ),
-      );
-    });
+                );
+              } else {
+                return Center(
+                  child: Text("Error Occured"),
+                );
+              }
+            },
+          ),
+        );
+      },
+    );
   }
 }

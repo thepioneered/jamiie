@@ -16,8 +16,14 @@ class StatusCodeCheck {
           title: error,
         ),
       );
+    } else if (statusCode == 400) {
+      key.currentState.showSnackBar(
+        AppSnackBar.snackBar(
+          backgroundColor: AppColors.red,
+          title: error,
+        ),
+      );
     } else if (statusCode == 403) {
-      print(error);
       key.currentState.showSnackBar(
         AppSnackBar.snackBar(
           backgroundColor: AppColors.red,

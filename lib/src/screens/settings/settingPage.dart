@@ -46,6 +46,7 @@ class SettingPage extends StatelessWidget {
                         subtitle: "Add your Bank",
                         icon: FaIcon(Icons.home),
                         onTap: () {
+                          //TODO: Isko push named bna na hai
                           Navigator.push(context,
                               MaterialPageRoute(builder: (_) => BankPage()));
                         },

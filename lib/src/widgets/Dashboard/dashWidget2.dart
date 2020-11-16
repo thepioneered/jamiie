@@ -39,7 +39,7 @@ class DashWidget2 extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 5.h),
                 itemCount: transactionList.length,
                 itemBuilder: (context, index) {
-                  if (transactionList[index].transactionType == "Received") {
+                  if (transactionList[index].transactionStatus) {
                     color = Colors.green;
                     sign = '+';
                   } else {
@@ -64,18 +64,18 @@ class DashWidget2 extends StatelessWidget {
                                   '\$' +
                                   transactionList[index].amount.toString(),
                               style: AppTextStyle.dashTransAmount(
-                                  color: color,
-                                  ),
+                                color: color,
+                              ),
                             )
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              transactionList[index].transactionType,
-                              style: AppTextStyle.dashCardHint,
-                            ),
+                            // Text(
+                            //   transactionList[index].transactionStatus,
+                            //   style: AppTextStyle.dashCardHint,
+                            // ),
                             Text(
                               transactionList[index].date,
                               style: AppTextStyle.dashCardHint,

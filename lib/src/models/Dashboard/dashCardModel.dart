@@ -45,17 +45,18 @@ class DashboardModel {
 class Transaction {
   String id;
   String name;
+  String paidTime;
   int amount;
   String date;
-  String transactionType;
+  bool transactionStatus;
 
   Transaction.fromJson(Map<String, dynamic> json)
       : name = json["name"],
+        transactionStatus = json["transactionStatus"],
         amount = json["amount"],
         id = json["id"],
         date = json["date"],
-        transactionType = json["transactionType"];
-        
+        paidTime = json["paidTime"];
 }
 
 class UpcomingPayments {

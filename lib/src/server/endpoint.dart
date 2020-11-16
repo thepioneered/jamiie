@@ -19,6 +19,9 @@ class EndPoints {
   static const String dashboard = "/pool/dashboard/";
   static const String joinedPoolList = "/pool/userjoinedpool/";
   static const String transaction = "/payments/transfer";
+  static const String bankVerification = "/payments/bankverification";
+  static const String paidUserDetail = "/payments/paiddetail";
+  static const String poolAmount = "/payments/amount";
 
   //End point for new password put request
   static String setNewPassword(String _mobile) {

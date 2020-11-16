@@ -16,10 +16,12 @@ class AppBarWidget {
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             color: AppColors.primaryColorPurple.withAlpha(20),
           ),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.primaryColorPurple,
-            size: 16.sp,
+          child: Center(
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.primaryColorPurple,
+              size: 16.sp,
+            ),
           ),
         ),
         onPressed: isRegistration

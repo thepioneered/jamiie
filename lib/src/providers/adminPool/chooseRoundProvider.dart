@@ -13,12 +13,7 @@ class ChooseRoundProvider extends ChangeNotifier {
   final List<ChooseRoundMemberDetails> a = List<ChooseRoundMemberDetails>();
 
   void startPoolButton(List<MemberModel> memberModel,String poolId) async {
-    // try {
-    //   LoaderDialog.loaderDialog(chooseRoundScaffoldKey.currentContext);
-    // } catch (e) {
-    //   throw Exception(e);
-    // }
-
+    
     for (int i = 0; i < memberModel.length; i++) {
       a.add(ChooseRoundMemberDetails(
         phone: memberModel[i].memberDetails.phone,
