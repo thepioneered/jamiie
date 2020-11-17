@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
 import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -87,7 +88,7 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                       data.joinedPoolListDataSubModel.poolName,
                                   poolType:
                                       data.joinedPoolListDataSubModel.poolType,
-                                  nextScreen: JoinPoolScreen(),
+                                  nextScreen: JoinPoolDataPage(poolId: data.joinedPoolListDataSubModel.poolId,),
                                 ),
                               );
                             },
