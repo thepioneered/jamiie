@@ -11,8 +11,9 @@ class BankProvider extends ChangeNotifier {
 
   Future<Null> loadPage() async {
     String _mobile = await LocalStorage.getMobile();
-    _mobile = _mobile.substring(1, _mobile.length);
-    url = 'https://jamiie.anukai.com/payments/bank/' + _mobile;
+    
+    
+    url = 'https://jamiie.anukai.com/payments/bank/' + _mobile.substring(1, _mobile.length);
     mobileModel = MobileModel();
     mobileModel.mobile = _mobile;
 
@@ -23,12 +24,14 @@ class BankProvider extends ChangeNotifier {
         shouldPagePop: false,
         authRequest: true,
         showSnackBar: false,
-        body: mobileModel.toJson());
-    if(response["status"]){
+        body:mobileModel.toJson());
+    print(_mobile);
+    print('---------------------');
+    print(response);
+    if (response["status"]) {
       return null;
       //Show krdo bank ko
-    }
-    else{
+    } else {
       // Bank already added hai
       return Future.error(405);
     }

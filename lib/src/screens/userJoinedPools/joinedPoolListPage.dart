@@ -52,7 +52,7 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
           } else if (!snapshot.hasError) {
             return joinPoolProvider
                     .joinPoolListModel.joinPoolListDataModel.isEmpty
-                ? Container(
+                 ? Container(
                     child: Center(
                       child: Text('No Pools Joined'),
                     ),
