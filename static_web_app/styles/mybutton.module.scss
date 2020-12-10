@@ -1,0 +1,57 @@
+@import "./variables.module.scss";
+
+.container {
+  position: relative;
+  color: $primary-green;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+// ------------
+// arrow
+// ------------
+
+.arrow {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  float: right;
+  top: -28px;
+  right: 10px;
+  color: $primary-green;
+}
+
+.arrow:after,
+.arrow:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0.12rem;
+  height: 100%;
+  transition: transform 500ms ease;
+}
+
+.arrow:before {
+  left: 5px;
+  transform: rotate(45deg);
+  background-color: #394a6d;
+}
+
+.arrow:after {
+  left: -5px;
+  transform: rotate(-45deg);
+  background-color: #394a6d;
+}
+
+// ------------
+// open arrow
+// ------------
+
+.open .arrow:before {
+  left: 5px;
+  transform: rotate(-45deg);
+}
+.open .arrow:after {
+  left: -5px;
+  transform: rotate(45deg);
+}

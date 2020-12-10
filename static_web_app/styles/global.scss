@@ -1,7 +1,33 @@
+@import "./variables.module.scss";
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: $background-gray;
+}
+
+// ------------
+// colors
+// ------------
+
+.green {
+  color: $primary-green2;
+}
+.yellow {
+  color: $primary-yellow;
+}
+.blue {
+  color: $primary-blue;
+}
+.red {
+  color: $primary-red;
+}
+.purple {
+  color: $primary-purple;
 }
