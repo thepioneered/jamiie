@@ -1,12 +1,25 @@
 @import "./variables.module.scss";
 
 // ------------
-// container
+// containers
 // ------------
+
+.outer__container {
+  position: relative;
+  height: 6em;
+  background-color: $background-light;
+  display: flex;
+}
 
 .container {
   background-color: $primary-green;
+  width: 100%;
+  height: 70%;
 }
+
+// ------------
+// list
+// ------------
 
 .list {
   display: flex;
@@ -18,9 +31,13 @@
     position: relative;
   }
 
-  li::before {
+  li:not(:first-child)::before {
     content: "|";
     color: white;
+    position: absolute;
+    top: 35%;
+    left: -25%;
+    position: absolute;
   }
 
   button {
@@ -31,4 +48,13 @@
     background-color: transparent;
     color: white;
   }
+}
+
+.logo {
+  box-sizing: content-box;
+  background-color: $background-light;
+  // position: absolute;
+  height: 6em;
+  // left: 0;
+  padding: 0em 2em;
 }
