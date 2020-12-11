@@ -1,4 +1,5 @@
-import 'package:Jamiie/src/models/TransactionList/transactionListModel.dart';
+import 'package:Jamiie/src/models/TransactionList/notPaidUserDetailModel.dart';
+import 'package:Jamiie/src/models/TransactionList/paidUserDetailModel.dart';
 import 'package:Jamiie/src/models/auth/mobileModel.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
@@ -9,23 +10,39 @@ class TransationListProvider extends ChangeNotifier {
   final GlobalKey<ScaffoldState> transactionListPageScaffoldKey =
       GlobalKey<ScaffoldState>();
   MobileModel _mobileModel;
-  TransactionListModel transactionListModel;
+  PaidUserListModel paidUserListModel;
+  NotPaidUserListModel notPaidUserListModel;
 
   Future<Null> loadPageData() async {
     String _mobile = await LocalStorage.getMobile();
     _mobileModel = MobileModel();
     _mobileModel.mobile = _mobile;
-    Map<String, dynamic> response = await NetworkCalls.postDataToServer(
+    Map<String, dynamic> data = await NetworkCalls.postDataToServer(
         key: transactionListPageScaffoldKey,
         endPoint: EndPoints.paidUserDetail,
         afterRequest: () {},
         authRequest: true,
         shouldPagePop: false,
         body: _mobileModel.toJson());
-    if (response["status"]) {
-      print(response);
-      transactionListModel = TransactionListModel();
-      // transactionListModel.
+    Map<String, dynamic> data2 = await NetworkCalls.postDataToServer(
+        key: transactionListPageScaffoldKey,
+        endPoint: EndPoints.notPaidUserDetail,
+        afterRequest: () {},
+        authRequest: true,
+        shouldPagePop: false,
+        body: _mobileModel.toJson());
+
+    if (data["status"]) {
+      print('---------------1111111111----------------------');
+      print(data);
+      paidUserListModel = PaidUserListModel.fromJson(data["body"]["response"]);
+    } else {
+      return Future.error("Error Occured");
+    }
+    if (data2["status"]) {
+      print('---------------222222222----------------------');
+      print(data2);
+      notPaidUserListModel = NotPaidUserListModel.fromJson(data2["body"]);
     } else {
       return Future.error("Error Occured");
     }

@@ -13,7 +13,7 @@ class JoinPoolDataProvider with ChangeNotifier {
     print("-----------getting dataa of join pool----------");
     print(poolId);
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
-      shouldPagePop: false,
+        shouldPagePop: false,
         key: scaffoldKey,
         endPoint: EndPoints.completePoolData + poolId,
         authRequest: true);
@@ -22,7 +22,7 @@ class JoinPoolDataProvider with ChangeNotifier {
     if (data['status']) {
       print(data["body"]);
       joinPoolDataModel = JoinPoolDataModel.formJson(data["body"]);
-     return null;
+      return null;
     }
   }
 }
