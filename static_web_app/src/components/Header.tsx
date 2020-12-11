@@ -8,19 +8,19 @@ const Header = () => {
       <div className={styles.container}>
         <ul className={styles.list}>
           <li>
-            <button>Jamiie Circle</button>
+            <a href="#jamiie_circle">Jamiie Circle</a>
           </li>
           <li>
-            <button>How it works</button>
+            <a href="#how">How it works</a>
           </li>
           <li>
-            <button>Our story</button>
+            <a href="#our_story">Our story</a>
           </li>
           <li>
-            <button>Our team</button>
+            <a href="#">Our team</a>
           </li>
           <li>
-            <button>FAQs</button>
+            <a href="#">FAQs</a>
           </li>
         </ul>
       </div>

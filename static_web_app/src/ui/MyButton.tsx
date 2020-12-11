@@ -8,8 +8,10 @@ interface MyButtonProps {
 
 const MyButton = ({ text, style }: MyButtonProps) => {
   return (
-    <div className={styles.container} style={style}>
-      {text ? text : "Start your Jamiie circle now"}
+    <div className={`${styles.container} ${styles.arrow}`} style={style}>
+      <button className={styles.button}>
+        {text ? text : "Start your Jamiie circle now"}
+      </button>
     </div>
   );
 };

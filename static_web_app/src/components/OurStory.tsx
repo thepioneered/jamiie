@@ -5,7 +5,7 @@ import MyButton from "../ui/MyButton";
 const OurStory = () => {
   return (
     <>
-      <div style={{ marginTop: "5em" }}>
+      <div style={{ marginTop: "5em" }} id="our_story">
         <div className={styles.heading}>Our Story</div>
         <div className={styles.para1__container} style={{ marginTop: 0 }}>
           <div className={styles.space__between}>

@@ -4,7 +4,7 @@ import styles from "../../styles/main.module.scss";
 const What = () => {
   return (
     <>
-      <div className={styles.para1__container}>
+      <div className={styles.para1__container} id="jamiie_circle">
         <div>
           <div className={styles.heading}>What is a Jamiie circle?</div>
           <div>

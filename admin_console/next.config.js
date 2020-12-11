@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = withReactSvg({
   include: path.resolve(__dirname, "public/images/svg"),
-  webpack(config, options) {
+  webpack(config, _options) {
     return config;
   },
 });

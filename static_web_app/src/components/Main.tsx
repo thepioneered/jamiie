@@ -30,20 +30,21 @@ const Main = () => {
       </p>
 
       <What />
-      <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
+      {/* <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} /> */}
 
       <Meet />
-      <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
+      {/* <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} /> */}
 
       <Why />
-      <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
+      {/* <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} /> */}
 
       <img
+        id="how"
         className={styles.howItWorks}
-        src="/images/svg/HowItWorks.svg"
+        src="/images/svg/HowItWorks2.svg"
         alt="How it Works"
       />
-      <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
+      {/* <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} /> */}
 
       <OurStory />
       <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
