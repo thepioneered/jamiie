@@ -5,7 +5,7 @@ import '../../styles/text.dart';
 
 class DashWidget2 extends StatelessWidget {
   DashWidget2(this.transactionList);
-  final List<Transaction> transactionList;
+  final List<TransactionDashboard> transactionList;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class DashWidget2 extends StatelessWidget {
                 reverse: true,
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(horizontal: 5.h),
+                // itemCount: 2,
                 itemCount: transactionList.length,
                 itemBuilder: (context, index) {
                   if (transactionList[index].transactionStatus) {
@@ -54,7 +55,8 @@ class DashWidget2 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              transactionList[index].name,
+                              transactionList[index].poolId,
+                            
                               style: AppTextStyle.dashCardText(
                                 color: Colors.black,
                               ),
@@ -72,14 +74,14 @@ class DashWidget2 extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // Text(
-                            //   transactionList[index].transactionStatus,
-                            //   style: AppTextStyle.dashCardHint,
-                            // ),
                             Text(
-                              transactionList[index].date,
+                              transactionList[index].transactionStatus.toString(),
                               style: AppTextStyle.dashCardHint,
-                            )
+                            ),
+                            // Text(
+                            //   transactionList[index].date,
+                            //   style: AppTextStyle.dashCardHint,
+                            // )
                           ],
                         ),
                       ],

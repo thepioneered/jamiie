@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:Jamiie/src/providers/addBank/bankprovider.dart';
+import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/appBar.dart';
@@ -12,23 +13,88 @@ import 'dart:io';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BankPage extends StatelessWidget {
+  final String mobile;
+
+  const BankPage({this.mobile});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => BankProvider(),
-      child: BankPageWidget(),
+      child: BankPageWidget(
+        mobile: mobile,
+      ),
     );
   }
 }
 
-class BankPageWidget extends StatefulWidget {
+class BankPageWidget extends StatelessWidget {
+  final String mobile;
+
+  const BankPageWidget({Key key, this.mobile}) : super(key: key);
+
   @override
-  _BankPageWidgetState createState() => _BankPageWidgetState();
+  Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    var bankProvider = Provider.of<BankProvider>(context);
+    bankProvider.loadPage(mobile);
+    return Scaffold(
+        appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
+        key: bankProvider.scaffoldKey,
+        backgroundColor: AppColors.white,
+        body: (bankProvider.isNetworkCallCompleted)
+            ? (bankProvider.firstTimeAddBank
+                ? AppWebView(mobile: mobile)
+                : Center(
+                    //TODO: Style pending haii
+                    child: Text("Bank already attached.",
+                        style: AppTextStyle.forgotPassword()),
+                  ))
+            : Center(child: CupertinoActivityIndicator())
+
+        // FutureBuilder<Null>(
+        //   future: bankProvider.loadPage(mobile),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return Center(
+        //         child: CupertinoActivityIndicator(),
+        //       );
+        //     } else if (snapshot.error == 405 &&
+        //         snapshot.connectionState == ConnectionState.done) {
+        // return Center(
+        //   //TODO: Style pending haii
+        //   child: Text("Bank already attached.",
+        //       style: AppTextStyle.forgotPassword()),
+        // );
+        //     } else if (!snapshot.hasError &&
+        //         snapshot.connectionState == ConnectionState.done) {
+        //       print(bankProvider.url);
+
+        //       return AppWebView(
+        //         mobile: mobile,
+        //       );
+        //     } else {
+        //       return Center(child: Text("Error occured! Please Check."));
+        //       // }
+        //     }
+        //   },
+        // ),
+        );
+  }
 }
 
-class _BankPageWidgetState extends State<BankPageWidget> {
+class AppWebView extends StatefulWidget {
+  final String mobile;
+
+  const AppWebView({Key key, this.mobile}) : super(key: key);
+
+  @override
+  _AppWebViewState createState() => _AppWebViewState();
+}
+
+class _AppWebViewState extends State<AppWebView> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+
   void initState() {
     super.initState();
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
@@ -36,40 +102,14 @@ class _BankPageWidgetState extends State<BankPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    var bankProvider = Provider.of<BankProvider>(context);
-    return Scaffold(
-      appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
-      key: bankProvider.scaffoldKey,
-      backgroundColor: AppColors.white,
-      body: FutureBuilder<Null>(
-        future: bankProvider.loadPage(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CupertinoActivityIndicator(),
-            );
-          } else if (snapshot.error == 405 &&
-              snapshot.connectionState == ConnectionState.done) {
-            return Center(
-              //TODO: Style pending haii
-              child: Text("Bank already attached.",style: AppTextStyle.forgotPassword()),
-            );
-          } else if (!snapshot.hasError &&
-              snapshot.connectionState == ConnectionState.done) {
-            return WebView(
-                initialUrl: bankProvider.url,
-                javascriptMode: JavascriptMode.unrestricted,
-                onWebViewCreated: (WebViewController webViewController) {
-                  _controller.complete(webViewController);
-                },
-              
-            );
-          } else {
-            return Center(child: Text("Error occured! Please Check."));
-          }
-        },
-      ),
+    return WebView(
+      // initialUrl: "https://jamiie.anukai.com/payments/bank/917071006000",
+      initialUrl: EndPoints.webviewLink(widget.mobile),
+      javascriptMode: JavascriptMode.unrestricted,
+
+      onWebViewCreated: (WebViewController webViewController) {
+        _controller.complete(webViewController);
+      },
     );
   }
 }

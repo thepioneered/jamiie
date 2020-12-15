@@ -35,9 +35,13 @@ class DashboardPageWidget extends StatelessWidget {
                 return Center(
                   child: CupertinoActivityIndicator(),
                 );
-              } else if (snapshot.connectionState == ConnectionState.done &&
-                  !snapshot.hasError) {
+              } else if (snapshot.connectionState == ConnectionState.done
+
+                  // &&
+                  // !snapshot.hasError
+                  ) {
                 var data = dashboardProvider.dashboardModel;
+                print(data.name);
                 return SingleChildScrollView(
                   child: Container(
                     color: AppColors.backgroundColor,
@@ -89,8 +93,14 @@ class DashboardPageWidget extends StatelessWidget {
                           createsPools: data.createdPools,
                           completedPools: data.completedPools,
                         ),
-                        DashWidget2(data.transaction),
-                        DashWidget3(data.upcomingPayment),
+                        data.response
+                            ? Column(
+                                children: [
+                                  DashWidget2(data.transactionList),
+                                  DashWidget3(data.upcomingPaymentList),
+                                ],
+                              )
+                            : Container(),
                       ],
                     ),
                   ),

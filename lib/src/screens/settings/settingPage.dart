@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/screens/addBank/bankPage.dart';
+import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -45,10 +46,12 @@ class SettingPage extends StatelessWidget {
                         title: "Add Bank",
                         subtitle: "Add your Bank",
                         icon: FaIcon(Icons.home),
-                        onTap: () {
+                        onTap: () async {
                           //TODO: Isko push named bna na hai
+                          String mobile = await LocalStorage.getMobile();
+
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => BankPage()));
+                              MaterialPageRoute(builder: (_) => BankPage(mobile: mobile,)));
                         },
                       ),
                       AppSettingButtons(

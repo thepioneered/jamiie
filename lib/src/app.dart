@@ -86,7 +86,7 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        
+        // home:CompleteProfilePage(),
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;

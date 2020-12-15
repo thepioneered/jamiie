@@ -76,6 +76,7 @@ class NetworkCalls {
       final GlobalKey<ScaffoldState> key,
       final bool pop,
       final bool showSnackBar) {
+   print(request.statusCode);
     if (request.statusCode == 200) {
       return {"status": true, "body": json.decode(request.body)};
     } else if (request.statusCode == 201) {

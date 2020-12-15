@@ -75,6 +75,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
           padding: EdgeInsets.only(left: 15.0.w, right: 15.0.w, top: 35.0.h),
           child: Form(
             key: completeProfileProvider.completeProfileFormKey,
+            // autovalidateMode: AutovalidateMode.values
             autovalidate: completeProfileProvider.pageModel.onceFormSubmitted,
             child: Column(
               children: [
@@ -158,11 +159,13 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                             iconSize: 30,
                             dropdownTextStyle: AppTextStyle.dropDownStyleStates,
                             items: StatesRepo.states,
-                            onchanged: (e){
-                              completeProfileProvider.completeProfileModel.state=e;
+                            onchanged: (e) {
+                              completeProfileProvider
+                                  .completeProfileModel.state = e;
                               completeProfileProvider.callListners();
                             },
-                            value: completeProfileProvider.completeProfileModel.state,
+                            value: completeProfileProvider
+                                .completeProfileModel.state,
                             validator: completeProfileProvider.validator,
                             autoValidate: false,
                           ),

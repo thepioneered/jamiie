@@ -22,6 +22,11 @@ class EndPoints {
   static const String bankVerification = "/payments/bankverification";
   static const String paidUserDetail = "/payments/paiddetail";
   static const String poolAmount = "/payments/amount";
+  static const String bankPageWebView = "/payments/bank/";
+
+  static String webviewLink(String mobile) {
+    return EndPoints.ipAddress + EndPoints.bankPageWebView + mobile.substring(1,mobile.length);
+  }
 
   //End point for new password put request
   static String setNewPassword(String _mobile) {

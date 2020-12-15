@@ -65,6 +65,7 @@ class CompleteProfileProvider extends ChangeNotifier {
         print("Error At Login Provider in Loader Dialog!");
         throw Exception(e);
       }
+      print(completeProfileModel.toJson(await LocalStorage.getMobile()));
 
       Map<String, dynamic> body = await NetworkCalls.multiPartRequest(
         shouldPagePop: true,

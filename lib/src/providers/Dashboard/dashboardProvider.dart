@@ -10,7 +10,7 @@ class DashboardProvider extends ChangeNotifier {
 
   Future<Null> loadPageAsset() async {
     String mobile = await LocalStorage.getMobile();
-    mobile = mobile.substring(1,mobile.length);
+    mobile = mobile.substring(1, mobile.length);
 
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
       shouldPagePop: false,
@@ -19,12 +19,12 @@ class DashboardProvider extends ChangeNotifier {
       authRequest: true,
     );
 
-
-    print(data);
     if (data["status"]) {
-      print(data["body"]);
-      dashboardModel = DashboardModel.fromJson(data["body"]);
-      return null;
+  
+        dashboardModel = DashboardModel.fromJson(data["body"]);
+        
+        return null;
+   
     } else {
       return Future.error("Check");
     }
