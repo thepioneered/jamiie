@@ -517,7 +517,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.7"
   xdg_directories:
     dependency: transitive
     description:

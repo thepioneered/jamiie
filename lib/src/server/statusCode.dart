@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 import '../utils/snackBar.dart';
@@ -7,14 +8,26 @@ class StatusCodeCheck {
     int statusCode,
     GlobalKey<ScaffoldState> key,
     String error,
-  ) {
+  ) async {
     print(error);
     if (statusCode == 401) {
-      key.currentState.showSnackBar(
-        AppSnackBar.snackBar(
-          backgroundColor: AppColors.red,
-          title: error,
-        ),
+      await Future.delayed(
+        Duration(milliseconds: 1300),
+        () {
+          key.currentState.showSnackBar(
+            AppSnackBar.snackBar(
+              backgroundColor: AppColors.red,
+              title: "Token Expired",
+            ),
+          );
+        },
+      );
+
+      await LocalStorage.deleteData();
+      Navigator.pushNamedAndRemoveUntil(
+        key.currentContext,
+        "/LoginPage",
+        (route) => false,
       );
     } else if (statusCode == 400) {
       key.currentState.showSnackBar(

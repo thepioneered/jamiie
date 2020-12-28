@@ -1,7 +1,7 @@
-import 'package:Jamiie/src/screens/Transaction/transactionListPage.dart';
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
-
-import '../../models/adminPoolModel/completePoolDataModel.dart';
+import 'package:Jamiie/src/utils/snackBar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
 import 'roundListPage.dart';
 import '../../styles/text.dart';
@@ -94,7 +94,6 @@ class PoolDataPageWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-
                     //60 percent of total height
                     Container(
                       height: height * 0.45,
@@ -113,20 +112,40 @@ class PoolDataPageWidget extends StatelessWidget {
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  CircleAvatar(
-                                    backgroundImage: NetworkImage(data
-                                        .members[index].memberDetails.imageURL),
+                                  Container(
+                                    width: 50.w,
+                                    height: 50.w,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CachedNetworkImage(
+                                        imageUrl: data.members[index]
+                                            .memberDetails.imageURL,
+                                        placeholder: (context, url) =>
+                                            CupertinoActivityIndicator(),
+                                        errorWidget: (context, url, error) {
+                                          return Icon(Icons.error);
+                                        }),
                                   ),
+                                  // CircleAvatar(
+                                  //   backgroundImage: NetworkImage(data
+                                  //       .members[index].memberDetails.imageURL),
+                                  // ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  Text(data.members[index].memberDetails.name),
+                                  Text(
+                                    data.members[index].memberDetails.name,
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  ),
                                   Expanded(
                                     child: Container(),
                                   ),
-                                  Text(data
-                                      .members[index].memberDetails.riskScore
-                                      .toString())
+                                  Text(
+                                    data.members[index].memberDetails.riskScore
+                                        .toString(),
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  )
                                 ],
                               ),
                             );
@@ -138,62 +157,137 @@ class PoolDataPageWidget extends StatelessWidget {
                     ),
 
                     // 7 percent of total height
-                    Container(
-                      height: height * 0.07,
-                      child: AppButton.loginButton(
-                        onTap: data.totalMember != data.joinedMember
-                            ? () {
-                                print("Working");
-                              }
-                            : () {
-                                print(poolId);
-                                //TODO: Edit is required here
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => ChooseRoundPage(
-                                      memberModel: data.members,
-                                      poolId: poolId,
-                                    ),
-                                  ),
-                                );
-                              },
-                        title: "Start Pool",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Container(
-                      height: height * 0.07,
-                      child: AppButton.loginButton(
-                        onTap: data.totalMember != data.joinedMember
-                            ? () {
-                                //TODO: Please check here
-                                print("Working");
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => TransactionPage(
-                                            poolId: data.poolId,
-                                            poolName: data.poolName,
-                                          )),
-                                );
-                              }
-                            : () {
-                                //TODO: Edit is required here
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => TransactionPage(
-                                            poolId: data.poolId,
-                                            poolName: data.poolName,
-                                          )),
-                                );
-                              },
-                        title: "Pay",
-                      ),
-                    ),
+                    //TODO:Make this not equal to
+                    
+                    !data.startStatus
+                        ? Column(
+                            children: [
+                              SizedBox(height: 50.h),
+                              Container(
+                                height: height * 0.07,
+                                child: AppButton.loginButton(
+                                  //TODO: Make this not equal to
+                                  onTap: data.totalMember == data.joinedMember
+                                      ? null
+                                      : () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) => ChooseRoundPage(
+                                                memberModel: data.members,
+                                                poolId: poolId,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                  title: "Choose Rounds",
+                                ),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Container(
+                                height: height * 0.07,
+                                child: AppButton.loginButton(
+                                    title: "Payment Details", onTap: () {}),
+                              ),
+                              SizedBox(height: 10.h),
+                              Container(
+                                height: height * 0.07,
+                                child: AppButton.loginButton(
+                                  //TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
+                                  onTap: 
+                                  // data.totalMember != data.joinedMember
+                                      // ?
+                                       () {
+                                          //TODO: Please check here
+                                          
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) => TransactionPage(
+                                                poolId: data.poolId,
+                                                poolName: data.poolName,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      // : () {
+                                          //TODO: Edit is required here
+                                        //   Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //       builder: (_) => TransactionPage(
+                                        //         poolId: data.poolId,
+                                        //         poolName: data.poolName,
+                                        //       ),
+                                        //     ),
+                                        //   );
+                                        // },
+                                  title: "Pay",
+                                ),
+                              ),
+                            ],
+                          ),
+                    // Container(
+                    //   height: height * 0.07,
+                    //   child: AppButton.loginButton(
+                    //     onTap: data.totalMember != data.joinedMember
+                    //         ? () {
+                    //             print("Working");
+                    //           }
+                    //         : () {
+                    //             print(poolId);
+                    //             //TODO: Edit is required here
+                    //             Navigator.push(
+                    //               context,
+                    //               MaterialPageRoute(
+                    //                 builder: (_) => ChooseRoundPage(
+                    //                   memberModel: data.members,
+                    //                   poolId: poolId,
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           },
+                    //     title: "Start Pool",
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 15,
+                    // ),
+                    // Container(
+                    //   height: height * 0.07,
+                    //   child: AppButton.loginButton(
+                    //     onTap: data.totalMember != data.joinedMember
+                    //         ? () {
+                    //             //TODO: Please check here
+                    //             print("Working");
+                    //             Navigator.push(
+                    //               context,
+                    //               MaterialPageRoute(
+                    //                 builder: (_) => TransactionPage(
+                    //                   poolId: data.poolId,
+                    //                   poolName: data.poolName,
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           }
+                    //         : () {
+                    //             //TODO: Edit is required here
+                    //             Navigator.push(
+                    //               context,
+                    //               MaterialPageRoute(
+                    //                 builder: (_) => TransactionPage(
+                    //                   poolId: data.poolId,
+                    //                   poolName: data.poolName,
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           },
+                    //     title: "Pay",
+                    //   ),
+                    // ),
                   ],
                 ),
               );

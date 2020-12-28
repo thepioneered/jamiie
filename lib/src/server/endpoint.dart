@@ -18,14 +18,18 @@ class EndPoints {
   static const String startPool = "/pool/startpool";
   static const String dashboard = "/pool/dashboard/";
   static const String joinedPoolList = "/pool/userjoinedpool/";
-  static const String transaction = "/payments/transfer";
+  static const String paymentTransafer = "/payments/transfer";
   static const String bankVerification = "/payments/bankverification";
   static const String paidUserDetail = "/payments/paiddetail";
   static const String poolAmount = "/payments/amount";
+  static const String notPaidUserDetail = "/payments/notpaiddetail";
+
   static const String bankPageWebView = "/payments/bank/";
 
   static String webviewLink(String mobile) {
-    return EndPoints.ipAddress + EndPoints.bankPageWebView + mobile.substring(1,mobile.length);
+    return EndPoints.ipAddress +
+        EndPoints.bankPageWebView +
+        mobile.substring(1, mobile.length);
   }
 
   //End point for new password put request

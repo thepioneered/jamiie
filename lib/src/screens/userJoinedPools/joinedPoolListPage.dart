@@ -1,4 +1,6 @@
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
 import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../providers/userJoinedPools/joinPoolProvider.dart';
@@ -54,12 +56,13 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                     .joinPoolListModel.joinPoolListDataModel.isEmpty
                  ? Container(
                     child: Center(
-                      child: Text('No Pools Joined'),
+                      child: Text('No Pools Joined',style: AppTextStyle.joinPoolSubHeading),
                     ),
                   )
                 : Container(
-                    padding: EdgeInsets.only(top: 24.0.h),
+                    padding: EdgeInsets.only(top:30.0.h),
                     child: Column(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Joined Pools',
@@ -87,7 +90,7 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                       data.joinedPoolListDataSubModel.poolName,
                                   poolType:
                                       data.joinedPoolListDataSubModel.poolType,
-                                  nextScreen: JoinPoolScreen(),
+                                  nextScreen: JoinPoolDataPage(poolId: data.joinedPoolListDataSubModel.poolId,),
                                 ),
                               );
                             },

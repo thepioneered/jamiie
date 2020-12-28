@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/styles/text.dart';
+
 import '../../providers/transaction/transactionProvider.dart';
 import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';
@@ -27,8 +29,10 @@ class TransactionPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
+    double height = MediaQuery.of(context).size.height - 75.0;
     var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
+      backgroundColor: AppColors.white,
       key: transactionProvider.transactionPageScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
       body: FutureBuilder<Null>(
@@ -50,35 +54,42 @@ class TransactionPageWidget extends StatelessWidget {
                     Container(
                       width: 1.wp,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Payout to:',
-                            style: TextStyle(
-                              fontFamily: 'poppins',
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.black,
-                            ),
-                          ),
+                          Text('Payout to:',
+                              style: AppTextStyle.subheadingText),
                           Text(
                             poolName,
                             style: TextStyle(
                               fontFamily: 'poppins',
-                              fontSize: 30,
+                              fontSize: 30.sp,
                               fontWeight: FontWeight.w700,
                               color: AppColors.black,
                             ),
                           ),
-                          // Text(
-                          //   "Payment Amount : ${transactionProvider.amount.amount.toString()}",
-                          // )
+                          Text('Payout amount:',
+                              style: AppTextStyle.subheadingText),
+                          Text(
+                            transactionProvider.amount.poolAmount.toString(),
+                            style: TextStyle(
+                              fontFamily: 'poppins',
+                              fontSize: 30.sp,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.h)
                         ],
                       ),
                     ),
-                    AppButton.loginButton(
-                      onTap: () {},
-                      title: "Confirm Payment",
+                    Container(
+                      height: height * 0.07,
+                      child: AppButton.loginButton(
+                        onTap: () {
+                          transactionProvider.confirmPayment(poolId);
+                        },
+                        title: "Confirm Payment",
+                      ),
                     ),
                   ],
                 ),

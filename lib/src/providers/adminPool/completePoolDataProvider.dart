@@ -10,10 +10,8 @@ class CompletePoolDataProvider with ChangeNotifier {
   CompletePoolDataModel completePoolDataModel;
 
   Future<Null> loadPage(String poolId) async {
-    print("getting dataa");
-    print(poolId);
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
-      shouldPagePop: false,
+        shouldPagePop: false,
         key: completePoolDataScaffoldKey,
         endPoint: EndPoints.completePoolData + poolId,
         authRequest: true);
@@ -22,7 +20,8 @@ class CompletePoolDataProvider with ChangeNotifier {
     if (data['status']) {
       print(data["body"]);
       completePoolDataModel = CompletePoolDataModel.formJson(data["body"]);
-     return null;
+      // completePoolDataModel = CompletePoolDataModel.fromJson(data["body"]);
+      return null;
       // print(completePoolDataModel.deadline);
       // print(completePoolDataModel.members[0].memberDetails.imageURL);
     }

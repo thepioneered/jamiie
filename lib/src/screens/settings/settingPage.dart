@@ -34,14 +34,16 @@ class SettingPage extends StatelessWidget {
                   margin: EdgeInsets.only(top: 0.1.hp),
                   child: Column(
                     children: <Widget>[
-                      AppSettingButtons(
-                        title: "Profile",
-                        subtitle: "Edit your profile",
-                        icon: AppIcons.accountIcon,
-                        onTap: () {
-                          Navigator.pushNamed(context, "/EditprofilePage");
-                        },
-                      ),
+
+                      //TODO:Edit profile removed
+                      // AppSettingButtons(
+                      //   title: "Profile",
+                      //   subtitle: "Edit your profile",
+                      //   icon: AppIcons.accountIcon,
+                      //   onTap: () {
+                      //     Navigator.pushNamed(context, "/EditprofilePage");
+                      //   },
+                      // ),
                       AppSettingButtons(
                         title: "Add Bank",
                         subtitle: "Add your Bank",

@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget1.dart';
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget2.dart';
 import 'package:Jamiie/src/widgets/Dashboard/dashWidget3.dart';
@@ -89,7 +90,7 @@ class DashboardPageWidget extends StatelessWidget {
                         ),
                         DashWidget1(
                           amount: data.moneySaved == null ? 0 : data.moneySaved,
-                          joinedPools: data.joinedPools,
+                          joinedPools: data.joinedPools - data.createdPools,
                           createsPools: data.createdPools,
                           completedPools: data.completedPools,
                         ),
@@ -100,7 +101,15 @@ class DashboardPageWidget extends StatelessWidget {
                                   DashWidget3(data.upcomingPaymentList),
                                 ],
                               )
-                            : Container(),
+                            : Container(
+                                height: 0.3.hp,
+                                child: Center(
+                                  child: Text(
+                                    "No transaction yet",
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
                   ),

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:Jamiie/src/providers/addBank/bankprovider.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/widgets/appBar.dart';
+import '../../providers/addBank/bankprovider.dart';
+import '../../server/endpoint.dart';
+import '../../styles/colors.dart';
+import '../../styles/text.dart';
+import '../../widgets/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,36 +49,7 @@ class BankPageWidget extends StatelessWidget {
                     child: Text("Bank already attached.",
                         style: AppTextStyle.forgotPassword()),
                   ))
-            : Center(child: CupertinoActivityIndicator())
-
-        // FutureBuilder<Null>(
-        //   future: bankProvider.loadPage(mobile),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return Center(
-        //         child: CupertinoActivityIndicator(),
-        //       );
-        //     } else if (snapshot.error == 405 &&
-        //         snapshot.connectionState == ConnectionState.done) {
-        // return Center(
-        //   //TODO: Style pending haii
-        //   child: Text("Bank already attached.",
-        //       style: AppTextStyle.forgotPassword()),
-        // );
-        //     } else if (!snapshot.hasError &&
-        //         snapshot.connectionState == ConnectionState.done) {
-        //       print(bankProvider.url);
-
-        //       return AppWebView(
-        //         mobile: mobile,
-        //       );
-        //     } else {
-        //       return Center(child: Text("Error occured! Please Check."));
-        //       // }
-        //     }
-        //   },
-        // ),
-        );
+            : Center(child: CupertinoActivityIndicator()));
   }
 }
 
@@ -103,10 +74,8 @@ class _AppWebViewState extends State<AppWebView> {
   @override
   Widget build(BuildContext context) {
     return WebView(
-      // initialUrl: "https://jamiie.anukai.com/payments/bank/917071006000",
       initialUrl: EndPoints.webviewLink(widget.mobile),
       javascriptMode: JavascriptMode.unrestricted,
-
       onWebViewCreated: (WebViewController webViewController) {
         _controller.complete(webViewController);
       },

@@ -1,6 +1,7 @@
 import 'package:Jamiie/src/providers/adminPool/chooseRoundProvider.dart';
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 import '../../widgets/pageHeading.dart';
 
@@ -49,13 +50,6 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
       body: Container(
         child: Column(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            //   child: PageHeading.topHeading(
-            //       title: "Confirm round in pool",
-            //       subTitle: "Drag the pool",
-            //       height: height),
-            // ),
             Container(
               height: height * 0.60,
               child: ReorderableListView(
@@ -69,14 +63,14 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
                       index,
                       Key('$index'),
                       memberModel[index].memberDetails.name,
-                      index.toString(),
+                      (index+1).toString(),
                     );
                   },
                 ),
               ),
             ),
             SizedBox(
-              height: 10.0,
+              height: 170.h,
             ),
             Container(
               height: height * 0.07,
@@ -84,9 +78,9 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
               child: AppButton.loginButton(
                   onTap: () {
                     // print(widget.poolId);
-                    chooseRoundPage.startPoolButton(memberModel,widget.poolId);
+                    chooseRoundPage.startPoolButton(memberModel, widget.poolId);
                   },
-                  title: "Confirm Rounds"),
+                  title: "Start Pool"),
             ),
           ],
         ),
@@ -129,7 +123,8 @@ class _ListViewCard extends State<ListViewCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 11.0),
-      child: Card(
+      child: Container(
+        width: double.infinity,
         margin: EdgeInsets.all(4),
         color: Colors.white,
         child: InkWell(
@@ -141,44 +136,65 @@ class _ListViewCard extends State<ListViewCard> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Flexible(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        // 'Title ${widget.listItems[widget.index]}',
-                        widget.name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                        textAlign: TextAlign.left,
-                        maxLines: 5,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        widget.sno,
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 16),
-                        textAlign: TextAlign.left,
-                        maxLines: 5,
-                      ),
-                    ),
-                  ],
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  widget.sno + " .",
+                  style: AppTextStyle.reorderableList,
+                  textAlign: TextAlign.left,
+                  maxLines: 5,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Icon(
-                  Icons.reorder,
-                  color: Colors.grey,
-                  size: 24.0,
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  // 'Title ${widget.listItems[widget.index]}',
+                  widget.name,
+                  style: AppTextStyle.reorderableList,
+                  textAlign: TextAlign.left,
+                  maxLines: 5,
                 ),
               ),
+              // Flexible(
+              //   child: Column(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: <Widget>[
+              // Container(
+              //   padding: const EdgeInsets.all(8.0),
+              //   alignment: Alignment.topLeft,
+              //   child: Text(
+              //     // 'Title ${widget.listItems[widget.index]}',
+              //     widget.name,
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold, fontSize: 16),
+              //     textAlign: TextAlign.left,
+              //     maxLines: 5,
+              //   ),
+              // ),
+              // Container(
+              //   padding: const EdgeInsets.all(8.0),
+              //   alignment: Alignment.topLeft,
+              //   child: Text(
+              //     widget.sno,
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.normal, fontSize: 16),
+              //     textAlign: TextAlign.left,
+              //     maxLines: 5,
+              //   ),
+              // ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              //   child: Icon(
+              //     Icons.reorder,
+              //     color: Colors.grey,
+              //     size: 24.0,
+              //   ),
+              // ),
             ],
           ),
         ),

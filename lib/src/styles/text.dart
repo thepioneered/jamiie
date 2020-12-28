@@ -113,13 +113,19 @@ class AppTextStyle {
   static TextStyle get joinPoolHeading => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w400,
-        fontSize: 17.0,
+        fontSize: 17.0.sp,
         color: AppColors.grayInputHeading,
       );
   static TextStyle get joinPoolSubHeading => TextStyle(
         fontFamily: "Poppins",
         fontWeight: FontWeight.w500,
-        fontSize: 18.0,
+        fontSize: 18.0.sp,
+        color: AppColors.black,
+      );
+  static TextStyle get reorderableList => TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0.sp,
         color: AppColors.black,
       );
   static TextStyle dialogButton(Color _color) {

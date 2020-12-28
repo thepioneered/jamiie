@@ -1,4 +1,6 @@
 import 'package:Jamiie/src/providers/transaction/transactionListProvider.dart';
+import 'package:Jamiie/src/styles/colors.dart';
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../providers/Dashboard/dashboardProvider.dart';
@@ -30,100 +32,198 @@ class TransactionListWidget extends StatelessWidget {
                 return Center(
                   child: CupertinoActivityIndicator(),
                 );
-              } else if (!snapshot.hasData &&
+              } else if (!snapshot.hasError &&
                   snapshot.connectionState == ConnectionState.done) {
-                return Center(
-                  child: Text("Data Recieved"),
+                return SingleChildScrollView(
+                  child: Container(
+                    color: AppColors.backgroundColor,
+                    margin: EdgeInsets.only(top: 24.h),
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 10.h),
+                          padding: EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          width: 1.wp,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Paid Pools',
+                                  style: AppTextStyle.dashCardHeading,
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(top: 5.h),
+                                constraints: BoxConstraints(maxHeight: .34.hp),
+                                height: .34.hp,
+                                child: ScrollConfiguration(
+                                  behavior: new ScrollBehavior()
+                                    ..buildViewportChrome(
+                                        context, null, AxisDirection.down),
+                                  child: ListView.builder(
+                                    reverse: true,
+                                    shrinkWrap: true,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.h),
+                                  
+                                    itemCount: transactionListProvider
+                                        .paidUserListModel.paidUserList.length,
+                                    itemBuilder: (context, index) {
+                                      var data = transactionListProvider
+                                          .paidUserListModel
+                                          .paidUserList[index];
+                                      return Container(
+                                        height: 45.h,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  data.poolId,
+                                                  style:
+                                                      AppTextStyle.dashCardText(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  data.amount,
+                                                  style: AppTextStyle
+                                                      .dashTransAmount(
+                                                    color: Colors.green,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  data.payDate.toString(),
+                                                  style:
+                                                      AppTextStyle.dashCardHint,
+                                                ),
+                                                Text(
+                                                  data.paidTime.toString(),
+                                                  style:
+                                                      AppTextStyle.dashCardHint,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              // )
+                            ],
+                          ),
+                        ),
+                        // Container(
+                        //   margin: EdgeInsets.symmetric(vertical: 10.h),
+                        //   padding: EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.white,
+                        //     borderRadius: BorderRadius.circular(16),
+                        //   ),
+                        //   width: 1.wp,
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Center(
+                        //         child: Text(
+                        //           'Unpaid Pools',
+                        //           style: AppTextStyle.dashCardHeading,
+                        //         ),
+                        //       ),
+                        //       Container(
+                        //         padding: EdgeInsets.only(top: 5.h),
+                        //         constraints: BoxConstraints(maxHeight: .34.hp),
+                        //         // height: .34.hp,
+                        //         child: ScrollConfiguration(
+                        //           behavior: new ScrollBehavior()
+                        //             ..buildViewportChrome(
+                        //                 context, null, AxisDirection.down),
+                        //           child: ListView.builder(
+                        //             reverse: true,
+                        //             shrinkWrap: true,
+                        //             padding:
+                        //                 EdgeInsets.symmetric(horizontal: 5.h),
+                        //                 // itemCount: 5,
+                        //             itemCount: transactionListProvider.notPaidUserListModel.notPaidUserList.length,
+                        //             itemBuilder: (context, index) {
+                        //               var data = transactionListProvider
+                        //                   .notPaidUserListModel
+                        //                   .notPaidUserList[index];
+                        //               return Container(
+                        //                 height: 45.h,
+                        //                 child: Column(
+                        //                   children: [
+                        //                     Row(
+                        //                       mainAxisAlignment:
+                        //                           MainAxisAlignment
+                        //                               .spaceBetween,
+                        //                       children: [
+                        //                         Text(
+                        //                           data.poolId,
+                        //                           style:
+                        //                               AppTextStyle.dashCardText(
+                        //                             color: Colors.black,
+                        //                           ),
+                        //                         ),
+                        //                         Text(
+                        //                           data.amount,
+                        //                           style: AppTextStyle
+                        //                               .dashTransAmount(
+                        //                             color: Colors.red,
+                        //                           ),
+                        //                         )
+                        //                       ],
+                        //                     ),
+                        //                     Row(
+                        //                       mainAxisAlignment:
+                        //                           MainAxisAlignment
+                        //                               .spaceBetween,
+                        //                       children: [
+                        //                         Text(
+                        //                           data.payDate.toString(),
+                        //                           style:
+                        //                               AppTextStyle.dashCardHint,
+                        //                         ),
+                        //                         Text(
+                        //                           data.paidTime.toString(),
+                        //                           style:
+                        //                               AppTextStyle.dashCardHint,
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ],
+                        //                 ),
+                        //               );
+                        //             },
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       // )
+                        //     ],
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
                 );
-                // var data = dashboardProvider.dashboardModel;
-                // Color color;
-                // String sign;
-                // return Container(
-                //   margin: EdgeInsets.symmetric(vertical: 10.h),
-                //   padding: EdgeInsets.fromLTRB(15.h, 10.h, 15.h, 0.h),
-                //   width: 1.wp,
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Center(
-                //         child: Text(
-                //           'Transactions',
-                //           style: TextStyle(
-                //               fontFamily: 'poppins',
-                //               fontSize: 36.sp,
-                //               fontWeight: FontWeight.bold),
-                //         ),
-                //       ),
-                //       Container(
-                //         padding: EdgeInsets.only(bottom: 20.h),
-                //         child: ScrollConfiguration(
-                //           behavior: ScrollBehavior()
-                //             ..buildViewportChrome(
-                //                 context, null, AxisDirection.down),
-                //           child: ListView.builder(
-                //             reverse: true,
-                //             shrinkWrap: true,
-                //             itemCount: data.transaction.length,
-                //             itemBuilder: (context, index) {
-                //               if (data.transaction[index].transactionStatus) {
-                //                 color = Colors.green;
-                //                 sign = '+';
-                //               } else {
-                //                 color = Colors.red;
-                //                 sign = '-';
-                //               }
-                //               return Container(
-                //                 child: Column(
-                //                   children: [
-                //                     Row(
-                //                       mainAxisAlignment:
-                //                           MainAxisAlignment.spaceBetween,
-                //                       children: [
-                //                         Text(
-                //                           data.transaction[index].name,
-                //                           style: TextStyle(
-                //                             fontFamily: 'poppins',
-                //                             fontSize: 20.sp,
-                //                           ),
-                //                         ),
-                //                         Text(
-                //                           sign +
-                //                               '\$' +
-                //                               data.transaction[index].amount
-                //                                   .toString(),
-                //                           style: TextStyle(
-                //                             fontFamily: 'poppins',
-                //                             fontSize: 20.sp,
-                //                             color: color,
-                //                           ),
-                //                         )
-                //                       ],
-                //                     ),
-                //                     Row(
-                //                       mainAxisAlignment: MainAxisAlignment.end,
-                //                       children: [
-                //                         Text(
-                //                           data.transaction[index].date,
-                //                           style: TextStyle(
-                //                               color: Colors.grey,
-                //                               fontSize: 12.sp),
-                //                         )
-                //                       ],
-                //                     ),
-                //                     SizedBox(
-                //                       height: 10.sp,
-                //                     ),
-                //                   ],
-                //                 ),
-                //               );
-                //             },
-                //           ),
-                //         ),
-                //       ),
-                //       // )
-                //     ],
-                //   ),
-                // );
               } else {
                 try {
                   return Center(
