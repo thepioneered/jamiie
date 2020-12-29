@@ -66,47 +66,49 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
               child: CupertinoActivityIndicator(),
             );
           } else if (!snapshot.hasError) {
-            return Container(
-              padding: EdgeInsets.only(top:30.0.h),
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Created Pools',
-                    style: TextStyle(
-                        fontFamily: 'poppins',
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    height: 545.h,
-                    child: ListView.builder(
-                      // reverse: true,
-                      itemCount:
-                          createdPoolList.poolListModel.poolDataModel.length,
-                      itemBuilder: (context, index) {
-                        var data = createdPoolList.poolListModel.poolDataModel;
-                        // return _data(
-                        //     poolName: data[index].poolName,
-                        //     poolContribution: data[index].contributionAmount,
-                        //     poolId: data[index].poolId);
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: JoinPoolListWidget(
-                            poolName: data[index].poolName,
-                            poolAmount: data[index].contributionAmount,
-                            amountSaved: 100,
-                            status: true,
-                            poolType: data[index].poolType,
-                            nextScreen: CompletePoolDataPage(
-                                poolId: data[index].poolId),
-                            monthlyTotalAmount: 100,
-                          ),
-                        );
-                      },
+            return SingleChildScrollView(
+                          child: Container(
+                padding: EdgeInsets.only(top:30.0.h),
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Created Pools',
+                      style: TextStyle(
+                          fontFamily: 'poppins',
+                          fontSize: 36.sp,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    Container(
+                      height: 545.h,
+                      child: ListView.builder(
+                        // reverse: true,
+                        itemCount:
+                            createdPoolList.poolListModel.poolDataModel.length,
+                        itemBuilder: (context, index) {
+                          var data = createdPoolList.poolListModel.poolDataModel;
+                          // return _data(
+                          //     poolName: data[index].poolName,
+                          //     poolContribution: data[index].contributionAmount,
+                          //     poolId: data[index].poolId);
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: JoinPoolListWidget(
+                              poolName: data[index].poolName,
+                              poolAmount: data[index].contributionAmount,
+                              amountSaved: 100,
+                              status: true,
+                              poolType: data[index].poolType,
+                              nextScreen: CompletePoolDataPage(
+                                  poolId: data[index].poolId),
+                              monthlyTotalAmount: 100,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           } else if (snapshot.error == 404) {

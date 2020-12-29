@@ -163,18 +163,18 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
-                        onTap: data.totalMember != data.joinedMember
+                        onTap: false //data.payStatus
                             ? () {
                                 //TODO: Please check here
                                 print("Working");
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => TransactionPage(
-                                            poolId: data.poolId,
-                                            poolName: data.poolName,
-                                          )),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (_) => TransactionPage(
+                                //             poolId: data.poolId,
+                                //             poolName: data.poolName,
+                                //           )),
+                                // );
                               }
                             : () {
                                 //TODO: Edit is required here

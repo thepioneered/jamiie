@@ -8,6 +8,7 @@ class JoinPoolDataModel {
   String poolType;
   String deadline;
   String createdAt;
+  bool payStatus;
   List<MemberModel> members;
 
   JoinPoolDataModel({
@@ -21,12 +22,12 @@ class JoinPoolDataModel {
     this.members,
     this.poolType,
     this.totalMember,
+    this.payStatus,
   });
 
   factory JoinPoolDataModel.formJson(Map<String, dynamic> json) {
     List<MemberModel> list = List<MemberModel>();
     List<dynamic> jsonList = json["joinedpool"];
-
 
     list = jsonList.map((e) => MemberModel.fromJson(e)).toList();
 
@@ -40,6 +41,7 @@ class JoinPoolDataModel {
       totalMember: json['totalMember'],
       createdAt: json["createdAt"],
       deadline: json["deadline"],
+      payStatus: json["payStatus"],
       members: list,
     );
   }
@@ -71,7 +73,7 @@ class MemberDetails {
   MemberDetails({this.imageURL, this.name, this.phone, this.riskScore});
 
   factory MemberDetails.formJson(Map<String, dynamic> json) {
-    List a  =json["riskStatus"] as List;
+    List a = json["riskStatus"] as List;
     print("+++++++++++++++++++++++++++++++++++$a+++++++++++++++++++++++");
 
     print(a[0]);
