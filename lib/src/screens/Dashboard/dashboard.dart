@@ -93,14 +93,42 @@ class DashboardPageWidget extends StatelessWidget {
                             ? Column(
                                 children: [
                                   DashWidget2(data.transactionList),
+                                ],
+                              )
+                            : Container(
+                                margin: EdgeInsets.symmetric(vertical: 10.h),
+                                padding:
+                                    EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                width: 1.wp,
+                                child: Center(
+                                  child: Text(
+                                    "No transaction yet",
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  ),
+                                ),
+                              ),
+                        data.response
+                            ? Column(
+                                children: [
                                   DashWidget3(data.upcomingPaymentList),
                                 ],
                               )
                             : Container(
-                                height: 0.3.hp,
+                                margin: EdgeInsets.symmetric(vertical: 10.h),
+                                padding:
+                                    EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                width: 1.wp,
                                 child: Center(
                                   child: Text(
-                                    "No transaction yet",
+                                    "No upcoming payment yet",
                                     style: AppTextStyle.joinPoolSubHeading,
                                   ),
                                 ),
