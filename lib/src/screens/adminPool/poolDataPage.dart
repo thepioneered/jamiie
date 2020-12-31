@@ -167,7 +167,7 @@ class PoolDataPageWidget extends StatelessWidget {
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
                                   //TODO: Make this not equal to
-                                  onTap: data.totalMember == data.joinedMember
+                                  onTap: data.totalMember != data.joinedMember
                                       ? null
                                       : () {
                                           Navigator.push(

@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/providers/userJoinedPools/joinPoolDataProvider.dart';
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../styles/text.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import '../../widgets/appBar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JoinPoolDataPage extends StatelessWidget {
   final String poolId;
@@ -30,8 +32,7 @@ class JoinPoolDataPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height - 75.0;
-    var joinPoolDataProvider =
-        Provider.of<JoinPoolDataProvider>(context);
+    var joinPoolDataProvider = Provider.of<JoinPoolDataProvider>(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
@@ -105,24 +106,47 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                               margin: EdgeInsets.only(bottom: 10.0),
                               child: Row(
                                 children: [
-                                  Text((index + 1).toString(),style: AppTextStyle.joinPoolHeading,),
-                                  SizedBox(
-                                    width: 17.5,
-                                  ),
-                                  CircleAvatar(
-                                    backgroundImage: NetworkImage(data
-                                        .members[index].memberDetails.imageURL),
+                                  Text(
+                                    (index + 1).toString(),
+                                    style: AppTextStyle.joinPoolHeading,
                                   ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
-                                  Text(data.members[index].memberDetails.name),
+                                  Container(
+                                    width: 50.w,
+                                    height: 50.w,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CachedNetworkImage(
+                                        imageUrl: data.members[index]
+                                            .memberDetails.imageURL,
+                                        placeholder: (context, url) =>
+                                            CupertinoActivityIndicator(),
+                                        errorWidget: (context, url, error) {
+                                          return Icon(Icons.error);
+                                        }),
+                                  ),
+                                  // CircleAvatar(
+                                  //   backgroundImage: NetworkImage(data
+                                  //       .members[index].memberDetails.imageURL),
+                                  // ),
+                                  SizedBox(
+                                    width: 17.5,
+                                  ),
+                                  Text(
+                                    data.members[index].memberDetails.name,
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  ),
                                   Expanded(
                                     child: Container(),
                                   ),
-                                  Text(data
-                                      .members[index].memberDetails.riskScore
-                                      .toString())
+                                  Text(
+                                    data.members[index].memberDetails.riskScore
+                                        .toString(),
+                                    style: AppTextStyle.joinPoolSubHeading,
+                                  )
                                 ],
                               ),
                             );
