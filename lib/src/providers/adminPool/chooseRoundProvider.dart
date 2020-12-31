@@ -26,9 +26,12 @@ class ChooseRoundProvider extends ChangeNotifier {
         sequence: i.toString(),
       ));
     }
+    //TODO:Iska error dekh bhai
 
     var b = a;
-    a.clear();
+    print(b);
+    print(a[0].sequence);
+    print(chooseRoundModel.toJson(poolId, b));
 
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
       shouldPagePop: true,
@@ -38,12 +41,12 @@ class ChooseRoundProvider extends ChangeNotifier {
       authRequest: true,
       body: chooseRoundModel.toJson(poolId, b),
     );
-
-//TODO:Work is pending here and pop main dikkt aa rhi kuch yhn
+    //TODO
+//Isme error hai bhai kl nitish ke sath bthke through testing kro
+//TODOWork: is pending here and pop main dikkt aa rhi kuch yhn
     if (data["status"]) {
       Navigator.pop(chooseRoundScaffoldKey.currentContext);
-    
-      chooseRoundScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
+        chooseRoundScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "Pool Started", backgroundColor: AppColors.green));
     }
   }
