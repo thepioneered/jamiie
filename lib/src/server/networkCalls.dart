@@ -76,7 +76,8 @@ class NetworkCalls {
       final GlobalKey<ScaffoldState> key,
       final bool pop,
       final bool showSnackBar) {
-   print(request.statusCode);
+    print(request.statusCode);
+    print(request.body);
     if (request.statusCode == 200) {
       return {"status": true, "body": json.decode(request.body)};
     } else if (request.statusCode == 201) {
@@ -149,7 +150,6 @@ class NetworkCalls {
             contentType: MediaType('image', 'jpeg'),
           ),
         );
-
         var response = await request.send();
         if (response.statusCode == 201) {
           return {"status": true};

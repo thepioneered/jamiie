@@ -1,7 +1,7 @@
-import 'package:Jamiie/src/styles/text.dart';
-import 'package:Jamiie/src/widgets/Dashboard/dashWidget1.dart';
-import 'package:Jamiie/src/widgets/Dashboard/dashWidget2.dart';
-import 'package:Jamiie/src/widgets/Dashboard/dashWidget3.dart';
+import '../../styles/text.dart';
+import '../../widgets/Dashboard/dashWidget1.dart';
+import '../../widgets/Dashboard/dashWidget2.dart';
+import '../../widgets/Dashboard/dashWidget3.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +24,7 @@ class DashboardPage extends StatelessWidget {
 class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    return Consumer<DashboardProvider>(
+ return Consumer<DashboardProvider>(
       builder: (_, dashboardProvider, child) {
         return Scaffold(
           key: dashboardProvider.dashboardScaffoldKey,
@@ -36,13 +35,9 @@ class DashboardPageWidget extends StatelessWidget {
                 return Center(
                   child: CupertinoActivityIndicator(),
                 );
-              } else if (snapshot.connectionState == ConnectionState.done
-
-                  // &&
-                  // !snapshot.hasError
-                  ) {
+              } else if (snapshot.connectionState == ConnectionState.done) {
                 var data = dashboardProvider.dashboardModel;
-                print(data.name);
+
                 return SingleChildScrollView(
                   child: Container(
                     color: AppColors.backgroundColor,

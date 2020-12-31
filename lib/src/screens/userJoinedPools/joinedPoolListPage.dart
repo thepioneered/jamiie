@@ -1,6 +1,5 @@
-import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
-import 'package:Jamiie/src/screens/userJoinedPools/joinPoolScreen.dart';
-import 'package:Jamiie/src/styles/text.dart';
+import '../../screens/userJoinedPools/joinPoolDataPage.dart';
+import '../../styles/text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../providers/userJoinedPools/joinPoolProvider.dart';
@@ -54,16 +53,17 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
           } else if (!snapshot.hasError) {
             return joinPoolProvider
                     .joinPoolListModel.joinPoolListDataModel.isEmpty
-                 ? Container(
+                ? Container(
                     child: Center(
-                      child: Text('No Pools Joined',style: AppTextStyle.joinPoolSubHeading),
+                      child: Text('No Pools Joined',
+                          style: AppTextStyle.joinPoolSubHeading),
                     ),
                   )
                 : SingleChildScrollView(
-                                  child: Container(
-                      padding: EdgeInsets.only(top:30.0.h),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 30.0.h),
                       child: Column(
-                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Joined Pools',
@@ -79,33 +79,41 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                 var data = joinPoolProvider.joinPoolListModel
                                     .joinPoolListDataModel[index];
                                 return Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 15.w),
                                   child: JoinPoolListWidget(
-                                    status: true,
-                                        // data.joinedPoolListDataSubModel.status,
+                                    //TODO:Ye change krna hai dono ko
+                                    status:data.joinedPoolListDataSubModel.status,
+                                    // status: true,
                                     amountSaved: 0000,
                                     monthlyTotalAmount: 0000,
                                     poolAmount: data.joinedPoolListDataSubModel
                                         .contributionAmount,
-                                    poolName:
-                                        data.joinedPoolListDataSubModel.poolName,
-                                    poolType:
-                                        data.joinedPoolListDataSubModel.poolType,
-                                    nextScreen: JoinPoolDataPage(poolId: data.joinedPoolListDataSubModel.poolId,),
+                                    poolName: data
+                                        .joinedPoolListDataSubModel.poolName,
+                                    poolType: data
+                                        .joinedPoolListDataSubModel.poolType,
+                                    nextScreen: JoinPoolDataPage(
+                                      poolId: data
+                                          .joinedPoolListDataSubModel.poolId,
+                                    ),
                                   ),
                                 );
                               },
-                              itemCount: joinPoolProvider
-                                  .joinPoolListModel.joinPoolListDataModel.length,
+                              itemCount: joinPoolProvider.joinPoolListModel
+                                  .joinPoolListDataModel.length,
                             ),
                           ),
                         ],
                       ),
                     ),
-                );
+                  );
           } else if (snapshot.error == 404) {
             return Center(
-              child: Text("No pools created"),
+              child: Text(
+                "No pools created",
+                style: AppTextStyle.joinPoolSubHeading,
+              ),
             );
           } else {
             return Center(

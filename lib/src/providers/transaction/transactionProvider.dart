@@ -45,16 +45,16 @@ class TransactionProvider extends ChangeNotifier {
     }
     String mobile = await LocalStorage.getMobile();
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
-      key: transactionPageScaffoldKey,
-      endPoint: EndPoints.paymentTransafer,
-      afterRequest: () {},
-      authRequest: true,
-      shouldPagePop: true,
-      body: PoolIdMobileModel().toJson(poolId, mobile)
-    );
+        key: transactionPageScaffoldKey,
+        endPoint: EndPoints.paymentTransafer,
+        afterRequest: () {},
+        authRequest: true,
+        shouldPagePop: true,
+        body: PoolIdMobileModel().toJson(poolId, mobile));
 
-    if(data["status"]){
-      print("Payment Done");
+    if (data["status"]) {
+      Navigator.pop(transactionPageScaffoldKey.currentContext);
+      
     }
   }
 }
