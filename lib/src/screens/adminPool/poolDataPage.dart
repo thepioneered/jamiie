@@ -200,10 +200,10 @@ class PoolDataPageWidget extends StatelessWidget {
                                   onTap: 
                                   // data.totalMember != data.joinedMember
                                       // ?
-                                       () {
+                                      completePoolDataProvider.payButton?
                                           //TODO: Please check here
-                                          
-                                          Navigator.push(
+                                          (){
+                                            Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (_) => TransactionPage(
@@ -212,7 +212,11 @@ class PoolDataPageWidget extends StatelessWidget {
                                               ),
                                             ),
                                           );
-                                        },
+
+                                          }
+                                          
+                                          :null,
+                                        // },
                                       // : () {
                                           //TODO: Edit is required here
                                         //   Navigator.push(
