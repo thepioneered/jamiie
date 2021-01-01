@@ -54,7 +54,25 @@ class TransactionProvider extends ChangeNotifier {
 
     if (data["status"]) {
       Navigator.pop(transactionPageScaffoldKey.currentContext);
-      
+    }
+  }
+
+  void takeLoan(final String poolId) async {
+    try {
+      LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
+    } catch (e) {
+      throw Exception(e);
+    }
+    Map<String, dynamic> data = await NetworkCalls.postDataToServer(
+        key: transactionPageScaffoldKey,
+        endPoint: EndPoints.loanDetail,
+        afterRequest: () {},
+        authRequest: true,
+        shouldPagePop: true,
+        body: {"poolId": "$poolId"});
+    print(data);
+    if (data["status"]) {
+      Navigator.pop(transactionPageScaffoldKey.currentContext);
     }
   }
 }

@@ -91,6 +91,18 @@ class TransactionPageWidget extends StatelessWidget {
                         title: "Confirm Payment",
                       ),
                     ),
+                    SizedBox(height: 20.h,),
+                
+                    Container(
+                      height: height * 0.07,
+                      child: AppButton.loginButton(
+                        onTap: () {
+                          transactionProvider.takeLoan(poolId);
+                        },
+                        title: "Take a Loan",
+                      ),
+                    ),
+
                   ],
                 ),
               ),
