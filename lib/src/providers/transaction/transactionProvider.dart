@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/models/Loan/loanModel.dart';
 import 'package:Jamiie/src/models/base/pageModel.dart';
 import 'package:Jamiie/src/models/createPoolModels/poolidModel.dart';
 import 'package:Jamiie/src/models/poolId.dart';
@@ -16,6 +17,7 @@ class TransactionProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> transactionPageScaffoldKey =
       GlobalKey<ScaffoldState>();
   TransactionModel transactionModel = TransactionModel();
+  LoanModel loanModel;
   PageModel pageModel = PageModel();
   Amount amount;
 
@@ -55,20 +57,17 @@ class TransactionProvider extends ChangeNotifier {
         body: PoolIdMobileModel().toJson(poolId, mobile));
 
     if (data["status"]) {
-      
       transactionPageScaffoldKey.currentState.showSnackBar(
         AppSnackBar.snackBar(
             title: "Payment Done", backgroundColor: AppColors.green),
       );
       Navigator.pop(transactionPageScaffoldKey.currentContext);
-    
     }
   }
 
   void takeLoan(final String poolId) async {
     try {
-      LoaderDialog.loaderDialog(
-        transactionPageScaffoldKey.currentContext);
+      LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
     } catch (e) {
       throw Exception(e);
     }
@@ -81,7 +80,7 @@ class TransactionProvider extends ChangeNotifier {
         body: {"poolId": "$poolId"});
     print(data);
     if (data["status"]) {
-      
+      loanModel = LoanModel.fromJson(data["body"]);
       Navigator.pop(transactionPageScaffoldKey.currentContext);
     }
   }
