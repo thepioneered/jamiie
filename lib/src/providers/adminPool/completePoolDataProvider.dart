@@ -8,6 +8,21 @@ class CompletePoolDataProvider with ChangeNotifier {
   final completePoolDataScaffoldKey = GlobalKey<ScaffoldState>();
   PageModel pageModel;
   CompletePoolDataModel completePoolDataModel;
+  bool payButton = false;
+
+  Future<Null> payButtonLogin() async {
+    // Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+    //   key: completePoolDataScaffoldKey,
+    //   endPoint: EndPoints.payButtonLogic,
+    //   shouldPagePop: false,
+    // );
+    // if (data["status"]) {
+    //   if (data["body"]["payButton"]) {
+    //     payButton = true;
+    //     notifyListeners();
+    //   }
+    // }
+  }
 
   Future<Null> loadPage(String poolId) async {
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
@@ -21,7 +36,20 @@ class CompletePoolDataProvider with ChangeNotifier {
       print(data["body"]);
       completePoolDataModel = CompletePoolDataModel.formJson(data["body"]);
       // completePoolDataModel = CompletePoolDataModel.fromJson(data["body"]);
-      return null;
+      // return null;
+      Map<String, dynamic> response = await NetworkCalls.getDataFromServer(
+        key: completePoolDataScaffoldKey,
+        endPoint: EndPoints.payButtonLogic,
+        shouldPagePop: false,
+        authRequest: true
+      );
+      if (response["status"]) {
+        if (response["body"]["payButton"]) {
+          payButton = true;
+          // notifyListeners();
+          return null;
+        }
+      }
       // print(completePoolDataModel.deadline);
       // print(completePoolDataModel.members[0].memberDetails.imageURL);
     }

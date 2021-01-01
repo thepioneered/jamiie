@@ -25,6 +25,7 @@ class EndPoints {
   static const String notPaidUserDetail = "/payments/notpaiddetail";
 
   static const String bankPageWebView = "/payments/bank/";
+  static const String payButtonLogic = "/payments/paybutton";
 
   static String webviewLink(String mobile) {
     return EndPoints.ipAddress +

@@ -5,7 +5,9 @@ import 'package:Jamiie/src/screens/Dashboard/dashboard.dart';
 import 'package:Jamiie/src/screens/navbar.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
+import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
+import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../models/transaction/transactionModel.dart';
@@ -54,7 +56,11 @@ class TransactionProvider extends ChangeNotifier {
 
     if (data["status"]) {
       Navigator.pop(transactionPageScaffoldKey.currentContext);
-      
+      transactionPageScaffoldKey.currentState.showSnackBar(
+        AppSnackBar.snackBar(
+            title: "Payment Done", backgroundColor: AppColors.green),
+      );
+      Navigator.pop(transactionPageScaffoldKey.currentContext);
     }
   }
 }
