@@ -1,3 +1,6 @@
+import 'package:Jamiie/src/styles/base.dart';
+import 'package:Jamiie/src/widgets/topHeading.dart';
+
 import '../../screens/userJoinedPools/joinPoolDataPage.dart';
 import '../../styles/text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,17 +64,20 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                   )
                 : SingleChildScrollView(
                     child: Container(
-                      padding: EdgeInsets.only(top: 30.0.h),
+                      padding: BaseStyles.pagePadingDashboard,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Joined Pools',
-                            style: TextStyle(
-                                fontFamily: 'poppins',
-                                fontSize: 36.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          topHeading(title: "Joined Pools"),
+                          SizedBox(height: 0.04.hp,),
+
+                          // Text(
+                          //   'Joined Pools',
+                          //   style: TextStyle(
+                          //       fontFamily: 'poppins',
+                          //       fontSize: 36.sp,
+                          //       fontWeight: FontWeight.bold),
+                          // ),
                           Container(
                             height: 545.h,
                             child: ListView.builder(
@@ -83,8 +89,9 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                       EdgeInsets.symmetric(horizontal: 15.w),
                                   child: JoinPoolListWidget(
                                     //TODO:Ye change krna hai dono ko
-                                    status:data.joinedPoolListDataSubModel.status,
-                                    // status: true,
+                                    status:
+                                        data.joinedPoolListDataSubModel.status,
+                                    //status: true,
                                     amountSaved: 0000,
                                     monthlyTotalAmount: 0000,
                                     poolAmount: data.joinedPoolListDataSubModel

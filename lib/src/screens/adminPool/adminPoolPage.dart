@@ -1,4 +1,6 @@
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
+import 'package:Jamiie/src/styles/base.dart';
+import 'package:Jamiie/src/widgets/topHeading.dart';
 import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
 import 'package:share/share.dart';
 import 'poolDataPage.dart';
@@ -67,18 +69,21 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
             );
           } else if (!snapshot.hasError) {
             return SingleChildScrollView(
-                          child: Container(
-                padding: EdgeInsets.only(top:30.0.h),
+              child: Container(
+            padding: BaseStyles.pagePadingDashboard,
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Created Pools',
-                      style: TextStyle(
-                          fontFamily: 'poppins',
-                          fontSize: 36.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    topHeading(title: "Created Pools"),
+                    SizedBox(height: 0.04.hp,),
+
+                    // Text(
+                    //   'Created Pools',
+                    //   style: TextStyle(
+                    //       fontFamily: 'poppins',
+                    //       fontSize: 36.sp,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
                     Container(
                       height: 545.h,
                       child: ListView.builder(
@@ -86,13 +91,15 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                         itemCount:
                             createdPoolList.poolListModel.poolDataModel.length,
                         itemBuilder: (context, index) {
-                          var data = createdPoolList.poolListModel.poolDataModel;
+                          var data =
+                              createdPoolList.poolListModel.poolDataModel;
                           // return _data(
                           //     poolName: data[index].poolName,
                           //     poolContribution: data[index].contributionAmount,
                           //     poolId: data[index].poolId);
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: JoinPoolListWidget(
                               poolName: data[index].poolName,
                               poolAmount: data[index].contributionAmount,
