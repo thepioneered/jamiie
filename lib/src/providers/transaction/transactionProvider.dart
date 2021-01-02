@@ -17,7 +17,7 @@ class TransactionProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> transactionPageScaffoldKey =
       GlobalKey<ScaffoldState>();
   TransactionModel transactionModel = TransactionModel();
-  LoanModel loanModel;
+  // LoanModel loanModel;
   PageModel pageModel = PageModel();
   Amount amount;
 
@@ -65,25 +65,27 @@ class TransactionProvider extends ChangeNotifier {
     }
   }
 
-  void takeLoan(final String poolId) async {
-    try {
-      LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
-    } catch (e) {
-      throw Exception(e);
-    }
-    Map<String, dynamic> data = await NetworkCalls.postDataToServer(
-        key: transactionPageScaffoldKey,
-        endPoint: EndPoints.loanDetail,
-        afterRequest: () {},
-        authRequest: true,
-        shouldPagePop: true,
-        body: {"poolId": "$poolId"});
-    print(data);
-    if (data["status"]) {
-      loanModel = LoanModel.fromJson(data["body"]);
-      Navigator.pop(transactionPageScaffoldKey.currentContext);
-    }
-  }
+  // void takeLoan(final String poolId) async {
+  //   try {
+  //     LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
+  //   Map<String, dynamic> data = await NetworkCalls.postDataToServer(
+  //       key: transactionPageScaffoldKey,
+  //       endPoint: EndPoints.loanDetail,
+  //       afterRequest: () {},
+  //       authRequest: true,
+  //       shouldPagePop: true,
+  //       body: {"poolId": "$poolId"});
+  //   print(data);
+  //   if (data["status"]) {
+  //     loanModel = LoanModel.fromJson(data["body"]["response"]);
+  //     print(loanModel.amount.toString());
+  //     print(loanModel.interest.toString());
+  //     Navigator.pop(transactionPageScaffoldKey.currentContext);
+  //   }
+  // }
 }
 
 class Amount {

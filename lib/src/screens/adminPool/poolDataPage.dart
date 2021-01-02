@@ -201,6 +201,7 @@ class PoolDataPageWidget extends StatelessWidget {
                                   // data.totalMember != data.joinedMember
                                       // ?
                                       completePoolDataProvider.payButton?
+                                      
                                           //TODO: Please check here
                                           (){
                                             Navigator.push(
