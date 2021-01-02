@@ -27,16 +27,16 @@ export default function AvatarMenu({
   }
 
   const logoutReq = async () => {
-    dispatch!({ type: "changeGlobal", item: "layoutLoader" });
+    dispatch({ type: "changeGlobal", item: "layoutLoader" });
     const r = await postData({ url: endpoints.LOGOUT_ADMIN });
 
     if (r) {
-      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
-      dispatch!({ type: "changeGlobal", item: "layoutLoader" });
+      dispatch({ type: "changeGlobal", item: "tokenValidated" });
+      dispatch({ type: "changeGlobal", item: "layoutLoader" });
       router.push("/login");
     } else {
-      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
-      dispatch!({ type: "changeGlobal", item: "layoutLoader" });
+      dispatch({ type: "changeGlobal", item: "tokenValidated" });
+      dispatch({ type: "changeGlobal", item: "layoutLoader" });
       router.push("/login");
     }
   };

@@ -30,6 +30,7 @@ const initialState: globalState = {
 
 export const LoaderContext = createContext<globalContext>({
   state: initialState,
+  dispatch: () => null,
 });
 
 function MyApp({ Component, pageProps }: AppProps) {

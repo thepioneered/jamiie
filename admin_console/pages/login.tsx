@@ -38,8 +38,8 @@ export default function Login() {
     });
 
     if (r) {
-      dispatch!({ type: "setLoginData", data: r });
-      dispatch!({ type: "changeGlobal", item: "tokenValidated" });
+      dispatch({ type: "setLoginData", data: r });
+      dispatch({ type: "changeGlobal", item: "tokenValidated" });
       router.push("/admin/dashboard");
     } else {
       if (wrongLogin > 0) {

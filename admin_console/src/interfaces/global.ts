@@ -35,5 +35,5 @@ export type globalState = {
 
 export type globalContext = {
   state: globalState;
-  dispatch?: React.Dispatch<Actions>;
+  dispatch: React.Dispatch<Actions>;
 };

@@ -17,7 +17,7 @@ function Layout({ children }: Props) {
   }, []);
 
   const toggleSidebar = () => {
-    dispatch!({ type: "changeGlobal", item: "isSidebarOpen" });
+    dispatch({ type: "changeGlobal", item: "isSidebarOpen" });
   };
 
   if (!state.tokenValidated) {
