@@ -55,20 +55,17 @@ class TransactionProvider extends ChangeNotifier {
         body: PoolIdMobileModel().toJson(poolId, mobile));
 
     if (data["status"]) {
-      
       transactionPageScaffoldKey.currentState.showSnackBar(
         AppSnackBar.snackBar(
             title: "Payment Done", backgroundColor: AppColors.green),
       );
       Navigator.pop(transactionPageScaffoldKey.currentContext);
-    
     }
   }
 
   void takeLoan(final String poolId) async {
     try {
-      LoaderDialog.loaderDialog(
-        transactionPageScaffoldKey.currentContext);
+      LoaderDialog.loaderDialog(transactionPageScaffoldKey.currentContext);
     } catch (e) {
       throw Exception(e);
     }
@@ -81,7 +78,6 @@ class TransactionProvider extends ChangeNotifier {
         body: {"poolId": "$poolId"});
     print(data);
     if (data["status"]) {
-      
       Navigator.pop(transactionPageScaffoldKey.currentContext);
     }
   }

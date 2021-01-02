@@ -20,7 +20,7 @@ class ChooseRoundProvider extends ChangeNotifier {
     } catch (e) {
       throw Exception(e);
     }
-    for (int i = 0; i < memberModel.length; i++) {
+    for (int i = 0; i < memberModel.length/2; i++) {
       a.add(ChooseRoundMemberDetails(
         phone: memberModel[i].memberDetails.phone,
         sequence: i.toString(),
@@ -28,10 +28,10 @@ class ChooseRoundProvider extends ChangeNotifier {
     }
     //TODO:Iska error dekh bhai
 
-    var b = a;
-    print(b);
-    print(a[0].sequence);
-    print(chooseRoundModel.toJson(poolId, b));
+    // var b = a;
+    // print(b);
+    // print(a[0].sequence);
+    print(chooseRoundModel.toJson(poolId, a));
 
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
       shouldPagePop: true,
@@ -39,12 +39,14 @@ class ChooseRoundProvider extends ChangeNotifier {
       endPoint: EndPoints.startPool,
       afterRequest: () {},
       authRequest: true,
-      body: chooseRoundModel.toJson(poolId, b),
+      body: chooseRoundModel.toJson(poolId, a),
     );
     //TODO
 //Isme error hai bhai kl nitish ke sath bthke through testing kro
 //TODOWork: is pending here and pop main dikkt aa rhi kuch yhn
     if (data["status"]) {
+
+    
       Navigator.pop(chooseRoundScaffoldKey.currentContext);
         chooseRoundScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
           title: "Pool Started", backgroundColor: AppColors.green));

@@ -1,9 +1,8 @@
-import 'package:Jamiie/src/models/TransactionList/notPaidUserDetailModel.dart';
-import 'package:Jamiie/src/models/TransactionList/paidUserDetailModel.dart';
-import 'package:Jamiie/src/models/auth/mobileModel.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
+import '../../models/TransactionList/paidUserDetailModel.dart';
+import '../../models/auth/mobileModel.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../utils/sharedPref.dart';
 import 'package:flutter/material.dart';
 
 class TransationListProvider extends ChangeNotifier {
