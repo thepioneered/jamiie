@@ -1,4 +1,4 @@
-import '../../models/TransactionList/paidUserDetailModel.dart';
+import '../../models/UserPaymentDetails/paidUserDetailModel.dart';
 import '../../models/auth/mobileModel.dart';
 import '../../server/endpoint.dart';
 import '../../server/networkCalls.dart';
