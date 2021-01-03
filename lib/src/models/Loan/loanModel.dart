@@ -11,3 +11,4 @@ class LoanModel {
       : amount = data["amount"],
         interest = data["interest"];
 }
+

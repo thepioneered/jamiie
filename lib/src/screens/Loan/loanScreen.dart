@@ -71,7 +71,6 @@ class LoanScreenWidget extends StatelessWidget {
                           Text('Total Interest:',
                               style: AppTextStyle.subheadingText),
                           Text(
-                            
                             loanProvider.loanModel.interest.toString() + " %",
                             style: TextStyle(
                               fontFamily: 'poppins',
@@ -82,9 +81,11 @@ class LoanScreenWidget extends StatelessWidget {
                           ),
                           Text('Total Amount:',
                               style: AppTextStyle.subheadingText),
-                              //todo nitish se thik karwana hai total amount
+                          //todo nitish se thik karwana hai total amount
                           Text(
-                            (loanProvider.loanModel.amount + int.parse(poolAmount)).toString(),
+                            (loanProvider.loanModel.amount +
+                                    int.parse(poolAmount))
+                                .toString(),
                             style: TextStyle(
                               fontFamily: 'poppins',
                               fontSize: 30.sp,
@@ -103,6 +104,7 @@ class LoanScreenWidget extends StatelessWidget {
                       child: AppButton.loginButton(
                         onTap: () {
                           print('working');
+                          loanProvider.confirmLoan(poolId);
                         },
                         title: "Confirm Loan",
                       ),
