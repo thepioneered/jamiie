@@ -25,6 +25,6 @@ export type Loan = {
   transactionId: string;
   paid: boolean;
   approved: boolean;
-  user: string;
+  phone: string;
   poolId: string;
 };

@@ -10,31 +10,93 @@ import { endpoints } from "../constants/apiEndpoints";
 
 interface Props {
   data: tableArray<Loan>;
+  setData?: React.Dispatch<React.SetStateAction<tableArray<Loan> | null>>;
+  setData2?: React.Dispatch<React.SetStateAction<tableArray<Loan> | null>>;
   pageChange: (url?: string | undefined) => Promise<void>;
+  noButton?: boolean;
 }
 
-export default function LoanTable({ data, pageChange }: Props) {
+export default function LoanTable({
+  data,
+  setData,
+  setData2,
+  pageChange,
+  noButton = false,
+}: Props) {
   const handleApproval = async (transactionId: string) => {
     const r = await postData({
       url: endpoints.LOAN_APPROVAL,
       payload: { transactionId: transactionId },
     });
     if (r) {
-      console.log("done");
+      setData!(
+        (prev): tableArray<Loan> => {
+          const newResults = prev!.results.filter(
+            (item) => item.transactionId !== transactionId
+          );
+
+          return { ...prev!, results: newResults };
+        }
+      );
     }
   };
 
-  const handleDecline = async (transactionId: string) => {
+  const handleDecline = async (
+    id: number,
+    amount: number,
+    createdAt: string,
+    transactionId: string,
+    paid: boolean,
+    approved: boolean,
+    phone: string,
+    poolId: string
+  ) => {
     const r = await postData({
       url: endpoints.LOAN_DECLINE,
       payload: { transactionId: transactionId },
     });
     if (r) {
-      console.log("done");
+      setData!(
+        (prev): tableArray<Loan> => {
+          const newResults = prev!.results.filter(
+            (item) => item.transactionId !== transactionId
+          );
+
+          return { ...prev!, results: newResults };
+        }
+      );
+      setData2!(
+        (prev): tableArray<Loan> => {
+          const newResults = [
+            ...prev!.results,
+            {
+              transactionId,
+              poolId,
+              phone,
+              amount,
+              createdAt,
+              approved,
+              id,
+              paid,
+            },
+          ];
+
+          return { ...prev!, results: newResults };
+        }
+      );
     }
   };
 
-  const row = ({ transactionId, poolId, user, amount, createdAt }: Loan) => {
+  const row = ({
+    transactionId,
+    poolId,
+    phone,
+    amount,
+    createdAt,
+    approved,
+    id,
+    paid,
+  }: Loan) => {
     return (
       <tr key={transactionId}>
         <td>
@@ -51,33 +113,49 @@ export default function LoanTable({ data, pageChange }: Props) {
           </Link>
         </td>
         <td>
-          <Link href="/admin/users/[user]" as={`/admin/users/${user}`}>
-            <a className={styles.page__link}>{user}</a>
+          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
+            <a className={styles.page__link}>{phone}</a>
           </Link>
         </td>
         <td>{amount}</td>
         <td>{new Date(createdAt).toLocaleString("en-US")}</td>
-        <td>
-          <button
-            className={loanStyles.approve}
-            onClick={() => handleApproval(transactionId)}
-          >
-            Approve
-          </button>
-        </td>
-        <td>
-          <button
-            className={loanStyles.decline}
-            onClick={() => handleDecline(transactionId)}
-          >
-            Decline
-          </button>
-        </td>
+        {!noButton && (
+          <>
+            <td>
+              <button
+                className={loanStyles.approve}
+                onClick={() => handleApproval(transactionId)}
+              >
+                Approve
+              </button>
+            </td>
+            <td>
+              <button
+                className={loanStyles.decline}
+                onClick={() =>
+                  handleDecline(
+                    id,
+                    amount,
+                    createdAt,
+                    transactionId,
+                    paid,
+                    approved,
+                    phone,
+                    poolId
+                  )
+                }
+              >
+                Decline
+              </button>
+            </td>
+          </>
+        )}
       </tr>
     );
   };
 
   const getRows = (arr: Loan[]) => {
+    // console.log(arr);
     return arr.map((item) => row(item));
   };
 

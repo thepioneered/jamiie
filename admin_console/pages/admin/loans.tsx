@@ -141,13 +141,21 @@ function Loans() {
               {isLoading ? (
                 <GlobalLoader />
               ) : data!.results.length ? (
-                <LoanTable data={data!} pageChange={getData} />
+                <LoanTable
+                  data={data!}
+                  setData={setData}
+                  setData2={setData4}
+                  pageChange={getData}
+                />
               ) : (
                 <div className={styles.empty__table}>No Loans Requested.</div>
               )}
             </div>
           </div>
-          <div className={cn(styles.container, "hover")}>
+          <div
+            className={cn(styles.container, "hover")}
+            style={{ marginTop: "2em" }}
+          >
             <div className={styles.heading}>
               <div className={styles.heading__title}>
                 Not Paid <span>Loans</span>
@@ -176,7 +184,7 @@ function Loans() {
               {isLoading2 ? (
                 <GlobalLoader />
               ) : data2!.results.length ? (
-                <LoanTable data={data2!} pageChange={getData2} />
+                <LoanTable data={data2!} pageChange={getData2} noButton />
               ) : (
                 <div className={styles.empty__table}>
                   All Loans have been Paid.
@@ -184,7 +192,10 @@ function Loans() {
               )}
             </div>
           </div>
-          <div className={cn(styles.container, "hover")}>
+          <div
+            className={cn(styles.container, "hover")}
+            style={{ marginTop: "2em" }}
+          >
             <div className={styles.heading}>
               <div className={styles.heading__title}>
                 Payed <span>Loans</span>
@@ -213,7 +224,7 @@ function Loans() {
               {isLoading3 ? (
                 <GlobalLoader />
               ) : data3!.results.length ? (
-                <LoanTable data={data3!} pageChange={getData3} />
+                <LoanTable data={data3!} pageChange={getData3} noButton />
               ) : (
                 <div className={styles.empty__table}>
                   No Loans have been payed.
@@ -221,7 +232,10 @@ function Loans() {
               )}
             </div>
           </div>
-          <div className={cn(styles.container, "hover")}>
+          <div
+            className={cn(styles.container, "hover")}
+            style={{ marginTop: "2em" }}
+          >
             <div className={styles.heading}>
               <div className={styles.heading__title}>
                 Declined <span>Loans</span>
@@ -250,7 +264,7 @@ function Loans() {
               {isLoading4 ? (
                 <GlobalLoader />
               ) : data4!.results.length ? (
-                <LoanTable data={data4!} pageChange={getData4} />
+                <LoanTable data={data4!} pageChange={getData4} noButton />
               ) : (
                 <div className={styles.empty__table}>No Loans Declined.</div>
               )}
