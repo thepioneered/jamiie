@@ -15,7 +15,7 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    if (state.tokenValidated) router.push("/admin/dashboard");
+    if (state.tokenValidated) router.push("/admin/pools");
   }, []);
 
   const [username, setUsername] = useState("");
@@ -40,7 +40,7 @@ export default function Login() {
     if (r) {
       dispatch({ type: "setLoginData", data: r });
       dispatch({ type: "changeGlobal", item: "tokenValidated" });
-      router.push("/admin/dashboard");
+      router.push("/admin/pools");
     } else {
       if (wrongLogin > 0) {
         setWrongLogin((prevState) => prevState + 1);

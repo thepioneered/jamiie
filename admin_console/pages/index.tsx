@@ -9,7 +9,7 @@ function App() {
   const router = useRouter();
 
   useEffect(() => {
-    if (state.tokenValidated) router.push("/admin/dashboard");
+    if (state.tokenValidated) router.push("/admin/pools");
     else router.push("/login");
   }, []);
 

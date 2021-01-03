@@ -12,11 +12,10 @@ interface Props {
 export default function Sidebar({ isSidebarOpen }: Props) {
   function sendList() {
     const index = [
-      { name: "Dashboard", icon: "dashboard" },
-      { name: "Transactions", icon: "timeline" },
       { name: "Pools", icon: "group" },
       { name: "Users", icon: "person_outline" },
       { name: "Loans", icon: "account_balance_wallet" },
+      { name: "Transactions", icon: "timeline" },
     ];
 
     const router = useRouter();
