@@ -1,15 +1,12 @@
-import 'package:Jamiie/src/models/Loan/loanModel.dart';
-import 'package:Jamiie/src/models/base/pageModel.dart';
-import 'package:Jamiie/src/models/createPoolModels/poolidModel.dart';
-import 'package:Jamiie/src/models/poolId.dart';
-import 'package:Jamiie/src/screens/Dashboard/dashboard.dart';
-import 'package:Jamiie/src/screens/navbar.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/utils/snackBar.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../models/Loan/loanModel.dart';
+import '../../models/base/pageModel.dart';
+import '../../models/poolId.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/snackBar.dart';
+import '../../widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 import '../../models/transaction/transactionModel.dart';
 

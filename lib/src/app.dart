@@ -1,14 +1,4 @@
-import 'package:Jamiie/src/screens/Loan/loanScreen.dart';
-import 'package:Jamiie/src/screens/adminPool/creatPool.dart';
-import 'package:Jamiie/src/screens/auth/afterLogin/completeProfilePage.dart';
-import 'package:Jamiie/src/screens/auth/afterLogin/form.dart';
-import 'package:Jamiie/src/screens/auth/forgotPassword/FPnewpassPage.dart';
-import 'package:Jamiie/src/screens/auth/forgotPassword/otpPage.dart';
-import 'package:Jamiie/src/screens/auth/login/loginPage.dart';
-import 'package:Jamiie/src/screens/auth/singup/mobilePage.dart';
-import 'package:Jamiie/src/screens/auth/singup/otpPage.dart';
-import 'package:Jamiie/src/screens/auth/singup/signupPage.dart';
-import 'package:Jamiie/src/screens/navbar.dart';
+
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,8 +7,6 @@ import 'providers/auth/login/loginProvider.dart';
 import './styles/colors.dart';
 import './routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import './screens/auth/forgotPassword/otpPage.dart';
-import 'screens/adminPool/transactionPage.dart';
 
 class App extends StatefulWidget {
   @override

@@ -40,7 +40,6 @@ class AppTextField {
             prefixIcon, onEyeClick, hintText, edge),
         onSaved: onSaved,
         autofocus: autofocus == null ? false : autofocus,
-        
         maxLines: maxLines == null ? 1 : maxLines,
       ),
     );

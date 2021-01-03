@@ -45,7 +45,6 @@ class BankPageWidget extends StatelessWidget {
             ? (bankProvider.firstTimeAddBank
                 ? AppWebView(mobile: mobile)
                 : Center(
-                    //TODO: Style pending haii
                     child: Text("Bank already attached.",
                         style: AppTextStyle.forgotPassword()),
                   ))

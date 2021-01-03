@@ -67,7 +67,10 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                   title: "Create Pool",
                   subTitle: "Enter details to create your own pool"),
               Form(
-                autovalidate: createPoolProvider.pageModel.onceFormSubmitted,
+
+                //Todo:Check this is testing
+                // autovalidateMode: createPoolProvider.pageModel.onceFormSubmitted,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: createPoolProvider.createPoolFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +154,9 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                             onSaved: (e) =>
                                 createPoolProvider.createPool.poolType = e,
                             decoration: AppInputDecoration.dropdownDecoration(),
-                            autovalidate: false,
+                            // autovalidate: false,
+
+                            autovalidateMode: AutovalidateMode.disabled,
                             hint: Text(
                               'Pool Type',
                               style: AppTextStyle.hintText,

@@ -1,12 +1,10 @@
-import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
-import 'package:Jamiie/src/styles/base.dart';
-import 'package:Jamiie/src/widgets/topHeading.dart';
-import 'package:Jamiie/src/widgets/userJoinedPools/joinPoolListWidget.dart';
-import 'package:share/share.dart';
+import '../../styles/base.dart';
+import '../../widgets/topHeading.dart';
+import '../../widgets/userJoinedPools/joinPoolListWidget.dart';
+
 import 'poolDataPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../models/adminPoolModel/poolListModel.dart';
 import '../../providers/adminPool/adminPoolProvider.dart';
 import 'package:provider/provider.dart';
 import '../../styles/text.dart';

@@ -1,8 +1,7 @@
-import 'package:Jamiie/src/models/auth/mobileModel.dart';
-import 'package:Jamiie/src/models/base/pageModel.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
+import '../../models/auth/mobileModel.dart';
+import '../../models/base/pageModel.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
 import 'package:flutter/material.dart';
 
 class BankProvider extends ChangeNotifier {
