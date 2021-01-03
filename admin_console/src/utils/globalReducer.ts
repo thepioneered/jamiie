@@ -22,6 +22,12 @@ export type Actions =
     }
   | {
       type: "closeSidebar";
+    }
+  | {
+      type: "incrementApprovedLoans";
+    }
+  | {
+      type: "incrementDeclinedLoans";
     };
 
 export const globalReducer = (state: globalState, action: Actions) => {
@@ -41,5 +47,21 @@ export const globalReducer = (state: globalState, action: Actions) => {
       return { ...state, isLoading: false, tokenValidated: false };
     case "closeSidebar":
       return { ...state, isSidebarOpen: false };
+    case "incrementApprovedLoans":
+      return {
+        ...state,
+        loginData: {
+          ...state.loginData,
+          totalApprovedLoans: state.loginData.totalApprovedLoans + 1,
+        },
+      };
+    case "incrementDeclinedLoans":
+      return {
+        ...state,
+        loginData: {
+          ...state.loginData,
+          totalDeclinedLoans: state.loginData.totalDeclinedLoans + 1,
+        },
+      };
   }
 };

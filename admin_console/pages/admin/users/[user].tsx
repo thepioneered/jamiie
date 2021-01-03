@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Layout, Modal, GlobalLoader } from "../../../src/components";
+import { Layout, GlobalLoader } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
 import userStyles from "../../../styles/users.module.scss";
 import { userFull } from "../../../src/interfaces";
@@ -14,7 +14,7 @@ function User() {
   const router = useRouter();
   const { user } = router.query;
 
-  const [showModal, toggleModal] = useState(false);
+  // const [showModal, toggleModal] = useState(false);
   const [data, setData] = useState<userFull | null>(null);
   const [isLoading, setLoading] = useState(true);
 
@@ -30,12 +30,12 @@ function User() {
     }
   };
 
-  const deleteUser = () => {
-    toggleModal(true);
-  };
-  const closeModal = () => {
-    toggleModal(false);
-  };
+  // const deleteUser = () => {
+  //   toggleModal(true);
+  // };
+  // const closeModal = () => {
+  //   toggleModal(false);
+  // };
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -140,7 +140,7 @@ function User() {
                         <th>Repayment Record:</th>
                         <td>{data?.repaymentRecord}</td>
                       </tr>
-                      <tr>
+                      {/* <tr>
                         <th>Block User:</th>
                         <td>
                           <button
@@ -150,7 +150,7 @@ function User() {
                             Block User
                           </button>
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </table>
                 </div>
@@ -235,7 +235,7 @@ function User() {
           </div>
         </div>
       </div>
-      <Modal
+      {/* <Modal
         show={showModal}
         onClose={closeModal}
         header={"Are you sure that you want to block this user?"}
@@ -246,7 +246,7 @@ function User() {
         </div>
         <button className={userStyles.block__user}>Block User</button>
         <button className={userStyles.cancel}>Cancel</button>
-      </Modal>
+      </Modal> */}
     </Layout>
   );
 }

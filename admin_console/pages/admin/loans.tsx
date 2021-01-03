@@ -15,7 +15,7 @@ import { endpoints } from "../../src/constants/apiEndpoints";
 import { Loan } from "../../src/interfaces/tables";
 
 function Loans() {
-  const { state } = useContext(LoaderContext);
+  const { state, dispatch } = useContext(LoaderContext);
 
   const [data, setData] = useState<tableArray<Loan> | null>(null);
   const [data2, setData2] = useState<tableArray<Loan> | null>(null);
@@ -145,6 +145,8 @@ function Loans() {
                   data={data!}
                   setData={setData}
                   setData2={setData4}
+                  setData3={setData2}
+                  dispatch={dispatch}
                   pageChange={getData}
                 />
               ) : (

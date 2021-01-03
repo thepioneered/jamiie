@@ -7,11 +7,14 @@ import { tableArray } from "../interfaces";
 import { Loan } from "../interfaces/tables";
 import { postData } from "../utils/apiCalls";
 import { endpoints } from "../constants/apiEndpoints";
+import { Actions } from "../utils/globalReducer";
 
 interface Props {
   data: tableArray<Loan>;
   setData?: React.Dispatch<React.SetStateAction<tableArray<Loan> | null>>;
   setData2?: React.Dispatch<React.SetStateAction<tableArray<Loan> | null>>;
+  setData3?: React.Dispatch<React.SetStateAction<tableArray<Loan> | null>>;
+  dispatch?: React.Dispatch<Actions>;
   pageChange: (url?: string | undefined) => Promise<void>;
   noButton?: boolean;
 }
@@ -20,10 +23,21 @@ export default function LoanTable({
   data,
   setData,
   setData2,
+  setData3,
+  dispatch,
   pageChange,
   noButton = false,
 }: Props) {
-  const handleApproval = async (transactionId: string) => {
+  const handleApproval = async (
+    id: number,
+    amount: number,
+    createdAt: string,
+    transactionId: string,
+    paid: boolean,
+    approved: boolean,
+    phone: string,
+    poolId: string
+  ) => {
     const r = await postData({
       url: endpoints.LOAN_APPROVAL,
       payload: { transactionId: transactionId },
@@ -38,6 +52,26 @@ export default function LoanTable({
           return { ...prev!, results: newResults };
         }
       );
+      setData3!(
+        (prev): tableArray<Loan> => {
+          const newResults = [
+            ...prev!.results,
+            {
+              transactionId,
+              poolId,
+              phone,
+              amount,
+              createdAt,
+              approved,
+              id,
+              paid,
+            },
+          ];
+
+          return { ...prev!, results: newResults };
+        }
+      );
+      dispatch!({ type: "incrementApprovedLoans" });
     }
   };
 
@@ -84,6 +118,7 @@ export default function LoanTable({
           return { ...prev!, results: newResults };
         }
       );
+      dispatch!({ type: "incrementDeclinedLoans" });
     }
   };
 
@@ -124,7 +159,18 @@ export default function LoanTable({
             <td>
               <button
                 className={loanStyles.approve}
-                onClick={() => handleApproval(transactionId)}
+                onClick={() =>
+                  handleApproval(
+                    id,
+                    amount,
+                    createdAt,
+                    transactionId,
+                    paid,
+                    approved,
+                    phone,
+                    poolId
+                  )
+                }
               >
                 Approve
               </button>
@@ -155,7 +201,6 @@ export default function LoanTable({
   };
 
   const getRows = (arr: Loan[]) => {
-    // console.log(arr);
     return arr.map((item) => row(item));
   };
 
