@@ -162,7 +162,9 @@ function User() {
             style={{ margin: "2rem 0 0 0" }}
           >
             <div className={userStyles.heading}>
-              <div className={styles.table__heading2}>Created</div>
+              <div className={userStyles.heading__title}>
+                Joined <span>Pools</span>
+              </div>
               <form
                 className={userStyles.searchbar}
                 onSubmit={search}
@@ -198,7 +200,9 @@ function User() {
             style={{ margin: "2rem 0 0 0" }}
           >
             <div className={userStyles.heading}>
-              <div className={styles.table__heading2}>Joined</div>
+              <div className={userStyles.heading__title}>
+                Joined <span>Pools</span>
+              </div>
               <form
                 className={userStyles.searchbar}
                 onSubmit={search}

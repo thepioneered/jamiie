@@ -116,7 +116,9 @@ function Pool() {
             style={{ margin: "2rem 0 0 0" }}
           >
             <div className={userStyles.heading}>
-              <div className={styles.table__heading}>Joined</div>
+              <div className={userStyles.heading__title}>
+                Joined <span>Users</span>
+              </div>
               <form
                 className={userStyles.searchbar}
                 onSubmit={search}

@@ -10,3 +10,4 @@ export { default as GlobalLoader } from "./GlobalLoader";
 export { default as UserTable } from "./UserTable";
 export { default as PoolTable } from "./PoolTable";
 export { default as TransactionTable } from "./TransactionTable";
+export { default as LoanTable } from "./LoanTable";

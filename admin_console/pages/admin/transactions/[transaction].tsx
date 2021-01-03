@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Layout, Modal } from "../../../src/components";
+import { GlobalLoader, Layout } from "../../../src/components";
 import styles from "../../../styles/[user].module.scss";
-import userStyles from "../../../styles/users.module.scss";
+import { singleTransaction } from "../../../src/interfaces";
+import { endpoints } from "../../../src/constants/apiEndpoints";
+import { postData } from "../../../src/utils/apiCalls";
+import Link from "next/link";
 
 function Transaction() {
   const router = useRouter();
   const { transaction } = router.query;
 
-  const [showModal, toggleModal] = useState(false);
-  const deleteUser = () => {
-    toggleModal(true);
+  const [data, setData] = useState<singleTransaction | null>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const getData = async () => {
+    setLoading(true);
+    const r = await postData<singleTransaction>({
+      url: endpoints.SINGLE_TRANSACTION,
+      payload: { transactionId: transaction },
+    });
+
+    if (r) {
+      setData(r);
+      setLoading(false);
+    }
   };
 
-  const closeModal = () => {
-    toggleModal(false);
-  };
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <Layout>
@@ -31,106 +45,56 @@ function Transaction() {
             </button>
             <h2 className={styles.heading}>Transaction Id: {transaction}</h2>
           </div>
-          <div className={cn(styles.card, "hover")}>
-            <div className={styles.picture}>
-              <img src="/images/user.jpg" alt="user" />
-            </div>
-            <div className={styles.table__container}>
-              <table className={styles.table}>
-                <tbody>
-                  <tr>
-                    <th>Name:</th>
-                    <td>Paritosh Batish</td>
-                  </tr>
-                  <tr>
-                    <th>Email:</th>
-                    <td>batishparitosh2@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th>Mobile:</th>
-                    <td>8146990621</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Score:</th>
-                    <td>54</td>
-                  </tr>
-                  <tr>
-                    <th>Risk Band:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Moderate</td>
-                  </tr>
-                  <tr>
-                    <th>City:</th>
-                    <td>Chandigarh</td>
-                  </tr>
-                  <tr>
-                    <th>Date Created:</th>
-                    <td>20th Aug 2020</td>
-                  </tr>
-                  <tr>
-                    <th>Last Login:</th>
-                    <td>6th Sept. 2020 4:40pm</td>
-                  </tr>
-                  <tr>
-                    <th>Job Age:</th>
-                    <td>Upto 4 years</td>
-                  </tr>
-                  <tr>
-                    <th>Family:</th>
-                    <td>Single with Children</td>
-                  </tr>
-                  <tr>
-                    <th>State:</th>
-                    <td>Punjab</td>
-                  </tr>
-                  <tr>
-                    <th>Age:</th>
-                    <td>{"<25 Years"}</td>
-                  </tr>
-                  <tr>
-                    <th>Saving Money:</th>
-                    <td>2-3</td>
-                  </tr>
-                  <tr>
-                    <th>Loans:</th>
-                    <td>1 on no loan</td>
-                  </tr>
-                  <tr>
-                    <th>Living:</th>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <th>Block Group:</th>
-                    <td>
-                      <button
-                        className={styles.block__user}
-                        onClick={deleteUser}
-                      >
-                        Block Group
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div
+            className={cn(styles.card, "hover", {
+              loading__container: isLoading,
+            })}
+          >
+            {isLoading ? (
+              <GlobalLoader />
+            ) : (
+              <div className={styles.table__container}>
+                <table className={styles.table}>
+                  <tbody>
+                    <tr>
+                      <th>Pool:</th>
+                      <td>
+                        <Link
+                          href="/admin/pools/[pool]"
+                          as={`/admin/pools/${data?.poolId}`}
+                        >
+                          <a className={styles.page__link}>{data?.poolId}</a>
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>User:</th>
+                      <td>
+                        <Link
+                          href="/admin/users/[user]"
+                          as={`/admin/users/${data?.phone}`}
+                        >
+                          <a className={styles.page__link}>{data?.phone}</a>
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Amount:</th>
+                      <td>{data?.amount}</td>
+                    </tr>
+                    <tr>
+                      <th>Date:</th>
+                      <td>
+                        {new Date(data!.paidTime).toLocaleString("en-US")}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <Modal
-        show={showModal}
-        onClose={closeModal}
-        header={"Are you sure that you want to block this user?"}
-      >
-        <div className={userStyles.note}>
-          <b>Note:</b> The user cannot be blocked if he/she has already joined
-          pool that has started.
-        </div>
-        <button className={userStyles.block__user}>Block User</button>
-        <button className={userStyles.cancel}>Cancel</button>
-      </Modal>
     </Layout>
   );
 }

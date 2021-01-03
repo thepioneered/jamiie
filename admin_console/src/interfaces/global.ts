@@ -4,9 +4,12 @@ export type loginData = {
   name: string;
   phone: string;
   email: string;
+  totalApprovedLoans: number;
+  totalDeclinedLoans: number;
+  totalLoans: number;
+  totalPools: number;
   totalTransactions: number;
   totalUsers: number;
-  totalPools: number;
   completedPools: number;
 };
 

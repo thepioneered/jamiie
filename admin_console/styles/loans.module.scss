@@ -1,0 +1,79 @@
+@import "./variables.module.scss";
+
+// ------------
+// table
+// ------------
+
+.table {
+  width: 100%;
+
+  tbody tr {
+    transition: background-color 250ms ease;
+  }
+
+  tbody tr:hover {
+    background-color: $hover-blue-light;
+  }
+
+  td {
+    padding: 1em 0.5em;
+    text-align: center;
+    border-bottom: 1px solid $secondary-gray-lighter;
+  }
+
+  .theading td {
+    border-bottom: 2px solid $secondary-gray-light;
+    font-weight: 700;
+    padding: 1em;
+  }
+}
+
+// ------------
+// approve button
+// ------------
+
+.approve {
+  border: 1px solid $primary-blue;
+  padding: 0.5em;
+  color: white;
+  background-color: $primary-blue;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.approve:hover {
+  background-color: white;
+  color: $primary-blue;
+}
+
+.approve:active {
+  background-color: $primary-blue;
+  color: white;
+}
+
+// ------------
+// decline button
+// ------------
+
+.decline {
+  border: 1px solid $primary-red;
+  padding: 0.5em;
+  color: white;
+  background-color: $primary-red;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.decline:hover {
+  background-color: white;
+  color: $primary-red;
+}
+
+.decline:active {
+  background-color: $primary-red;
+  color: white;
+}

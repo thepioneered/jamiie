@@ -102,3 +102,12 @@ export type poolFull = {
   startStatus: boolean;
   completeStatus: boolean;
 };
+
+export type singleTransaction = {
+  poolId: string;
+  phone: string;
+  amount: string;
+  paidTime: string;
+  transactionUrl: string;
+  transactionStatus: boolean;
+};

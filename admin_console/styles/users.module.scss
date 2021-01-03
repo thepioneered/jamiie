@@ -46,8 +46,7 @@
   color: white;
   font-size: 1.2em;
 
-  &::after {
-    content: " Management";
+  span {
     font-weight: 700;
   }
 }
@@ -65,7 +64,7 @@
 .searchbar {
   margin-left: auto;
   position: relative;
-  display: flex;
+  display: none;
   border-radius: 25px;
   overflow: hidden;
   background-color: $background-gray;
@@ -401,4 +400,14 @@
     height: $size;
     width: $size;
   }
+}
+
+// ------------
+// empty table
+// ------------
+
+.empty__table {
+  font-style: italic;
+  text-align: center;
+  margin: 1.5em;
 }

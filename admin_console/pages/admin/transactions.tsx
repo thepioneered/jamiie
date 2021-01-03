@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import cn from "classnames";
 import { LoaderContext } from "../_app";
 import {
@@ -10,84 +10,36 @@ import {
 import card from "../../styles/totalCard.module.scss";
 import styles from "../../styles/users.module.scss";
 import { Transaction } from "../../src/interfaces/tables";
+import { tableArray } from "../../src/interfaces";
+import { fetchData } from "../../src/utils/apiCalls";
+import { endpoints } from "../../src/constants/apiEndpoints";
 
 function Transactions() {
   const { state } = useContext(LoaderContext);
-  const data: Transaction[] = [
-    {
-      no: "8146990621",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990622",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990623",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990624",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990625",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990626",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990627",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990628",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990629",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-    {
-      no: "8146990630",
-      name: "Paritosh",
-      date: "24th August 2020",
-      status: "21st Sept. 2020",
-      members: "12",
-    },
-  ];
-  const [from, setFrom] = useState(0);
-  // const [isLoading, setLoading] = useState(false);
-  const isLoading = false;
+
+  const [data, setData] = useState<tableArray<Transaction> | null>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const getData = async (url?: string) => {
+    setLoading(true);
+
+    let r: tableArray<Transaction> | false;
+    if (url)
+      r = await fetchData<tableArray<Transaction>>({ url, domain: false });
+    else
+      r = await fetchData<tableArray<Transaction>>({
+        url: endpoints.TRANSACTIONS,
+      });
+
+    if (r) {
+      setData(r);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -100,12 +52,14 @@ function Transactions() {
           <div className={card.container}>
             <TotalCard
               name="Total Transactions"
-              number={state.loginData.totalUsers}
+              number={state.loginData.totalTransactions}
             />
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>
-              <div className={styles.heading__title}>Transaction</div>
+              <div className={styles.heading__title}>
+                Transaction <span>Management</span>
+              </div>
               <form
                 className={styles.searchbar}
                 onSubmit={search}
@@ -129,8 +83,10 @@ function Transactions() {
             >
               {isLoading ? (
                 <GlobalLoader />
+              ) : data!.results.length ? (
+                <TransactionTable data={data!} pageChange={getData} />
               ) : (
-                <TransactionTable data={data} setFrom={setFrom} from={from} />
+                <div className={styles.empty__table}>No Transactions.</div>
               )}
             </div>
           </div>

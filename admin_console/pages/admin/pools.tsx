@@ -58,7 +58,9 @@ function Users() {
           </div>
           <div className={cn(styles.container, "hover")}>
             <div className={styles.heading}>
-              <div className={styles.heading__title}>Pools</div>
+              <div className={styles.heading__title}>
+                Pools <span>Management</span>
+              </div>
               <form
                 className={styles.searchbar}
                 onSubmit={search}

@@ -232,30 +232,6 @@
 }
 
 // ------------
-// table heading
-// ------------
-
-.table__heading {
-  color: white;
-  font-size: 1.2em;
-
-  &::after {
-    content: " Users";
-    font-weight: 700;
-  }
-}
-
-.table__heading2 {
-  color: white;
-  font-size: 1.2em;
-
-  &::after {
-    content: " Pools";
-    font-weight: 700;
-  }
-}
-
-// ------------
 // empty table
 // ------------
 

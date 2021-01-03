@@ -3,31 +3,46 @@ import cn from "classnames";
 import Link from "next/link";
 import styles from "../../styles/users.module.scss";
 import loanStyles from "../../styles/loans.module.scss";
-import { Transaction } from "../interfaces/tables";
 import { tableArray } from "../interfaces";
+import { Loan } from "../interfaces/tables";
+import { postData } from "../utils/apiCalls";
+import { endpoints } from "../constants/apiEndpoints";
 
 interface Props {
-  data: tableArray<Transaction>;
+  data: tableArray<Loan>;
   pageChange: (url?: string | undefined) => Promise<void>;
 }
 
-function TransactionTable({ data, pageChange }: Props) {
-  const row = ({
-    transactionUrl,
-    amount,
-    paidTime,
-    poolId,
-    phone,
-    lateTransactionStatus,
-  }: Transaction) => {
+export default function LoanTable({ data, pageChange }: Props) {
+  const handleApproval = async (transactionId: string) => {
+    const r = await postData({
+      url: endpoints.LOAN_APPROVAL,
+      payload: { transactionId: transactionId },
+    });
+    if (r) {
+      console.log("done");
+    }
+  };
+
+  const handleDecline = async (transactionId: string) => {
+    const r = await postData({
+      url: endpoints.LOAN_DECLINE,
+      payload: { transactionId: transactionId },
+    });
+    if (r) {
+      console.log("done");
+    }
+  };
+
+  const row = ({ transactionId, poolId, user, amount, createdAt }: Loan) => {
     return (
-      <tr key={transactionUrl}>
+      <tr key={transactionId}>
         <td>
           <Link
             href="/admin/transactions/[transaction]"
-            as={`/admin/transactions/${transactionUrl}`}
+            as={`/admin/transactions/${transactionId}`}
           >
-            <a className={styles.page__link}>{transactionUrl}</a>
+            <a className={styles.page__link}>{transactionId}</a>
           </Link>
         </td>
         <td>
@@ -36,18 +51,33 @@ function TransactionTable({ data, pageChange }: Props) {
           </Link>
         </td>
         <td>
-          <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
-            <a className={styles.page__link}>{phone}</a>
+          <Link href="/admin/users/[user]" as={`/admin/users/${user}`}>
+            <a className={styles.page__link}>{user}</a>
           </Link>
         </td>
         <td>{amount}</td>
-        <td>{new Date(paidTime).toLocaleString("en-US")}</td>
-        <td>{lateTransactionStatus ? "Late" : "On Time"}</td>
+        <td>{new Date(createdAt).toLocaleString("en-US")}</td>
+        <td>
+          <button
+            className={loanStyles.approve}
+            onClick={() => handleApproval(transactionId)}
+          >
+            Approve
+          </button>
+        </td>
+        <td>
+          <button
+            className={loanStyles.decline}
+            onClick={() => handleDecline(transactionId)}
+          >
+            Decline
+          </button>
+        </td>
       </tr>
     );
   };
 
-  const getRows = (arr: Transaction[]) => {
+  const getRows = (arr: Loan[]) => {
     return arr.map((item) => row(item));
   };
 
@@ -58,10 +88,9 @@ function TransactionTable({ data, pageChange }: Props) {
           <tr className={styles.theading}>
             <td>Transaction Id</td>
             <td>Pool Id</td>
-            <td>User Id</td>
+            <td>User</td>
             <td>Amount</td>
-            <td>Paid Time</td>
-            <td>Status</td>
+            <td>Date Created</td>
           </tr>
         </thead>
         <tbody>{getRows(data.results)}</tbody>
@@ -90,5 +119,3 @@ function TransactionTable({ data, pageChange }: Props) {
     </>
   );
 }
-
-export default TransactionTable;
