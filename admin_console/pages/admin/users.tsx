@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   GlobalLoader,
   Layout,
-  Modal,
   TotalCard,
   UserTable,
 } from "../../src/components";
@@ -18,7 +17,7 @@ import { LoaderContext } from "../_app";
 function Users() {
   const { state } = useContext(LoaderContext);
   const [data, setData] = useState<tableArray<user> | null>(null);
-  const [showModal, toggleModal] = useState(false);
+  // const [showModal, toggleModal] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
   const getData = async (url?: string) => {
@@ -38,13 +37,13 @@ function Users() {
     getData();
   }, []);
 
-  const deleteUser = () => {
-    toggleModal(true);
-  };
+  // const deleteUser = () => {
+  //   toggleModal(true);
+  // };
 
-  const closeModal = () => {
-    toggleModal(false);
-  };
+  // const closeModal = () => {
+  //   toggleModal(false);
+  // };
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,13 +87,13 @@ function Users() {
               ) : (
                 <UserTable
                   data={data!}
-                  deleteUser={deleteUser}
+                  // deleteUser={deleteUser}
                   pageChange={getData}
                 />
               )}
             </div>
           </div>
-          <Modal
+          {/* <Modal
             show={showModal}
             onClose={closeModal}
             header="Are you sure that you want to block this user?"
@@ -105,7 +104,7 @@ function Users() {
             </div>
             <button className={styles.block__user}>Block User</button>
             <button className={styles.cancel}>Cancel</button>
-          </Modal>
+          </Modal> */}
         </div>
       </div>
     </Layout>

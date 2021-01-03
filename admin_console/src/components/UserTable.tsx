@@ -7,10 +7,10 @@ import { user, tableArray } from "../interfaces";
 interface Props {
   data: tableArray<user>;
   pageChange: (url?: string | undefined) => Promise<void>;
-  deleteUser: () => void;
+  // deleteUser: () => void;
 }
 
-export default function UserTable({ data, pageChange, deleteUser }: Props) {
+export default function UserTable({ data, pageChange }: Props) {
   const row = ({ phone, name, createdAt, lastLogin, image }: user) => {
     return (
       <tr key={phone}>
@@ -28,13 +28,7 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
         <td>{name}</td>
         <td>{new Date(createdAt).toLocaleString("en-US")}</td>
         <td>{new Date(lastLogin).toLocaleString("en-US")}</td>
-        <td className={styles.action}>
-          {/* <Link href="/admin/users/[user]" as={`/admin/users/${phone}`}>
-            <button className={styles.settings} title="User Settings">
-              <span className="material-icons-outlined">settings</span>
-            </button>
-          </Link> */}
-
+        {/* <td className={styles.action}>
           <button
             className={styles.delete}
             onClick={deleteUser}
@@ -42,7 +36,7 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
           >
             <span className="material-icons">remove_circle_outline</span>
           </button>
-        </td>
+        </td> */}
       </tr>
     );
   };
@@ -61,7 +55,6 @@ export default function UserTable({ data, pageChange, deleteUser }: Props) {
             <td>Name</td>
             <td>Date Created</td>
             <td>Last Login</td>
-            <td>Action</td>
           </tr>
         </thead>
         <tbody>{getRows(data.results)}</tbody>
