@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/models/Loan/confirmLoanModel.dart';
 import 'package:Jamiie/src/models/poolId.dart';
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/styles/colors.dart';
@@ -51,7 +52,7 @@ class LoanScreenProvider extends ChangeNotifier {
         afterRequest: () {},
         authRequest: true,
         shouldPagePop: true,
-                // body: {"poolId": "$poolId","phone": "$mobile"});
+        // body: {"poolId": "$poolId","phone": "$mobile"});
 
         body: PoolIdMobileModel().toJson(poolId, mobile));
     print(data);
@@ -64,6 +65,11 @@ class LoanScreenProvider extends ChangeNotifier {
             title: "Your loan is succesfully applied",
             backgroundColor: AppColors.green),
       );
+      Navigator.pop(scaffoldKey.currentContext);
+      // Navigator.pushAndRemoveUntil(
+      //     scaffoldKey.currentContext,
+      //     MaterialPageRoute(builder: (_) => JoinPoolDataPage(poolId: poolId)),
+      //     (route) => false);
       Navigator.pop(scaffoldKey.currentContext);
     }
   }
