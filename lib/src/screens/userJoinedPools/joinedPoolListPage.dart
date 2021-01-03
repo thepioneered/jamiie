@@ -89,9 +89,9 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                       EdgeInsets.symmetric(horizontal: 15.w),
                                   child: JoinPoolListWidget(
                                     //TODO:Ye change krna hai dono ko
-                                    status:
-                                        data.joinedPoolListDataSubModel.status,
-                                    //status: true,
+                                    // status:
+                                    //     data.joinedPoolListDataSubModel.status,
+                                    status: true,
                                     amountSaved: 0000,
                                     monthlyTotalAmount: 0000,
                                     poolAmount: data.joinedPoolListDataSubModel

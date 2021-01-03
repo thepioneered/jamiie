@@ -1,5 +1,5 @@
 class LoanModel {
-  String amount;
+  int amount;
   double interest;
 
   LoanModel({
@@ -7,7 +7,8 @@ class LoanModel {
     this.interest,
   });
 
-  LoanModel.fromJson(Map<String, dynamic> data)
+  LoanModel.fromJson(Map<String, dynamic> data) 
       : amount = data["amount"],
         interest = data["interest"];
 }
+

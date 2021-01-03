@@ -24,9 +24,11 @@ class EndPoints {
   static const String poolAmount = "/payments/amount";
   static const String notPaidUserDetail = "/payments/notpaiddetail";
   static const String loanDetail = "/payments/loandetail";
-
+  static const String adminPaidUserDetail = "/payments/adminpaidusers";
+  static const String adminNotPaidUserDetail = "/payments/adminnotpaidusers";
   static const String bankPageWebView = "/payments/bank/";
   static const String payButtonLogic = "/payments/paybutton";
+  static const String confirmLoan = "/payments/loan";
 
   static String webviewLink(String mobile) {
     return EndPoints.ipAddress +

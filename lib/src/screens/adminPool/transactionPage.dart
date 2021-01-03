@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/Loan/loanScreen.dart';
 import 'package:Jamiie/src/styles/text.dart';
 
 import '../../providers/transaction/transactionProvider.dart';
@@ -91,18 +92,25 @@ class TransactionPageWidget extends StatelessWidget {
                         title: "Confirm Payment",
                       ),
                     ),
-                    SizedBox(height: 20.h,),
-                
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
+                        //todo change to push name
+
                         onTap: () {
-                          transactionProvider.takeLoan(poolId);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => LoanScreen(
+                                poolAmount: transactionProvider.amount.poolAmount.toString(), 
+                                poolId: poolId,
+                              )));
+                          // transactionProvider.takeLoan(poolId);
                         },
                         title: "Take a Loan",
                       ),
                     ),
-
                   ],
                 ),
               ),

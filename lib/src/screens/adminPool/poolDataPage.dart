@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/adminPool/adminTransactionListPage.dart';
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
 import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -158,7 +159,7 @@ class PoolDataPageWidget extends StatelessWidget {
 
                     // 7 percent of total height
                     //TODO:Make this not equal to
-                    
+
                     !data.startStatus
                         ? Column(
                             children: [
@@ -190,45 +191,58 @@ class PoolDataPageWidget extends StatelessWidget {
                               Container(
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
-                                    title: "Payment Details", onTap: () {}),
+                                  title: "Payment Details",
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            AdminTransactionListPage(
+                                          poolId: data.poolId,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                               SizedBox(height: 10.h),
                               Container(
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
                                   //TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
-                                  onTap: 
-                                  // data.totalMember != data.joinedMember
+                                  onTap:
+                                      // data.totalMember != data.joinedMember
                                       // ?
-                                      completePoolDataProvider.payButton?
-                                          //TODO: Please check here
-                                          (){
-                                            Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (_) => TransactionPage(
-                                                poolId: data.poolId,
-                                                poolName: data.poolName,
-                                              ),
-                                            ),
-                                          );
+                                      completePoolDataProvider.payButton
+                                          ?
 
-                                          }
-                                          
-                                          :null,
-                                        // },
-                                      // : () {
-                                          //TODO: Edit is required here
-                                        //   Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //       builder: (_) => TransactionPage(
-                                        //         poolId: data.poolId,
-                                        //         poolName: data.poolName,
-                                        //       ),
-                                        //     ),
-                                        //   );
-                                        // },
+                                          //TODO: Please check here
+                                          () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      TransactionPage(
+                                                    poolId: data.poolId,
+                                                    poolName: data.poolName,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          : null,
+                                  // },
+                                  // : () {
+                                  //TODO: Edit is required here
+                                  //   Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //       builder: (_) => TransactionPage(
+                                  //         poolId: data.poolId,
+                                  //         poolName: data.poolName,
+                                  //       ),
+                                  //     ),
+                                  //   );
+                                  // },
                                   title: "Pay",
                                 ),
                               ),
