@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useReducer } from "react";
+import { ToastContainer } from "react-toastify";
 import type { AppProps } from "next/app";
 import Loading from "../src/components/Loading";
 import { postData } from "../src/utils/apiCalls";
@@ -68,14 +69,27 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   if (!state.isLoading) {
     return (
-      <LoaderContext.Provider
-        value={{
-          state,
-          dispatch,
-        }}
-      >
-        <Component {...pageProps} />
-      </LoaderContext.Provider>
+      <>
+        <LoaderContext.Provider
+          value={{
+            state,
+            dispatch,
+          }}
+        >
+          <Component {...pageProps} />
+        </LoaderContext.Provider>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </>
     );
   }
   return <Loading />;
