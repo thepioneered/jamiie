@@ -43,9 +43,10 @@
 // ------------
 
 .img__container {
-  display: flex;
-  margin-left: -5%;
+  overflow: hidden;
 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
   img {
     height: 20em;
   }
@@ -59,7 +60,9 @@
   font-weight: 700;
   font-size: 2em;
   align-self: flex-start;
-  margin-bottom: 1em;
+  text-align: left;
+  margin-bottom: 0.5em;
+  margin-top: 5em;
 }
 
 // ------------
@@ -67,7 +70,6 @@
 // ------------
 
 .para1__container {
-  margin-top: 5em;
   display: flex;
   gap: 1em;
   align-items: flex-start;
@@ -93,4 +95,96 @@
 .howItWorks {
   padding-right: 1em;
   margin-top: 5em;
+}
+
+// ------------
+// order
+// ------------
+
+.order1 {
+  order: 2;
+}
+
+.order2 {
+  order: 2;
+}
+
+// ------------
+// how it works 2
+// ------------
+
+.howItWorks2 {
+  display: none;
+}
+
+.table {
+  td {
+    margin: 0.5em 0;
+  }
+  text-align: left;
+}
+
+.circle {
+  background-color: $primary-green;
+  border-radius: 50%;
+  $size: 50px;
+  width: $size;
+  height: $size;
+
+  color: white;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  font-size: 1.15em;
+  padding-left: 0.5em;
+}
+
+// ------------
+// media
+// ------------
+
+@media (max-width: 1024px) {
+  .container {
+    font-size: 0.9em;
+    padding: 2em;
+    text-align: center;
+  }
+  .heading {
+    margin-top: 2em;
+  }
+  .para1__container {
+    flex-direction: column;
+  }
+  .order1 {
+    order: 1;
+  }
+  .howItWorks {
+    display: none;
+  }
+  .howItWorks2 {
+    display: block;
+  }
+  .title {
+    font-size: 2em;
+    margin-top: 1em;
+  }
+  .out__story__button {
+    margin-bottom: 2em;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+  .heading {
+    text-align: center;
+    align-self: center;
+  }
 }

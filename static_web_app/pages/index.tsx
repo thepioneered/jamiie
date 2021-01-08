@@ -5,13 +5,13 @@ import Main from "../src/components/Main";
 
 const index = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Jamiie</title>
       </Head>
       <Header />
       <Main />
-    </div>
+    </>
   );
 };
 

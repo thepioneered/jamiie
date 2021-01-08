@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../../styles/main.module.scss";
 import ColoredHeadings from "./ColoredHeadings";
-import MyButton from "../ui/MyButton";
 import What from "./What";
 import Meet from "./Meet";
 import Why from "./Why";
@@ -44,10 +43,40 @@ const Main = () => {
         src="/images/svg/HowItWorks2.svg"
         alt="How it Works"
       />
+      <div className={styles.howItWorks2} id="how2">
+        <div className={styles.heading}>How it Works</div>
+        <table className={styles.table}>
+          <tbody>
+            <tr>
+              <td className={styles.circle}>1</td>
+              <td className={styles.content}>Open your jamiie Account</td>
+            </tr>
+            <tr>
+              <td className={styles.circle}>2</td>
+              <td className={styles.content}>
+                Start a new jamiie circle and invite friends and family.
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.circle}>3</td>
+              <td className={styles.content}>
+                Select the length of time, weeks or months, and the dates.
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.circle}>4</td>
+              <td className={styles.content}>
+                Select the jamiie amount that each person will pool and the
+                order of draws.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       {/* <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} /> */}
 
       <OurStory />
-      <ColoredHeadings style={{ margin: "0em 0 1em 0", padding: "0" }} />
+      <ColoredHeadings style={{ margin: "2em 0 1em 0", padding: "0" }} />
     </div>
   );
 };

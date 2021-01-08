@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "./variables.module.scss";
 
 *,
@@ -9,7 +11,12 @@
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   background-color: $background-gray;
+}
+
+img {
+  max-width: 90vw;
 }
 
 // ------------
@@ -30,4 +37,10 @@ body {
 }
 .purple {
   color: $primary-purple;
+}
+
+@media (max-width: 600px) {
+  img {
+    align-self: center;
+  }
 }

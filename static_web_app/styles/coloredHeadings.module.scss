@@ -8,3 +8,9 @@
   font-size: 1.4em;
   font-weight: 700;
 }
+
+@media (max-width: 1024px) {
+  .container {
+    display: none;
+  }
+}

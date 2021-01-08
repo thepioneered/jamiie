@@ -5,10 +5,10 @@ import MyButton from "../ui/MyButton";
 const OurStory = () => {
   return (
     <>
-      <div style={{ marginTop: "5em" }} id="our_story">
+      <div id="our_story">
         <div className={styles.heading}>Our Story</div>
         <div className={styles.para1__container} style={{ marginTop: 0 }}>
-          <div className={styles.space__between}>
+          <div className={`${styles.space__between} ${styles.order2}`}>
             <div>
               <p>
                 Nicole was born in Kingston, Jamaica, and migrated to the United
@@ -31,9 +31,16 @@ const OurStory = () => {
                 many centuries.
               </p>
             </div>
-            <MyButton style={{ marginTop: "1em" }} />
+            <MyButton
+              style={{ marginTop: "1em" }}
+              className={styles.out__story__button}
+            />
           </div>
-          <img src="/images/Picture13.png" alt="Picture13" />
+          <img
+            src="/images/Picture13.png"
+            alt="Picture13"
+            className={styles.order1}
+          />
         </div>
       </div>
     </>

@@ -4,9 +4,11 @@ import styles from "../../styles/main.module.scss";
 const What = () => {
   return (
     <>
-      <div className={styles.para1__container} id="jamiie_circle">
-        <div>
-          <div className={styles.heading}>What is a Jamiie circle?</div>
+      <div id="jamiie_circle" className={styles.heading}>
+        What is a Jamiie circle?
+      </div>
+      <div className={styles.para1__container}>
+        <div className={styles.order2}>
           <div>
             <p>
               An online version of a centuries-old system of informal money pool
@@ -27,7 +29,11 @@ const What = () => {
             </p>
           </div>
         </div>
-        <img src="/images/Picture1.jpg" alt="Picture1" />
+        <img
+          src="/images/Picture1.jpg"
+          alt="Picture1"
+          className={styles.order1}
+        />
       </div>
     </>
   );

@@ -5,10 +5,10 @@ import MyButton from "../ui/MyButton";
 const Why = () => {
   return (
     <>
+      <div className={styles.heading}>Why start a Jamiie circle?</div>
       <div className={styles.para1__container}>
-        <div className={styles.space__between}>
+        <div className={`${styles.space__between} ${styles.order2}`}>
           <div>
-            <div className={styles.heading}>Why start a Jamiie circle?</div>
             <p>
               Every feel like you are working hard and you’re not getting
               anywhere? Accelerate your savings with Jamiie. Not only are you
@@ -19,7 +19,11 @@ const Why = () => {
           </div>
           <MyButton />
         </div>
-        <img src="/images/Picture1.jpg" alt="Picture1" />
+        <img
+          src="/images/Picture1.jpg"
+          alt="Picture1"
+          className={styles.order1}
+        />
       </div>
     </>
   );

@@ -9,16 +9,6 @@
 // ------------
 
 .button {
-  // margin: 1em 0;
-  // outline: none;
-  // padding: 0;
-  // align-self: flex-end;
-  // color: $primary-blue;
-  // background: none;
-  // border: none;
-  // position: relative;
-  // font-size: 1em;
-  // font-family: inherit;
   color: $primary-green;
   font-size: 2em;
   font-weight: 700;
@@ -26,6 +16,16 @@
   border: none;
   cursor: pointer;
   position: relative;
+
+  margin-top: 0.5em;
+
+  display: flex;
+  align-items: center;
+
+  span {
+    padding-top: 2px;
+    font-size: 1.2em;
+  }
 }
 
 .button::after {
@@ -47,42 +47,15 @@
   transform-origin: left;
 }
 
-// ------------
-// arrow
-// ------------
-
-.arrow:after,
-.arrow:before {
-  content: "";
-  position: absolute;
-  left: 28.2em;
-  bottom: 0;
-  width: 0.12rem;
-  height: 65%;
-  background-color: $primary-green;
-  transition: transform 500ms ease;
+@media (max-width: 1024px) {
+  .button {
+    margin: auto;
+    margin-top: 0.5em;
+  }
 }
 
-.arrow:before {
-  top: 0px;
-  // height: 64%;
-  transform: rotate(120deg);
-}
-
-.arrow:after {
-  top: 12px;
-  transform: rotate(-120deg);
-}
-
-// ------------
-// open arrow
-// ------------
-
-.arrow:hover::before {
-  // left: 5px;
-  transform: rotate(-60deg);
-}
-.arrow:hover::after {
-  // left: -5px;
-  transform: rotate(60deg);
+@media (max-width: 600px) {
+  .button span {
+    display: none;
+  }
 }
