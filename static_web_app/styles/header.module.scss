@@ -135,8 +135,10 @@
 
   color: white;
 
-  span {
-    font-size: 28px;
+  img {
+    height: 28px;
+    width: 28px;
+    filter: invert(1);
   }
 }
 

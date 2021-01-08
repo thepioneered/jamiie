@@ -27,7 +27,7 @@ const Header = () => {
             </li>
           </ul>
           <button className={styles.menu} onClick={() => setShow(!show)}>
-            <span className="material-icons">menu</span>
+            <img src="/images/svg/menu.svg" alt="menu" />
           </button>
         </div>
       </div>
