@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "../../styles/main.module.scss";
+import MyButton from "../ui/MyButton";
+import ColoredHeadings from "./ColoredHeadings";
 
 const What = () => {
   return (
-    <>
+    <div className={styles.container}>
       <div id="jamiie_circle" className={styles.heading}>
         What is a Jamiie circle?
       </div>
@@ -35,7 +37,10 @@ const What = () => {
           className={styles.order1}
         />
       </div>
-    </>
+      <MyButton style={{ marginBottom: "3em" }} />
+
+      <ColoredHeadings style={{ margin: "0em 0 2em 0", padding: "0" }} />
+    </div>
   );
 };
 

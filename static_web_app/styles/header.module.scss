@@ -34,20 +34,20 @@
 
   li {
     position: relative;
-    transition: transform 250ms ease;
+    transition: text-decoration 250ms ease;
   }
   li:hover {
-    transform: scale(1.2);
+    text-decoration: underline;
   }
 
-  li:not(:first-child)::before {
-    content: "|";
-    color: white;
-    position: absolute;
-    top: 2px;
-    left: -50%;
-    align-self: center;
-  }
+  // li:not(:first-child)::before {
+  //   content: "|";
+  //   color: white;
+  //   position: absolute;
+  //   top: 2px;
+  //   left: -50%;
+  //   align-self: center;
+  // }
 
   a {
     text-decoration: none;
@@ -116,6 +116,7 @@
   background-color: $background-light;
   // position: absolute;
   height: 6em;
+  width: 6em;
   // left: 0;
   padding: 0em 2em 0.5em 2em;
 }
@@ -148,7 +149,8 @@
 
 .show {
   opacity: 1;
-  height: 221.344px;
+  height: 265px;
+  pointer-events: all;
 }
 
 // ------------

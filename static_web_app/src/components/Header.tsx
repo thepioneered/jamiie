@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import styles from "../../styles/header.module.scss";
 
 const Header = () => {
@@ -7,23 +8,46 @@ const Header = () => {
   return (
     <>
       <div className={styles.outer__container}>
-        <img className={styles.logo} src="/images/svg/NewLogo.svg" alt="LOgo" />
+        <Link href="/">
+          <a>
+            <img
+              className={styles.logo}
+              src="/images/svg/NewLogo.svg"
+              alt="LOgo"
+            />
+          </a>
+        </Link>
         <div className={styles.container}>
           <ul className={styles.list}>
             <li>
-              <a href="#jamiie_circle">Jamiie Circle</a>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
             </li>
             <li>
-              <a href="#how">How it works</a>
+              <Link href="/what">
+                <a>Jamiie Circle</a>
+              </Link>
             </li>
             <li>
-              <a href="#our_story">Our story</a>
+              <Link href="/how">
+                <a>How it works</a>
+              </Link>
             </li>
             <li>
-              <a href="#">Our team</a>
+              <Link href="/ourstory">
+                <a>Our story</a>
+              </Link>
             </li>
             <li>
-              <a href="#">FAQs</a>
+              <Link href="#">
+                <a>Our team</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="#">
+                <a>FAQs</a>
+              </Link>
             </li>
           </ul>
           <button className={styles.menu} onClick={() => setShow(!show)}>
@@ -33,19 +57,34 @@ const Header = () => {
       </div>
       <ul className={`${styles.list2} ${show ? styles.show : null}`}>
         <li>
-          <a href="#jamiie_circle">Jamiie Circle</a>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
         </li>
         <li>
-          <a href="#how2">How it works</a>
+          <Link href="/what">
+            <a>Jamiie Circle</a>
+          </Link>
         </li>
         <li>
-          <a href="#our_story">Our story</a>
+          <Link href="/how">
+            <a>How it works</a>
+          </Link>
         </li>
         <li>
-          <a href="#">Our team</a>
+          <Link href="/ourstory">
+            <a>Our story</a>
+          </Link>
         </li>
         <li>
-          <a href="#">FAQs</a>
+          <Link href="#">
+            <a>Our team</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="#">
+            <a>FAQs</a>
+          </Link>
         </li>
       </ul>
     </>

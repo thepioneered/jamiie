@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/main.module.scss";
 import MyButton from "../ui/MyButton";
+import ColoredHeadings from "./ColoredHeadings";
 
 const Why = () => {
   return (
@@ -17,7 +18,6 @@ const Why = () => {
               friends and family, together you can accomplish your goals.
             </p>
           </div>
-          <MyButton />
         </div>
         <img
           src="/images/Picture1.jpg"
@@ -25,6 +25,9 @@ const Why = () => {
           className={styles.order1}
         />
       </div>
+
+      <MyButton style={{ margin: "0 0 4em 0" }} />
+      <ColoredHeadings style={{ margin: "0 0 2em 0", padding: "0" }} />
     </>
   );
 };

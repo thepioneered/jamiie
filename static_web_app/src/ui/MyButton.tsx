@@ -12,7 +12,7 @@ const MyButton = ({ text, style, className }: MyButtonProps) => {
     <div className={styles.container} style={style}>
       <button className={`${styles.button} ${className}`}>
         {text ? text : "Start your Jamiie circle now"}
-        <img src="/images/svg/arrow_forward.svg" alt="Forward" />
+        {/* <img src="/images/svg/arrow_forward.svg" alt="Forward" /> */}
       </button>
     </div>
   );

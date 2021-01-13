@@ -4,7 +4,7 @@ import MyButton from "../ui/MyButton";
 
 const Meet = () => {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.heading}>Meet the “Achievers” Jamiie circle?</div>
       <div className={styles.para1__container}>
         <img src="/images/Picture5.jpg" alt="Picture5" />
@@ -20,7 +20,7 @@ const Meet = () => {
           <MyButton />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
