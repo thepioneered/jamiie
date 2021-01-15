@@ -13,7 +13,8 @@ const ColoredHeadings = ({ style }: ColoredHeadingsTypes) => {
       <div className="blue">Cundinac</div>
       <div className="red">Take-a-turn</div>
       <div className="purple">Merry-go-round</div>
-      <div className="green">Susu</div>
+      <div className="yellow">Susu</div>
+      <div className="green">Partner</div>
     </div>
   );
 };
