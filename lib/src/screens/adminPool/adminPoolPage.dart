@@ -85,7 +85,7 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                     //       fontWeight: FontWeight.bold),
                     // ),
                     Container(
-                      height: 545.h,
+                      height: 490.h,
                       child: ListView.builder(
                         // reverse: true,
                         itemCount:

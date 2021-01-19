@@ -79,7 +79,7 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                           //       fontWeight: FontWeight.bold),
                           // ),
                           Container(
-                            height: 545.h,
+                            height: 490.h,
                             child: ListView.builder(
                               itemBuilder: (context, index) {
                                 var data = joinPoolProvider.joinPoolListModel
