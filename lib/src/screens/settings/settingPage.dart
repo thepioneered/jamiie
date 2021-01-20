@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/Loan/loanListScreen.dart';
 import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -34,7 +35,6 @@ class SettingPage extends StatelessWidget {
                   margin: EdgeInsets.only(top: 0.1.hp),
                   child: Column(
                     children: <Widget>[
-
                       //TODO:Edit profile removed
                       // AppSettingButtons(
                       //   title: "Profile",
@@ -52,8 +52,25 @@ class SettingPage extends StatelessWidget {
                           //TODO: Isko push named bna na hai
                           String mobile = await LocalStorage.getMobile();
 
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => BankPage(mobile: mobile,)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => BankPage(
+                                        mobile: mobile,
+                                      )));
+                        },
+                      ),
+                      AppSettingButtons(
+                        title: "Loan",
+                        subtitle: "Checkout your loan",
+                        icon: FaIcon(Icons.attach_money),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => LoanListScreen(),
+                            ),
+                          );
                         },
                       ),
                       AppSettingButtons(

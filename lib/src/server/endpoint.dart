@@ -29,6 +29,7 @@ class EndPoints {
   static const String bankPageWebView = "/payments/bank/";
   static const String payButtonLogic = "/payments/paybutton";
   static const String confirmLoan = "/payments/loan";
+  static const String loanList = "/payments/loanlist";
 
   static String webviewLink(String mobile) {
     return EndPoints.ipAddress +
