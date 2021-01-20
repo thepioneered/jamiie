@@ -49,6 +49,30 @@
   transform-origin: left;
 }
 
+// ------------
+// filled
+// ------------
+
+.filled {
+  background-color: $primary-green;
+  border: 2px solid $primary-green;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 700;
+  padding: 0.7em;
+  cursor: pointer;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+
+  transition: box-shadow 250ms ease, transform 250ms ease;
+}
+
+@media (min-width: 601px) {
+  .filled:hover {
+    box-shadow: 4px 10px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+  }
+}
+
 @media (max-width: 1024px) {
   .button {
     margin: auto;

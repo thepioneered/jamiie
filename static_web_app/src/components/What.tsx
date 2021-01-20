@@ -37,7 +37,7 @@ const What = () => {
           className={styles.order1}
         />
       </div>
-      <MyButton style={{ marginBottom: "3em" }} />
+      <MyButton style={{ marginBottom: "3em" }} filled />
 
       <ColoredHeadings style={{ margin: "0em 0 2em 0", padding: "0" }} />
     </div>

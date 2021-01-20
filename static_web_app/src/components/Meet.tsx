@@ -4,9 +4,9 @@ import MyButton from "../ui/MyButton";
 
 const Meet = () => {
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.heading}>Meet the “Achievers” Jamiie circle?</div>
-      <div className={styles.para1__container}>
+      <div className={styles.para1__container} style={{ marginBottom: "4em" }}>
         <img src="/images/Picture5.jpg" alt="Picture5" />
         <div className={styles.space__between}>
           <div>
@@ -17,10 +17,10 @@ const Meet = () => {
               that dream trip to college
             </p>
           </div>
-          <MyButton />
+          <MyButton filled style={{ margin: "auto 0 0 1em" }} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

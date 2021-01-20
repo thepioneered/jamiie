@@ -43,7 +43,7 @@ const How = () => {
         </table>
       </div>
 
-      <MyButton style={{ margin: "2em 0 3em 0" }} />
+      <MyButton style={{ margin: "2em 0 3em 0" }} filled />
       <ColoredHeadings style={{ margin: "0em 0 2em 0", padding: "0" }} />
     </div>
   );

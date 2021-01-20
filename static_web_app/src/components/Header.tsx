@@ -40,12 +40,12 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/team">
                 <a>Our team</a>
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/#">
                 <a>FAQs</a>
               </Link>
             </li>
@@ -77,12 +77,12 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link href="/team">
             <a>Our team</a>
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link href="/#">
             <a>FAQs</a>
           </Link>
         </li>

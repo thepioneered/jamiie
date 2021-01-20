@@ -26,8 +26,7 @@ const Why = () => {
         />
       </div>
 
-      <MyButton style={{ margin: "0 0 4em 0" }} />
-      <ColoredHeadings style={{ margin: "0 0 2em 0", padding: "0" }} />
+      <MyButton filled />
     </>
   );
 };

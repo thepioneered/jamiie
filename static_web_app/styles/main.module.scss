@@ -49,6 +49,11 @@
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
   img {
     height: 20em;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
   }
 }
 
@@ -151,6 +156,38 @@
 .img13 {
   max-width: 282px;
   max-height: 282px;
+  height: 20em;
+  width: 20em;
+
+  border-radius: 50%;
+}
+
+// ------------
+// team container
+// ------------
+
+.team__container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.team__outer__container {
+  display: flex;
+  gap: 3em;
+  flex-direction: column;
+}
+
+// ------------
+// little link
+// ------------
+
+.little__link {
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 2px solid $primary-green2;
+  }
 }
 
 // ------------
@@ -195,5 +232,11 @@
   .heading {
     text-align: center;
     align-self: center;
+  }
+  .team__container {
+    flex-direction: column;
+  }
+  .hide__on__mob {
+    display: none;
   }
 }

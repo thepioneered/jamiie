@@ -39,7 +39,7 @@ const OurStory = () => {
         />
       </div>
 
-      <MyButton style={{ margin: "0 0 3em 0" }} />
+      <MyButton style={{ margin: "0 0 3em 0" }} filled />
       <ColoredHeadings style={{ margin: "0 0 1em 0", padding: "0" }} />
     </div>
   );
