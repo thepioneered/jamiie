@@ -66,11 +66,14 @@ class LoanScreenProvider extends ChangeNotifier {
             backgroundColor: AppColors.green),
       );
       Navigator.pop(scaffoldKey.currentContext);
+      Future.delayed(Duration(milliseconds: 1000), () {
+        Navigator.pop(scaffoldKey.currentContext);
+      });
       // Navigator.pushAndRemoveUntil(
       //     scaffoldKey.currentContext,
       //     MaterialPageRoute(builder: (_) => JoinPoolDataPage(poolId: poolId)),
       //     (route) => false);
-      Navigator.pop(scaffoldKey.currentContext);
+      //Navigator.pop(scaffoldKey.currentContext);
     }
   }
 }

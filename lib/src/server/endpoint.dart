@@ -30,6 +30,7 @@ class EndPoints {
   static const String payButtonLogic = "/payments/paybutton";
   static const String confirmLoan = "/payments/loan";
   static const String loanList = "/payments/loanlist";
+  static const String repayloan = "/payments/repayloan";
 
   static String webviewLink(String mobile) {
     return EndPoints.ipAddress +

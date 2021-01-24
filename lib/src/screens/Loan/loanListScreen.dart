@@ -1,5 +1,5 @@
 import 'package:Jamiie/src/providers/Loan/loanListProvider.dart';
-import 'package:Jamiie/src/styles/base.dart';
+import 'package:Jamiie/src/screens/Loan/loanDataPage.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/appBar.dart';
@@ -37,47 +37,56 @@ class LoanListScreenWidget extends StatelessWidget {
                 );
               } else if (!snapshot.hasError &&
                   snapshot.connectionState == ConnectionState.done) {
-                return loanListScreenProvider.loanListModel.loanList.isEmpty
-                    ? Container(
-                        child: Center(
-                          child: Text('No Loans Found',
-                              style: AppTextStyle.joinPoolSubHeading),
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        child: Container(
-                          padding: BaseStyles.pagePadingDashboard,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              topHeading(title: "Your Loan"),
-                              SizedBox(
-                                height: 0.04.hp,
+                return Container(
+                  //padding: BaseStyles.pagePadingDashboard,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      topHeading(title: "Your Loan"),
+                      SizedBox(
+                        height: 0.04.hp,
+                      ),
+                      Container(
+                        height: 490.h,
+                        child: ListView.builder(
+                          itemBuilder: (context, index) {
+                            var data = loanListScreenProvider
+                                .loanListModel.loanList[index];
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15.w),
+                              child: ListTile(
+                                title: Text(data.poolId),
+                                subtitle: Text(data.createdAt),
+                                trailing: Text(data.amount.toString()),
+                                onTap: () {
+                                  Navigator.push(
+
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => LoanDataPage(
+                                                amount: data.amount,
+                                                createdAt: data.createdAt,
+                                                phone: data.phone,
+                                                poolId: data.poolId,
+                                                transactionId:
+                                                    data.transactionId,
+                                              ))
+                                              ).then((value) => loanListScreenProvider.notifyListeners());
+                                },
                               ),
-                              Container(
-                                height: 490.h,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    var data = loanListScreenProvider
-                                        .loanListModel.loanList[index];
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15.w),
-                                      child: ListTile(
-                                        title: Text(data.poolId),
-                                        subtitle: Text(data.createdAt),
-                                        trailing: Text(data.amount.toString()),
-                                      ),
-                                    );
-                                  },
-                                  itemCount: loanListScreenProvider
-                                      .loanListModel.loanList.length,
-                                ),
-                              ),
-                            ],
-                          ),
+                            );
+                          },
+                          itemCount: loanListScreenProvider
+                              .loanListModel.loanList.length,
                         ),
-                      );
+                      ),
+                    ],
+                  ),
+                );
+              } else if (snapshot.error == 404) {
+               return  Center(
+                  child: Text("No Loans",style: AppTextStyle.forgotPassword()),
+                );
               } else {
                 try {
                   return Center(
