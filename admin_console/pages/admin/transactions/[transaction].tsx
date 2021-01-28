@@ -19,7 +19,8 @@ function Transaction() {
     setLoading(true);
     const r = await postData<singleTransaction>({
       url: endpoints.SINGLE_TRANSACTION,
-      payload: { transactionId: transaction },
+      // @ts-ignore
+      payload: { transactionId: transaction.replace(/_/g, "/") },
     });
 
     if (r) {
@@ -43,7 +44,7 @@ function Transaction() {
             >
               <span className="material-icons">keyboard_backspace</span>
             </button>
-            <h2 className={styles.heading}>Transaction Id: {transaction}</h2>
+            <h2 className={styles.heading}>Transaction Details:</h2>
           </div>
           <div
             className={cn(styles.card, "hover", {

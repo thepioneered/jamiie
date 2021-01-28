@@ -13,6 +13,7 @@ interface Props {
 
 function TransactionTable({ data, pageChange }: Props) {
   const row = ({
+    id,
     transactionUrl,
     amount,
     paidTime,
@@ -20,14 +21,17 @@ function TransactionTable({ data, pageChange }: Props) {
     phone,
     lateTransactionStatus,
   }: Transaction) => {
+    const newTransactionUrl = transactionUrl.replace(/\//g, "_");
+    console.log(newTransactionUrl);
+
     return (
       <tr key={transactionUrl}>
         <td>
           <Link
             href="/admin/transactions/[transaction]"
-            as={`/admin/transactions/${transactionUrl}`}
+            as={`/admin/transactions/${newTransactionUrl}`}
           >
-            <a className={styles.page__link}>{transactionUrl}</a>
+            <a className={styles.page__link}>{id}</a>
           </Link>
         </td>
         <td>
