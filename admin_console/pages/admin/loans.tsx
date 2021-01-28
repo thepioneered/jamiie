@@ -200,7 +200,7 @@ function Loans() {
           >
             <div className={styles.heading}>
               <div className={styles.heading__title}>
-                Payed <span>Loans</span>
+                Paid <span>Loans</span>
               </div>
               <form
                 className={styles.searchbar}
