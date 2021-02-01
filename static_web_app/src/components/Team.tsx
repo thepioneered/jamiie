@@ -10,11 +10,7 @@ const Team = () => {
       <div className={styles.para1__container} style={{ marginTop: 0 }}>
         <div className={styles.team__outer__container}>
           <div className={styles.team__container}>
-            <img
-              src="/images/Picture13.png"
-              alt="Picture13"
-              className={styles.img13}
-            />
+            
             <p>
               Jaz is strategic solution provider with expertise in numerous
               domains. By qualification, finance and marketing professional. He
@@ -28,11 +24,7 @@ const Team = () => {
             </p>
           </div>
           <div className={styles.team__container}>
-            <img
-              src="/images/Picture13.png"
-              alt="Picture13"
-              className={styles.img13}
-            />
+            
             <p>
               Gaurav Goyal, is a deep learning enthusiast who loves to dig
               solutions for real-life problems. Based out of Patiala, Punjab, he
@@ -43,11 +35,7 @@ const Team = () => {
             </p>
           </div>
           <div className={styles.team__container}>
-            <img
-              src="/images/Picture13.png"
-              alt="Picture13"
-              className={styles.img13}
-            />
+            
             <p>
               Rohan Sharma, is an astute developer. Made his career in
               Smallcase, a fintech startup, he can design and develop logics
@@ -57,11 +45,7 @@ const Team = () => {
             </p>
           </div>
           <div className={styles.team__container}>
-            <img
-              src="/images/Picture13.png"
-              alt="Picture13"
-              className={styles.img13}
-            />
+            
             <p>
               Nitish Goyal, is a solution architect and technology geek. Made
               his career in VMware, he can architect and develop robust,
