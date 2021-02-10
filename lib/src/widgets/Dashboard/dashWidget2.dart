@@ -72,10 +72,10 @@ class DashWidget2 extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              transactionList[index].transactionStatus.toString(),
+                              transactionList[index].paidTime.substring(0,10).toString(),
                               style: AppTextStyle.dashCardHint,
                             ),
                             // Text(

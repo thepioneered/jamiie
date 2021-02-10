@@ -44,8 +44,8 @@ class LoanDataPage extends StatelessWidget {
                     poolId,
                     style: TextStyle(
                       fontFamily: 'poppins',
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 26.sp,
+                      fontWeight: FontWeight.w500,
                       color: AppColors.black,
                     ),
                   ),
@@ -54,11 +54,11 @@ class LoanDataPage extends StatelessWidget {
                   ),
                   Text('Amount:', style: AppTextStyle.subheadingText),
                   Text(
-                    amount.toString(),
+                   '\$' + amount.toString(),
                     style: TextStyle(
                       fontFamily: 'poppins',
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 26.sp,
+                      fontWeight: FontWeight.w500,
                       color: AppColors.black,
                     ),
                   ),
@@ -70,8 +70,8 @@ class LoanDataPage extends StatelessWidget {
                     phone,
                     style: TextStyle(
                       fontFamily: 'poppins',
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 26.sp,
+                      fontWeight: FontWeight.w500,
                       color: AppColors.black,
                     ),
                   ),
@@ -83,8 +83,8 @@ class LoanDataPage extends StatelessWidget {
                     createdAt.substring(0, 10),
                     style: TextStyle(
                       fontFamily: 'poppins',
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 26.sp,
+                      fontWeight: FontWeight.w500,
                       color: AppColors.black,
                     ),
                   ),

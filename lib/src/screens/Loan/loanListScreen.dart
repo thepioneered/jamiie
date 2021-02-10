@@ -53,11 +53,13 @@ class LoanListScreenWidget extends StatelessWidget {
                             var data = loanListScreenProvider
                                 .loanListModel.loanList[index];
                             return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: ListTile(
                                 title: Text(data.poolId),
-                                subtitle: Text(data.createdAt),
-                                trailing: Text(data.amount.toString()),
+                                subtitle: Text(data.createdAt.substring(0,10)),
+                                trailing: Text(data.amount.toString(),style: TextStyle(
+                                  color: Colors.green
+                                ),),
                                 onTap: () {
                                   Navigator.push(
 
