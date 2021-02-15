@@ -1,0 +1,115 @@
+@import "../variables.module.scss";
+
+// ------------
+// input container
+// ------------
+
+.container {
+  position: relative;
+
+  transition: margin-top 250ms ease;
+}
+
+.input {
+  border: none;
+  background-color: #f6f6f6;
+  padding: 0.7em;
+  border-radius: 0.2rem;
+  width: 100%;
+
+  font-size: inherit;
+}
+
+.input::placeholder {
+  font-size: 0.9em;
+}
+
+// ------------
+// phone
+// ------------
+
+.phone__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.phone {
+  position: absolute;
+  left: 1px;
+  height: 97%;
+  background-color: $input-background;
+  color: white;
+  padding: 0.7em 0.5em;
+  padding-top: 0.8em;
+  border-radius: 0.2rem 0 0 0.2rem;
+  font-size: 0.9em;
+}
+
+.input__phone {
+  padding-left: 3em;
+}
+
+// ------------
+// login label
+// ------------
+
+.label {
+  color: $primary-gray-6;
+  font-size: 1em;
+  margin-left: 0.5em;
+}
+
+.label__wrong {
+  color: $primary-red;
+}
+
+// ------------
+// wrong input
+// ------------
+.input__wrong {
+  border: 0.4px solid $primary-red;
+}
+
+// ------------
+// wrong
+// ------------
+
+.wrong {
+  margin-top: 2px;
+  color: $primary-red;
+  display: none;
+  transition: opacity 250ms ease;
+}
+.wrong__show {
+  display: block;
+}
+
+// ------------
+// password input
+// ------------
+
+.password__input {
+  position: relative;
+  width: 100%;
+}
+
+// ------------
+// show password
+// ------------
+
+.show__password {
+  color: $primary-green;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  cursor: pointer;
+}
+
+// ------------
+// read only
+// ------------
+
+.read__only__input {
+  background-color: $cover-background;
+}
