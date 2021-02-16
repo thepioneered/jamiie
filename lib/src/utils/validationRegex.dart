@@ -1,4 +1,7 @@
 class AppRegularExpression {
+  static RegExp passwordRegExp =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+
   static RegExp nameRegExp = RegExp('[a-zA-Z]');
   static RegExp memberRegExp = RegExp('[0-9]');
   static RegExp searchPoolRegExp = RegExp('[a-zA-Z0-9]');
@@ -26,13 +29,14 @@ class TextFieldValidation {
       return null;
     }
   }
+
   static String completeProfileNameValidation(String data) {
     if (data == "null") {
       return "Please Enter Name";
     } else if (data.trim() == null) {
       return "Please Enter Name";
-    // } else if (data.contains(" ")) {
-    //   return "Blank spaces not allowed";
+      // } else if (data.contains(" ")) {
+      //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter Name";
     } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
@@ -143,6 +147,10 @@ class TextFieldValidation {
   }
 
   static String passwordValidation(String data) {
+    // String pattern =
+    //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    // RegExp regExp = new RegExp(pattern);
+
     if (data == "null") {
       return "Please Enter Password";
     } else if (data.trim() == null) {
@@ -151,6 +159,8 @@ class TextFieldValidation {
       return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter Password";
+    } else if (!AppRegularExpression.passwordRegExp.hasMatch(data.toString())) {
+      return "Please enter a strong password";
     } else {
       return null;
     }
@@ -178,8 +188,8 @@ class TextFieldValidation {
       return "Please Enter your $title";
     } else if (data.trim() == null) {
       return "Please Enter your $title";
-    // } else if (data.contains(" ")) {
-    //   return "Blank spaces not allowed";
+      // } else if (data.contains(" ")) {
+      //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter your $title";
     } else {

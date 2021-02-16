@@ -69,7 +69,9 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           topHeading(title: "Joined Pools"),
-                          SizedBox(height: 0.04.hp,),
+                          SizedBox(
+                            height: 0.04.hp,
+                          ),
 
                           // Text(
                           //   'Joined Pools',
@@ -79,38 +81,38 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                           //       fontWeight: FontWeight.bold),
                           // ),
                           Container(
-                            height: 545.h,
-                            child: ListView.builder(
-                              itemBuilder: (context, index) {
-                                var data = joinPoolProvider.joinPoolListModel
-                                    .joinPoolListDataModel[index];
-                                return Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.w),
-                                  child: JoinPoolListWidget(
-                                    //TODO:Ye change krna hai dono ko
-                                    // status:
-                                    //     data.joinedPoolListDataSubModel.status,
-                                    status: true,
-                                    amountSaved: 0000,
-                                    monthlyTotalAmount: 0000,
-                                    poolAmount: data.joinedPoolListDataSubModel
-                                        .contributionAmount,
-                                    poolName: data
-                                        .joinedPoolListDataSubModel.poolName,
-                                    poolType: data
-                                        .joinedPoolListDataSubModel.poolType,
-                                    nextScreen: JoinPoolDataPage(
-                                      poolId: data
-                                          .joinedPoolListDataSubModel.poolId,
+                              height: 545.h,
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  var data = joinPoolProvider.joinPoolListModel
+                                      .joinPoolListDataModel[index];
+                                  return Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.w),
+                                    child: JoinPoolListWidget(
+                                      //TODO:Ye change krna hai dono ko\
+                                      status: true,
+                                      amountSaved: 0000,
+                                      monthlyTotalAmount: 0000,
+                                      poolAmount: data
+                                          .joinedPoolListDataSubModel
+                                          .contributionAmount,
+                                      poolName: data
+                                          .joinedPoolListDataSubModel.poolName,
+                                      poolType: data
+                                          .joinedPoolListDataSubModel.poolType,
+                                      nextScreen: JoinPoolDataPage(
+                                        poolId: data
+                                            .joinedPoolListDataSubModel.poolId,
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              itemCount: joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel.length,
+                                  );
+                                },
+                                itemCount: joinPoolProvider.joinPoolListModel
+                                    .joinPoolListDataModel.length,
+                              ),
                             ),
-                          ),
+                          
                         ],
                       ),
                     ),

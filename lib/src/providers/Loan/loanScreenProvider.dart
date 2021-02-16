@@ -1,12 +1,11 @@
-import 'package:Jamiie/src/models/Loan/confirmLoanModel.dart';
-import 'package:Jamiie/src/models/poolId.dart';
-import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:Jamiie/src/utils/snackBar.dart';
-import 'package:Jamiie/src/widgets/loaderDialog.dart';
+import '../../models/Loan/confirmLoanModel.dart';
+import '../../models/poolId.dart';
+import '../../server/endpoint.dart';
+import '../../server/networkCalls.dart';
+import '../../styles/colors.dart';
+import '../../utils/sharedPref.dart';
+import '../../utils/snackBar.dart';
+import '../../widgets/loaderDialog.dart';
 import '../../models/Loan/loanModel.dart';
 import 'package:flutter/material.dart';
 
@@ -66,11 +65,13 @@ class LoanScreenProvider extends ChangeNotifier {
             backgroundColor: AppColors.green),
       );
       Navigator.pop(scaffoldKey.currentContext);
-      // Navigator.pushAndRemoveUntil(
-      //     scaffoldKey.currentContext,
-      //     MaterialPageRoute(builder: (_) => JoinPoolDataPage(poolId: poolId)),
-      //     (route) => false);
-      Navigator.pop(scaffoldKey.currentContext);
+      Future.delayed(
+        Duration(milliseconds: 800),
+        () {
+          Navigator.pop(scaffoldKey.currentContext);
+          Navigator.pop(scaffoldKey.currentContext);
+        },
+      );
     }
   }
 }
