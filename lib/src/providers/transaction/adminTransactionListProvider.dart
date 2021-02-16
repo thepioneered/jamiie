@@ -30,17 +30,17 @@ class AdminTransationListProvider extends ChangeNotifier {
       print('---------------1111111111----------------------');
 
       adminPaidUserListModel = AdminPaidUserListModel.fromJson(data["body"]);
-      print(data);
+      print(adminPaidUserListModel.adminpaidUserList[0].poolId);
     } else {
       return Future.error("Error Occured");
     }
-    if (data2["status"]) {
-      print('---------------222222222----------------------');
-      print(data2);
-      adminNotPaidUserListModel =
-          AdminNotPaidUserListModel.fromJson(data2["body"]);
-    } else {
-      return Future.error("Error Occured");
-    }
+    // if (data2["status"]) {
+    //   print('---------------222222222----------------------');
+    //   print(data2);
+    //   adminNotPaidUserListModel =
+    //       AdminNotPaidUserListModel.fromJson(data2["body"]);
+    // } else {
+    //   return Future.error("Error Occured");
+    // }
   }
 }

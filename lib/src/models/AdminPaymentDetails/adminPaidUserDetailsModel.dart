@@ -6,7 +6,8 @@ class AdminPaidUserListModel {
     List<AdminPaidUserModel> _adminpaidUserList = List<AdminPaidUserModel>();
 
     List<dynamic> list = json["response"];
-    _adminpaidUserList = list.map((e) => AdminPaidUserModel.fromJson(e)).toList();
+    _adminpaidUserList =
+        list.map((e) => AdminPaidUserModel.fromJson(e)).toList();
     return AdminPaidUserListModel(
       adminpaidUserList: _adminpaidUserList,
     );
@@ -23,18 +24,19 @@ class AdminPaidUserModel {
   String payDate;
   String poolId;
   String phone;
+  bool loanPayment;
 
-  AdminPaidUserModel({
-    this.id,
-    this.amount,
-    this.lateTransactionStatus,
-    this.paidTime,
-    this.payDate,
-    this.phone,
-    this.poolId,
-    this.transactionUrl,
-    this.transationStatus,
-  });
+  AdminPaidUserModel(
+      {this.id,
+      this.amount,
+      this.lateTransactionStatus,
+      this.paidTime,
+      this.payDate,
+      this.phone,
+      this.poolId,
+      this.transactionUrl,
+      this.transationStatus,
+      this.loanPayment});
 
   AdminPaidUserModel.fromJson(Map<String, dynamic> data)
       : id = data["id"],
@@ -45,5 +47,6 @@ class AdminPaidUserModel {
         phone = data["phone"],
         poolId = data["poolId"],
         transactionUrl = data["transactionUrl"],
-        transationStatus = data["transactionStatus"];
+        transationStatus = data["transactionStatus"],
+        loanPayment = data["loanPayment"];
 }
