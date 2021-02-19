@@ -103,12 +103,12 @@ class _AdminPoolWidgetState extends State<AdminPoolWidget> {
                             child: JoinPoolListWidget(
                               poolName: data[index].poolName,
                               poolAmount: data[index].contributionAmount,
-                              amountSaved: 100,
+                              amountSaved: data[index].contributionAmount,
                               status: true,
                               poolType: data[index].poolType,
                               nextScreen: CompletePoolDataPage(
                                   poolId: data[index].poolId),
-                              monthlyTotalAmount: 100,
+                              monthlyTotalAmount: data[index].contributionAmount,
                             ),
                           );
                         },

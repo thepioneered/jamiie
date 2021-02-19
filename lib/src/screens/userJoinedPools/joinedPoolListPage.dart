@@ -95,8 +95,11 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                     // status:
                                     //     data.joinedPoolListDataSubModel.status,
                                     status: true,
-                                    amountSaved: 0000,
-                                    monthlyTotalAmount: 0000,
+                                    amountSaved: data.joinedPoolListDataSubModel
+                                        .contributionAmount,
+                                    monthlyTotalAmount: data
+                                        .joinedPoolListDataSubModel
+                                        .contributionAmount,
                                     poolAmount: data.joinedPoolListDataSubModel
                                         .contributionAmount,
                                     poolName: data
