@@ -127,22 +127,25 @@ class _LoginPageState extends State<LoginPage> {
                           height: 15.0.h,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SocialMediaButton(
                               buttonType: SocialType.Google,
                               // onTap: _handleSignIn,
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             SocialMediaButton(
                               buttonType: SocialType.Facebook,
                               onTap: () {},
                             ),
-                            SocialMediaButton(
-                              buttonType: SocialType.Twitter,
-                            ),
-                            SocialMediaButton(
-                              buttonType: SocialType.Linkdin,
-                            ),
+                            // SocialMediaButton(
+                            //   buttonType: SocialType.Twitter,
+                            // ),
+                            // SocialMediaButton(
+                            //   buttonType: SocialType.Linkdin,
+                            // ),
                           ],
                         ),
                       ],

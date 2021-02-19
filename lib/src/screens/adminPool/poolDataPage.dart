@@ -124,13 +124,25 @@ class PoolDataPageWidget extends StatelessWidget {
                                             .memberDetails.imageURL,
                                         placeholder: (context, url) =>
                                             CupertinoActivityIndicator(),
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      )),
+                                                ),
                                         errorWidget: (context, url, error) {
                                           return Icon(Icons.error);
                                         }),
                                   ),
                                   // CircleAvatar(
-                                  //   backgroundImage: NetworkImage(data
-                                  //       .members[index].memberDetails.imageURL),
+                                  //   backgroundImage: NetworkImage(
+                                  //     data.members[index].memberDetails
+                                  //         .imageURL,
+                                  //   ),
                                   // ),
                                   SizedBox(
                                     width: 17.5,

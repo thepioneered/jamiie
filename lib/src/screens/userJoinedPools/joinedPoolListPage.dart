@@ -64,12 +64,15 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                   )
                 : SingleChildScrollView(
                     child: Container(
+                      color: AppColors.backgroundColor,
                       padding: BaseStyles.pagePadingDashboard,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           topHeading(title: "Joined Pools"),
-                          SizedBox(height: 0.04.hp,),
+                          SizedBox(
+                            height: 0.04.hp,
+                          ),
 
                           // Text(
                           //   'Joined Pools',

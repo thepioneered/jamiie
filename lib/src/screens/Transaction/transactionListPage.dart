@@ -95,7 +95,7 @@ class TransactionListWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  data.amount,
+                                                  "\$" + data.amount,
                                                   style: AppTextStyle
                                                       .dashTransAmount(
                                                     color: Colors.green,
@@ -106,15 +106,15 @@ class TransactionListWidget extends StatelessWidget {
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
-                                                      .spaceBetween,
+                                                      .end,
                                               children: [
+                                                // Text(
+                                                //   data.payDate.toString(),
+                                                //   style:
+                                                //       AppTextStyle.dashCardHint,
+                                                // ),
                                                 Text(
-                                                  data.payDate.toString(),
-                                                  style:
-                                                      AppTextStyle.dashCardHint,
-                                                ),
-                                                Text(
-                                                  data.paidTime.toString(),
+                                                  data.paidTime.toString().substring(0,10),
                                                   style:
                                                       AppTextStyle.dashCardHint,
                                                 ),
@@ -231,9 +231,12 @@ class TransactionListWidget extends StatelessWidget {
                   );
                 } catch (e) {
                   return Center(
-                    child: Text(
-                      "Error occured in transaction page list page in catch block of else. Error is $e",
+                    child: Container(
+                    child: Center(
+                      child: Text('No Transaction ',
+                          style: AppTextStyle.joinPoolSubHeading),
                     ),
+                  )
                   );
                 }
               }

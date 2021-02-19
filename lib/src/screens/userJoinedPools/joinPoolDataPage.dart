@@ -122,6 +122,16 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                                     child: CachedNetworkImage(
                                         imageUrl: data.members[index]
                                             .memberDetails.imageURL,
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      )),
+                                                ),
                                         placeholder: (context, url) =>
                                             CupertinoActivityIndicator(),
                                         errorWidget: (context, url, error) {
