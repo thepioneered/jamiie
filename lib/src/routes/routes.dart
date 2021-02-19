@@ -75,8 +75,8 @@ class AppRoutes {
           builder: (context) => MobilePage(),
         );
       case "/OtpPage":
-        return MaterialPageRoute(
-          builder: (context) => OtpPage(),
+        return MaterialPageRoute( 
+          builder: (context) => OtpPage(), 
         );
       case "/ForgotPasswordPage":
         return MaterialPageRoute(

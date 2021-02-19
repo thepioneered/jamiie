@@ -1,5 +1,4 @@
-// import 'package:auto_size_text/auto_size_text.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:Jamiie/src/providers/auth/socialLogin/socialLogin.dart';
 import 'package:flutter/material.dart';
 import '../../../styles/text.dart';
 import 'package:provider/provider.dart';
@@ -11,42 +10,37 @@ import '../../../styles/base.dart';
 import '../socialMediaButton.dart';
 import '../../../styles/colors.dart';
 
-// class LoginPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ChangeNotifierProvider(
-//       create: (context) => LoginProvider(),
-//       child: LoginPageWidget(),
-//     );
-//   }
-// }
-
 class LoginPage extends StatefulWidget {
-//   @override
-//   _LoginPageState createState() => _LoginPageState();
-// }
-
-// class _LoginPageState extends State<LoginPage> {
-//   GoogleSignIn _googleSignIn = GoogleSignIn(
-//     scopes: [
-//       'email',
-//       'https://www.googleapis.com/auth/contacts.readonly',
-//     ],
-//   );
-
-//   Future<void> _handleSignIn() async {
-//     try {
-//       await _googleSignIn.signIn();
-//     } catch (error) {
-//       print(error);
-//     }
-//   }
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  // Future<String> signInWithGoogle() async {
+  //   final GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+  //   final GoogleSignInAuthentication googleSignInAuthentication =
+  //       await googleSignInAccount.authentication;
+
+  //   final AuthCredential credential = GoogleAuthProvider.credential(
+  //     accessToken: googleSignInAuthentication.accessToken,
+  //     idToken: googleSignInAuthentication.idToken,
+  //   );
+
+  //   final authResult = await _auth.signInWithCredential(credential);
+  //   final User user = authResult.user;
+
+  //   assert(!user.isAnonymous);
+  //   assert(await user.getIdToken() != null);
+
+  //   final currentUser = _auth.currentUser;
+  //   assert(user.uid == currentUser.uid);
+
+  //   return 'signInWithGoogle succeeded: $user';
+  // }
+
   @override
   void dispose() {
     super.dispose();
@@ -55,8 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    // double height = MediaQuery.of(context).size.height;
-    // print(height * 0.3);
+    
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
       key: a.loginScaffoldKey,
@@ -126,25 +119,28 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 15.0.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            SocialMediaButton(
-                              buttonType: SocialType.Google,
-                              // onTap: _handleSignIn,
-                            ),
-                            SocialMediaButton(
-                              buttonType: SocialType.Facebook,
-                              onTap: () {},
-                            ),
-                            SocialMediaButton(
-                              buttonType: SocialType.Twitter,
-                            ),
-                            SocialMediaButton(
-                              buttonType: SocialType.Linkdin,
-                            ),
-                          ],
-                        ),
+                       Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              SocialMediaButton(
+                                buttonType: SocialType.Google,
+                                onTap: () {
+                                 a.googleSignUp();
+                                      
+                                },
+                              ),
+                              SocialMediaButton(
+                                buttonType: SocialType.Facebook,
+                                onTap: () {},
+                              ),
+                              SocialMediaButton(
+                                buttonType: SocialType.Twitter,
+                              ),
+                              SocialMediaButton(
+                                buttonType: SocialType.Linkdin,
+                              ),
+                            ],
+                          ),
                       ],
                     ),
                   ),
@@ -158,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                       Text(
+                        Text(
                           "Don't have an account?",
                           // maxFontSize: 16.0,
                           // minFontSize: 12.0,

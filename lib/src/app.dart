@@ -1,4 +1,4 @@
-
+import 'package:Jamiie/src/providers/auth/socialLogin/socialLogin.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,6 +67,9 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SocialLoginProvider(),
+        )
       ],
       child: MaterialApp(
         title: "Jamiie",

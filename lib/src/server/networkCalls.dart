@@ -44,7 +44,7 @@ class NetworkCalls {
 
   static Map<String, dynamic> serverError(
       String e, GlobalKey<ScaffoldState> key, bool pop) {
-    print("Error in file Network Calls catch $e");
+    print("Error in file Network Calls catch ${e.toString()}");
     if (pop) {
       Navigator.pop(key.currentContext);
     }
@@ -167,7 +167,7 @@ class NetworkCalls {
           );
           return {"status": false};
         }
-      } catch (e) {
+      } catch (e ) {
         return serverError(e, key, shouldPagePop);
       }
     } else {

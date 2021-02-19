@@ -12,3 +12,11 @@ class Login {
   Map<String, dynamic> toJson() =>
       {"phone": mobile, "password": "$password", "mobileId": mobileToken};
 }
+
+class SocialLogin {
+  String mobileToken;
+  String email;
+  SocialLogin({this.mobileToken,this.email});
+
+  Map<String, dynamic> toJson() => {"email":email,"mobileId": mobileToken};
+}
