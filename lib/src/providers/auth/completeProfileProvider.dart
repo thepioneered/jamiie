@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:Jamiie/src/widgets/settings/logoutDialog.dart';
+
 import '../../models/auth/completeProfileModel.dart';
 import '../../models/base/pageModel.dart';
 import '../../server/endpoint.dart';
@@ -39,6 +41,47 @@ class CompleteProfileProvider extends ChangeNotifier {
     }
   }
 
+  Future<bool> handleLogout() {
+    appLogoutDialog(
+      completeProfileScaffoldKey.currentContext,
+      () async {
+        Navigator.pop(completeProfileScaffoldKey.currentContext);
+        try {
+          LoaderDialog.loaderDialog(completeProfileScaffoldKey.currentContext);
+        } catch (e) {
+          print("Error At Logout Provider in Loader Dialog!");
+          throw Exception(e);
+        }
+        print(await LocalStorage.getMobile());
+        print(await LocalStorage.getToken());
+        print(EndPoints.ipAddress + EndPoints.userlogout);
+        Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+          shouldPagePop: true,
+          key: completeProfileScaffoldKey,
+          endPoint: EndPoints.userlogout,
+          authRequest: true,
+          afterRequest: () {},
+          body: {
+            "phone": await LocalStorage.getMobile(),
+          },
+        );
+
+        if (body["status"]) {
+          await LocalStorage.deleteData();
+          Navigator.pop(completeProfileScaffoldKey.currentContext);
+          Navigator.pushNamedAndRemoveUntil(
+            completeProfileScaffoldKey.currentContext,
+            "/LoginPage",
+            (route) => false,
+          );
+          return false;
+        } else {
+          return false;
+        }
+      },
+    );
+  }
+
   Future<void> selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -69,7 +112,7 @@ class CompleteProfileProvider extends ChangeNotifier {
       // print(completeProfileModel.toJson(await LocalStorage.getToken()));
 
       Map<String, dynamic> body = await NetworkCalls.multiPartRequest(
-        shouldPagePop: true,
+          shouldPagePop: true,
           key: completeProfileScaffoldKey,
           endPoint: EndPoints.completeProfile,
           body: completeProfileModel.toJson(await LocalStorage.getMobile()),
@@ -120,7 +163,4 @@ class ImageProviderCompleteProfile extends ChangeNotifier {
       print("Error in image");
     }
   }
-
-  
-
 }

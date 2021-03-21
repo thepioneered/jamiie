@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
 class DashboardPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
- return Consumer<DashboardProvider>(
+    return Consumer<DashboardProvider>(
       builder: (_, dashboardProvider, child) {
         return Scaffold(
           key: dashboardProvider.dashboardScaffoldKey,
@@ -69,16 +69,26 @@ class DashboardPageWidget extends StatelessWidget {
                                 width: 50.w,
                                 height: 50.w,
                                 decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
                                 child: CachedNetworkImage(
                                     imageUrl: data.imgUrl,
                                     placeholder: (context, url) =>
                                         CupertinoActivityIndicator(),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
                                     errorWidget: (context, url, error) {
                                       return Icon(Icons.error);
                                     }),
                               ),
+
                               // )
                             ],
                           ),

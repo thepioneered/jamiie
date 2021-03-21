@@ -1,5 +1,8 @@
+import 'package:Jamiie/src/models/auth/login.dart';
+import 'package:Jamiie/src/models/auth/loginResponse.dart';
 import 'package:Jamiie/src/providers/auth/login/socialLoginProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../../models/auth/otpModel.dart';
 import '../../../repositry/textConst.dart';
@@ -16,13 +19,18 @@ import '../../../styles/colors.dart';
 class OtpProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> otpScaffoldKey = GlobalKey<ScaffoldState>();
   OtpModel otpModel;
-
+  final _firebaseMessanging = FirebaseMessaging();
+  SocialLogin socialLogin;
   OtpProvider() {
     otpModel = OtpModel();
   }
   Widget verifyOTP({@required Function onTap}) {
     return AppButton.loginButton(
         onTap: onTap, title: SignUpFlowText.otpPageButton);
+  }
+
+  Future<String> token(FirebaseMessaging _firebaseMessanging) async {
+    return await _firebaseMessanging.getToken();
   }
 
   void checkOtp() async {
@@ -47,6 +55,7 @@ class OtpProvider extends ChangeNotifier {
 
       if (body["status"]) {
         if (await LocalStorage.getSocialLogin() == true) {
+          socialLogin = SocialLogin();
           // final FirebaseAuth _auth = FirebaseAuth.instance;
           // var googleAuth;
           // final AuthCredential credential = GoogleAuthProvider.credential(
@@ -60,6 +69,8 @@ class OtpProvider extends ChangeNotifier {
               await LocalStorage.getMobile(),
               await LocalStorage.getSocialLoginEmail(),
               await LocalStorage.getSocialLoginName()));
+          //TODO:Check here
+
           Map<String, dynamic> body = await NetworkCalls.postDataToServer(
             shouldPagePop: true,
             key: otpScaffoldKey,
@@ -70,15 +81,25 @@ class OtpProvider extends ChangeNotifier {
                 await LocalStorage.getSocialLoginEmail(),
                 await LocalStorage.getSocialLoginName()),
           );
+          socialLogin.email = await LocalStorage.getSocialLoginEmail();
+          String mobileToken = await token(_firebaseMessanging);
+          socialLogin.mobileToken = mobileToken;
           String emailTemp = await LocalStorage.getSocialLoginEmail();
-          Map<String, dynamic> data = await NetworkCalls.postDataToServer(
+          Map<String, dynamic> data1 = await NetworkCalls.postDataToServer(
               key: otpScaffoldKey,
               endPoint: EndPoints.socialLogin,
               afterRequest: () {},
               shouldPagePop: false,
-              body: {"email": emailTemp});
-          if (data["status"]) {
-            if (data["body"]["firstLogin"]) {
+              body: socialLogin.toJson());
+               final socialLoginResponse = SocialLoginResponse.fromJson(data1["body"]);
+        await LocalStorage.setTokenMobileFirstLogin(
+          socialLoginResponse.token,
+          socialLoginResponse.mobile,
+          socialLoginResponse.profileCompleted,
+          socialLoginResponse.riskCalculated,
+        );
+          if (data1["status"]) {
+            if (data1["body"]["firstLogin"]) {
               Navigator.pushReplacementNamed(
                   otpScaffoldKey.currentContext, "/CompleteProfilePage");
             }

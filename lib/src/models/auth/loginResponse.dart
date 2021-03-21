@@ -2,6 +2,7 @@ class LoginResponse {
   bool profileCompleted;
   bool riskCalculated;
   String token;
+  // bool bankAdded
 
   LoginResponse.fromJson(Map<String, dynamic> json)
       : profileCompleted = json["completeProfile"],

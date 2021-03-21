@@ -28,6 +28,7 @@ class CompletePoolDataProvider with ChangeNotifier {
     Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
         shouldPagePop: false,
         key: completePoolDataScaffoldKey,
+        showSnackBar: false,
         endPoint: EndPoints.completePoolData + poolId,
         authRequest: true);
     print(data);

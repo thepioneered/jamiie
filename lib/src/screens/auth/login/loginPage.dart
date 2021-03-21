@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
-    
+
     var a = Provider.of<LoginProvider>(context);
     return Scaffold(
       key: a.loginScaffoldKey,
@@ -119,28 +119,27 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 15.0.h,
                         ),
-                       Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              SocialMediaButton(
-                                buttonType: SocialType.Google,
-                                onTap: () {
-                                 a.googleSignUp();
-                                      
-                                },
-                              ),
-                              SocialMediaButton(
-                                buttonType: SocialType.Facebook,
-                                onTap: () {},
-                              ),
-                              SocialMediaButton(
-                                buttonType: SocialType.Twitter,
-                              ),
-                              SocialMediaButton(
-                                buttonType: SocialType.Linkdin,
-                              ),
-                            ],
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            SocialMediaButton(
+                              buttonType: SocialType.Google,
+                              onTap: () {
+                                a.googleSignUp();
+                              },
+                            ),
+                            SocialMediaButton(
+                              buttonType: SocialType.Facebook,
+                              onTap: () {},
+                            ),
+                            // SocialMediaButton(
+                            //   buttonType: SocialType.Twitter,
+                            // ),
+                            // SocialMediaButton(
+                            //   buttonType: SocialType.Linkdin,
+                            // ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

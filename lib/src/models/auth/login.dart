@@ -6,7 +6,8 @@ class Login {
 
   void setMobile(String _mobile) {
     //TODO: +91 edit is required here
-    mobile = '+91$_mobile';
+    //TODO: +1 edit is required here
+    mobile = '+1$_mobile';
   }
 
   Map<String, dynamic> toJson() =>
@@ -16,7 +17,7 @@ class Login {
 class SocialLogin {
   String mobileToken;
   String email;
-  SocialLogin({this.mobileToken,this.email});
+  SocialLogin({this.mobileToken, this.email});
 
-  Map<String, dynamic> toJson() => {"email":email,"mobileId": mobileToken};
+  Map<String, dynamic> toJson() => {"email": email, "mobileId": mobileToken};
 }

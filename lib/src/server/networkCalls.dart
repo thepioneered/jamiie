@@ -87,7 +87,7 @@ class NetworkCalls {
       if (pop) {
         Navigator.pop(key.currentContext);
       }
-      if (showSnackBar)
+      if (showSnackBar) {
         StatusCodeCheck.checkStatusCode(
           request.statusCode,
           key,
@@ -95,9 +95,14 @@ class NetworkCalls {
               ? "Error in ${request.statusCode}"
               : q["response"],
         );
-      return q["response"] == null
-          ? {"status": false}
-          : {"status": false, "response": q["response"]};
+        return q["response"] == null
+            ? {"status": false}
+            : {"status": false, "response": q["response"]};
+      } else {
+        return q["response"] == null
+            ? {"status": false}
+            : {"status": false, "response": q["response"]};
+      }
     }
   }
 
@@ -167,7 +172,7 @@ class NetworkCalls {
           );
           return {"status": false};
         }
-      } catch (e ) {
+      } catch (e) {
         return serverError(e, key, shouldPagePop);
       }
     } else {
