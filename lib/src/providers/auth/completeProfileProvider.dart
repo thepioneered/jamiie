@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as justPath;
 import 'package:path_provider/path_provider.dart' as path;
+import 'package:intl/intl.dart';
 
 class CompleteProfileProvider extends ChangeNotifier {
   final completeProfileScaffoldKey = GlobalKey<ScaffoldState>();
@@ -22,6 +23,8 @@ class CompleteProfileProvider extends ChangeNotifier {
   DateTime selectedDate;
   TextEditingController date = TextEditingController();
   PageModel pageModel;
+  final DateFormat formatter = DateFormat('MM-dd-yyyy');
+
 
   CompleteProfileProvider() {
     selectedDate = DateTime.now();
@@ -92,7 +95,7 @@ class CompleteProfileProvider extends ChangeNotifier {
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       date.value =
-          TextEditingValue(text: selectedDate.toString().substring(0, 10));
+          TextEditingValue(text: formatter.format(selectedDate));
     }
   }
 
