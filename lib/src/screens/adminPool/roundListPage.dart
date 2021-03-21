@@ -1,9 +1,9 @@
-import 'package:Jamiie/src/providers/adminPool/chooseRoundProvider.dart';
-import 'package:Jamiie/src/styles/text.dart';
+import '../../providers/adminPool/chooseRoundProvider.dart';
+import '../../styles/text.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/adminPoolModel/completePoolDataModel.dart';
-import '../../widgets/pageHeading.dart';
+
 
 import '../../widgets/appBar.dart';
 import '../../widgets/button/appButton.dart';

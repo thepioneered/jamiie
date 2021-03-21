@@ -1,5 +1,6 @@
 import 'package:Jamiie/src/screens/adminPool/adminTransactionListPage.dart';
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
+import 'package:Jamiie/src/screens/payButtonWidget.dart';
 import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,14 +56,6 @@ class PoolDataPageWidget extends StatelessWidget {
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Container(
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //           '${data.joinedMember.toString()} / ${data.totalMember.toString()}'),
-                    //     ],
-                    //   ),
-                    // ),
                     Container(
                       height: height * 0.35,
                       child: Row(
@@ -218,106 +211,38 @@ class PoolDataPageWidget extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 10.h),
-                              Container(
-                                height: height * 0.07,
-                                child: AppButton.loginButton(
-                                  //TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
-                                  onTap:
-                                      // data.totalMember != data.joinedMember
-                                      // ?
-                                      completePoolDataProvider.payButton
-                                          ?
+                              // Container(
+                              //   height: height * 0.07,
+                              //   child: PayButtonWithCheck(
+                              //       poolId: data.poolId,
+                              //       poolName: data.poolName),
+                              // )
+                              //  AppButton.loginButton(
+                              //TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
+                              // onTap:
 
-                                          //TODO: Please check here
-                                          () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      TransactionPage(
-                                                    poolId: data.poolId,
-                                                    poolName: data.poolName,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                          : null,
-                                  // },
-                                  // : () {
-                                  //TODO: Edit is required here
-                                  //   Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (_) => TransactionPage(
-                                  //         poolId: data.poolId,
-                                  //         poolName: data.poolName,
-                                  //       ),
-                                  //     ),
-                                  //   );
-                                  // },
-                                  title: "Pay",
-                                ),
-                              ),
+                              // completePoolDataProvider.payButton
+                              // ?
+                              //TODO: Please check here
+                              // () {
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (_) =>
+                              //         TransactionPage(
+                              //       poolId: data.poolId,
+                              //       poolName: data.poolName,
+                              //     ),
+                              //   ),
+                              // );
+                              // }
+                              // : null,
+
+                              // title: "Pay",
+                              // ),
+                              // ),
                             ],
                           ),
-                    // Container(
-                    //   height: height * 0.07,
-                    //   child: AppButton.loginButton(
-                    //     onTap: data.totalMember != data.joinedMember
-                    //         ? () {
-                    //             print("Working");
-                    //           }
-                    //         : () {
-                    //             print(poolId);
-                    //             //TODO: Edit is required here
-                    //             Navigator.push(
-                    //               context,
-                    //               MaterialPageRoute(
-                    //                 builder: (_) => ChooseRoundPage(
-                    //                   memberModel: data.members,
-                    //                   poolId: poolId,
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           },
-                    //     title: "Start Pool",
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: 15,
-                    // ),
-                    // Container(
-                    //   height: height * 0.07,
-                    //   child: AppButton.loginButton(
-                    //     onTap: data.totalMember != data.joinedMember
-                    //         ? () {
-                    //             //TODO: Please check here
-                    //             print("Working");
-                    //             Navigator.push(
-                    //               context,
-                    //               MaterialPageRoute(
-                    //                 builder: (_) => TransactionPage(
-                    //                   poolId: data.poolId,
-                    //                   poolName: data.poolName,
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           }
-                    //         : () {
-                    //             //TODO: Edit is required here
-                    //             Navigator.push(
-                    //               context,
-                    //               MaterialPageRoute(
-                    //                 builder: (_) => TransactionPage(
-                    //                   poolId: data.poolId,
-                    //                   poolName: data.poolName,
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           },
-                    //     title: "Pay",
-                    //   ),
-                    // ),
                   ],
                 ),
               );

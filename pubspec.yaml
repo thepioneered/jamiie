@@ -27,10 +27,13 @@ dependencies:
   share: ^0.6.4+3Y
   auto_size_text: ^2.1.0
   path: ^1.7.0
-  firebase_messaging: ^7.0.0
+  firebase_messaging: 
   path_provider: ^1.6.14
   flutter_screenutil: ^2.3.0
   webview_flutter: ^1.0.7
+  google_sign_in: ^4.5.6
+  firebase_auth: 
+  firebase_core:
 
 
 dev_dependencies:

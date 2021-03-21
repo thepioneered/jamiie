@@ -5,6 +5,7 @@ class EndPoints {
   static const String verifyOtp = "/userauth/phoneverification";
   static const String resendOtp = "/userauth/resendotp";
   static const String userRegistration = "/userauth/register";
+  static const String socialUserRegistration = "/userauth/socialregister";
   static const String userLogin = "/userauth/login";
   static const String userlogout = "/userauth/logout";
   static const String forgotPassword = "/userauth/forgotpassword";
@@ -31,6 +32,7 @@ class EndPoints {
   static const String confirmLoan = "/payments/loan";
   static const String loanList = "/payments/loanlist";
   static const String repayloan = "/payments/repayloan";
+  static const String socialLogin = "/userauth/sociallogin";
 
   static String webviewLink(String mobile) {
     return EndPoints.ipAddress +

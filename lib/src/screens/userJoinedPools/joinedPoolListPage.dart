@@ -110,13 +110,13 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                       poolId: data
                                           .joinedPoolListDataSubModel.poolId,
                                     ),
-                                  ),
-                                );
-                              },
-                              itemCount: joinPoolProvider.joinPoolListModel
-                                  .joinPoolListDataModel.length,
+                                 ) );
+                                },
+                                itemCount: joinPoolProvider.joinPoolListModel
+                                    .joinPoolListDataModel.length,
+                              ),
                             ),
-                          ),
+                          
                         ],
                       ),
                     ),

@@ -23,7 +23,7 @@ class LocalStorage {
     }
   }
 
-  static Future<String> getToken() async {  
+  static Future<String> getToken() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String tokenValue = prefs.getString('token');
@@ -113,6 +113,61 @@ class LocalStorage {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       prefs.setBool('riskCalculated', true);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<Null> setSocialLogin() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('socialLogin', true);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<bool> getSocialLogin() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+     return  prefs.getBool('socialLogin');
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+  static Future<Null> setSocialLoginName(String name) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('socialLoginName', name);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<String> getSocialLoginName() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+     return  prefs.getString('socialLoginName');
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+  static Future<Null> setSocialLoginEmail(String email) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('socialLoginEmail', email);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future<String> getSocialLoginEmail() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+     return  prefs.getString('socialLoginEmail');
     } catch (e) {
       throw Exception(e);
     }

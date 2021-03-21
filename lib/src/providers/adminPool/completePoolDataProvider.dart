@@ -36,23 +36,8 @@ class CompletePoolDataProvider with ChangeNotifier {
     if (data['status']) {
       print(data["body"]);
       completePoolDataModel = CompletePoolDataModel.formJson(data["body"]);
-      // completePoolDataModel = CompletePoolDataModel.fromJson(data["body"]);
-      // return null;
-      Map<String, dynamic> response = await NetworkCalls.getDataFromServer(
-        key: completePoolDataScaffoldKey,
-        endPoint: EndPoints.payButtonLogic,
-        shouldPagePop: false,
-        authRequest: true
-      );
-      if (response["status"]) {
-        if (response["body"]["payButton"]) {
-          payButton = true;
-          // notifyListeners();
-          return null;
-        }
+      print("22222222222222");
+      print(completePoolDataModel.startStatus);
       }
-      // print(completePoolDataModel.deadline);
-      // print(completePoolDataModel.members[0].memberDetails.imageURL);
-    }
   }
 }

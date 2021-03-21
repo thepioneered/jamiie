@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
+
 import '../screens/auth/afterLogin/completeProfilePage.dart';
 
 import '../screens/adminPool/creatPool.dart';
@@ -73,8 +75,8 @@ class AppRoutes {
           builder: (context) => MobilePage(),
         );
       case "/OtpPage":
-        return MaterialPageRoute(
-          builder: (context) => OtpPage(),
+        return MaterialPageRoute( 
+          builder: (context) => OtpPage(), 
         );
       case "/ForgotPasswordPage":
         return MaterialPageRoute(
@@ -96,6 +98,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => SearchPoolPage(),
         );
+      
 
       case "/CreatePoolPage":
         return MaterialPageRoute(

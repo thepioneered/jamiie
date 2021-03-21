@@ -44,7 +44,7 @@ class NetworkCalls {
 
   static Map<String, dynamic> serverError(
       String e, GlobalKey<ScaffoldState> key, bool pop) {
-    print("Error in file Network Calls catch $e");
+    print("Error in file Network Calls catch ${e.toString()}");
     if (pop) {
       Navigator.pop(key.currentContext);
     }
@@ -87,7 +87,7 @@ class NetworkCalls {
       if (pop) {
         Navigator.pop(key.currentContext);
       }
-      if (showSnackBar)
+      if (showSnackBar) {
         StatusCodeCheck.checkStatusCode(
           request.statusCode,
           key,
@@ -95,9 +95,14 @@ class NetworkCalls {
               ? "Error in ${request.statusCode}"
               : q["response"],
         );
-      return q["response"] == null
-          ? {"status": false}
-          : {"status": false, "response": q["response"]};
+        return q["response"] == null
+            ? {"status": false}
+            : {"status": false, "response": q["response"]};
+      } else {
+        return q["response"] == null
+            ? {"status": false}
+            : {"status": false, "response": q["response"]};
+      }
     }
   }
 
