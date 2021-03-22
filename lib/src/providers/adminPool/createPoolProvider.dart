@@ -1,5 +1,5 @@
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
-
+import 'package:intl/intl.dart';
 import '../../widgets/sucessCreatePool.dart';
 import '../../models/createPoolModels/poolidModel.dart';
 import '../../models/base/pageModel.dart';
@@ -18,6 +18,7 @@ class CreatePoolProvider with ChangeNotifier {
   TextEditingController date = TextEditingController();
   CreatePoolModel createPool;
   PageModel pageModel;
+  final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
   CreatePoolProvider() {
     createPool = CreatePoolModel();
@@ -35,7 +36,7 @@ class CreatePoolProvider with ChangeNotifier {
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       date.value =
-          TextEditingValue(text: selectedDate.toString().substring(0, 10));
+          TextEditingValue(text: formatter.format(selectedDate));
     }
   }
 

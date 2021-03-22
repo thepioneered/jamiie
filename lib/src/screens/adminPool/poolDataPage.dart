@@ -1,9 +1,11 @@
+import 'package:Jamiie/src/repositry/textConst.dart';
 import 'package:Jamiie/src/screens/adminPool/adminTransactionListPage.dart';
 import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
 import 'package:Jamiie/src/screens/payButtonWidget.dart';
 import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share/share.dart';
 import '../../providers/adminPool/completePoolDataProvider.dart';
 import 'roundListPage.dart';
 import '../../styles/text.dart';
@@ -168,7 +170,7 @@ class PoolDataPageWidget extends StatelessWidget {
                     !data.startStatus
                         ? Column(
                             children: [
-                              SizedBox(height: 50.h),
+                              //SizedBox(height: 50.h),
                               Container(
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
@@ -188,6 +190,20 @@ class PoolDataPageWidget extends StatelessWidget {
                                         },
                                   title: "Choose Rounds",
                                 ),
+                              ),
+                              SizedBox(height: 10,),
+                                Container(
+                                height: height * 0.07,
+                                child: AppButton.loginButton(
+                          onTap: () {
+                            Share.share(
+                              AppConstString.sharePoolId(
+                                poolId,
+                              ),
+                            );
+                          },
+                          title: AppConstString.sharePooltitle,
+                        ),
                               ),
                             ],
                           )
