@@ -3,7 +3,6 @@ import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../providers/Dashboard/dashboardProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,6 +1,4 @@
 import 'package:Jamiie/src/screens/Loan/repayLoanPage.dart';
-import 'package:Jamiie/src/screens/adminPool/transactionPage.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../../styles/text.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/cupertino.dart';
