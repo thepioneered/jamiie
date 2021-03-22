@@ -95,7 +95,7 @@ class CompleteProfileProvider extends ChangeNotifier {
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       date.value =
-          TextEditingValue(text: formatter.format(selectedDate));
+          TextEditingValue(text: selectedDate.toString().substring(0,10));
     }
   }
 

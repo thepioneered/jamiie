@@ -1,3 +1,5 @@
+import 'package:Jamiie/src/widgets/button/appButton.dart';
+
 import '../../styles/text.dart';
 import '../../widgets/Dashboard/dashWidget1.dart';
 import '../../widgets/Dashboard/dashWidget2.dart';
@@ -107,18 +109,12 @@ class DashboardPageWidget extends StatelessWidget {
                               )
                             : Container(
                                 margin: EdgeInsets.symmetric(vertical: 10.h),
-                                padding:
-                                    EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                width: 1.wp,
-                                child: Center(
-                                  child: Text(
-                                    "No transaction yet",
-                                    style: AppTextStyle.joinPoolSubHeading,
-                                  ),
+                                height: 0.07.hp,
+                                child: AppButton.loginButton(
+                                  title: "Create Pool",
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "/CreatePoolPage");
+                                  },
                                 ),
                               ),
                         data.response
@@ -129,18 +125,13 @@ class DashboardPageWidget extends StatelessWidget {
                               )
                             : Container(
                                 margin: EdgeInsets.symmetric(vertical: 10.h),
-                                padding:
-                                    EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                width: 1.wp,
-                                child: Center(
-                                  child: Text(
-                                    "No upcoming payment yet",
-                                    style: AppTextStyle.joinPoolSubHeading,
-                                  ),
+                                height: 0.07.hp,
+                                child: AppButton.loginButton(
+                                  title: "Join Pool",
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, "/SearchPoolPage");
+                                  },
                                 ),
                               ),
                       ],
