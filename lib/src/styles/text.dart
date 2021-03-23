@@ -281,7 +281,7 @@ class AppTextStyle {
   //
   static TextStyle get errorText => TextStyle(
         fontFamily: "Poppins",
-        fontSize: 12.0.sp,
+        fontSize: 10.0.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.red,
       );

@@ -188,19 +188,21 @@ class PoolDataPageWidget extends StatelessWidget {
                                   title: "Choose Rounds",
                                 ),
                               ),
-                              SizedBox(height: 10,),
-                                Container(
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
-                          onTap: () {
-                            Share.share(
-                              AppConstString.sharePoolId(
-                                poolId,
-                              ),
-                            );
-                          },
-                          title: AppConstString.sharePooltitle,
-                        ),
+                                  onTap: () {
+                                    Share.share(
+                                      AppConstString.sharePoolId(
+                                        poolId,
+                                      ),
+                                    );
+                                  },
+                                  title: AppConstString.sharePooltitle,
+                                ),
                               ),
                             ],
                           )
@@ -230,29 +232,28 @@ class PoolDataPageWidget extends StatelessWidget {
                               //       poolId: data.poolId,
                               //       poolName: data.poolName),
                               // )
-                              //  AppButton.loginButton(
-                              //TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
-                              // onTap:
+                              
+                              //TODO: 23/3/21 Check with nitish something
+                              AppButton.loginButton(
+                                // TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
+                                onTap: completePoolDataProvider.payButton
+                                    ?
+                                    // TODO: Please check here
+                                    () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => TransactionPage(
+                                              poolId: data.poolId,
+                                              poolName: data.poolName,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    : null,
 
-                              // completePoolDataProvider.payButton
-                              // ?
-                              //TODO: Please check here
-                              // () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (_) =>
-                              //         TransactionPage(
-                              //       poolId: data.poolId,
-                              //       poolName: data.poolName,
-                              //     ),
-                              //   ),
-                              // );
-                              // }
-                              // : null,
-
-                              // title: "Pay",
-                              // ),
+                                title: "Pay",
+                              ),
                               // ),
                             ],
                           ),
