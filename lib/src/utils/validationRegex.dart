@@ -160,7 +160,7 @@ class TextFieldValidation {
     } else if (data.trim() == "") {
       return "Please Enter Password";
     } else if (!AppRegularExpression.passwordRegExp.hasMatch(data.toString())) {
-      return "Please enter a strong password";
+      return "1 uppercase, 1 lowercase,1 number & 1 special character required.";
     } else {
       return null;
     }
