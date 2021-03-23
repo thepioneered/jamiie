@@ -1,8 +1,6 @@
 import 'package:Jamiie/src/providers/userJoinedPools/joinPoolScreenProvider.dart';
 import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/appBar.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
