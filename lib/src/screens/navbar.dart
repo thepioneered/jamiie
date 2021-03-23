@@ -101,29 +101,29 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
     );
   }
 
-  Widget _navbarImageButton(int _index) {
-    return Container(
-      width: 1.wp / 4,
-      child: FlatButton(
-        onPressed: () {
-          if (index != _index)
-            setState(() {
-              index = _index;
-            });
-        },
-        child: Container(
-          margin: EdgeInsets.all(12.0.h),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(width: 1.0.w, color: AppColors.primaryColorPurple),
-            image: DecorationImage(
-                image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _navbarImageButton(int _index) {
+  //   return Container(
+  //     width: 1.wp / 4,
+  //     child: FlatButton(
+  //       onPressed: () {
+  //         if (index != _index)
+  //           setState(() {
+  //             index = _index;
+  //           });
+  //       },
+  //       child: Container(
+  //         margin: EdgeInsets.all(12.0.h),
+  //         alignment: Alignment.center,
+  //         decoration: BoxDecoration(
+  //           shape: BoxShape.circle,
+  //           border: Border.all(width: 1.0.w, color: AppColors.primaryColorPurple),
+  //           image: DecorationImage(
+  //               image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

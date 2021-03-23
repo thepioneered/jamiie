@@ -56,13 +56,13 @@ class LoanListScreenWidget extends StatelessWidget {
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: ListTile(
                                 title: Text(data.poolId),
-                                subtitle: Text(data.createdAt.substring(0,10)),
-                                trailing: Text(data.amount.toString(),style: TextStyle(
-                                  color: Colors.green
-                                ),),
+                                subtitle: Text(data.createdAt.substring(0, 10)),
+                                trailing: Text(
+                                  data.amount.toString(),
+                                  style: TextStyle(color: Colors.green),
+                                ),
                                 onTap: () {
                                   Navigator.push(
-
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) => LoanDataPage(
@@ -72,8 +72,8 @@ class LoanListScreenWidget extends StatelessWidget {
                                                 poolId: data.poolId,
                                                 transactionId:
                                                     data.transactionId,
-                                              ))
-                                              ).then((value) => loanListScreenProvider.notifyListeners());
+                                              ))).then((value) =>
+                                      loanListScreenProvider.notifyListeners());
                                 },
                               ),
                             );
@@ -86,8 +86,8 @@ class LoanListScreenWidget extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.error == 404) {
-               return  Center(
-                  child: Text("No Loans",style: AppTextStyle.forgotPassword()),
+                return Center(
+                  child: Text("No Loans", style: AppTextStyle.forgotPassword()),
                 );
               } else {
                 try {

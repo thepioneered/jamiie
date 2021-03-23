@@ -1,5 +1,4 @@
 import 'package:Jamiie/src/providers/auth/completeProfileProvider.dart';
-import 'package:Jamiie/src/providers/settings/logoutProvider.dart';
 import 'package:Jamiie/src/styles/colors.dart';
 import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/utils/validationRegex.dart';
@@ -79,7 +78,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     EdgeInsets.only(left: 15.0.w, right: 15.0.w, top: 35.0.h),
                 child: Form(
                   key: completeProfileProvider.completeProfileFormKey,
-                  // autovalidateMode: AutovalidateMode.values
                   autovalidate:
                       completeProfileProvider.pageModel.onceFormSubmitted,
                   child: Column(

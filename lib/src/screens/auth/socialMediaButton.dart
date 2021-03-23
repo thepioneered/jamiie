@@ -1,4 +1,3 @@
-import '../../styles/base.dart';
 
 import '../../styles/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
