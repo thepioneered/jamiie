@@ -25,6 +25,7 @@ class OurDropdown {
         iconSize: iconSize,
         style: dropdownTextStyle,
         autovalidate: autoValidate,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: validator,
         isExpanded: true,
         items: items.map((e) {

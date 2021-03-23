@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 class SocialLoginProviderLogin {
   // void registerAccount() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;

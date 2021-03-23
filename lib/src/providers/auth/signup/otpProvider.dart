@@ -1,7 +1,6 @@
 import 'package:Jamiie/src/models/auth/login.dart';
 import 'package:Jamiie/src/models/auth/loginResponse.dart';
 import 'package:Jamiie/src/providers/auth/login/socialLoginProvider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../../models/auth/otpModel.dart';

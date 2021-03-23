@@ -5,8 +5,7 @@ class Login {
   Login({this.mobile, this.password, this.mobileToken});
 
   void setMobile(String _mobile) {
-    //TODO: +91 edit is required here
-    //TODO: +1 edit is required here
+    //TODO: +1 or +91 edit is required here
     mobile = '+91$_mobile';
   }
 

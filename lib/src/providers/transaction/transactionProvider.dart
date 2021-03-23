@@ -1,4 +1,3 @@
-import '../../models/Loan/loanModel.dart';
 import '../../models/base/pageModel.dart';
 import '../../models/poolId.dart';
 import '../../server/endpoint.dart';

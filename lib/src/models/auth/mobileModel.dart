@@ -3,8 +3,7 @@ class MobileModel {
   MobileModel({this.mobile});
 
   void setMobile(String _mobile) {
-    //TODO:+91 edit required here
-    //TODO:+1 edit required here
+    //TODO:+1 or +91 edit required here
     mobile = '+91$_mobile';
   }
 
