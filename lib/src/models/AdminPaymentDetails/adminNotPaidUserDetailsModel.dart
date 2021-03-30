@@ -3,6 +3,7 @@ class AdminNotPaidUserListModel {
 
   AdminNotPaidUserListModel({this.adminnotPaidUserList});
   factory AdminNotPaidUserListModel.fromJson(Map<String, dynamic> json) {
+  
     List<AdminNotPaidUserModel> _adminnotPaidUserList = List<AdminNotPaidUserModel>();
 
     List<dynamic> list = json[""];

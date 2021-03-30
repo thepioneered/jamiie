@@ -3,7 +3,7 @@ class PaidUserListModel {
 
   PaidUserListModel({this.paidUserList});
   factory PaidUserListModel.fromJson(Map<String, dynamic> json) {
-    List<PaidUserModel> _paidUserList = List<PaidUserModel>();
+    List<PaidUserModel> _paidUserList = <PaidUserModel>[];
 
     List<dynamic> list = json["response"];
     _paidUserList = list.map((e) => PaidUserModel.fromJson(e)).toList();

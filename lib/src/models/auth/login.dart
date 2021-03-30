@@ -7,7 +7,7 @@ class Login {
   void setMobile(String _mobile) {
     //TODO: +91 edit is required here
     //TODO: +1 edit is required here
-    mobile = '+91$_mobile';
+    mobile = '+1$_mobile';
   }
 
   Map<String, dynamic> toJson() =>

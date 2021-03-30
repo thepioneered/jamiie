@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "66217369277",
-    "project_id": "jamiie-b3531",
-    "storage_bucket": "jamiie-b3531.appspot.com"
+    "project_number": "538861169875",
+    "firebase_url": "https://jamiie-2.firebaseio.com",
+    "project_id": "jamiie-2",
+    "storage_bucket": "jamiie-2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:66217369277:android:b952c9a354a0e2fea821d4",
+        "mobilesdk_app_id": "1:538861169875:android:ca5da62a5152edb96df826",
         "android_client_info": {
           "package_name": "com.example.Jamiie"
         }
       },
       "oauth_client": [
         {
-          "client_id": "66217369277-cgho3a86d9ssnrduc561nc8iv85ue4ms.apps.googleusercontent.com",
+          "client_id": "538861169875-84841nvr11cr44gel4lck8iuorjd02hn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Jamiie",
+            "certificate_hash": "e3c94fff032b7cfaff21d6f87a69803686ad72fa"
+          }
+        },
+        {
+          "client_id": "538861169875-vogrvu4n1fuphuhhoo4cgv5lkjpg8u5v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAV21morQoAMtNbKfSJMAloIB8ASGuVb5Q"
+          "current_key": "AIzaSyC8cMqEmQ450GzQLdDqD-f-9wN9ROv18fw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "66217369277-cgho3a86d9ssnrduc561nc8iv85ue4ms.apps.googleusercontent.com",
+              "client_id": "538861169875-vogrvu4n1fuphuhhoo4cgv5lkjpg8u5v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

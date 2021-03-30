@@ -3,7 +3,7 @@ class LoanList {
   LoanList({this.loanList});
 
   factory LoanList.fromJson(Map<String, dynamic> json) {
-    List<LoanListModel> _loanList = List<LoanListModel>();
+    List<LoanListModel> _loanList = <LoanListModel>[];
     List<dynamic> list = json["body"];
     _loanList = list.map((e) => LoanListModel.fromJson(e)).toList();
     return LoanList(
