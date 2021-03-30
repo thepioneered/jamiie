@@ -25,7 +25,6 @@ class CompleteProfileProvider extends ChangeNotifier {
   PageModel pageModel;
   final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
-
   CompleteProfileProvider() {
     selectedDate = DateTime.now();
     completeProfileModel = CompleteProfileModel();
@@ -45,44 +44,41 @@ class CompleteProfileProvider extends ChangeNotifier {
   }
 
   Future<bool> handleLogout() {
-    appLogoutDialog(
-      completeProfileScaffoldKey.currentContext,
-      () async {
-        Navigator.pop(completeProfileScaffoldKey.currentContext);
-        try {
-          LoaderDialog.loaderDialog(completeProfileScaffoldKey.currentContext);
-        } catch (e) {
-          print("Error At Logout Provider in Loader Dialog!");
-          throw Exception(e);
-        }
-        print(await LocalStorage.getMobile());
-        print(await LocalStorage.getToken());
-        print(EndPoints.ipAddress + EndPoints.userlogout);
-        Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-          shouldPagePop: true,
-          key: completeProfileScaffoldKey,
-          endPoint: EndPoints.userlogout,
-          authRequest: true,
-          afterRequest: () {},
-          body: {
-            "phone": await LocalStorage.getMobile(),
-          },
-        );
+    appLogoutDialog(completeProfileScaffoldKey.currentContext, () async {
+      Navigator.pop(completeProfileScaffoldKey.currentContext);
+      try {
+        LoaderDialog.loaderDialog(completeProfileScaffoldKey.currentContext);
+      } catch (e) {
+        print("Error At Logout Provider in Loader Dialog!");
+        throw Exception(e);
+      }
+      print(await LocalStorage.getMobile());
+      print(await LocalStorage.getToken());
+      print(EndPoints.ipAddress + EndPoints.userlogout);
+      Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+        shouldPagePop: true,
+        key: completeProfileScaffoldKey,
+        endPoint: EndPoints.userlogout,
+        authRequest: true,
+        afterRequest: () {},
+        body: {
+          "phone": await LocalStorage.getMobile(),
+        },
+      );
 
-        if (body["status"]) {
-          await LocalStorage.deleteData();
-          Navigator.pop(completeProfileScaffoldKey.currentContext);
-          Navigator.pushNamedAndRemoveUntil(
-            completeProfileScaffoldKey.currentContext,
-            "/LoginPage",
-            (route) => false,
-          );
-          return false;
-        } else {
-          return false;
-        }
-      },
-    );
+      if (body["status"]) {
+        await LocalStorage.deleteData();
+        Navigator.pop(completeProfileScaffoldKey.currentContext);
+        Navigator.pushNamedAndRemoveUntil(
+          completeProfileScaffoldKey.currentContext,
+          "/LoginPage",
+          (route) => false,
+        );
+        return false;
+      } else {
+        return false;
+      }
+    });
   }
 
   Future<void> selectDate(BuildContext context) async {
@@ -95,7 +91,7 @@ class CompleteProfileProvider extends ChangeNotifier {
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       date.value =
-          TextEditingValue(text: selectedDate.toString().substring(0,10));
+          TextEditingValue(text: selectedDate.toString().substring(0, 10));
     }
   }
 

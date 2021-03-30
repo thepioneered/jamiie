@@ -1,7 +1,4 @@
-import 'package:Jamiie/src/screens/userJoinedPools/joinPoolDataPage.dart';
-
 import '../screens/auth/afterLogin/completeProfilePage.dart';
-
 import '../screens/adminPool/creatPool.dart';
 import '../screens/userJoinedPools/searchPoolPage.dart';
 import 'package:flutter/cupertino.dart';

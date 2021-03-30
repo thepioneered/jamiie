@@ -1,4 +1,3 @@
-import 'package:Jamiie/src/providers/auth/socialLogin/socialLogin.dart';
 import 'package:flutter/material.dart';
 import '../../../styles/text.dart';
 import 'package:provider/provider.dart';

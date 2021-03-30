@@ -1,7 +1,6 @@
 import 'package:Jamiie/src/screens/Loan/loanListScreen.dart';
 import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../providers/settings/logoutProvider.dart';
@@ -35,7 +34,6 @@ class SettingPage extends StatelessWidget {
                   margin: EdgeInsets.only(top: 0.1.hp),
                   child: Column(
                     children: <Widget>[
-                      //TODO:Edit profile removed
                       // AppSettingButtons(
                       //   title: "Profile",
                       //   subtitle: "Edit your profile",
@@ -49,15 +47,11 @@ class SettingPage extends StatelessWidget {
                         subtitle: "Add your Bank",
                         icon: FaIcon(Icons.home),
                         onTap: () async {
-                          //TODO: Isko push named bna na hai
                           String mobile = await LocalStorage.getMobile();
-
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => BankPage(
-                                        mobile: mobile,
-                                      )));
+                                  builder: (_) => BankPage(mobile: mobile)));
                         },
                       ),
                       AppSettingButtons(

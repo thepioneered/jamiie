@@ -1,6 +1,5 @@
+import 'package:Jamiie/src/styles/text.dart';
 import 'package:Jamiie/src/widgets/button/appButton.dart';
-
-import '../../styles/text.dart';
 import '../../widgets/Dashboard/dashWidget1.dart';
 import '../../widgets/Dashboard/dashWidget2.dart';
 import '../../widgets/Dashboard/dashWidget3.dart';
@@ -59,11 +58,7 @@ class DashboardPageWidget extends StatelessWidget {
                                       data.name
                                           .substring(0, data.name.indexOf(' ')),
                                   maxLines: 1,
-                                  style: TextStyle(
-                                      fontSize: 36.sp,
-                                      //TODO: size editor pending
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "poppins"),
+                                  style: AppTextStyle.dashHeading,
                                 ),
                               ),
 
@@ -113,7 +108,8 @@ class DashboardPageWidget extends StatelessWidget {
                                 child: AppButton.loginButton(
                                   title: "Create Pool",
                                   onTap: () {
-                                    Navigator.pushNamed(context, "/CreatePoolPage");
+                                    Navigator.pushNamed(
+                                        context, "/CreatePoolPage");
                                   },
                                 ),
                               ),

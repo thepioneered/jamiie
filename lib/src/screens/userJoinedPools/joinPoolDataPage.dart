@@ -177,7 +177,6 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                     //           }
                     //         : () {
                     //             print(poolId);
-                    //             //TODO: Edit is required here
                     //             Navigator.push(
                     //               context,
                     //               MaterialPageRoute(

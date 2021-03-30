@@ -24,6 +24,12 @@ class AppTextStyle {
         color: color,
       );
 
+  static TextStyle get dashHeading => TextStyle(
+        fontSize: 36.sp,
+        fontWeight: FontWeight.bold,
+        fontFamily: "poppins",
+      );
+      
   static TextStyle get dashCardHeading => TextStyle(
         fontFamily: "Poppins",
         fontSize: 18.sp,
