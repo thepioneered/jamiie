@@ -42,8 +42,6 @@ class AfterLoginFormProvider extends ChangeNotifier {
           await LocalStorage.getMobile(),
         ),
       );
-      //   // pageModel.onceClicked = true;
-      //   // notifyListeners();
       try {
         LoaderDialog.loaderDialog(scaffoldKey.currentContext);
       } catch (e) {

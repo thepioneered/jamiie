@@ -172,31 +172,50 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                     FutureBuilder(
                         future: joinPoolDataProvider.payButtonFridayCheck(),
                         builder: (_, snapshot) {
-                          return Container(
-                            height: height * 0.07,
-                            child: AppButton.loginButton(
-                              onTap: data.joinedMember == data.totalMember
-                                  ? joinPoolDataProvider.payButtonFriday
-                                      ? (data.payStatus
-                                          ? () {}
-                                          : () {
-                                              //TODO: Edit is required here
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        TransactionPage(
-                                                          poolId: data.poolId,
-                                                          poolName:
-                                                              data.poolName,
-                                                        )),
-                                              );
-                                            })
-                                      : () {}
-                                  : () {},
-                              title: "Pay",
-                            ),
-                          );
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Container(
+                                height: height * 0.07,
+                                child: CupertinoActivityIndicator());
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done)
+
+                              {
+                            return SizedBox(
+                              height: height * 0.07,
+                              child: AppButton.loginButton(
+                                onTap:
+
+                                    // data.joinedMember == data.totalMember
+                                    //     ? joinPoolDataProvider.payButtonFriday
+                                    //         ? (
+
+                                    data.payStatus
+                                        ? () {}
+                                        : () {
+                                            //TODO: Edit is required here
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      TransactionPage(
+                                                        poolId: data.poolId,
+                                                        poolName: data.poolName,
+                                                      )),
+                                              // );
+                                            );
+                                          },
+                                //     : () {}
+                                // : () {},
+                                title: "Pay",
+                              ),
+                            );
+
+                              }
+                          else {
+                            return Container(
+                                child: Text("Error on join pool data page"));
+                          }
                         }),
                   ],
                 ),

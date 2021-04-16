@@ -196,15 +196,18 @@ class LoginProvider extends ChangeNotifier {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
-        } else if (loginResponse.profileCompleted &&
-            loginResponse.riskCalculated &&
-            !loginResponse.bankAdded) {
-          //!Aksh yhn krdeeee
-          Navigator.push(loginScaffoldKey.currentContext,
-              MaterialPageRoute(builder: (_) => BankPage(mobile: mobile)));
-          //TODO:Yhnnn pe
+        } 
+        
+        // else if (loginResponse.profileCompleted &&
+        //     loginResponse.riskCalculated &&
+        //     !loginResponse.bankAdded) {
+        //   //!Aksh yhn krdeeee
+        //   Navigator.push(loginScaffoldKey.currentContext,
+        //       MaterialPageRoute(builder: (_) => BankPage(mobile: mobile)));
+        //   //TODO:Yhnnn pe
 
-        } else {
+        // } 
+        else {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/CompleteProfilePage");
