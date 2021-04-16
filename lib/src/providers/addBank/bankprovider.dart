@@ -32,6 +32,7 @@ class BankProvider extends ChangeNotifier {
     if (response["status"]) {
       firstTimeAddBank = true;
       isNetworkCallCompleted = true;
+       
       notifyListeners();
       return null;
       //Show krdo bank ko
@@ -39,6 +40,10 @@ class BankProvider extends ChangeNotifier {
       // Bank already added hai
       firstTimeAddBank = false;
       isNetworkCallCompleted = true;
+      Future.delayed(Duration(milliseconds: 500), () {
+            Navigator.pushReplacementNamed(
+                scaffoldKey.currentContext, "/NavBar");
+          });
       notifyListeners();
       return Future.error(405);
     }

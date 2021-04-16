@@ -1,4 +1,5 @@
 import 'package:Jamiie/src/models/base/pageModel.dart';
+import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:Jamiie/src/server/endpoint.dart';
 import 'package:Jamiie/src/server/networkCalls.dart';
 import 'package:Jamiie/src/utils/sharedPref.dart';
@@ -65,9 +66,12 @@ class AfterLoginFormProvider extends ChangeNotifier {
         notifyListeners();
         formKey.currentState.reset();
         Navigator.pop(scaffoldKey.currentContext);
+        String mobile = await LocalStorage.getMobile();
+
         await LocalStorage.setisRiskCalculated();
         Future.delayed(Duration(milliseconds: 500), () {
-          Navigator.pushReplacementNamed(scaffoldKey.currentContext, "/NavBar");
+          Navigator.push(scaffoldKey.currentContext,
+              MaterialPageRoute(builder: (_) => BankPage(mobile: mobile)));
         });
       }
     }
