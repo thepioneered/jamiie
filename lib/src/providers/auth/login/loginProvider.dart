@@ -1,3 +1,4 @@
+import 'package:Jamiie/src/screens/addBank/bankPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -161,6 +162,8 @@ class LoginProvider extends ChangeNotifier {
       );
       if (body["status"]) {
         final loginResponse = LoginResponse.fromJson(body["body"]);
+        String mobile = await LocalStorage.getMobile();
+
         await LocalStorage.setTokenMobileFirstLogin(
           loginResponse.token,
           login.mobile,
@@ -176,7 +179,8 @@ class LoginProvider extends ChangeNotifier {
               title: "Login Successful", backgroundColor: AppColors.green),
         );
         if (loginResponse.profileCompleted &&
-            loginResponse.riskCalculated  && loginResponse.bankAdded) {
+            loginResponse.riskCalculated &&
+            loginResponse.bankAdded) {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/NavBar");
@@ -192,11 +196,15 @@ class LoginProvider extends ChangeNotifier {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
-        } else if (loginResponse.profileCompleted && loginResponse.riskCalculated && !loginResponse.bankAdded){
-     //!Aksh yhn krdeeee
-     //TODO:Yhnnn pe           
-          
-          }else {
+        } else if (loginResponse.profileCompleted &&
+            loginResponse.riskCalculated &&
+            !loginResponse.bankAdded) {
+          //!Aksh yhn krdeeee
+          Navigator.push(loginScaffoldKey.currentContext,
+              MaterialPageRoute(builder: (_) => BankPage(mobile: mobile)));
+          //TODO:Yhnnn pe
+
+        } else {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/CompleteProfilePage");
