@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class JoinPoolDataProvider with ChangeNotifier {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool payButtonFriday = false;
   PageModel pageModel;
   JoinPoolDataModel joinPoolDataModel;
 
@@ -24,5 +25,20 @@ class JoinPoolDataProvider with ChangeNotifier {
       joinPoolDataModel = JoinPoolDataModel.formJson(data["body"]);
       return null;
     }
+  }
+
+  Future<Null> payButtonFridayCheck() async {
+
+    Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+        shouldPagePop: false,
+        key: scaffoldKey,
+        endPoint: EndPoints.payButtonLogic,
+        authRequest: true);
+
+      if(data["status"]){
+        payButtonFriday = data["body"]["payButton"];
+
+      }
+
   }
 }
