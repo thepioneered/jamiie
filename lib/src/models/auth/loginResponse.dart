@@ -2,12 +2,14 @@ class LoginResponse {
   bool profileCompleted;
   bool riskCalculated;
   String token;
-  // bool bankAdded
+  bool bankAdded;
 
   LoginResponse.fromJson(Map<String, dynamic> json)
       : profileCompleted = json["completeProfile"],
         riskCalculated = json["riskCalculator"],
-        token = json["token"];
+        token = json["token"],
+        bankAdded = json["bankAdded"];
+        
 }
 
 class SocialLoginResponse {
