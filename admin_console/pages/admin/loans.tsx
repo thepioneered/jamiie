@@ -102,7 +102,7 @@ function Loans() {
       <div className={styles.user__container}>
         <div className={styles.User}>
           <div className={card.container}>
-            <TotalCard name="Total Loans" number={state.loginData.totalPools} />
+            <TotalCard name="Total Loans" number={state.loginData.totalLoans} />
             <TotalCard
               name="Total Approved Loans"
               number={state.loginData.totalApprovedLoans}
