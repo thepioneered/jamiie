@@ -11,17 +11,18 @@ class CompletePoolDataProvider with ChangeNotifier {
   bool payButton = false;
 
   Future<Null> payButtonLogin() async {
-    // Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
-    //   key: completePoolDataScaffoldKey,
-    //   endPoint: EndPoints.payButtonLogic,
-    //   shouldPagePop: false,
-    // );
-    // if (data["status"]) {
-    //   if (data["body"]["payButton"]) {
-    //     payButton = true;
-    //     notifyListeners();
-    //   }
-    // }
+    Map<String, dynamic> data = await NetworkCalls.getDataFromServer(
+      key: completePoolDataScaffoldKey,
+      endPoint: EndPoints.payButtonLogic,
+      shouldPagePop: false,
+      authRequest: true
+    );
+    if (data["status"]) {
+      if (data["body"]["payButton"]) {
+        payButton = true;
+        notifyListeners();
+      }
+    }
   }
 
   Future<Null> loadPage(String poolId) async {

@@ -232,7 +232,7 @@ class PoolDataPageWidget extends StatelessWidget {
                               //   child: PayButtonWithCheck(
                               //       poolId: data.poolId,
                               //       poolName: data.poolName),
-                              // )
+                              // ),
                               
                               //TODO: 23/3/21 Check with nitish something
                               AppButton.loginButton(

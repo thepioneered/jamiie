@@ -166,63 +166,38 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-
-                    // // 7 percent of total height
-                    // Container(
-                    //   height: height * 0.07,
-                    //   child: AppButton.loginButton(
-                    //     onTap: data.totalMember != data.joinedMember
-                    //         ? () {
-                    //             print("Working");
-                    //           }
-                    //         : () {
-                    //             print(poolId);
-                    //             Navigator.push(
-                    //               context,
-                    //               MaterialPageRoute(
-                    //                 builder: (_) => ChooseRoundPage(
-                    //                   memberModel: data.members,
-                    //                   poolId: poolId,
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           },
-                    //     title: "Start Pool",
-                    //   ),
-                    // ),
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: height * 0.07,
-                      child: AppButton.loginButton(
-                        onTap: false //data.payStatus
-                            ? () {
-                                //TODO: Please check here
-                                print("Working");
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (_) => TransactionPage(
-                                //             poolId: data.poolId,
-                                //             poolName: data.poolName,
-                                //           )),
-                                // );
-                              }
-                            : () {
-                                //TODO: Edit is required here
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => TransactionPage(
-                                            poolId: data.poolId,
-                                            poolName: data.poolName,
-                                          )),
-                                );
-                              },
-                        title: "Pay",
-                      ),
-                    ),
+                    FutureBuilder(
+                        future: joinPoolDataProvider.payButtonFridayCheck(),
+                        builder: (_, snapshot) {
+                          return Container(
+                            height: height * 0.07,
+                            child: AppButton.loginButton(
+                              onTap: data.joinedMember == data.totalMember
+                                  ? joinPoolDataProvider.payButtonFriday
+                                      ? (data.payStatus
+                                          ? () {}
+                                          : () {
+                                              //TODO: Edit is required here
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        TransactionPage(
+                                                          poolId: data.poolId,
+                                                          poolName:
+                                                              data.poolName,
+                                                        )),
+                                              );
+                                            })
+                                      : () {}
+                                  : () {},
+                              title: "Pay",
+                            ),
+                          );
+                        }),
                   ],
                 ),
               );
