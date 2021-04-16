@@ -175,8 +175,8 @@ class LoginProvider extends ChangeNotifier {
           AppSnackBar.snackBar(
               title: "Login Successful", backgroundColor: AppColors.green),
         );
-        if (loginResponse.profileCompleted == true &&
-            loginResponse.riskCalculated == true) {
+        if (loginResponse.profileCompleted &&
+            loginResponse.riskCalculated  && loginResponse.bankAdded) {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/NavBar");
@@ -192,10 +192,14 @@ class LoginProvider extends ChangeNotifier {
             Navigator.pushReplacementNamed(
                 loginScaffoldKey.currentContext, "/AfterLoginFormPage");
           });
-        } else {
+        } else if (loginResponse.profileCompleted && loginResponse.riskCalculated && !loginResponse.bankAdded){
+     //!Aksh yhn krdeeee
+     //TODO:Yhnnn pe           
+          
+          }else {
           Future.delayed(Duration(milliseconds: 1300), () {
             Navigator.pushReplacementNamed(
-                loginScaffoldKey.currentContext, "/AfterLoginFormPage");
+                loginScaffoldKey.currentContext, "/CompleteProfilePage");
           });
         }
       }

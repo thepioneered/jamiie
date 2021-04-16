@@ -115,7 +115,8 @@ class TextFieldValidation {
       return "Please Enter valid Members";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
-    } else if (int.parse(data) > 35 || int.parse(data) < 5) {
+      //TODO: check here imporatnt to do 5
+    } else if (int.parse(data) > 35 || int.parse(data) < 3) {
       return "Members can not be more than 35 or less than 5";
     } else if (!AppRegularExpression.memberRegExp.hasMatch(data.toString())) {
       return "Enter valid Members";
