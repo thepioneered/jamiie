@@ -44,6 +44,7 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         "Please enter few more details and your are ready to go."),
                 Form(
                   key: formProvider.formKey,
+                  // ignore: deprecated_member_use
                   autovalidate: formProvider.pageModel.onceFormSubmitted,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,97 +113,6 @@ class _AfterLoginFormWidgetState extends State<AfterLoginFormWidget> {
                         autoValidate: false,
                       ),
 
-                      // Text(
-                      //   'How many times you have pooled money ?',
-                      //   style: AppTextStyle.subheadingTextForm,
-                      // ),
-                      // SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // AppTextField.screenTextField(
-                      //   toolbarOptions: ToolbarOptions(paste: false),
-                      //   textInputType: TextInputType.number,
-                      //   hintText: "",
-                      //   validator: TextFieldValidation.numberValidation,
-                      //   autoValidate: false,
-                      //   onSaved: (value) {},
-                      //   prefixIcon: null,
-                      // ),
-
-                      // Text('Total Debt ?',
-                      //     style: AppTextStyle.subheadingTextForm),
-                      // SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // AppTextField.screenTextField(
-                      //   toolbarOptions: ToolbarOptions(paste: false),
-                      //   textInputType: TextInputType.number,
-                      //   hintText: "",
-                      //   validator: TextFieldValidation.numberValidation,
-                      //   autoValidate: false,
-                      //   onSaved: null,
-                      //   prefixIcon: AppIcons.dollarIcon,
-                      // ),
-                      // Text('Age :', style: AppTextStyle.subheadingTextForm),
-                      // OurDropdown.dropdown(
-                      //   items: AfterLoginDataRepo.three,
-                      //   onchanged: (e) {
-                      //     formProvider.listModel.data3 = e;
-                      //     formProvider.callListners();
-                      //   },
-                      //   value: formProvider.listModel.data3,
-                      //   validator: formProvider.validator,
-                      //   autoValidate: false,
-                      // ),
-                      // Text('Saving Money since how many Years :',
-                      //     style: AppTextStyle.subheadingTextForm),
-                      // OurDropdown.dropdown(
-                      //   items: AfterLoginDataRepo.four,
-                      //   onchanged: (e) {
-                      //     formProvider.listModel.data4 = e;
-                      //     formProvider.callListners();
-                      //   },
-                      //   value: formProvider.listModel.data4,
-                      //   validator: formProvider.validator,
-                      //   autoValidate: false,
-                      // ),
-                      // Text('How Many loans you have :',
-                      //     style: AppTextStyle.subheadingTextForm),
-                      // OurDropdown.dropdown(
-                      //   items: AfterLoginDataRepo.five,
-                      //   onchanged: (e) {
-                      //     formProvider.listModel.data5 = e;
-                      //     formProvider.callListners();
-                      //   },
-                      //   value: formProvider.listModel.data5,
-                      //   validator: formProvider.validator,
-                      //   autoValidate: false,
-                      // ),
-                      // Text('Living in USA since :',
-                      //     style: AppTextStyle.subheadingTextForm),
-                      // OurDropdown.dropdown(
-                      //   items: AfterLoginDataRepo.six,
-                      //   onchanged: (e) {
-                      //     formProvider.listModel.data6 = e;
-                      //     formProvider.callListners();
-                      //   },
-                      //   value: formProvider.listModel.data6,
-                      //   validator: formProvider.validator,
-                      //   autoValidate: false,
-                      // ),
-                      // Text(
-                      //     "How many accounts linked(google, fb, twitter, linkdn) :",
-                      //     style: AppTextStyle.subheadingTextForm),
-                      // OurDropdown.dropdown(
-                      //   items: ['1', '2', '3', '4'],
-                      //   onchanged: (e) {
-                      //     formProvider.listModel.data7 = e;
-                      //     formProvider.callListners();
-                      //   },
-                      //   value: formProvider.listModel.data7,
-                      //   validator: formProvider.validator,
-                      //   autoValidate: formProvider.autoValidate,
-                      // ),
                       Container(
                         height: 0.07.hp,
                         child: AppButton.loginButton(

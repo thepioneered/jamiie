@@ -23,7 +23,6 @@ class AppTextField {
       EdgeInsetsGeometry edge,
       TextInputType textInputType}) {
     return Container(
-      // height: height != null?height:75.0,
       height: 75.h,
       child: TextFormField(
         toolbarOptions: toolbarOptions,
@@ -35,6 +34,7 @@ class AppTextField {
         obscureText: showPassword == null ? false : !showPassword,
         validator: validator,
         maxLength: maxLength,
+        // ignore: deprecated_member_use
         autovalidate: autoValidate,
         decoration: AppInputDecoration.textFieldDecoration(
             prefixIcon, onEyeClick, hintText, edge),

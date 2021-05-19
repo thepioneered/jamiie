@@ -27,7 +27,6 @@ class ForgotPasswordWidget extends StatelessWidget {
 
     return Consumer<ForgotPasswordProvider>(
       builder: (_, forgotPasswordProvider, child) {
-        // double height = MediaQuery.of(context).size.height - 75.0;
         return Scaffold(
           key: forgotPasswordProvider.forgotPasswordScaffoldKey,
           backgroundColor: AppColors.white,
@@ -38,7 +37,6 @@ class ForgotPasswordWidget extends StatelessWidget {
               height: 0.5.hp,
               child: Column(
                 children: <Widget>[
-                  //20 percent of total height
                   PageHeading.topHeading(
                     height: 0.2.hp,
                     title: ForgotPasswordFlowText.mobilePageTitle,
@@ -49,6 +47,7 @@ class ForgotPasswordWidget extends StatelessWidget {
                   ),
                   Form(
                     key: forgotPasswordProvider.forgotPasswordFormKey,
+                    // ignore: deprecated_member_use
                     autovalidate:
                         forgotPasswordProvider.pageModel.onceFormSubmitted,
                     child: Column(

@@ -7,26 +7,21 @@ class PageHeading {
   static Widget topHeading(
       {@required String title, @required String subTitle, double height}) {
     return Container(
-      //color: Colors.blue[100],
       height: 0.18.hp,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            // height: 0.10.hp,
             alignment: Alignment.topLeft,
             child: AutoSizeText(
               title,
               maxLines: 1,
               style: AppTextStyle.authHeading,
-              // maxLines: 1,
               minFontSize: 18.0,
             ),
           ),
           Container(
-            // padding: EdgeInsets.only(bottom: (0.10.hp) * 0.3),
             alignment: Alignment.topLeft,
-            // height: 0.08.hp,
             child: AutoSizeText(
               subTitle,
               style: AppTextStyle.forgotPasswordSubTitle,

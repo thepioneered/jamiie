@@ -37,7 +37,6 @@ class DashWidget2 extends StatelessWidget {
                 reverse: true,
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(horizontal: 5.h),
-                // itemCount: 2,
                 itemCount: transactionList.length,
                 itemBuilder: (context, index) {
                   if (transactionList[index].transactionStatus) {
@@ -78,10 +77,6 @@ class DashWidget2 extends StatelessWidget {
                               transactionList[index].paidTime.substring(0,10).toString(),
                               style: AppTextStyle.dashCardHint,
                             ),
-                            // Text(
-                            //   transactionList[index].date,
-                            //   style: AppTextStyle.dashCardHint,
-                            // )
                           ],
                         ),
                       ],
@@ -91,7 +86,6 @@ class DashWidget2 extends StatelessWidget {
               ),
             ),
           ),
-          // )
         ],
       ),
     );

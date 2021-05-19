@@ -1,10 +1,6 @@
 import 'package:Jamiie/src/models/adminPoolModel/chooseRoundModel.dart';
 import 'package:Jamiie/src/models/adminPoolModel/completePoolDataModel.dart';
 import 'package:Jamiie/src/models/base/pageModel.dart';
-import 'package:Jamiie/src/server/endpoint.dart';
-import 'package:Jamiie/src/server/networkCalls.dart';
-import 'package:Jamiie/src/styles/colors.dart';
-import 'package:Jamiie/src/utils/snackBar.dart';
 import 'package:Jamiie/src/widgets/loaderDialog.dart';
 import 'package:flutter/material.dart';
 
@@ -27,28 +23,5 @@ class ChooseRoundProvider extends ChangeNotifier {
         sequence: i.toString(),
       ));
     }
-    //TODO:Iska error dekh bhai
-
-    
-    print(chooseRoundModel.toJson(poolId, a));
-
-//     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
-//       shouldPagePop: true,
-//       key: chooseRoundScaffoldKey,
-//       endPoint: EndPoints.startPool,
-//       afterRequest: () {},
-//       authRequest: true,
-//       body: chooseRoundModel.toJson(poolId, a),
-//     );
-//     //TODO
-// //Isme error hai bhai kl nitish ke sath bthke through testing kro
-// //TODOWork: is pending here and pop main dikkt aa rhi kuch yhn
-//     if (data["status"]) {
-
-    
-//       Navigator.pop(chooseRoundScaffoldKey.currentContext);
-//         chooseRoundScaffoldKey.currentState.showSnackBar(AppSnackBar.snackBar(
-//           title: "Pool Started", backgroundColor: AppColors.green));
-//     }
   }
 }

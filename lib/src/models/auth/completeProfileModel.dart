@@ -10,7 +10,7 @@ class CompleteProfileModel {
   String howLongwithEmployer;
   String howLongatAddress;
 
-  //
+  
   CompleteProfileModel(
       {this.state,
       this.city,

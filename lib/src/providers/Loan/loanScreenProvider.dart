@@ -15,11 +15,6 @@ class LoanScreenProvider extends ChangeNotifier {
   ConfirmLoanModel confirmLoanModel = ConfirmLoanModel();
 
   Future<Null> loadPageData(String poolId) async {
-    // try {
-    //   LoaderDialog.loaderDialog(scaffoldKey.currentContext);
-    // } catch (e) {
-    //   throw Exception(e);
-    // }
     Map<String, dynamic> data = await NetworkCalls.postDataToServer(
         key: scaffoldKey,
         endPoint: EndPoints.loanDetail,
@@ -33,12 +28,10 @@ class LoanScreenProvider extends ChangeNotifier {
       print('--------------');
       print(loanModel.amount.toString());
       print(loanModel.interest.toString());
-      // Navigator.pop(scaffoldKey.currentContext);
     }
   }
 
   void confirmLoan(final String poolId) async {
-    // pageModel.onceFormSubmitted = true;
     try {
       LoaderDialog.loaderDialog(scaffoldKey.currentContext);
     } catch (e) {
@@ -51,7 +44,6 @@ class LoanScreenProvider extends ChangeNotifier {
         afterRequest: () {},
         authRequest: true,
         shouldPagePop: true,
-        // body: {"poolId": "$poolId","phone": "$mobile"});
 
         body: PoolIdMobileModel().toJson(poolId, mobile));
     print(data);
@@ -68,11 +60,6 @@ class LoanScreenProvider extends ChangeNotifier {
       Future.delayed(Duration(milliseconds: 1000), () {
         Navigator.pop(scaffoldKey.currentContext);
       });
-      // Navigator.pushAndRemoveUntil(
-      //     scaffoldKey.currentContext,
-      //     MaterialPageRoute(builder: (_) => JoinPoolDataPage(poolId: poolId)),
-      //     (route) => false);
-      //Navigator.pop(scaffoldKey.currentContext);
     }
   }
 }

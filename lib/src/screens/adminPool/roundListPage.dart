@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/adminPoolModel/completePoolDataModel.dart';
 
-
 import '../../widgets/appBar.dart';
 import '../../widgets/button/appButton.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,7 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
                       index,
                       Key('$index'),
                       memberModel[index].memberDetails.name,
-                      (index+1).toString(),
+                      (index + 1).toString(),
                     );
                   },
                 ),
@@ -77,7 +76,6 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
               padding: EdgeInsets.symmetric(horizontal: 15.0),
               child: AppButton.loginButton(
                   onTap: () {
-                    // print(widget.poolId);
                     chooseRoundPage.startPoolButton(memberModel, widget.poolId);
                   },
                   title: "Start Pool"),
@@ -94,10 +92,8 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
         if (newIndex > oldIndex) {
           newIndex -= 1;
         }
-        // final String item = alphabetList.removeAt(oldIndex);
         final MemberModel item = memberModel.removeAt(oldIndex);
         memberModel.insert(newIndex, item);
-        // alphabetList.insert(newIndex, item);
       },
     );
   }
@@ -106,11 +102,8 @@ class _ReorderableListWidget extends State<ReorderableListWidget> {
 class ListViewCard extends StatefulWidget {
   final int index;
   final Key key;
-  // final List<String> listItems;
   final String name;
   final String sno;
-
-  // final List<MemberModel> listItems;
 
   ListViewCard(this.index, this.key, this.name, this.sno);
 
@@ -130,9 +123,6 @@ class _ListViewCard extends State<ListViewCard> {
         child: InkWell(
           splashColor: Colors.blue,
           onTap: () => print("Done"),
-          //  Fluttertoast.showToast(
-          // msg: "Item ${widget.listItems[widget.index]} selected.",
-          // toastLength: Toast.LENGTH_SHORT),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -150,51 +140,12 @@ class _ListViewCard extends State<ListViewCard> {
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.topLeft,
                 child: Text(
-                  // 'Title ${widget.listItems[widget.index]}',
                   widget.name,
                   style: AppTextStyle.reorderableList,
                   textAlign: TextAlign.left,
                   maxLines: 5,
                 ),
               ),
-              // Flexible(
-              //   child: Column(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: <Widget>[
-              // Container(
-              //   padding: const EdgeInsets.all(8.0),
-              //   alignment: Alignment.topLeft,
-              //   child: Text(
-              //     // 'Title ${widget.listItems[widget.index]}',
-              //     widget.name,
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.bold, fontSize: 16),
-              //     textAlign: TextAlign.left,
-              //     maxLines: 5,
-              //   ),
-              // ),
-              // Container(
-              //   padding: const EdgeInsets.all(8.0),
-              //   alignment: Alignment.topLeft,
-              //   child: Text(
-              //     widget.sno,
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.normal, fontSize: 16),
-              //     textAlign: TextAlign.left,
-              //     maxLines: 5,
-              //   ),
-              // ),
-              //     ],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-              //   child: Icon(
-              //     Icons.reorder,
-              //     color: Colors.grey,
-              //     size: 24.0,
-              //   ),
-              // ),
             ],
           ),
         ),

@@ -75,18 +75,6 @@ class TransactionDashboard {
   String poolId;
   String phone;
 
-  // Transaction({
-  //   this.id,
-  //   this.amount,
-  //   this.paidTime,
-  //   this.transactionUrl,
-  //   this.transactionStatus,
-  //   this.lateTransactionStatus,
-  //   this.payDate,
-  //   this.poolId,
-  //   this.phone,
-  // });
-
   TransactionDashboard.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         amount = json["amount"],

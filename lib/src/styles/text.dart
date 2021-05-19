@@ -142,7 +142,6 @@ class AppTextStyle {
         color: _color);
   }
 
-//todo: size of forgot button
   static TextStyle forgotPassword() {
     return TextStyle(
         fontFamily: "Poppins",
@@ -254,13 +253,12 @@ class AppTextStyle {
         fontSize: 22.0,
         color: AppColors.black,
       );
-  //////
+ 
   static TextStyle get faqSubTitle => TextStyle(
         fontFamily: "Poppins",
         fontSize: 16.0,
         color: AppColors.grayInputHeading,
       );
-  //////
   static TextStyle get topHeading => TextStyle(
         fontFamily: "Poppins",
         fontSize: 40.0,
@@ -273,19 +271,16 @@ class AppTextStyle {
         fontSize: 18.0.sp,
         fontWeight: FontWeight.w500,
       );
-  //
   static TextStyle get drawerText => TextStyle(
         fontFamily: "Poppins",
         fontSize: 20.0,
       );
-  //
   static TextStyle get errorText => TextStyle(
         fontFamily: "Poppins",
         fontSize: 10.0.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.red,
       );
-  //
 
   static TextStyle tabText(Color _color) {
     return TextStyle(

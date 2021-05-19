@@ -18,13 +18,13 @@ class AdminTransationListProvider extends ChangeNotifier {
         shouldPagePop: false,
         body: {"poolId": "$poolId"});
 
-    Map<String, dynamic> data2 = await NetworkCalls.postDataToServer(
-        key: scaffoldKey,
-        endPoint: EndPoints.adminNotPaidUserDetail,
-        afterRequest: () {},
-        authRequest: true,
-        shouldPagePop: false,
-        body: {"poolId": "$poolId"});
+    // Map<String, dynamic> data2 = await NetworkCalls.postDataToServer(
+    //     key: scaffoldKey,
+    //     endPoint: EndPoints.adminNotPaidUserDetail,
+    //     afterRequest: () {},
+    //     authRequest: true,
+    //     shouldPagePop: false,
+    //     body: {"poolId": "$poolId"});
 
     if (data["status"]) {
       print('---------------1111111111----------------------');
@@ -34,13 +34,5 @@ class AdminTransationListProvider extends ChangeNotifier {
     } else {
       return Future.error("Error Occured");
     }
-    // if (data2["status"]) {
-    //   print('---------------222222222----------------------');
-    //   print(data2);
-    //   adminNotPaidUserListModel =
-    //       AdminNotPaidUserListModel.fromJson(data2["body"]);
-    // } else {
-    //   return Future.error("Error Occured");
-    // }
   }
 }

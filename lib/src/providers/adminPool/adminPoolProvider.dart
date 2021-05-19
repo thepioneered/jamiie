@@ -9,14 +9,6 @@ class AdminPoolProvider extends ChangeNotifier {
       GlobalKey<ScaffoldState>();
 
   PoolListModel poolListModel;
-  // Future<Map<String, dynamic>> _loadPageAsset() async {
-  //   // return await rootBundle.loadString('assets/Json/adminPool.json');
-  //   String mobile = await LocalStorage.getMobile();
-  //   mobile = mobile.substring(1, mobile.length);
-  //       key: listOfCreatedPoolsScaffoldKey,
-  //       endPoint: EndPoints.createdPoolsList + mobile,
-  //       authRequest: true);
-  // }
 
   
 

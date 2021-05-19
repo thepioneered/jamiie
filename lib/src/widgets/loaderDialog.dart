@@ -19,7 +19,6 @@ class LoaderDialog {
             child: Container(
               width: 120.0.w,
               height: 120.0.h,
-              // child: Lottie.asset("assets/loader.json"),
               child: CupertinoActivityIndicator(),
             ),
           ),

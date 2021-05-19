@@ -10,9 +10,7 @@ class JoinPoolScreenProvider extends ChangeNotifier {
   Future<Null> loadPageAsset() async {
     await loadJson().then((value) {
       Map<String, dynamic> val = json.decode(value);
-    //  print(val);
       joinPoolScreenModel = JoinPoolScreenModel.formJson(val);
-      //print(joinPoolScreenModel.poolName);
       return null;
     });
   }

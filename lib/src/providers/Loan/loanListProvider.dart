@@ -55,7 +55,6 @@ class LoanListProvider extends ChangeNotifier {
       repayLoanModel = RepayLoanModel.fromJson(data["body"]);
       print('++++++++++++++++');
       print(repayLoanModel.message);
-      // Navigator.pop(scaffoldKey.currentContext);
 
       scaffoldKey.currentState.showSnackBar(
         AppSnackBar.snackBar(
@@ -67,7 +66,6 @@ class LoanListProvider extends ChangeNotifier {
         Navigator.pop(scaffoldKey.currentContext);
         Navigator.pop(scaffoldKey.currentContext);
       });
-      // Navigator.pop(scaffoldKey.currentContext);
     }
   }
 }

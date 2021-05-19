@@ -11,11 +11,9 @@ class AfterLoginFormProvider extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AfterLoginFormModel listModel = AfterLoginFormModel();
-  // bool autoValidate;
   PageModel pageModel;
 
   AfterLoginFormProvider() {
-    // autoValidate = false;
     pageModel = PageModel();
   }
 
@@ -32,8 +30,6 @@ class AfterLoginFormProvider extends ChangeNotifier {
   }
 
   void onPressed() async {
-    //todo
-    // autoValidate = true;
     pageModel.onceFormSubmitted = true;
     notifyListeners();
     if (formKey.currentState.validate()) {
@@ -43,15 +39,12 @@ class AfterLoginFormProvider extends ChangeNotifier {
           await LocalStorage.getMobile(),
         ),
       );
-      //   // pageModel.onceClicked = true;
-      //   // notifyListeners();
       try {
         LoaderDialog.loaderDialog(scaffoldKey.currentContext);
       } catch (e) {
         print("Error At Logout Provider in Loader Dialog!");
         throw Exception(e);
       }
-      //   listModel.mobile = await LocalStorage.getMobile();
 
       Map<String, dynamic> body = await NetworkCalls.postDataToServer(
         shouldPagePop: true,

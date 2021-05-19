@@ -10,14 +10,6 @@ class JoinPoolProvider extends ChangeNotifier {
   JoinPoolListModel joinPoolListModel;
 
   Future<Null> loadPageAsset() async {
-    // await loadJson().then((value) {
-    //   Map<String, dynamic> val = json.decode(value);
-    //   // print(val);
-    //   joinPoolListModel = JoinPoolListModel.fromJson(val);
-    //   //print(joinPoolListModel.joinPoolListDataModel[0].poolName);
-    //   return null;
-    // });
-
     String mobile = await LocalStorage.getMobile();
     mobile = mobile.substring(1, mobile.length);
     print(EndPoints.joinedPoolList + mobile);

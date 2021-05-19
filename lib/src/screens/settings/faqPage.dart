@@ -4,7 +4,6 @@ import '../../providers/settings/faqData.dart';
 import '../../styles/text.dart';
 import '../../widgets/appBar.dart';
 
-//TODO: FAQ PAGE PENDING
 
 class FaqPage extends StatelessWidget {
   @override

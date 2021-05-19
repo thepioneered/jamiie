@@ -19,7 +19,6 @@ class TransactionListPage extends StatelessWidget {
 class TransactionListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Consumer<TransationListProvider>(
       builder: (_, transactionListProvider, child) {
         return Scaffold(
@@ -70,7 +69,6 @@ class TransactionListWidget extends StatelessWidget {
                                     shrinkWrap: true,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 5.h),
-                                  
                                     itemCount: transactionListProvider
                                         .paidUserListModel.paidUserList.length,
                                     itemBuilder: (context, index) {
@@ -104,16 +102,12 @@ class TransactionListWidget extends StatelessWidget {
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .end,
+                                                  MainAxisAlignment.end,
                                               children: [
-                                                // Text(
-                                                //   data.payDate.toString(),
-                                                //   style:
-                                                //       AppTextStyle.dashCardHint,
-                                                // ),
                                                 Text(
-                                                  data.paidTime.toString().substring(0,10),
+                                                  data.paidTime
+                                                      .toString()
+                                                      .substring(0, 10),
                                                   style:
                                                       AppTextStyle.dashCardHint,
                                                 ),
@@ -130,95 +124,6 @@ class TransactionListWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                        // Container(
-                        //   margin: EdgeInsets.symmetric(vertical: 10.h),
-                        //   padding: EdgeInsets.fromLTRB(20.h, 10.h, 20.h, 10.h),
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.white,
-                        //     borderRadius: BorderRadius.circular(16),
-                        //   ),
-                        //   width: 1.wp,
-                        //   child: Column(
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       Center(
-                        //         child: Text(
-                        //           'Unpaid Pools',
-                        //           style: AppTextStyle.dashCardHeading,
-                        //         ),
-                        //       ),
-                        //       Container(
-                        //         padding: EdgeInsets.only(top: 5.h),
-                        //         constraints: BoxConstraints(maxHeight: .34.hp),
-                        //         // height: .34.hp,
-                        //         child: ScrollConfiguration(
-                        //           behavior: new ScrollBehavior()
-                        //             ..buildViewportChrome(
-                        //                 context, null, AxisDirection.down),
-                        //           child: ListView.builder(
-                        //             reverse: true,
-                        //             shrinkWrap: true,
-                        //             padding:
-                        //                 EdgeInsets.symmetric(horizontal: 5.h),
-                        //                 // itemCount: 5,
-                        //             itemCount: transactionListProvider.notPaidUserListModel.notPaidUserList.length,
-                        //             itemBuilder: (context, index) {
-                        //               var data = transactionListProvider
-                        //                   .notPaidUserListModel
-                        //                   .notPaidUserList[index];
-                        //               return Container(
-                        //                 height: 45.h,
-                        //                 child: Column(
-                        //                   children: [
-                        //                     Row(
-                        //                       mainAxisAlignment:
-                        //                           MainAxisAlignment
-                        //                               .spaceBetween,
-                        //                       children: [
-                        //                         Text(
-                        //                           data.poolId,
-                        //                           style:
-                        //                               AppTextStyle.dashCardText(
-                        //                             color: Colors.black,
-                        //                           ),
-                        //                         ),
-                        //                         Text(
-                        //                           data.amount,
-                        //                           style: AppTextStyle
-                        //                               .dashTransAmount(
-                        //                             color: Colors.red,
-                        //                           ),
-                        //                         )
-                        //                       ],
-                        //                     ),
-                        //                     Row(
-                        //                       mainAxisAlignment:
-                        //                           MainAxisAlignment
-                        //                               .spaceBetween,
-                        //                       children: [
-                        //                         Text(
-                        //                           data.payDate.toString(),
-                        //                           style:
-                        //                               AppTextStyle.dashCardHint,
-                        //                         ),
-                        //                         Text(
-                        //                           data.paidTime.toString(),
-                        //                           style:
-                        //                               AppTextStyle.dashCardHint,
-                        //                         ),
-                        //                       ],
-                        //                     ),
-                        //                   ],
-                        //                 ),
-                        //               );
-                        //             },
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       // )
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -230,13 +135,12 @@ class TransactionListWidget extends StatelessWidget {
                   );
                 } catch (e) {
                   return Center(
-                    child: Container(
+                      child: Container(
                     child: Center(
                       child: Text('No Transaction ',
                           style: AppTextStyle.joinPoolSubHeading),
                     ),
-                  )
-                  );
+                  ));
                 }
               }
             },

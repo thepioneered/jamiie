@@ -74,13 +74,6 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                             height: 0.04.hp,
                           ),
 
-                          // Text(
-                          //   'Joined Pools',
-                          //   style: TextStyle(
-                          //       fontFamily: 'poppins',
-                          //       fontSize: 36.sp,
-                          //       fontWeight: FontWeight.bold),
-                          // ),
                           Container(
                             height: 490.h,
                             child: ListView.builder(
@@ -91,9 +84,6 @@ class _MyPoolWidgetState extends State<MyPoolWidget> {
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 15.w),
                                   child: JoinPoolListWidget(
-                                    //TODO:Ye change krna hai dono ko
-                                    // status:
-                                    //     data.joinedPoolListDataSubModel.status,
                                     status: true,
                                     amountSaved: data.joinedPoolListDataSubModel
                                         .contributionAmount,

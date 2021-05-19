@@ -5,8 +5,6 @@ class PoolId {
 }
 
 class PoolIdMobileModel {
-  // String poolId;
-  // String mobile;
 
   Map<String, dynamic> toJson(String poolId, String mobile) {
     return {

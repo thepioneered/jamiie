@@ -81,7 +81,6 @@ class LoanScreenWidget extends StatelessWidget {
                           ),
                           Text('Total Amount:',
                               style: AppTextStyle.subheadingText),
-                          //todo nitish se thik karwana hai total amount
                           Text(
                             (loanProvider.loanModel.amount +
                                     int.parse(poolAmount))

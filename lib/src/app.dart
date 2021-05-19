@@ -35,9 +35,6 @@ class _AppState extends State<App> {
         print("$q onMessage");
         print(q["data"]["path"]);
         Navigator.pushNamed(context, q["data"]["path"]);
-        // Map<String,dynamic>data = json.decode(q.toString());
-        // print(data);
-        // print(data["data"]);
         return;
       },
       onLaunch: (Map<String, Object> q) {
@@ -77,7 +74,6 @@ class _AppState extends State<App> {
           primaryColor: AppColors.primaryColorPurple,
         ),
         onGenerateRoute: AppRoutes.materialPageRoute,
-        // home:CompleteProfilePage(),
         home: Consumer<AppProvider>(
           builder: (_, appProvider, child) {
             return appProvider.child;

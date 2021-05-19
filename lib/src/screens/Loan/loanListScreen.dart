@@ -38,7 +38,6 @@ class LoanListScreenWidget extends StatelessWidget {
               } else if (!snapshot.hasError &&
                   snapshot.connectionState == ConnectionState.done) {
                 return Container(
-                  //padding: BaseStyles.pagePadingDashboard,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

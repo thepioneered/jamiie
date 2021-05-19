@@ -34,7 +34,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   FocusNode employerNode;
   FocusNode howLongNode;
   FocusNode addressNode;
-  // List<String> _dropdownValues = ["Month", "Year"];
 
   @override
   void initState() {
@@ -64,7 +63,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     var completeProfileProvider = Provider.of<CompleteProfileProvider>(context);
-    // double height = MediaQuery.of(context).size.height;
     return WillPopScope(
         onWillPop: () => completeProfileProvider.handleLogout(),
         child: Scaffold(
@@ -78,6 +76,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     EdgeInsets.only(left: 15.0.w, right: 15.0.w, top: 35.0.h),
                 child: Form(
                   key: completeProfileProvider.completeProfileFormKey,
+                  // ignore: deprecated_member_use
                   autovalidate:
                       completeProfileProvider.pageModel.onceFormSubmitted,
                   child: Column(
@@ -98,7 +97,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                                       onTap: imageProviderSignup.getImage,
                                       child: Container(
                                         alignment: Alignment.center,
-                                        // height: 120.0,/
                                         decoration: BoxDecoration(
                                           color: AppColors.primaryColorPurple,
                                           shape: BoxShape.circle,
@@ -144,21 +142,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                               ),
                               Container(
                                 width: 0.45.wp,
-                                // width: (MediaQuery.of(context).size.width - 50.0) / 2,
-                                // child: AppTextField.screenTextField(
-                                //     hintText: "State",
-                                //     focusNode: stateNode,
-                                //     onEdittingComplete: () => cityNode.requestFocus(),
-                                //     validator: (e) =>
-                                //         TextFieldValidation.stateCityValidation(
-                                //             e, "State"),
-                                //     autoValidate: false,
-                                //     onSaved: (e) {
-                                //       print(e);
-                                //       completeProfileProvider
-                                //           .completeProfileModel.state = e;
-                                //     },
-                                //     prefixIcon: null),
                                 child: OurDropdown.dropdown(
                                   hint: 'State',
                                   iconSize: 30,
@@ -220,7 +203,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         children: [
                           Container(
                             width: 0.7.wp,
-                            // width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
                             child: AppTextField.screenTextField(
                                 textInputType: TextInputType.number,
                                 maxLength: 2,
@@ -318,7 +300,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                         children: [
                           Container(
                             width: 0.7.wp,
-                            // width: (MediaQuery.of(context).size.width - 30.0) * 0.70,
                             child: AppTextField.screenTextField(
                                 maxLength: 2,
                                 textInputType: TextInputType.number,

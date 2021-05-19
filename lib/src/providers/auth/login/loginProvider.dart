@@ -16,9 +16,6 @@ import '../../../server/networkCalls.dart';
 import '../../../styles/colors.dart';
 import '../../../utils/sharedPref.dart';
 
-// class LoginProviderScaffold {
-//   final loginScaffoldKey = GlobalKey<ScaffoldState>();
-// }
 
 class LoginProvider extends ChangeNotifier {
   //Variables and Keys
@@ -199,10 +196,9 @@ class LoginProvider extends ChangeNotifier {
         } else if (loginResponse.profileCompleted &&
             loginResponse.riskCalculated &&
             !loginResponse.bankAdded) {
-          //!Aksh yhn krdeeee
           Navigator.push(loginScaffoldKey.currentContext,
               MaterialPageRoute(builder: (_) => BankPage(mobile: mobile)));
-          //TODO:Yhnnn pe
+          
 
         } else {
           Future.delayed(Duration(milliseconds: 1300), () {

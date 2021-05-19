@@ -35,8 +35,6 @@ class TextFieldValidation {
       return "Please Enter Name";
     } else if (data.trim() == null) {
       return "Please Enter Name";
-      // } else if (data.contains(" ")) {
-      //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter Name";
     } else if (!AppRegularExpression.nameRegExp.hasMatch(data.toString())) {
@@ -115,16 +113,11 @@ class TextFieldValidation {
       return "Please Enter valid Members";
     } else if (data.contains(" ")) {
       return "Blank spaces not allowed";
-      //TODO: check here imporatnt to do 5
     } else if (int.parse(data) > 35 || int.parse(data) < 3) {
       return "Members can not be more than 35 or less than 5";
     } else if (!AppRegularExpression.memberRegExp.hasMatch(data.toString())) {
       return "Enter valid Members";
     }
-
-    // else if (data[1] == "0" ) {
-    //   return "Members can not 0";
-    // }
 
     else {
       return null;
@@ -148,10 +141,6 @@ class TextFieldValidation {
   }
 
   static String passwordValidation(String data) {
-    // String pattern =
-    //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    // RegExp regExp = new RegExp(pattern);
-
     if (data == "null") {
       return "Please Enter Password";
     } else if (data.trim() == null) {
@@ -189,8 +178,6 @@ class TextFieldValidation {
       return "Please Enter your $title";
     } else if (data.trim() == null) {
       return "Please Enter your $title";
-      // } else if (data.contains(" ")) {
-      //   return "Blank spaces not allowed";
     } else if (data.trim() == "") {
       return "Please Enter your $title";
     } else {

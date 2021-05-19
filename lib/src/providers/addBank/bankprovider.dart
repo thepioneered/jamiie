@@ -35,9 +35,7 @@ class BankProvider extends ChangeNotifier {
        
       notifyListeners();
       return null;
-      //Show krdo bank ko
     } else {
-      // Bank already added hai
       firstTimeAddBank = false;
       isNetworkCallCompleted = true;
       Future.delayed(Duration(milliseconds: 500), () {

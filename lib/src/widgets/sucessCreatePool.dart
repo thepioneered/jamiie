@@ -180,7 +180,6 @@ class AppBottomModalSheet {
                       ),
                       Expanded(child: Container()),
                       Container(
-                        // height: MediaQuery.of(ctxx).size.height * 0.07,
                         height: 75.h,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 15.0),

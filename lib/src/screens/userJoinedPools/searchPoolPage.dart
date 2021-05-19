@@ -38,6 +38,7 @@ class SearchPoolPageWidget extends StatelessWidget {
                   subTitle: "Enter pool id to get pool details."),
               Form(
                 key: searchPoolProvider.searchPoolPageFormKey,
+                // ignore: deprecated_member_use
                 autovalidate: searchPoolProvider.pageModel.onceFormSubmitted,
                 child: Column(
                   children: [

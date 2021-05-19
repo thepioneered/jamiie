@@ -54,7 +54,6 @@ class PoolDataPageWidget extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
                       height: height * 0.35,
@@ -88,7 +87,6 @@ class PoolDataPageWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    //60 percent of total height
                     Container(
                       height: height * 0.45,
                       child: ListView.builder(
@@ -131,12 +129,6 @@ class PoolDataPageWidget extends StatelessWidget {
                                           return Icon(Icons.error);
                                         }),
                                   ),
-                                  // CircleAvatar(
-                                  //   backgroundImage: NetworkImage(
-                                  //     data.members[index].memberDetails
-                                  //         .imageURL,
-                                  //   ),
-                                  // ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
@@ -157,22 +149,15 @@ class PoolDataPageWidget extends StatelessWidget {
                             );
                           }),
                     ),
-
                     SizedBox(
                       height: 10.0,
                     ),
-
-                    // 7 percent of total height
-                    //TODO:Make this not equal to
-
                     !data.startStatus
                         ? Column(
                             children: [
-                              //SizedBox(height: 50.h),
                               Container(
                                 height: height * 0.07,
                                 child: AppButton.loginButton(
-                                  //TODO: Make this not equal to
                                   onTap: data.totalMember != data.joinedMember
                                       ? null
                                       : () {
@@ -227,20 +212,10 @@ class PoolDataPageWidget extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 10.h),
-                              // Container(
-                              //   height: height * 0.07,
-                              //   child: PayButtonWithCheck(
-                              //       poolId: data.poolId,
-                              //       poolName: data.poolName),
-                              // ),
-                              
-                              //TODO: 23/3/21 Check with nitish something
+
                               AppButton.loginButton(
-                                // TODO:Nitish vala bool dalde agr to payment hai fr pay button enable hoga else nhi.
                                 onTap: completePoolDataProvider.payButton
-                                    ?
-                                    // TODO: Please check here
-                                    () {
+                                    ? () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -252,7 +227,6 @@ class PoolDataPageWidget extends StatelessWidget {
                                         );
                                       }
                                     : null,
-
                                 title: "Pay",
                               ),
                               // ),

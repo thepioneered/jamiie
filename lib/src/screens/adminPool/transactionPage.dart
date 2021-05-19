@@ -98,15 +98,16 @@ class TransactionPageWidget extends StatelessWidget {
                     Container(
                       height: height * 0.07,
                       child: AppButton.loginButton(
-                        //todo change to push name
-
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => LoanScreen(
-                                poolAmount: transactionProvider.amount.poolAmount.toString(), 
-                                poolId: poolId,
-                              )));
-                          // transactionProvider.takeLoan(poolId);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => LoanScreen(
+                                        poolAmount: transactionProvider
+                                            .amount.poolAmount
+                                            .toString(),
+                                        poolId: poolId,
+                                      )));
                         },
                         title: "Take a Loan",
                       ),

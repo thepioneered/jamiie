@@ -49,16 +49,7 @@ class JoinPoolDataPageWidget extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Container(
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //           '${data.joinedMember.toString()} / ${data.totalMember.toString()}'),
-                    //     ],
-                    //   ),
-                    // ),
                     Container(
                       height: height * 0.35,
                       child: Row(
@@ -138,10 +129,6 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                                           return Icon(Icons.error);
                                         }),
                                   ),
-                                  // CircleAvatar(
-                                  //   backgroundImage: NetworkImage(data
-                                  //       .members[index].memberDetails.imageURL),
-                                  // ),
                                   SizedBox(
                                     width: 17.5,
                                   ),
@@ -180,7 +167,6 @@ class JoinPoolDataPageWidget extends StatelessWidget {
                                       ? (data.payStatus
                                           ? () {}
                                           : () {
-                                              //TODO: Edit is required here
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

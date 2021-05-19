@@ -12,25 +12,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppNavigationBar extends StatefulWidget {
   @override
   _AppNavigationBarState createState() => _AppNavigationBarState();
-  
 }
 
 class _AppNavigationBarState extends State<AppNavigationBar> {
-  
   int index = 0;
   final List<Object> _pages = <Object>[
     DashboardPage(),
     MyPool(),
     AdminPoolPage(),
     TransactionListPage(),
-    // TransactionScreen(),
-    // BankPage(),
-    
     SettingPage(),
   ];
 
   Widget _bottomNavigationBar(double height) {
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
@@ -54,7 +48,6 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             _navbarButton(2, "Create Pool", FontAwesomeIcons.edit),
             _navbarButton(3, "Transactions", FontAwesomeIcons.history),
             _navbarButton(4, "Settings", Icons.settings),
-            // _navbarImageButton(3),
           ],
         ),
       ),
@@ -90,7 +83,9 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
                       ),
                       Text(
                         title,
-                        style: TextStyle(color: AppColors.primaryColorPurple,fontSize: 14.sp),
+                        style: TextStyle(
+                            color: AppColors.primaryColorPurple,
+                            fontSize: 14.sp),
                       ),
                     ],
                   )
@@ -101,39 +96,13 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
     );
   }
 
-  // Widget _navbarImageButton(int _index) {
-  //   return Container(
-  //     width: 1.wp / 4,
-  //     child: FlatButton(
-  //       onPressed: () {
-  //         if (index != _index)
-  //           setState(() {
-  //             index = _index;
-  //           });
-  //       },
-  //       child: Container(
-  //         margin: EdgeInsets.all(12.0.h),
-  //         alignment: Alignment.center,
-  //         decoration: BoxDecoration(
-  //           shape: BoxShape.circle,
-  //           border: Border.all(width: 1.0.w, color: AppColors.primaryColorPurple),
-  //           image: DecorationImage(
-  //               image: AssetImage("assets/logo3.png"), fit: BoxFit.fill),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
     return Scaffold(
       body: _pages.elementAt(index),
-      
-      //8 percent of total height
       bottomNavigationBar: _bottomNavigationBar(
-         60.h,
+        60.h,
       ),
     );
   }

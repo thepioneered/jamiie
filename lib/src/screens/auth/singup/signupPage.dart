@@ -51,7 +51,6 @@ class _SignupWidgetState extends State<SignupWidget> {
   }
 
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
     ScreenUtil.init(context, width: 411, height: 683, allowFontScaling: false);
 
     print("+++++++++Signup Build+++++++++");
@@ -70,6 +69,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                   children: <Widget>[
                     Form(
                       key: signupProvider.signupFormKey,
+                      // ignore: deprecated_member_use
                       autovalidate: signupProvider.pageModel.onceFormSubmitted,
                       child: Column(
                         children: <Widget>[
@@ -172,16 +172,6 @@ class _SignupWidgetState extends State<SignupWidget> {
                             validator: signupProvider
                                 .signupPageConfirmPasswordValidation,
                           ),
-                          // Container(
-                          //     // height: 0.
-                          //     // color: Colors.blueAccent,
-                          //     child: AutoSizeText(
-                          //       "By clicking Sign Up,you agree to our Term's and that you have read our Privacy policy.",
-                          //       style: AppTextStyle.dontHaveAccount,
-                          //       minFontSize: 15.0,
-                          //       maxLines: 2,
-                          //     )
-
                           RichText(
                             text: TextSpan(
                               text: "By clicking Sign Up,you agree to our",

@@ -30,8 +30,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   Widget build(BuildContext context) {
     print("+++++LOGIN WIDGET REBUILD+++++");
 
-    // double height = MediaQuery.of(context).size.height - 75.0;
-    // print(height);
     return Consumer<LoginProvider>(
       builder: (_, loginProvider, child) {
         print("----" + 75.h.toString());
@@ -44,7 +42,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   height: 75.h,
                   prefixIcon: Icons.phone,
                   onEdittingComplete: () => passwordNode.requestFocus(),
-                  // maxLength: 10,
                   hintText: "Mobile",
                   autofocus: false,
                   validator: TextFieldValidation.mobileValidation,

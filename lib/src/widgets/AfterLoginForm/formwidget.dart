@@ -24,6 +24,7 @@ class OurDropdown {
         ),
         iconSize: iconSize,
         style: dropdownTextStyle,
+        // ignore: deprecated_member_use
         autovalidate: autoValidate,
         validator: validator,
         isExpanded: true,

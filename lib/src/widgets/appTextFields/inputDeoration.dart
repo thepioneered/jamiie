@@ -13,7 +13,6 @@ class AppInputDecoration {
     EdgeInsetsGeometry _edge,
   ) {
     return InputDecoration(
-      // prefixIcon: Icon(prefixIcon),
 
       prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
       suffixIcon: onEyeClick,

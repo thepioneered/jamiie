@@ -50,7 +50,6 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
   @override
   Widget build(BuildContext context) {
     var createPoolProvider = Provider.of<CreatePoolProvider>(context);
-    //double height = MediaQuery.of(context).size.height;
     return Scaffold(
       key: createPoolProvider.createPoolScaffoldKey,
       appBar: AppBarWidget.getAppBar(context, '', isRegistration: false),
@@ -58,7 +57,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
         child: Container(
           color: AppColors.white,
           padding: EdgeInsets.symmetric(horizontal: 15.0.h),
-          height: 600.h   ,
+          height: 600.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -67,9 +66,6 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                   title: "Create Pool",
                   subTitle: "Enter details to create your own pool"),
               Form(
-
-                //Todo:Check this is testing
-                // autovalidateMode: createPoolProvider.pageModel.onceFormSubmitted,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: createPoolProvider.createPoolFormKey,
                 child: Column(
@@ -106,9 +102,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     ),
                     AppTextField.screenTextField(
                       hintText: "Pool Members",
-                      //maxLength: 2,
                       textInputType: TextInputType.number,
-                      // validator: null,
                       validator: TextFieldValidation.memberValidation,
                       focusNode: memberNode,
                       autoValidate: false,
@@ -122,7 +116,7 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                       children: [
                         Container(
                           height: 75.0.h,
-                          width:0.45.wp,
+                          width: 0.45.wp,
                           child: GestureDetector(
                             onTap: () => createPoolProvider.selectDate(context),
                             child: AbsorbPointer(
@@ -149,13 +143,11 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                           ),
                         ),
                         Container(
-                          width:.45.wp,
+                          width: .45.wp,
                           child: DropdownButtonFormField<String>(
                             onSaved: (e) =>
                                 createPoolProvider.createPool.poolType = e,
                             decoration: AppInputDecoration.dropdownDecoration(),
-                            // autovalidate: false,
-
                             autovalidateMode: AutovalidateMode.disabled,
                             hint: Text(
                               'Pool Type',
@@ -184,12 +176,11 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
                     Container(
                       height: 0.07.hp,
                       child: AppButton.loginButton(
-                        
-                              onTap: () {
-                                FocusScope.of(context).unfocus();
-                                createPoolProvider.createPoolLogic();
-                              },
-                              title: "Create Pool"),
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                            createPoolProvider.createPoolLogic();
+                          },
+                          title: "Create Pool"),
                     ),
                   ],
                 ),
@@ -200,15 +191,4 @@ class _CreatePoolWidgetState extends State<CreatePoolWidget> {
       ),
     );
   }
-
-  // Widget pageChild(BuildContext ctx, Widget child, Color borderColor) {
-  //   return Container(
-  //       height: 49.0.h,
-  //       padding: EdgeInsets.only(left: 12.0.h, top: 8.0.h, bottom: 8.0.h, right: 8.0.h),
-  //       decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(4.0),
-  //           border: Border.all(color: borderColor, width: 1.0)),
-  //       width: (MediaQuery.of(context).size.width - 30.0) / 2 - 15.0,
-  //       child: child);
-  // }
 }

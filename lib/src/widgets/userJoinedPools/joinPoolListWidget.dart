@@ -28,9 +28,6 @@ class JoinPoolListWidget extends StatelessWidget {
     if (status) {
       return GestureDetector(
         onTap: () {
-          //Todo
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (_) => PoolScreen()));
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => nextScreen));
         },

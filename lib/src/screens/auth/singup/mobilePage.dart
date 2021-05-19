@@ -51,6 +51,7 @@ class MobilePageWidget extends StatelessWidget {
                   ),
                   Form(
                     key: mobileProvider.mobileFormKey,
+                    // ignore: deprecated_member_use
                     autovalidate: mobileProvider.pageModel.onceFormSubmitted,
                     child: AppTextField.screenTextField(
                         textInputType: TextInputType.number,

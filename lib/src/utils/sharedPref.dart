@@ -61,24 +61,7 @@ class LocalStorage {
     }
   }
 
-  // static Future<Null> setFirstLogin() async {
-  //   try {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.setBool('firstlogin', true);
-  //   } catch (e) {
-  //     throw Exception(e);
-  //   }
-  // }
 
-  // static Future<bool> getFirstLogin() async {
-  //   try {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     bool status = prefs.getBool('firstlogin');
-  //     return status;
-  //   } catch (e) {
-  //     throw Exception(e);
-  //   }
-  // }
   static Future<bool> isProfileComplete() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();

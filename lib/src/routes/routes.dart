@@ -109,12 +109,3 @@ class AppRoutes {
   }
 }
 
-//If pool not started
-// var q = {
-//   "poolAmount": "Amount",
-//   "totalMembers": 10,
-//   "poolDetails": [
-//     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"},
-//     {"memberName": "Nakul", "imageUrl": "Bucket url", "riskScore": "riskScore"}
-//   ]
-// };

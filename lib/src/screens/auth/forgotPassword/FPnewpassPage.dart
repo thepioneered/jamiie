@@ -65,6 +65,7 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
                   ),
                   Form(
                     key: newPasswordProvider.newpassFormKey,
+                    // ignore: deprecated_member_use
                     autovalidate:
                         newPasswordProvider.pageModel.onceFormSubmitted,
                     child: Column(

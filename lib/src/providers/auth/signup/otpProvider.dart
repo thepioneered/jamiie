@@ -55,35 +55,24 @@ class OtpProvider extends ChangeNotifier {
       if (body["status"]) {
         if (await LocalStorage.getSocialLogin() == true) {
           socialLogin = SocialLogin();
-          // final FirebaseAuth _auth = FirebaseAuth.instance;
-          // var googleAuth;
-          // final AuthCredential credential = GoogleAuthProvider.credential(
-          //   accessToken: googleAuth.accessToken,
-          //   idToken: googleAuth.idToken,
-          // );
-
-          // final User user = (await _auth.signInWithCredential(credential)).user;
-          // print("signed in " + user.email);
           print(SocialSignup().toJson(
               await LocalStorage.getMobile(),
               await LocalStorage.getSocialLoginEmail(),
               await LocalStorage.getSocialLoginName()));
-          //TODO:Check here
 
-          Map<String, dynamic> body = await NetworkCalls.postDataToServer(
-            shouldPagePop: true,
-            key: otpScaffoldKey,
-            endPoint: EndPoints.socialUserRegistration,
-            afterRequest: () {},
-            body: SocialSignup().toJson(
-                await LocalStorage.getMobile(),
-                await LocalStorage.getSocialLoginEmail(),
-                await LocalStorage.getSocialLoginName()),
-          );
+          // Map<String, dynamic> body = await NetworkCalls.postDataToServer(
+          //   shouldPagePop: true,
+          //   key: otpScaffoldKey,
+          //   endPoint: EndPoints.socialUserRegistration,
+          //   afterRequest: () {},
+          //   body: SocialSignup().toJson(
+          //       await LocalStorage.getMobile(),
+          //       await LocalStorage.getSocialLoginEmail(),
+          //       await LocalStorage.getSocialLoginName()),
+          // );
           socialLogin.email = await LocalStorage.getSocialLoginEmail();
           String mobileToken = await token(_firebaseMessanging);
           socialLogin.mobileToken = mobileToken;
-          String emailTemp = await LocalStorage.getSocialLoginEmail();
           Map<String, dynamic> data1 = await NetworkCalls.postDataToServer(
               key: otpScaffoldKey,
               endPoint: EndPoints.socialLogin,
@@ -104,7 +93,6 @@ class OtpProvider extends ChangeNotifier {
             }
           }
 
-          //TODO:Social work is goind here
         } else {
           Navigator.pop(otpScaffoldKey.currentContext);
           Navigator.pushReplacementNamed(
